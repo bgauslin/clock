@@ -1,0 +1,30 @@
+TRANSITION_SPEED = .3s
+
+// --------------------------------------------------
+// functions
+
+px_to_em(px)
+  em_units = px / 16
+  return em_units * 1em
+
+px_to_rem(px)
+  rem_units = px / 16
+  return rem_units * 1rem
+
+// --------------------------------------------------
+// mixins
+
+link(link, visited, active)
+  &:link
+    color link
+
+  &:visited
+    color visited
+
+  &:active
+  &:focus
+    color active
+
+link_hover(hover)
+  &:hover
+    color hover

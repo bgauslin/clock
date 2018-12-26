@@ -1,0 +1,77 @@
+{
+  "name": "clock",
+  "description": "Clock",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "repository": "https://bitbucket.org/bgauslin/clock",
+  "private": true,
+  "devServer": "clock.gauslin.test",
+  "paths": {
+    "apache": {
+      "src": "source/apache/_htaccess",
+      "name": ".htaccess",
+      "dest": "public"
+    },
+    "html": {
+      "src": "source/html/**/*",
+      "dest": "public"
+    },
+    "icons": {
+      "src": "source/icons/**/*",
+      "dest": "public/ui/icons"
+    },
+    "js": {
+      "src": "source/js/clock.js",
+      "dest": "public/ui/clock.js",
+      "bundleSrc": "clock.js",
+      "bundleDest": "public/ui"
+    },
+    "stylus": {
+      "src": "source/stylus/clock.styl",
+      "dest": "public/ui"
+    },
+    "version": {
+      "src": [
+        "public/ui/clock.css",
+        "public/ui/clock.js"
+      ],
+      "dest": "public/build/ui",
+      "manifestFile": "public/build/manifest.json"
+    }
+  },
+  "tasks": {
+    "build": [
+      "apache",
+      "html",
+      "icons",
+      "js",
+      "stylus"
+    ],
+    "default": [
+      "html",
+      "js",
+      "stylus"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/register": "^7.0.0-rc.1",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "next",
+    "browser-sync": "^2.24.6",
+    "browserify": "^16.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-hash": "^4.2.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-stylus": "^2.7.0",
+    "gulp-uglify": "^3.0.1",
+    "gulp-uglify-es": "^1.0.4",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
