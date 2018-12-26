@@ -31,7 +31,10 @@ if ($_SERVER['SERVER_NAME'] == $prod_server) {
   </head>
 
   <body ontouchstart no-touch no-js>
-    <div class="clocks"></div>
+    <div class="clocks">
+      <div class="clocks__frame"></div>
+    </div>
+
     <script src="<?php echo $js_path ?>"></script>
 
     <noscript>

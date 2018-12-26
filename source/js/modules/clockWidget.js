@@ -38,7 +38,7 @@ class Clock {
 
   // Renders clocks into the DOM.
   renderClockEls() {
-    const clocksEl = document.querySelector('.clocks');
+    const clocksEl = document.querySelector('.clocks__frame');
 
     for (let i = 1; i <= CLOCKS_COUNT; i++) {
       clocksEl.innerHTML += `
