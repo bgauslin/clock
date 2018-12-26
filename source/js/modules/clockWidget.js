@@ -1,6 +1,8 @@
 /** @const {number} */
 const CLOCKS_COUNT = 9;
 
+// TODO: Convert to 'clock' custom element.
+// https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
 class Clock {
 
   constructor() {
