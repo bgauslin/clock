@@ -27,7 +27,7 @@ class Clock {
 
   init() {
     this.renderClockEls();
-    setInterval(this.tick, 1000);
+    setInterval(this.tick, 500);
   }
 
   renderClockEls() {
@@ -49,6 +49,7 @@ class Clock {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
 
     const hoursAngle = .5 * (hours * 60 + minutes); 
     const minutesAngle = 6 * minutes;
@@ -64,6 +65,13 @@ class Clock {
     Array.from(minuteHands).forEach((minuteHand) => {
       minuteHand.setAttribute('transform', `rotate(${minutesAngle}, 50, 50)`);
     });
+
+    // Display current time in the document title.
+    const h = (hours > 12) ? (hours - 12) : hours;
+    const m = (minutes < 10) ? `0${minutes}` : minutes;
+    const s = (seconds < 10) ? `0${seconds}` : seconds;
+    const p = (hours > 12) ? 'PM' : 'AM';
+    document.title = `${h}:${m}:${s} ${p}`;
   }
 }
 
