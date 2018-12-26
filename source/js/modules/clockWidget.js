@@ -4,10 +4,38 @@ const MINUTES_DIVISOR = 60;
 /** @const {number} */
 const HOURS_DIVISOR = 12;
 
+/** @const {number} */
+const CLOCKS_COUNT = 9;
+
 class Clock {
 
-  init() {
+  constructor() {
+    this.hourHands = [];
+    this.minuteHands = [];
+  }
+
+  async init() {
+    await this.renderClockEls();
     setInterval(this.tick, 1000)
+  }
+
+  renderClockEls() {
+    const clocks = document.createElement('div');
+    clocks.classList.add('clocks');
+
+    for (let i = 1; i <= CLOCKS_COUNT; i++) {
+      // TODO: Set all SVG values via constants and math...
+      clocks.innerHTML += `
+        <svg class="clock" viewbox="0 0 100 100">
+          <g>
+            <line class="hours" x1="50" y1="50" x2="50" y2="3"/>
+            <line class="minutes" x1="50" y1="50" x2="50" y2="20"/>
+          </g>
+        </svg>
+      `;
+    }
+    const appEl = document.querySelector('.app');
+    appEl.appendChild(clocks);
   }
 
   tick() {
@@ -15,13 +43,23 @@ class Clock {
     const hours = now.getHours();
     const minutes = now.getMinutes();
 
-    const minutesAngle = minutes * (360 / MINUTES_DIVISOR);
-    const minutesPerHourAngle = (minutes / MINUTES_DIVISOR) * (360 / HOURS_DIVISOR);
     const hoursAngle = hours * (360 / HOURS_DIVISOR);
-    const hoursPlusMinutesAngle = hoursAngle + minutesPerHourAngle;
+    const minutesPerHourAngle = (minutes / MINUTES_DIVISOR) * (360 / HOURS_DIVISOR);
 
-    // console.log('hoursPlusMinutesAngle', hoursPlusMinutesAngle);
-    // console.log('minutesAngle', minutesAngle);
+    let hoursPlusMinutesAngle = hoursAngle + minutesPerHourAngle;
+    let minutesAngle = minutes * (360 / MINUTES_DIVISOR);
+
+    // TODO: Set these once instead of repeatedly doing so these...
+    this.hourHands = document.querySelectorAll('.hours');
+    this.minuteHands = document.querySelectorAll('.minutes');
+
+    Array.from(this.hourHands).forEach((hourHand) => {
+      hourHand.setAttribute('transform', `rotate(${hoursPlusMinutesAngle}, 50, 50)`);
+    });
+
+    Array.from(this.minuteHands).forEach((minuteHand) => {
+      minuteHand.setAttribute('transform', `rotate(${minutesAngle}, 50, 50)`);
+    });
   }
 }
 
