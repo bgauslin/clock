@@ -23,6 +23,12 @@ class Clock {
 
     /** @const {number} */
     this.minutesHandEnd = this.clockCenter - this.minutesHandLength;
+
+    /** @const {Array} */
+    this.hourHands = [];
+
+    /** @const {Array} */
+    this.minuteHands = [];
   }
 
   init() {
@@ -30,6 +36,7 @@ class Clock {
     setInterval(this.tick, 500);
   }
 
+  // Renders clocks into the DOM.
   renderClockEls() {
     const clocksEl = document.querySelector('.clocks');
 
@@ -45,28 +52,31 @@ class Clock {
     }
   }
 
+  // Sets rotation for hours and minutes hands.
   tick() {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
 
-    const hoursAngle = .5 * (hours * 60 + minutes); 
-    const minutesAngle = 6 * minutes;
+    const hoursAngle = (hours * 60 + minutes) * .5; 
+    const minutesAngle = minutes * 6;
 
-    // TODO: Set these once instead of on every tick...
-    const hourHands = document.querySelectorAll('.hours');
-    const minuteHands = document.querySelectorAll('.minutes');
+    if (!this.hourHands || !this.minuteHands) {
+      this.hourHands = document.querySelectorAll('.hours');
+      this.minuteHands = document.querySelectorAll('.minutes');
+    }
 
-    Array.from(hourHands).forEach((hourHand) => {
+    Array.from(this.hourHands).forEach((hourHand) => {
       hourHand.setAttribute('transform', `rotate(${hoursAngle}, 50, 50)`);
     });
 
-    Array.from(minuteHands).forEach((minuteHand) => {
+    Array.from(this.minuteHands).forEach((minuteHand) => {
       minuteHand.setAttribute('transform', `rotate(${minutesAngle}, 50, 50)`);
     });
+  }
 
-    // Display current time in the document title.
+  // Display current time in the document title.
+  updateDocumentTitle(hours, minutes, seconds) {
     const h = (hours > 12) ? (hours - 12) : hours;
     const m = (minutes < 10) ? `0${minutes}` : minutes;
     const s = (seconds < 10) ? `0${seconds}` : seconds;
