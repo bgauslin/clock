@@ -1,36 +1,46 @@
 /** @const {number} */
-const MINUTES_DIVISOR = 60;
-
-/** @const {number} */
-const HOURS_DIVISOR = 12;
-
-/** @const {number} */
 const CLOCKS_COUNT = 9;
 
 class Clock {
 
+  constructor() {
+    /** @const {number} */
+    this.clockSize = 100;
+
+    /** @const {number} */
+    this.hoursHandLength = 30;
+
+    /** @const {number} */
+    this.minutesHandLength = 45;
+
+    /** @const {number} */
+    this.clockCenter = this.clockSize / 2;
+
+    /** @const {number} */
+    this.hoursHandEnd = this.clockCenter - this.hoursHandLength;
+
+    /** @const {number} */
+    this.minutesHandEnd = this.clockCenter - this.minutesHandLength;
+  }
+
   init() {
     this.renderClockEls();
-    setInterval(this.tick, 1000)
+    setInterval(this.tick, 1000);
   }
 
   renderClockEls() {
-    const clocks = document.createElement('div');
-    clocks.classList.add('clocks');
+    const clocksEl = document.querySelector('.clocks');
 
     for (let i = 1; i <= CLOCKS_COUNT; i++) {
-      // TODO: Set all SVG values via constants and math...
-      clocks.innerHTML += `
-        <svg class="clock" viewbox="0 0 100 100">
+      clocksEl.innerHTML += `
+        <svg class="clock" viewbox="0 0 ${this.clockSize} ${this.clockSize}">
           <g>
-            <line class="hours" x1="50" y1="50" x2="50" y2="3"/>
-            <line class="minutes" x1="50" y1="50" x2="50" y2="20"/>
+            <line class="hours" x1="${this.clockCenter}" y1="${this.clockCenter}" x2="${this.clockCenter}" y2="${this.hoursHandEnd}"/>
+            <line class="minutes" x1="${this.clockCenter}" y1="${this.clockCenter}" x2="${this.clockCenter}" y2="${this.minutesHandEnd}"/>
           </g>
         </svg>
       `;
     }
-    const appEl = document.querySelector('.app');
-    appEl.appendChild(clocks);
   }
 
   tick() {
@@ -38,18 +48,15 @@ class Clock {
     const hours = now.getHours();
     const minutes = now.getMinutes();
 
-    const hoursAngle = hours * (360 / HOURS_DIVISOR);
-    const minutesPerHourAngle = (minutes / MINUTES_DIVISOR) * (360 / HOURS_DIVISOR);
+    const hoursAngle = .5 * (hours * 60 + minutes); 
+    const minutesAngle = 6 * minutes;
 
-    let hoursPlusMinutesAngle = hoursAngle + minutesPerHourAngle;
-    let minutesAngle = minutes * (360 / MINUTES_DIVISOR);
-
-    // TODO: Set these once instead of repeatedly...
+    // TODO: Set these once instead of on every tick...
     const hourHands = document.querySelectorAll('.hours');
     const minuteHands = document.querySelectorAll('.minutes');
 
     Array.from(hourHands).forEach((hourHand) => {
-      hourHand.setAttribute('transform', `rotate(${hoursPlusMinutesAngle}, 50, 50)`);
+      hourHand.setAttribute('transform', `rotate(${hoursAngle}, 50, 50)`);
     });
 
     Array.from(minuteHands).forEach((minuteHand) => {

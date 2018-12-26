@@ -1,10 +1,16 @@
 html
 body
-  background white
+  background #f7f7f7
   margin 0
   padding 0
   -webkit-tap-highlight-color transparent
   text-size-adjust none
+
+body
+  display grid
+  height 100%
+  min-height 100vh // fallback
+  min-height calc(var(--viewport-unit, 1vh) * 100)
 
 *
   box-sizing border-box
