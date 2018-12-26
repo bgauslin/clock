@@ -9,13 +9,8 @@ const CLOCKS_COUNT = 9;
 
 class Clock {
 
-  constructor() {
-    this.hourHands = [];
-    this.minuteHands = [];
-  }
-
-  async init() {
-    await this.renderClockEls();
+  init() {
+    this.renderClockEls();
     setInterval(this.tick, 1000)
   }
 
@@ -49,15 +44,15 @@ class Clock {
     let hoursPlusMinutesAngle = hoursAngle + minutesPerHourAngle;
     let minutesAngle = minutes * (360 / MINUTES_DIVISOR);
 
-    // TODO: Set these once instead of repeatedly doing so these...
-    this.hourHands = document.querySelectorAll('.hours');
-    this.minuteHands = document.querySelectorAll('.minutes');
+    // TODO: Set these once instead of repeatedly...
+    const hourHands = document.querySelectorAll('.hours');
+    const minuteHands = document.querySelectorAll('.minutes');
 
-    Array.from(this.hourHands).forEach((hourHand) => {
+    Array.from(hourHands).forEach((hourHand) => {
       hourHand.setAttribute('transform', `rotate(${hoursPlusMinutesAngle}, 50, 50)`);
     });
 
-    Array.from(this.minuteHands).forEach((minuteHand) => {
+    Array.from(minuteHands).forEach((minuteHand) => {
       minuteHand.setAttribute('transform', `rotate(${minutesAngle}, 50, 50)`);
     });
   }
