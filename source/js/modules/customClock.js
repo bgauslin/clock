@@ -50,6 +50,7 @@ class Clock extends HTMLElement {
             x1="${CLOCK_CENTER}" y1="${CLOCK_CENTER}"
             x2="${CLOCK_CENTER}" y2="${MINUTES_HAND_END}"
             transform="rotate(${minutesAngle}, ${CLOCK_CENTER}, ${CLOCK_CENTER})"/>
+          <circle cx="${CLOCK_CENTER}" cy="${CLOCK_CENTER}" r="3"/>
         </g>
       </svg>
     `;

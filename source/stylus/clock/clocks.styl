@@ -1,20 +1,28 @@
 OFFSET = 6%
 
-n-clock
-  display block
-  stroke black
-  stroke-linecap round
-  stroke-width 4px
-
 .clocks
-  margin 0 (OFFSET * -2) 0 0
-  padding (OFFSET * 2) 0 OFFSET (OFFSET * 2)
+  background white
+  border 1px solid #ddd
+  margin px_to_rem(24)
+  max-width px_to_rem(480)
 
 .clocks__frame
   display flex
   flex-wrap wrap
+  margin-right (OFFSET * -4)
+  padding (OFFSET *2) (OFFSET * 2) OFFSET
 
 .clocks__frame > n-clock
   flex 0 0 ((1 / 3) * 100%)
   height 100%
   margin (- OFFSET) 0 0 (- OFFSET)
+
+n-clock
+  display block
+
+n-clock line
+  stroke black
+  stroke-width 6px
+
+n-clock circle 
+  fill black
