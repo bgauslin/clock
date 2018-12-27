@@ -2,16 +2,19 @@
 const CLOCK_SIZE = 100;
 
 /** @const {number} */
+const STROKE_WIDTH = 3; // Half of CSS stroke-width.
+
+/** @const {number} */
 const CLOCK_CENTER = CLOCK_SIZE / 2;
 
 /** @const {number} */
-const HOURS_HAND_LENGTH = 30;
+const HOURS_HAND_LENGTH = 30; // Coordinate with CSS offset value.
 
 /** @const {number} */
 const HOURS_HAND_END = CLOCK_CENTER - HOURS_HAND_LENGTH;
 
 /** @const {number} */
-const MINUTES_HAND_LENGTH = 45;
+const MINUTES_HAND_LENGTH = CLOCK_CENTER - STROKE_WIDTH;
 
 /** @const {number} */
 const MINUTES_HAND_END = CLOCK_CENTER - MINUTES_HAND_LENGTH;
@@ -50,7 +53,7 @@ class Clock extends HTMLElement {
             x1="${CLOCK_CENTER}" y1="${CLOCK_CENTER}"
             x2="${CLOCK_CENTER}" y2="${MINUTES_HAND_END}"
             transform="rotate(${minutesAngle}, ${CLOCK_CENTER}, ${CLOCK_CENTER})"/>
-          <circle cx="${CLOCK_CENTER}" cy="${CLOCK_CENTER}" r="3"/>
+          <circle cx="${CLOCK_CENTER}" cy="${CLOCK_CENTER}" r="${STROKE_WIDTH}"/>
         </g>
       </svg>
     `;
