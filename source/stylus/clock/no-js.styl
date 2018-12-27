@@ -1,13 +1,4 @@
-body[no-js]
-  align-items center
-  color rgba(black, .7)
-  display flex
-  justify-content center
-  flex-direction column
-  min-height 100vh // fallback
-  min-height calc(var(--viewport-unit, 1vh) * 100)
-
-body[no-js] .app
+body[no-js] .clocks
   display none
 
 .no-js
@@ -19,6 +10,7 @@ body[no-js] .app
   padding 2rem
   text-align center
 
+// TODO: Update 'no-js' link colors.
 .no-js__message > a
   font-weight bold
   link(white, white, rgba(white, .7))

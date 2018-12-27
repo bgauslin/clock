@@ -7,8 +7,6 @@ const CLOCKS_COUNT = 9;
 /** @const {Element} */
 const clocksEl = document.querySelector('.clocks__frame');
 
-customElements.define('n-clock', Clock);
-
 /** @instance */
 const utilities = new Utilities({
   analyticsSettings: {
@@ -16,6 +14,9 @@ const utilities = new Utilities({
     id: 'UA-626192-XX',
   },
 });
+
+// Register custom elements.
+customElements.define('n-clock', Clock);
 
 /** @description Waits until DOM is ready before initializing app. */
 document.addEventListener('DOMContentLoaded', () => {
