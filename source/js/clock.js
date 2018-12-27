@@ -1,5 +1,13 @@
-import { Clock } from './modules/clockWidget';
+import { Clock } from './modules/customClock';
 import { Utilities } from './modules/utilities';
+
+/** @const {number} */
+const CLOCKS_COUNT = 9;
+
+/** @const {Element} */
+const clocksEl = document.querySelector('.clocks__frame');
+
+customElements.define('n-clock', Clock);
 
 /** @instance */
 const utilities = new Utilities({
@@ -9,12 +17,11 @@ const utilities = new Utilities({
   },
 });
 
-/** @instance */
-const clock = new Clock();
-
 /** @description Waits until DOM is ready before initializing app. */
 document.addEventListener('DOMContentLoaded', () => {
-  clock.init();
+  for (let i = 1; i <= CLOCKS_COUNT; i++) {
+    clocksEl.innerHTML += '<n-clock></n-clock>';
+  }
   utilities.init();
 }, { once: true } );
 
