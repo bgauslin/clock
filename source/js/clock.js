@@ -11,7 +11,7 @@ const clocksEl = document.querySelector('.clocks__frame');
 const utilities = new Utilities({
   analyticsSettings: {
     domain: 'clock.gauslin.com',
-    id: 'UA-626192-XX',
+    id: 'UA-626192-16',
   },
 });
 

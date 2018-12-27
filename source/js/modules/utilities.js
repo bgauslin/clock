@@ -17,7 +17,7 @@ class Utilities {
     this.hasJs();
     this.noTouch();
     this.viewportHeight();
-    // this.googleAnalytics(this.analyticsSettings);
+    this.googleAnalytics(this.analyticsSettings);
   }
 
   /**
