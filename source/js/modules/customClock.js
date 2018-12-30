@@ -1,14 +1,16 @@
+// NOTE: All clock element dimensions below need to be coordinated with the same values in 'stylus/config/index.styl'
+
 /** @const {number} */
 const CLOCK_SIZE = 100;
 
 /** @const {number} */
-const STROKE_WIDTH = 3; // Half of CSS stroke-width.
+const STROKE_WIDTH = 3;
 
 /** @const {number} */
 const CLOCK_CENTER = CLOCK_SIZE / 2;
 
 /** @const {number} */
-const HOURS_HAND_LENGTH = 30; // Coordinate with CSS offset value.
+const HOURS_HAND_LENGTH = 30;
 
 /** @const {number} */
 const HOURS_HAND_END = CLOCK_CENTER - HOURS_HAND_LENGTH;
@@ -20,7 +22,7 @@ const MINUTES_HAND_LENGTH = CLOCK_CENTER - STROKE_WIDTH;
 const MINUTES_HAND_END = CLOCK_CENTER - MINUTES_HAND_LENGTH;
 
 /** @const {number} */
-const REFRESH_INTERVAL = 30000; // 30 seconds
+const REFRESH_INTERVAL = 1000; // every second
 
 /** @class */
 class Clock extends HTMLElement {
