@@ -1,7 +1,15 @@
+body[no-js]
+  background white
+
 body[no-js] .clocks
   display none
+  
+LINK_COLOR = #0070c9
 
 .no-js
+  color #333
+  font-family 'Helvetica Neue', Helvetica, Arial , sans-serif
+  font-weight bold
   padding 1rem
 
 .no-js__message
@@ -10,12 +18,10 @@ body[no-js] .clocks
   padding 2rem
   text-align center
 
-// TODO: Update 'no-js' link colors.
 .no-js__message > a
-  font-weight bold
-  link(white, white, rgba(white, .7))
+  link(LINK_COLOR, LINK_COLOR, rgba(LINK_COLOR, .7))
 
 [no-touch] .no-js__message > a
   transition color TRANSITION_SPEED
-  link_hover(rgba(white, .7))
+  link_hover(rgba(LINK_COLOR, .7))
 
