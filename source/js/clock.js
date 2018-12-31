@@ -1,4 +1,5 @@
 import { Clock } from './modules/customClock';
+import { Theme } from './modules/theme';
 import { Utilities } from './modules/utilities';
 
 /** @const {number} */
@@ -6,6 +7,9 @@ const CLOCKS_COUNT = 9;
 
 /** @const {Element} */
 const clocksEl = document.querySelector('.clocks__frame');
+
+/** @instance */
+const theme = new Theme();
 
 /** @instance */
 const utilities = new Utilities({
@@ -23,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   for (let i = 1; i <= CLOCKS_COUNT; i++) {
     clocksEl.innerHTML += '<n-clock></n-clock>';
   }
+  theme.init();
   utilities.init();
 }, { once: true } );
 
