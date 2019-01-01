@@ -30,7 +30,8 @@ class Theme {
     document.body.innerHTML += html;
 
     const themifier = document.querySelector(`.${Theming.TOGGLE}`);
-    themifier.addEventListener('click', () => {
+    themifier.addEventListener('click', (e) => {
+      e.preventDefault();
       this.theme = (this.theme === Theming.DEFAULT) ? Theming.ALT : Theming.DEFAULT;
       this.setTheme();
     });
