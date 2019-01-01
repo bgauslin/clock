@@ -2,6 +2,8 @@
   margin 5vh 5vw
   max-width CLOCKS_MAX_WIDTH
   overflow hidden
+  transition background THEME_TRANSITION_SPEED,
+             border THEME_TRANSITION_SPEED
 
 .clocks__frame
   display flex
@@ -19,3 +21,7 @@ n-clock
 
 n-clock line
   stroke-width '%spx' % (STROKE_WIDTH * 2)
+  transition stroke THEME_TRANSITION_SPEED
+
+n-clock circle
+  transition fill THEME_TRANSITION_SPEED

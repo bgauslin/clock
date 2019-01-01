@@ -13,6 +13,8 @@ body
   flex-direction column
   min-height 100vh // fallback
   min-height calc(var(--viewport-unit, 1vh) * 100)
+  transition background THEME_TRANSITION_SPEED,
+             color THEME_TRANSITION_SPEED
 
 *
   box-sizing border-box
@@ -28,8 +30,3 @@ svg
   pointer-events none
   vertical-align middle
   width 100%
-
-[hidden]
-  display none !important
-  pointer-events none !important
-  
