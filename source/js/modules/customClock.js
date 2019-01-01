@@ -48,14 +48,16 @@ class Clock extends HTMLElement {
       <svg viewbox="0 0 ${CLOCK_SIZE} ${CLOCK_SIZE}">
         <g>
           <line
+            class="clock__hand"
             x1="${CLOCK_CENTER}" y1="${CLOCK_CENTER}"
             x2="${CLOCK_CENTER}" y2="${HOURS_HAND_END}"
             transform="rotate(${hoursAngle}, ${CLOCK_CENTER}, ${CLOCK_CENTER})"/>
           <line
+            class="clock__hand"
             x1="${CLOCK_CENTER}" y1="${CLOCK_CENTER}"
             x2="${CLOCK_CENTER}" y2="${MINUTES_HAND_END}"
             transform="rotate(${minutesAngle}, ${CLOCK_CENTER}, ${CLOCK_CENTER})"/>
-          <circle cx="${CLOCK_CENTER}" cy="${CLOCK_CENTER}" r="${STROKE_WIDTH}"/>
+          <circle class="clock__pivot" cx="${CLOCK_CENTER}" cy="${CLOCK_CENTER}" r="${STROKE_WIDTH}"/>
         </g>
       </svg>
     `;

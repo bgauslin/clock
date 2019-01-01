@@ -11,17 +11,17 @@
   margin-right '%s%' % (CLOCK_OFFSET * -4)
   padding '%s% %s% %s%' % ((CLOCK_OFFSET * 2) (CLOCK_OFFSET * 2) CLOCK_OFFSET)
 
+n-clock
+  display block
+
 .clocks__frame > n-clock
   flex 0 0 (CLOCK_WIDTH * 100%)
   height 100%
   margin '%s% 0 0 %s%' % ((- CLOCK_OFFSET) (- CLOCK_OFFSET))
 
-n-clock
-  display block
-
-n-clock line
+.clock__hand
   stroke-width '%spx' % (STROKE_WIDTH * 2)
   transition stroke THEME_TRANSITION_SPEED
 
-n-clock circle
+.clock__pivot
   transition fill THEME_TRANSITION_SPEED

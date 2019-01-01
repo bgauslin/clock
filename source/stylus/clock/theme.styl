@@ -6,32 +6,32 @@
   top 0
   width 100vw
 
-// 'light' theme
-body[theme="light"]
-  background #f7f7f7
-  color rgba(black, .7)
+THEMES = {
+  light: {
+    BACKGROUND: #f7f7f7
+    BORDER: #ddd
+    FACE: white
+    HANDS: black
+  },
+  dark: {
+    BACKGROUND: #111
+    BORDER: #222
+    FACE: black
+    HANDS: white
+  }
+}
 
-  .clocks
-    background white
-    border 1px solid #ddd
+for name, theme in THEMES
+  [theme=\"{name}\"]
+    {body}&
+      background theme['BACKGROUND'];
 
-  n-clock line
-    stroke black
+    .clocks
+      background theme['FACE'];
+      border 1px solid theme['BORDER'];
 
-  n-clock circle 
-    fill black
+    .clock__hand
+      stroke theme['HANDS'];
 
-// 'dark' theme
-body[theme="dark"]
-  background #111
-  color rgba(white, .7)
-
-  .clocks
-    background black  
-    border 1px solid #222
-
-  n-clock line
-    stroke white
-
-  n-clock circle
-    fill white
+    .clock__pivot
+      fill theme['HANDS'];
