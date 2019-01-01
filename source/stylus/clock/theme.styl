@@ -1,3 +1,23 @@
+.themifier
+  cursor default
+  height 100%
+  left 0
+  position fixed
+  top 0
+  width 100vw
+
+body
+  transition background THEME_TRANSITION_SPEED, color THEME_TRANSITION_SPEED
+
+.clocks
+  transition background THEME_TRANSITION_SPEED, border THEME_TRANSITION_SPEED
+
+n-clock line
+  transition stroke THEME_TRANSITION_SPEED
+
+n-clock circle
+  transition fill THEME_TRANSITION_SPEED
+
 // 'light' theme
 body[theme="light"]
   background #f7f7f7
@@ -25,5 +45,5 @@ body[theme="dark"]
   n-clock line
     stroke white
 
-  n-clock circle 
+  n-clock circle
     fill white

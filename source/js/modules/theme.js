@@ -1,6 +1,7 @@
 /** @param {enum} */
 const Theming = {
   ATTR: 'theme',
+  TOGGLE: 'themifier',
   ITEM: 'theme',
   ALT: 'dark',
   DEFAULT: 'light',
@@ -13,11 +14,11 @@ class Theme {
   }
 
   init() {
-    this.setTheme(this.theme);
+    this.setTheme();
     this.updateTheme();
   }
 
-  /** @description Set 'theme' attribute and stores it. */
+  /** @description Sets 'theme' attribute and stores it. */
   setTheme() {
     document.body.setAttribute(Theming.ATTR, this.theme);
     localStorage.setItem(Theming.ITEM, this.theme);
@@ -25,7 +26,11 @@ class Theme {
 
   /** @description Updates 'theme' on click. */
   updateTheme() {
-    window.addEventListener('click', () => {
+    const html = `<a class="${Theming.TOGGLE}" href="#"></a>`;
+    document.body.innerHTML += html;
+
+    const themifier = document.querySelector(`.${Theming.TOGGLE}`);
+    themifier.addEventListener('click', () => {
       this.theme = (this.theme === Theming.DEFAULT) ? Theming.ALT : Theming.DEFAULT;
       this.setTheme();
     });
