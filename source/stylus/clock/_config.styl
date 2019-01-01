@@ -1,5 +1,3 @@
-CLOCKS_MAX_WIDTH = 40rem // 512px
-
 // NOTE: All clock element dimensions below need to be coordinated with the same values in 'js/modules/customClock.js'
 CLOCK_SIZE = 100
 CLOCK_CENTER = CLOCK_SIZE / 2
@@ -10,18 +8,25 @@ MINUTES_HAND_LENGTH = CLOCK_CENTER - STROKE_WIDTH
 // Clocks lay out in a 3 x 3 grid.
 CLOCK_WIDTH = 1 / 3
 
+// 512px max-width
+CLOCKS_MAX_WIDTH = 40rem
+
 // Gap between clock hands for 6:00, where hands are vertically aligned.
 CLOCK_GAP = 1
 
 // Calculate the offset as a percentage for laying out clocks mathematically.
 CLOCK_OFFSET = (CLOCK_SIZE - HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH - CLOCK_GAP) * CLOCK_WIDTH
 
-// 'no-js' styles.
-LINK_COLOR = #0070c9
-TRANSITION_SPEED = .3s
+// Theming transition.
 THEME_TRANSITION_SPEED = 1.5s
 
-// mixins
+
+// ------------------------------
+// 'no-js' styles and mixins
+
+LINK_COLOR = #0070c9
+TRANSITION_SPEED = .3s
+
 link(link, visited, active)
   &:link
     color link
