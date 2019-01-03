@@ -13,18 +13,25 @@ class Theme {
     this.theme = localStorage.getItem(Theming.ITEM) || Theming.DEFAULT;
   }
 
+  /**
+   * @description Initializes theming.
+   */
   init() {
     this.setTheme();
     this.updateTheme();
   }
 
-  /** @description Sets 'theme' attribute and stores it. */
+  /**
+   * @description Sets 'theme' attribute and stores it.
+   */
   setTheme() {
     document.body.setAttribute(Theming.ATTR, this.theme);
     localStorage.setItem(Theming.ITEM, this.theme);
   }
 
-  /** @description Updates 'theme' on click. */
+  /**
+   * @description Updates 'theme' on click.
+   */
   updateTheme() {
     const html = `<a class="${Theming.TOGGLE}" href="#"></a>`;
     document.body.innerHTML += html;

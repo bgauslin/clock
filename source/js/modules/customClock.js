@@ -36,6 +36,9 @@ class Clock extends HTMLElement {
     setInterval(() => this.setHands(), REFRESH_INTERVAL);
   }
   
+  /**
+   * @description Calculates rotations for hours and minutes hands and renders an SVG.
+   */
   setHands() {
     const now = new Date();
     const hours = now.getHours();
