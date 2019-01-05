@@ -29,7 +29,7 @@ const renderClocks = (selector, n = 9) => {
 
 /**
  * Initializes app when the DOM is ready.
- * @listens
+ * @listens DOMContentLoaded
  */
 document.addEventListener('DOMContentLoaded', () => {
   customElements.define('n-clock', Clock);
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Updates 'vh' value when window is resized.
- * @listens 
+ * @listens resize
  */
 window.addEventListener('resize', () => {
   utilities.viewportHeight();
