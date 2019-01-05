@@ -6,22 +6,7 @@
   top 0
   width 100vw
 
-THEMES = {
-  light: {
-    BACKGROUND: #f7f7f7
-    BORDER: #ddd
-    FACE: white
-    HANDS: black
-  },
-  dark: {
-    BACKGROUND: #111
-    BORDER: #222
-    FACE: black
-    HANDS: white
-  }
-}
-
-for name, theme in THEMES
+for name, theme in ClockThemes
   [theme=\"{name}\"]
     {body}&
       background theme['BACKGROUND'];

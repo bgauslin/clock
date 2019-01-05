@@ -1,32 +1,64 @@
-// NOTE: All clock element dimensions below need to be coordinated with the same values in 'js/modules/customClock.js'
-CLOCK_SIZE = 100
-CLOCK_CENTER = CLOCK_SIZE / 2
-STROKE_WIDTH = 3
-HOURS_HAND_LENGTH = 30
-MINUTES_HAND_LENGTH = CLOCK_CENTER - STROKE_WIDTH
+// NOTE: All 'ClockDimensions' values need to stay coordinated with
+// values in './source/js/modules/customClock.js'
+
+// @type Hash
+ClockDimensions = {
+  SIZE: 100
+  CENTER: 50 // Half of SIZE
+  STROKE_WIDTH: 3
+  HOURS_HAND_LENGTH: 30
+}
+
+// @type Number
+MINUTES_HAND_LENGTH = ClockDimensions.CENTER - ClockDimensions.STROKE_WIDTH
 
 // Clocks lay out in a 3 x 3 grid.
+// @type Number
 CLOCK_WIDTH = 1 / 3
 
-// 512px max-width
-CLOCKS_MAX_WIDTH = 40rem
+// @type String
+CLOCKS_MAX_WIDTH = 40rem // 512px
 
 // Gap between clock hands for 6:00, where hands are vertically aligned.
+// @type Number
 CLOCK_GAP = 1
 
 // Calculate the offset as a percentage for laying out clocks mathematically.
-CLOCK_OFFSET = (CLOCK_SIZE - HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH - CLOCK_GAP) * CLOCK_WIDTH
+// @type Number
+CLOCK_OFFSET = (ClockDimensions.SIZE - ClockDimensions.HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH - CLOCK_GAP) * CLOCK_WIDTH
 
 // Theming transition.
+// @type String
 THEME_TRANSITION_SPEED = 1.5s
 
+// @type Hash
+ClockThemes = {
+  light: {
+    BACKGROUND: #f7f7f7
+    BORDER: #ddd
+    FACE: white
+    HANDS: black
+  },
+  dark: {
+    BACKGROUND: #111
+    BORDER: #222
+    FACE: black
+    HANDS: white
+  }
+}
 
 // ------------------------------
 // 'no-js' styles and mixins
 
+// @type Color
 LINK_COLOR = #0070c9
+
+// @type String
 TRANSITION_SPEED = .3s
 
+// @param Color link
+// @param Color visited
+// @param Color active
 link(link, visited, active)
   &:link
     color link
