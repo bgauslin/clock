@@ -6,29 +6,34 @@ const NO_TOUCH_ATTR = 'no-touch';
 
 /** @class */
 class Utilities {
-
+  /**
+   * @param {!Object} config
+   * @param {!Object} config.analyticsSettings
+   */
   constructor(config) {
-    /** @const {string} */
+    /** @const {!Object} */
     this.analyticsSettings = config.analyticsSettings;
   }
 
   /**
-   * @description Initializes all utilities.
+   * Initializes all utility methods.
+   * @public
    */
   init() {
-    this.hasJs();
-    this.noTouch();
+    this.hasJs_();
+    this.noTouch_();
     this.viewportHeight();
-    this.googleAnalytics(this.analyticsSettings);
+    this.googleAnalytics_(this.analyticsSettings);
   }
 
   /**
    * @description Initializes Google Analytics tracking.
    * @param {!Object} settings
-   * @param {!string} settings.id - Google Analytics ID
-   * @param {!string} settings.domain - Production domain
+   * @param {!string} settings.id - Google Analytics ID.
+   * @param {!string} settings.domain - Production domain.
+   * @private
    */
-  googleAnalytics(settings) {
+  googleAnalytics_(settings) {
     if (window.location.hostname === settings.domain) {
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -40,28 +45,31 @@ class Utilities {
   }
 
   /**
-   * @description Removes 'no-js' attribute and 'noscript' element if JS is enabled.
+   * Removes 'no-js' attribute and 'noscript' element if JS is enabled.
+   * @private
    */
-  hasJs() {
+  hasJs_() {
     document.body.removeAttribute(NO_JS_ATTR);
     const noscript = document.querySelector('noscript');
     noscript.remove();
   }
 
   /**
-   * @description Removes 'no-touch' attribute if device is touch-enabled.
+   * Removes 'no-touch' attribute if device is touch-enabled.
+   * @private
    */
-  noTouch() {
+  noTouch_() {
     if ('ontouchstart' in window || navigator.msMaxTouchPoints > 0) {
       document.body.removeAttribute(NO_TOUCH_ATTR);
     }
   }
 
   /**
-   * @description Sets custom property for viewport height that updates 'vh' calculation
-   * due to iOS Safari behavior where chrome appears and disappears when scrolling.
+   * Sets custom property for viewport height that updates 'vh' calculation due to
+   * iOS Safari behavior where chrome appears and disappears when scrolling.
+   * @public
    */
-  viewportHeight () {
+  viewportHeight() {
     const viewportUnit = window.innerHeight / 100;
     document.documentElement.style.setProperty('--viewport-unit', `${viewportUnit}px`);
   }

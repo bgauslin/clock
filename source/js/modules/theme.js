@@ -1,4 +1,4 @@
-/** @param {enum} */
+/** @enum {string} */
 const Theming = {
   ATTR: 'theme',
   TOGGLE: 'themifier',
@@ -7,32 +7,36 @@ const Theming = {
   DEFAULT: 'light',
 }
 
+/** @class */
 class Theme {
   constructor() {
-    /** @param {string} */
+    /** @const {string} */
     this.theme = localStorage.getItem(Theming.ITEM) || Theming.DEFAULT;
   }
 
   /**
-   * @description Initializes theming.
+   * Initializes theming.
+   * @public
    */
   init() {
-    this.setTheme();
-    this.updateTheme();
+    this.setTheme_();
+    this.updateTheme_();
   }
 
   /**
-   * @description Sets 'theme' attribute and stores it.
+   * Sets 'theme' attribute and stores it.
+   * @private
    */
-  setTheme() {
+  setTheme_() {
     document.body.setAttribute(Theming.ATTR, this.theme);
     localStorage.setItem(Theming.ITEM, this.theme);
   }
 
   /**
-   * @description Updates 'theme' on click.
+   * Updates 'theme' on click.
+   * @private
    */
-  updateTheme() {
+  updateTheme_() {
     const html = `<a class="${Theming.TOGGLE}" href="#"></a>`;
     document.body.innerHTML += html;
 
@@ -40,7 +44,7 @@ class Theme {
     themifier.addEventListener('click', (e) => {
       e.preventDefault();
       this.theme = (this.theme === Theming.DEFAULT) ? Theming.ALT : Theming.DEFAULT;
-      this.setTheme();
+      this.setTheme_();
     });
   }
 }

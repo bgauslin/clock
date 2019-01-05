@@ -13,29 +13,35 @@ const utilities = new Utilities({
   },
 });
 
-// Register custom elements.
-customElements.define('n-clock', Clock);
-
 /**
- * @description Renders custom elements for the app.
- * @param {!Element} selector Parent element's selector for rendered clocks.
- * @param {?number=} n Number of clocks to render.
+ * Renders custom elements for the app.
+ * @function renderClocks
+ * @param {!Element} selector - Parent element's selector for rendered clocks.
+ * @param {?number=} n - Number of clocks to render.
+ * @public
  */
-const renderClocks = (selector, n=9) => {
+const renderClocks = (selector, n = 9) => {
   const clocksEl = document.querySelector(selector);
   for (let i = 1; i <= n; i++) {
     clocksEl.innerHTML += '<n-clock></n-clock>';
   }
 }
 
-/** @description Initializes app once the DOM is ready. */
+/**
+ * Initializes app when the DOM is ready.
+ * @listens
+ */
 document.addEventListener('DOMContentLoaded', () => {
+  customElements.define('n-clock', Clock);
   renderClocks('.clocks__frame');
   theme.init();
   utilities.init();
 }, { once: true } );
 
-/** @description Updates 'vh' value when window is resized. */
+/**
+ * Updates 'vh' value when window is resized.
+ * @listens 
+ */
 window.addEventListener('resize', () => {
   utilities.viewportHeight();
 }, { passive: true });

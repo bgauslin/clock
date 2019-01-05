@@ -26,20 +26,21 @@ const REFRESH_INTERVAL = 1000; // every second
 
 /** @class */
 class Clock extends HTMLElement {
-
   constructor() {
     super();
   }
   
+  /** @callback */
   connectedCallback() {
-    this.setHands();
-    setInterval(() => this.setHands(), REFRESH_INTERVAL);
+    this.setHands_();
+    setInterval(() => this.setHands_(), REFRESH_INTERVAL);
   }
   
   /**
-   * @description Calculates rotations for hours and minutes hands and renders an SVG.
+   * Calculates rotations for hours and minutes hands and renders an SVG.
+   * @private
    */
-  setHands() {
+  setHands_() {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
