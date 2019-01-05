@@ -2,6 +2,12 @@ import { Clock } from './modules/customClock';
 import { Theme } from './modules/theme';
 import { Utilities } from './modules/utilities';
 
+/** @const {string} */
+const CLOCK_ELEMENT = 'n-clock';
+
+/** @const {string} */
+const CLOCKS_SELECTOR = '.clocks__frame';
+
 /** @instance */
 const theme = new Theme();
 
@@ -23,7 +29,7 @@ const utilities = new Utilities({
 const renderClocks = (selector, n = 9) => {
   const clocksEl = document.querySelector(selector);
   for (let i = 1; i <= n; i++) {
-    clocksEl.innerHTML += '<n-clock></n-clock>\n';
+    clocksEl.innerHTML += `<${CLOCK_ELEMENT}></${CLOCK_ELEMENT}>\n`;
   }
 }
 
@@ -32,8 +38,8 @@ const renderClocks = (selector, n = 9) => {
  * @listens DOMContentLoaded
  */
 document.addEventListener('DOMContentLoaded', () => {
-  customElements.define('n-clock', Clock);
-  renderClocks('.clocks__frame');
+  customElements.define(CLOCK_ELEMENT, Clock);
+  renderClocks(CLOCKS_SELECTOR);
   theme.init();
   utilities.init();
 }, { once: true } );

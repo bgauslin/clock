@@ -1,8 +1,8 @@
-/** @const {string} */
-const NO_JS_ATTR = 'no-js';
-
-/** @const {string} */
-const NO_TOUCH_ATTR = 'no-touch';
+/** @enum {string} */
+const Attributes = {
+  NO_JS: 'no-js',
+  NO_TOUCH: 'no-touch',
+};
 
 /** @class */
 class Utilities {
@@ -49,7 +49,7 @@ class Utilities {
    * @private
    */
   hasJs_() {
-    document.body.removeAttribute(NO_JS_ATTR);
+    document.body.removeAttribute(Attributes.NO_JS);
     const noscript = document.querySelector('noscript');
     noscript.remove();
   }
@@ -60,7 +60,7 @@ class Utilities {
    */
   noTouch_() {
     if ('ontouchstart' in window || navigator.msMaxTouchPoints > 0) {
-      document.body.removeAttribute(NO_TOUCH_ATTR);
+      document.body.removeAttribute(Attributes.NO_TOUCH);
     }
   }
 

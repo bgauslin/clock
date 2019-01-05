@@ -1,10 +1,10 @@
 /** @enum {string} */
 const Theming = {
-  ATTR: 'theme',
-  TOGGLE: 'themifier',
-  ITEM: 'theme',
   ALT: 'dark',
+  ATTR: 'theme',
   DEFAULT: 'light',
+  ITEM: 'theme',
+  TOGGLE: 'themifier',
 }
 
 /** @class */
