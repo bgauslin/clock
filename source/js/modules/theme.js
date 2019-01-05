@@ -24,7 +24,7 @@ class Theme {
   }
 
   /**
-   * Sets 'theme' attribute and stores it.
+   * Sets 'theme' attribute and stores its value for later visits.
    * @private
    */
   setTheme_() {
@@ -33,14 +33,13 @@ class Theme {
   }
 
   /**
-   * Updates 'theme' on click.
+   * Adds a DOM element that toggles the theme when clicked.
    * @private
    */
   updateTheme_() {
-    const html = `<a class="${Theming.TOGGLE}" href="#"></a>`;
-    document.body.innerHTML += html;
-
+    document.body.innerHTML += `<a class="${Theming.TOGGLE}" href="#"></a>`;
     const themifier = document.querySelector(`.${Theming.TOGGLE}`);
+
     themifier.addEventListener('click', (e) => {
       e.preventDefault();
       this.theme = (this.theme === Theming.DEFAULT) ? Theming.ALT : Theming.DEFAULT;
