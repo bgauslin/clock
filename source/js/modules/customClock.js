@@ -1,5 +1,5 @@
-// NOTE: All clock element dimensions need to stay coordinated with
-// values in './source/stylus/clock/_config.styl'
+// NOTE: All 'ClockDimensions' enum values need to stay coordinated with
+// values in 'source/stylus/clock/_config.styl'
 
 /** @enum {number} */
 const ClockDimensions = {
