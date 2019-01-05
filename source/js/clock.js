@@ -16,14 +16,14 @@ const utilities = new Utilities({
 /**
  * Renders custom elements for the app.
  * @function renderClocks
- * @param {!Element} selector - Parent element's selector for rendered clocks.
+ * @param {!string} selector - Parent element's selector for attaching rendered clocks.
  * @param {?number=} n - Number of clocks to render.
  * @public
  */
 const renderClocks = (selector, n = 9) => {
   const clocksEl = document.querySelector(selector);
   for (let i = 1; i <= n; i++) {
-    clocksEl.innerHTML += '<n-clock></n-clock>';
+    clocksEl.innerHTML += '<n-clock></n-clock>\n';
   }
 }
 
