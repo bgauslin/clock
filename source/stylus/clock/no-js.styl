@@ -1,3 +1,36 @@
+// ------------------------------
+// 'no-js' constants and mixins
+// ------------------------------
+// @type Color
+LINK_COLOR = #0070c9
+
+// @type String
+TRANSITION_SPEED = .3s
+
+// @mixin link
+// @param Color link
+// @param Color visited
+// @param Color active
+link(link, visited, active)
+  &:link
+    color link
+
+  &:visited
+    color visited
+
+  &:active
+  &:focus
+    color active
+
+// @mixin link_hover
+// @param Color hover
+link_hover(hover)
+  &:hover
+    color hover
+
+// ------------------------------
+// 'no-js' styles
+// ------------------------------
 body[no-js]
   background white
   color black

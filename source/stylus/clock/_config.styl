@@ -1,36 +1,3 @@
-// NOTE: All 'ClockDimensions' hash values need to stay coordinated with
-// values in 'source/js/modules/customClock.js'
-
-// @type Hash
-ClockDimensions = {
-  SIZE: 100
-  CENTER: 50 // Half of SIZE
-  STROKE_WIDTH: 3
-  HOURS_HAND_LENGTH: 30
-}
-
-// @type Number
-MINUTES_HAND_LENGTH = ClockDimensions.CENTER - ClockDimensions.STROKE_WIDTH
-
-// Clocks lay out in a 3 x 3 grid.
-// @type Number
-CLOCK_WIDTH = 1 / 3
-
-// @type String
-CLOCKS_MAX_WIDTH = 40rem // 512px
-
-// Gap between clock hands for 6:00, where hands are vertically aligned.
-// @type Number
-CLOCK_GAP = 1
-
-// Calculate the offset as a percentage for laying out clocks mathematically.
-// @type Number
-CLOCK_OFFSET = (ClockDimensions.SIZE - ClockDimensions.HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH - CLOCK_GAP) * CLOCK_WIDTH
-
-// Theming transition.
-// @type String
-THEME_TRANSITION_SPEED = 1.5s
-
 // @type Hash
 ClockThemes = {
   light: {
@@ -47,29 +14,33 @@ ClockThemes = {
   }
 }
 
-// ------------------------------
-// 'no-js' styles and mixins
+// @type Hash
+// NOTE: All 'ClockDimensions' hash values need to stay coordinated with
+// values in 'source/js/modules/customClock.js'
+ClockDimensions = {
+  SIZE: 100
+  CENTER: 50 // Half of SIZE
+  STROKE_WIDTH: 3
+  HOURS_HAND_LENGTH: 30
+}
 
-// @type Color
-LINK_COLOR = #0070c9
+// @type Number
+MINUTES_HAND_LENGTH = ClockDimensions.CENTER - ClockDimensions.STROKE_WIDTH
+
+// @type Number
+// Clocks lay out in a 3 x 3 grid.
+CLOCK_WIDTH = 1 / 3
 
 // @type String
-TRANSITION_SPEED = .3s
+CLOCKS_MAX_WIDTH = 40rem // 512px
 
-// @param Color link
-// @param Color visited
-// @param Color active
-link(link, visited, active)
-  &:link
-    color link
+// @type Number
+// Gap between clock hands for 6:00, where hands are vertically aligned.
+CLOCK_GAP = 1
 
-  &:visited
-    color visited
+// @type Number
+// Calculate the offset as a percentage for laying out clocks mathematically.
+CLOCK_OFFSET = (ClockDimensions.SIZE - ClockDimensions.HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH - CLOCK_GAP) * CLOCK_WIDTH
 
-  &:active
-  &:focus
-    color active
-
-link_hover(hover)
-  &:hover
-    color hover
+// @type String
+THEME_TRANSITION_SPEED = 1.5s
