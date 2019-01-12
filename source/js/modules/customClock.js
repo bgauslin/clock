@@ -64,7 +64,11 @@ class Clock extends HTMLElement {
               x1="${ClockDimensions.CENTER}" y1="${ClockDimensions.CENTER}"
               x2="${ClockDimensions.CENTER}" y2="${MINUTES_HAND_END}"
               transform="rotate(${minutesAngle}, ${ClockDimensions.CENTER}, ${ClockDimensions.CENTER})"/>
-            <circle class="clock__pivot" cx="${ClockDimensions.CENTER}" cy="${ClockDimensions.CENTER}" r="${ClockDimensions.STROKE_WIDTH}"/>
+            <circle
+              class="clock__pivot"
+              cx="${ClockDimensions.CENTER}"
+              cy="${ClockDimensions.CENTER}"
+              r="${ClockDimensions.STROKE_WIDTH}"/>
           </g>
         </svg>
       `;

@@ -65,8 +65,8 @@ class Utilities {
   }
 
   /**
-   * Sets custom property for viewport height that updates 'vh' calculation due to
-   * iOS Safari behavior where chrome appears and disappears when scrolling.
+   * Sets custom property for viewport height that updates 'vh' calculation due
+   * to iOS Safari behavior where chrome appears and disappears when scrolling.
    * @public
    */
   viewportHeight() {

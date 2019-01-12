@@ -22,7 +22,8 @@ const utilities = new Utilities({
 /**
  * Renders custom elements for the app.
  * @function renderClocks
- * @param {!string} selector - Parent element's selector for attaching rendered clocks.
+ * @param {!string} selector - Parent element's selector for attaching
+ *     rendered clocks.
  * @param {?number=} n - Number of clocks to render.
  * @public
  */
