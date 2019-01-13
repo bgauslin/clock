@@ -9,14 +9,14 @@
 for name, theme in ClockThemes
   [theme=\"{name}\"]
     {body}&
-      background theme['BACKGROUND'];
+      background '%s' % theme.BACKGROUND
 
     .clocks
-      background theme['FACE'];
-      border 1px solid theme['BORDER'];
+      background '%s' % theme.FACE
+      border 1px solid '%s' % theme.BORDER
 
     .clock__hand
-      stroke theme['HANDS'];
+      stroke '%s' % theme.HANDS
 
     .clock__pivot
-      fill theme['HANDS'];
+      fill '%s' % theme.HANDS
