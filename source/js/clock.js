@@ -1,6 +1,6 @@
-import { Clock } from './modules/customClock';
-import { Theme } from './modules/theme';
-import { Utilities } from './modules/utilities';
+import { Clock } from './modules/Clock';
+import { Theme } from './modules/Theme';
+import { Utilities } from './modules/Utilities';
 
 /** @const {string} */
 const CLOCK_ELEMENT = 'n-clock';
