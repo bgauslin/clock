@@ -1,5 +1,5 @@
 // @type Hash
-ClockThemes = {
+ClockTheme = {
   light: {
     BACKGROUND: #f7f7f7
     BORDER: #ddd
@@ -34,13 +34,9 @@ CLOCK_WIDTH = 1 / 3
 // @type String
 CLOCKS_MAX_WIDTH = 40rem // = 512px
 
-// Gap between clock hands for 6:00, where hands are vertically aligned.
-// @type Number
-CLOCK_GAP = 1
-
 // Calculate the offset as a percentage for laying out clocks mathematically.
 // @type Number
-CLOCK_OFFSET = (ClockDimensions.SIZE - ClockDimensions.HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH - CLOCK_GAP) * CLOCK_WIDTH
+CLOCK_OFFSET = (ClockDimensions.SIZE - ClockDimensions.HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH) * CLOCK_WIDTH
 
 // @type String
 THEME_TRANSITION_SPEED = 1.5s
