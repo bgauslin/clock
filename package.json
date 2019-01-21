@@ -3,7 +3,7 @@
   "description": "Clock",
   "version": "0.1.0",
   "license": "UNLICENSED",
-  "repository": "https://bitbucket.org/bgauslin/clock",
+  "repository": "https://github.com/bgauslin/clock",
   "private": true,
   "devServer": "clock.gauslin.test",
   "paths": {
