@@ -65,6 +65,12 @@ gulp.task('stylus', () => {
     .pipe(gulp.dest(pkg.paths.stylus.dest));
 });
 
+// Copy webfonts.
+gulp.task('webfonts', () => {
+  gulp.src(pkg.paths.webfonts.src)
+    .pipe(gulp.dest(pkg.paths.webfonts.dest));
+});
+
 // ------------------------------------------------------------
 // Composite tasks (in order of operation).
 

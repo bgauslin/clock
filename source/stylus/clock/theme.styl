@@ -1,13 +1,5 @@
-.themifier
-  cursor default
-  height 100%
-  left 0
-  position fixed
-  top 0
-  width 100vw
-
 for name, theme in ClockTheme
-  [theme=\"{name}\"]
+  [theme={name}]
     {body}&
       background '%s' % theme.BACKGROUND
 
@@ -20,3 +12,12 @@ for name, theme in ClockTheme
 
     .clock__pivot
       fill '%s' % theme.HANDS
+    
+    .copyright
+      color '%s' % theme.TEXT
+
+    .copyright__link
+      link(theme.LINK, theme.LINK, theme.LINK_ACTIVE)
+
+    {body}&[no-touch] .copyright__link
+      link_hover(theme.LINK_ACTIVE)

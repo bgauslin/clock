@@ -1,9 +1,11 @@
 .clocks
+  align-self center
+  grid-area content
+  justify-self center
   margin 5vh 5vw
   max-width CLOCKS_MAX_WIDTH
   overflow hidden
-  transition background THEME_TRANSITION_SPEED,
-             border THEME_TRANSITION_SPEED
+  transition 'background %s, border %s' % (Transition.THEME Transition.THEME)
 
 .clocks__frame
   display flex
@@ -21,7 +23,7 @@ n-clock
 
 .clock__hand
   stroke-width '%spx' % (ClockDimensions.STROKE_WIDTH * 2)
-  transition stroke THEME_TRANSITION_SPEED
+  transition 'stroke %s' % Transition.THEME
 
 .clock__pivot
-  transition fill THEME_TRANSITION_SPEED
+  transition 'fill %s' % Transition.THEME

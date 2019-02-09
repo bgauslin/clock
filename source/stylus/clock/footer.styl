@@ -1,0 +1,16 @@
+.copyright
+  font-size px_to_em(13)
+  grid-area footer
+  margin 0
+  padding px_to_rem(16)
+  text-align center
+
+.copyright__bug
+.copyright__link
+  transition 'color %s' % Transition.THEME
+
+.copyright__link
+  font_weight(600)
+
+[no-touch] .copyright__link:hover
+  transition 'color %s' % Transition.DEFAULT

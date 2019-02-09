@@ -1,0 +1,53 @@
+// @mixin
+// @param Number weight [500]
+body_font(weight = 500)
+  font-family 'Avenir Medium' sans-serif // fallback
+  font-weight weight
+
+  @supports (font-variation-settings: normal) // variable
+    font-family 'Avenir Variable', sans-serif
+    font-variation-settings 'wght' weight
+
+// @mixin
+// @param Number weight
+font_weight(weight)
+  font-weight weight
+
+  @supports (font-variation-settings: normal)
+    font-variation-settings 'wght' weight
+
+// @mixin
+font_face()
+  @font-face
+    font-display block
+    font-family 'Avenir Variable'
+    font-weight 1 999
+    src url('/ui/webfonts/AvenirNext-Variable.woff2') format('woff2')
+
+  @font-face
+    font-display block
+    font-family 'Avenir Medium'
+    font-weight 500
+    src url('/ui/webfonts/AvenirLTStd-Medium.woff2') format('woff2'),
+        url('/ui/webfonts/AvenirLTStd-Medium.woff') format('woff')
+
+// @mixin
+// @param Color link
+// @param Color visited
+// @param Color active
+link(link, visited, active)
+  &:link
+    color link
+
+  &:visited
+    color visited
+
+  &:active
+  &:focus
+    color active
+
+// @mixin
+// @param Color hover
+link_hover(hover)
+  &:hover
+    color hover

@@ -1,3 +1,5 @@
+font_face()
+
 html
 body
   margin 0
@@ -6,15 +8,15 @@ body
   text-size-adjust none
 
 body
-  align-items center
-  display flex
-  height 100%
-  justify-content center
-  flex-direction column
+  body_font()
+  display grid
+  grid-template-areas 'content'\
+                      'footer'
+  grid-template-columns 1fr
+  grid-template-rows 1fr auto
   min-height 100vh // fallback
   min-height calc(var(--viewport-unit, 1vh) * 100)
-  transition background THEME_TRANSITION_SPEED,
-             color THEME_TRANSITION_SPEED
+  transition 'background %s, color %s' % (Transition.THEME Transition.THEME)
 
 *
   box-sizing border-box

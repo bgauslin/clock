@@ -4,7 +4,7 @@ const Theming = {
   ATTR: 'theme',
   DEFAULT: 'light',
   ITEM: 'theme',
-  TOGGLE: 'themifier',
+  TOGGLE: 'clocks__frame',
 }
 
 /** @class */
@@ -37,7 +37,6 @@ class Theme {
    * @private
    */
   updateTheme_() {
-    document.body.innerHTML += `<a class="${Theming.TOGGLE}" href="#"></a>`;
     const themifier = document.querySelector(`.${Theming.TOGGLE}`);
 
     themifier.addEventListener('click', (e) => {

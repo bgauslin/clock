@@ -35,6 +35,10 @@ if ($_SERVER['SERVER_NAME'] == $prod_server) {
       <div class="clocks__frame"></div>
     </div>
 
+    <p class="copyright">
+      <span class="copyright__bug">© <?php echo date('Y') ?></span> <a class="copyright__link" href="https://gauslin.com" title="Visit Gauslin.com" target="_blank" rel="noopener">Ben Gauslin</a>
+    </p>
+
     <script src="<?php echo $js_path ?>"></script>
 
     <noscript>
