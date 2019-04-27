@@ -27,7 +27,7 @@ class Utilities {
   }
 
   /**
-   * @description Initializes Google Analytics tracking.
+   * Initializes Google Analytics tracking.
    * @param {!Object} settings
    * @param {!string} settings.id - Google Analytics ID.
    * @param {!string} settings.domain - Production domain.
