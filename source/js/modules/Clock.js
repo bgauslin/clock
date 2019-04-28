@@ -35,7 +35,12 @@ class Clock extends HTMLElement {
     // Check the time every second.
     setInterval(() => this.setHands_(), 1000);
   }
-  
+
+  /** @callback */
+  disconnectedCallback() {
+    clearInterval();
+  }
+
   /**
    * Calculates rotations for hours and minutes hands and renders an SVG.
    * @private
