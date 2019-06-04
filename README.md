@@ -10,8 +10,8 @@ As the 3 by 3 grid of hands mark the passing of time, they create patterns of an
 - A [theming widget][theme] allows users to switch between dark and light modes simply by clicking on the clock face, and this preference is saved via localStorage.
 - All layout is via CSS [grid and flexbox][css].
 
-[clock]: /bgauslin/clock/blob/master/source/js/modules/Clock.js
-[theme]: /bgauslin/clock/blob/master/source/js/modules/Theme.js
-[css]: /bgauslin/clock/blob/master/source/stylus/clock/clocks.styl
+[clock]: /source/js/modules/Clock.js
+[theme]: /source/js/modules/Theme.js
+[css]: /source/stylus/clock/clocks.styl
 
 \* I think part of the reason the original didn't last is because each set of hands was powered by a single AA battery, and the hands would get out of sync over time as the batteries wore out.
