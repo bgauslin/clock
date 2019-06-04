@@ -12,7 +12,7 @@ As the 3 by 3 grid of hands mark the passing of time, they create patterns of an
 
 [clock]: /source/js/modules/Clock.js
 [theme]: /source/js/modules/Theme.js
-[modes]: /source/stylus/clock/theme.styl
+[modes]: source/stylus/config/constants.styl
 [stylus]: /source/stylus/
 
 \* I think part of the reason the original didn't last is because each set of hands was powered by a single AA battery, and the hands would get out of sync over time as the batteries wore out.
