@@ -4,11 +4,13 @@ Based on an award-winning analog clock design that is no longer in production<su
 
 Unlike most online projects, this project requires patience and repeat visits over the course of the day.
 
-As the 3 by 3 grid of hands mark the passing of time, they create patterns of angles and lines that provide a new way of seeing time throughout the day.
+As the 3 by 3 grid of clock hands mark the passing of time, they create patterns of angles and lines that provide a new way of seeing time throughout the day.
 
-- A custom element is inserted into the DOM nine times, and each clock redraws its hour and minute hands every second via [inline SVG][inline_svg].
+- An `n-clock` custom element is inserted into the DOM nine times, and each custom element redraws its hour and minute hands every second via [inline SVG][inline_svg].
 - A [theming widget][theming] allows users to switch between [dark and light][theme_hash] [modes][theme_loop] simply by clicking on the clock face, and this preference is saved via localStorage.
-- All HTML uses BEM to keep CSS specificity low, and all CSS grid and flexbox is managed via small [Stylus modules][stylus].
+- All HTML uses BEM to keep CSS specificity low, CSS layout is via grid and flexbox, and all styles are managed via small [Stylus modules][stylus].
+
+---
 
 <sup>*</sup> I think part of the reason the original didn't last is because each set of hands was powered by a single AA battery, and the hands would get out of sync over time as the batteries wore out.
 
