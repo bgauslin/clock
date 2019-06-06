@@ -2,6 +2,11 @@
 
 Based on an award-winning analog clock design that is no longer in production<sup>*</sup>, this project restores that clock digitally.
 
+<img src="https://assets.gauslin.com/images/screenshots/no-crop/clock-0100.png" alt="Clock at 1:00" width="200" height="200">
+<img src="https://assets.gauslin.com/images/screenshots/no-crop/clock-0300.png" alt="Clock at 3:00" width="200" height="200">
+<img src="https://assets.gauslin.com/images/screenshots/no-crop/clock-0600.png" alt="Clock at 6:00" width="200" height="200">
+<img src="https://assets.gauslin.com/images/screenshots/no-crop/clock-0700.png" alt="Clock at 7:00" width="200" height="200">
+
 As the 3 × 3 grid of clock hands mark the passing of time, they create patterns of angles and lines that provide a new way of seeing time over the course of the day. 
 
 - An `n-clock` custom element is inserted into the DOM nine times, and each custom element redraws its hour and minute hands every second via [inline SVG][inline_svg].
