@@ -14,12 +14,15 @@ Unlike many online projects, this project requires patience and intermittent vis
 
 ---
 
-<sup>*</sup> I think part of the reason the original didn't last is because each set of hands was powered by a single AA battery, and the hands would get out of sync over time as the batteries wore out.
+<sup>*</sup> I think part of the reason the original didn’t last is because each set of hands was powered by a single AA battery, and the hands would get out of sync over time as the batteries wore out.
 
-[flexbox]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/stylus/clock/clocks.styl#L10-L14
-[grid]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/stylus/clock/html.styl#L12-L16
-[inline_svg]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Clock.js#L59-L79
+
 [nine_clocks]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/js/clock.js#L30-L35
+[inline_svg]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Clock.js#L59-L79
+
 [theming]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Theme.js#L11-L48
 [theme_hash]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/stylus/config/constants.styl#L2-L21
 [theme_loop]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/stylus/clock/theme.styl#L1-L23
+
+[grid]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/stylus/clock/html.styl#L12-L16
+[flexbox]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/stylus/clock/clocks.styl#L10-L14
