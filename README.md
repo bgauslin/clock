@@ -2,7 +2,7 @@
 
 [clock.gauslin.com][url]
 
-Based on an award-winning analog clock design that is no longer in production<sup>*</sup>, this project restores that clock digitally.
+Based on an award-winning analog clock design that is no longer in production,<sup>*</sup> this project restores that clock digitally.
 
 ![Clock at 1:00, 6:00, and 7:00](https://assets.gauslin.com/images/screenshots/3-clocks.png)
 
