@@ -1,5 +1,7 @@
 # Clock
 
+[clock.gauslin.com][url]
+
 Based on an award-winning analog clock design that is no longer in production<sup>*</sup>, this project restores that clock digitally.
 
 ![Clock at 1:00, 6:00, and 7:00](https://assets.gauslin.com/images/screenshots/3-clocks.png)
@@ -16,6 +18,8 @@ Unlike many online projects, this project requires patience and intermittent vis
 
 <sup>*</sup> I think part of the reason the original didn’t last is because each set of hands was powered by a single AA battery, and the hands would get out of sync over time as the batteries wore out.
 
+
+[url]: https://clock.gauslin.com
 
 [nine_clocks]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/js/clock.js#L30-L35
 [inline_svg]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Clock.js#L59-L79
