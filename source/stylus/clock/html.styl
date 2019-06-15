@@ -8,6 +8,7 @@ body
   text-size-adjust none
 
 body
+  background var(--background)
   body_font()
   display grid
   grid-template-areas 'content'\
@@ -16,7 +17,7 @@ body
   grid-template-rows 1fr auto
   min-height 100vh // fallback
   min-height calc(var(--viewport-unit, 1vh) * 100)
-  transition 'background %s, color %s' % (Transition.THEME Transition.THEME)
+  transition background var(--transition-theme), color var(--transition-theme)
 
 *
   box-sizing border-box

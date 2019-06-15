@@ -1,43 +1,15 @@
-// @type Hash
-ClockTheme = {
-  light: {
-    BACKGROUND: #f7f7f7
-    BORDER: #ddd
-    FACE: white
-    HANDS: black
-    LINK: rgba(black, .7)
-    LINK_ACTIVE: black
-    TEXT: rgba(black, .7)
-  },
-  dark: {
-    BACKGROUND: #111
-    BORDER: #222
-    FACE: black
-    HANDS: white
-    LINK: rgba(white, .7)
-    LINK_ACTIVE: white
-    TEXT: rgba(white, .7)
-  }
-}
-
-// NOTE: All 'ClockDimensions' hash values need to stay coordinated with
+// NOTE: All 'Clock' hash values need to stay coordinated with
 // values in 'source/js/modules/customClock.js'
 // @type Hash
-ClockDimensions = {
+Clock = {
   SIZE: 100
   CENTER: 50 // Half of SIZE
   STROKE_WIDTH: 3
   HOURS_HAND_LENGTH: 30
 }
 
-// @type Hash
-Transition = {
-  DEFAULT: .3s
-  THEME: 1.5s
-}
-
 // @type Number
-MINUTES_HAND_LENGTH = ClockDimensions.CENTER - ClockDimensions.STROKE_WIDTH
+MINUTES_HAND_LENGTH = Clock.CENTER - Clock.STROKE_WIDTH
 
 // Clocks lay out in a 3 x 3 grid.
 // @type Number
@@ -48,4 +20,4 @@ CLOCKS_MAX_WIDTH = 40rem // = 512px
 
 // Calculate the offset as a percentage for laying out clocks mathematically.
 // @type Number
-CLOCK_OFFSET = (ClockDimensions.SIZE - ClockDimensions.HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH) * CLOCK_WIDTH
+CLOCK_OFFSET = (Clock.SIZE - Clock.HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH) * CLOCK_WIDTH

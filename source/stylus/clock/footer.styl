@@ -1,4 +1,5 @@
 .copyright
+  color var(--text)
   font-size px_to_em(13)
   grid-area footer
   margin 0
@@ -7,10 +8,14 @@
 
 .copyright__bug
 .copyright__link
-  transition 'color %s' % Transition.THEME
+  transition color var(--transition)
 
 .copyright__link
   font_weight(600)
+  link(var(--link), var(--link), var(--link-active))
+
+[no-touch] .copyright__link
+  link_hover(var(--link-active))
 
 [no-touch] .copyright__link:hover
-  transition 'color %s' % Transition.DEFAULT
+  transition color var(--transition)
