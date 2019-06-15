@@ -9,7 +9,7 @@ Based on an award-winning analog clock design that is no longer in production,<s
 As a 3 × 3 grid of clock hands mark the passing of time, they create patterns of angles and lines that provide a different way of seeing time over the course of the day. 
 
 - An `n-clock` custom element is [inserted into the DOM nine times][nine_clocks], and each custom element redraws its hour and minute hands every second via [inline SVG][inline_svg].
-- A [theming widget][theming] allows users to switch between [dark and light][theme_hash] [modes][theme_loop] simply by clicking on the clock face, and this preference is saved via localStorage.
+- A [theming widget][theming] allows users to switch between [dark and light][themes] modes simply by clicking on the clock face, and this preference is saved via [localStorage][save_theme].
 - All HTML uses BEM to keep CSS specificity low, with layout via [grid][grid] and [flexbox][flexbox].
 
 Unlike many online projects, this project requires patience and intermittent visits throughout the day.
@@ -22,11 +22,11 @@ Unlike many online projects, this project requires patience and intermittent vis
 [url]: https://clock.gauslin.com
 
 [nine_clocks]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/js/clock.js#L30-L35
-[inline_svg]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Clock.js#L59-L79
+[inline_svg]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Clock.js#L60-L78
 
-[theming]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Theme.js#L11-L48
-[theme_hash]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/stylus/config/constants.styl#L2-L21
-[theme_loop]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/stylus/clock/theme.styl#L1-L23
+[theming]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Theme.js#L39-L47
+[themes]: https://github.com/bgauslin/clock/blob/704ebd8b51fca9764e06e4e682cf9a35f968471f/source/stylus/clock/_root_vars.styl#L5-L21
+[save_theme]: https://github.com/bgauslin/clock/blob/289ce0834b04cb46c771238e391576a3ccc4305f/source/js/modules/Theme.js#L30-L33
 
-[grid]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/stylus/clock/html.styl#L12-L16
-[flexbox]: https://github.com/bgauslin/clock/blob/f3cad130992503aa9a9f6188d2c39b9e4af27597/source/stylus/clock/clocks.styl#L10-L14
+[grid]: https://github.com/bgauslin/clock/blob/704ebd8b51fca9764e06e4e682cf9a35f968471f/source/stylus/clock/html.styl#L13-L17
+[flexbox]: https://github.com/bgauslin/clock/blob/704ebd8b51fca9764e06e4e682cf9a35f968471f/source/stylus/clock/clocks.styl#L12-L24
