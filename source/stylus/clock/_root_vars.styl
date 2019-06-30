@@ -1,6 +1,7 @@
 :root
   --transition .3s
   --transition-theme 1.5s
+  --fineprint px_to_em(12)
 
   [theme=light]
     --background #f7f7f7
@@ -19,3 +20,6 @@
     --link rgba(white, .7)
     --link-active white
     --text rgba(white, .7)
+
+  @media Breakpoint.MEDIUM
+    --fineprint px_to_em(14)
