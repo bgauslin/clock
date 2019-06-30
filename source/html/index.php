@@ -23,7 +23,7 @@ if ($_SERVER['SERVER_NAME'] == $prod_server) {
     <meta charset="utf-8">
     <title><?php echo $title ?></title>
     <meta name="description" content="<?php echo $description ?>">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="<?php echo $css_path ?>">
   </head>
