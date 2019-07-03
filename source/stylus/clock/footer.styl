@@ -11,11 +11,8 @@
   transition color var(--transition)
 
 .copyright__link
-  font_weight(600)
-  link(var(--link), var(--link), var(--link-active))
-
-[no-touch] .copyright__link
-  link_hover(var(--link-active))
+  font-variation-settings 'wght' 600
+  link(var(--link), var(--link), var(--link-active), var(--link-active))
 
 [no-touch] .copyright__link:hover
   transition color var(--transition)
