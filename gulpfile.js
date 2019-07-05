@@ -42,13 +42,7 @@ gulp.task('icons', () => {
 gulp.task('js', () => {
   return browserify({ entries: pkg.paths.js.src, debug: true })
     .transform(babelify.configure({
-      presets: [
-        ['@babel/preset-env', {
-          'targets': {
-            'node': 'current',
-          }
-        }]
-      ]
+      presets: ['@babel/preset-env']
     }))
     .bundle()
     .pipe(source(pkg.paths.js.bundleSrc))
