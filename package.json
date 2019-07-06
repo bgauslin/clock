@@ -8,6 +8,17 @@
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "last 2 version",
+    ">1%",
+    "iOS >= 9",
+    "not dead"
+  ],
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
@@ -25,5 +36,9 @@
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2",
     "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.6.1",
+    "postcss-loader": "^3.0.0"
   }
 }

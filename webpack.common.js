@@ -3,7 +3,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// TODO: Autoprefixer, minify CSS
 module.exports = {
   entry: './src/js/clock.js',
   plugins: [
@@ -39,10 +38,12 @@ module.exports = {
       },
       {
         test: /\.styl$/,
+        exclude: /node_modules/, 
         use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'stylus-loader' },
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'stylus-loader',
         ]
       },
       {
