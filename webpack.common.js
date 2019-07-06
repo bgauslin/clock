@@ -10,18 +10,30 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Clock',
-      meta: {
-        'description': 'Analog clock whose nine sets of hands reveal patterns of time',
-        'viewport': 'width=device-width,initial-scale=1',
-        'apple-mobile-web-app-capable': 'yes',
-      },
-    }),
     new CopyPlugin([
       { from: 'src/apache' },
       { from: 'src/icons' },
     ]),
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: require('html-webpack-template'),
+      lang: 'en',
+      title: 'Clock',
+      meta: [
+        {
+          name: 'description',
+          content: 'Analog clock whose nine sets of hands reveal patterns of time',
+        },
+        {
+          name: 'viewport',
+          content: 'width=device-width,initial-scale=1',
+        },
+        {
+          name: 'apple-mobile-web-app-capable',
+          content: 'yes',
+        },
+      ],
+    }),
   ],
   module: {
     rules: [
