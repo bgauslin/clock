@@ -6,6 +6,15 @@ const CLOCK_ELEMENT = 'my-clock';
 /** @const {string} */
 const CLOCKS_SELECTOR = '.clocks__frame';
 
+/** @const {Object} */
+const FOOTER_INFO = {
+  label: 'Ben Gauslin',
+  title: 'Ben Gauslin’s Website',
+  url: 'https://gauslin.com',
+  yearStart: '2018',
+  yearEnd: new Date().getFullYear().toString().substr(-2),
+}
+
 /** @class */
 class Templates {
   constructor() {};
@@ -16,9 +25,9 @@ class Templates {
    */
   init() {
     this.renderClockContainer_();
-    this.renderCopyright_();
     customElements.define(CLOCK_ELEMENT, Clock);
     this.renderClocks_(CLOCKS_SELECTOR);
+    this.renderCopyright_();
   }
 
   /**
@@ -51,11 +60,15 @@ class Templates {
    * @private
    */
   renderCopyright_() {
-    const year = '2019';
+    const { label, title, url, yearStart, yearEnd } = FOOTER_INFO;
     document.body.innerHTML += `
       <p class="copyright">
-        <span class="copyright__bug">© ${year}</span>
-        <a class="copyright__link" href="https://gauslin.com" title="Visit Gauslin.com" target="_blank" rel="noopener">Ben Gauslin</a>
+        <span class="copyright__bug">© ${yearStart}-${yearEnd}</span>
+        <a class="copyright__link"
+            href="${url}"
+            title="${title} (opens in a new window)"
+            target="_blank"
+            rel="noopener">${label}</a>
       </p>
     `;
   }
