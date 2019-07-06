@@ -41,12 +41,14 @@ class Utilities {
   }
 
   /**
-   * Removes 'no-touch' attribute if device is touch-enabled.
+   * Adds 'no-touch' attribute if not a touch-enabled device.
    * @private
    */
   noTouch_() {
-    if ('ontouchstart' in window || navigator.msMaxTouchPoints > 0) {
-      document.body.removeAttribute(NO_TOUCH_ATTR);
+    if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+      return;
+    } else {
+      document.body.setAttribute(NO_TOUCH_ATTR, '');
     }
   }
 
