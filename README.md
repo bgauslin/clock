@@ -8,7 +8,7 @@ Based on an award-winning analog clock design that is no longer in production,<s
 
 As a 3 × 3 grid of clock hands mark the passing of time, they create patterns of angles and lines that provide a different way of seeing time over the course of the day. 
 
-- An `n-clock` custom element is [inserted into the DOM nine times][nine_clocks], and each custom element redraws its hour and minute hands every second via [inline SVG][inline_svg].
+- A `my-clock` custom element is [inserted into the DOM nine times][nine_clocks], and each custom element redraws its hour and minute hands every second via [inline SVG][inline_svg].
 - A [theming widget][theming] allows users to switch between [dark and light][themes] modes simply by clicking on the clock face, and this preference is saved via [localStorage][save_theme].
 - All HTML uses BEM to keep CSS specificity low, with layout via [grid][grid] and [flexbox][flexbox].
 

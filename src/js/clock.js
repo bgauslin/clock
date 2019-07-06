@@ -1,13 +1,10 @@
-import { Clock } from './modules/Clock';
+import { Templates } from './modules/Templates';
 import { Theme } from './modules/Theme';
 import { Utilities } from './modules/Utilities';
 import '../stylus/clock.styl';
 
-/** @const {string} */
-const CLOCK_ELEMENT = 'n-clock';
-
-/** @const {string} */
-const CLOCKS_SELECTOR = '.clocks__frame';
+/** @instance */
+const templates = new Templates();
 
 /** @instance */
 const theme = new Theme();
@@ -21,27 +18,11 @@ const utilities = new Utilities({
 });
 
 /**
- * Renders custom elements for the app.
- * @function renderClocks
- * @param {!string} selector - Parent element's selector for attaching
- *     rendered clocks.
- * @param {?number=} n - Number of clocks to render.
- * @public
- */
-const renderClocks = (selector, n = 9) => {
-  const clocksEl = document.querySelector(selector);
-  for (let i = 1; i <= n; i++) {
-    clocksEl.innerHTML += `<${CLOCK_ELEMENT}></${CLOCK_ELEMENT}>\n`;
-  }
-}
-
-/**
  * Initializes app when the DOM is ready.
  * @listens DOMContentLoaded
  */
 document.addEventListener('DOMContentLoaded', () => {
-  customElements.define(CLOCK_ELEMENT, Clock);
-  renderClocks(CLOCKS_SELECTOR);
+  templates.init();
   theme.init();
   utilities.init();
 }, { once: true } );
