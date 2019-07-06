@@ -1,23 +1,32 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// TODO: hashing and manifest
+// TODO: Babel, Uglify, Autoprefixer, environment config
 module.exports = {
-  mode: 'development',
+  // mode: 'development',
   devServer: {
     contentBase: './dist'
   },
   entry: './src/js/clock.js',
   output: {
-    filename: 'clock.js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Clock',
+      meta: {
+        description: 'DESCRIPTION GOES HERE',
+        viewport: 'width=device-width,initial-scale=1',
+        'apple-mobile-web-app-capable': 'yes',
+      },
+      hash: true,
+    }),
     new CopyPlugin([
       { from: 'src/apache' },
-      { from: 'src/html' },
       { from: 'src/icons' },
     ]),
   ],
@@ -34,7 +43,7 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          'file-loader'
+          'file-loader',
         ]
       }
     ]
