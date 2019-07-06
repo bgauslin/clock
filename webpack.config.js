@@ -1,9 +1,10 @@
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-// TODO: Autoprefixer, minify CSS, uglify/minify JS, dev/prod config.
+// TODO: Autoprefixer, minify CSS, dev/prod config
 module.exports = {
   // mode: 'development',
   devServer: {
@@ -13,6 +14,9 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
   },
   plugins: [
     new CleanWebpackPlugin(),
