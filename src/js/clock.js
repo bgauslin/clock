@@ -3,6 +3,10 @@ import { Theme } from './modules/Theme';
 import { Utilities } from './modules/Utilities';
 import '../stylus/clock.styl';
 
+if (process.env.NODE_ENV !== 'production') {
+  console.warn('Development mode');
+}
+
 /** @instance */
 const templates = new Templates();
 

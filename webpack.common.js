@@ -2,22 +2,10 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-// TODO: Autoprefixer, minify CSS, dev/prod config
+// TODO: Autoprefixer, minify CSS
 module.exports = {
-  // mode: 'development',
-  devServer: {
-    contentBase: './dist'
-  },
   entry: './src/js/clock.js',
-  output: {
-    filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  optimization: {
-    minimizer: [new UglifyJsPlugin()],
-  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -34,6 +22,9 @@ module.exports = {
       { from: 'src/icons' },
     ]),
   ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+  },
   module: {
     rules: [
       {
