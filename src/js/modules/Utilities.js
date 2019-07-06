@@ -1,8 +1,5 @@
-/** @enum {string} */
-const Attributes = {
-  NO_JS: 'no-js',
-  NO_TOUCH: 'no-touch',
-};
+/** @const {string} */
+const NO_TOUCH_ATTR = 'no-touch';
 
 /** @class */
 class Utilities {
@@ -20,7 +17,6 @@ class Utilities {
    * @public
    */
   init() {
-    this.hasJs_();
     this.noTouch_();
     this.viewportHeight();
     this.googleAnalytics_(this.analyticsSettings);
@@ -45,22 +41,12 @@ class Utilities {
   }
 
   /**
-   * Removes 'no-js' attribute and 'noscript' element if JS is enabled.
-   * @private
-   */
-  hasJs_() {
-    document.body.removeAttribute(Attributes.NO_JS);
-    const noscript = document.querySelector('noscript');
-    noscript.remove();
-  }
-
-  /**
    * Removes 'no-touch' attribute if device is touch-enabled.
    * @private
    */
   noTouch_() {
     if ('ontouchstart' in window || navigator.msMaxTouchPoints > 0) {
-      document.body.removeAttribute(Attributes.NO_TOUCH);
+      document.body.removeAttribute(NO_TOUCH_ATTR);
     }
   }
 
