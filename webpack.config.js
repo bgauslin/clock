@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'development',
   entry: './src/js/clock.js',
-  output: {
-    filename: 'clock.js',
-    path: path.resolve(__dirname, 'dist'),
+  devServer: {
+    contentBase: './dist'
   },
   module: {
     rules: [
@@ -23,5 +23,9 @@ module.exports = {
         ]
       }
     ]
+  },
+  output: {
+    filename: 'clock.js',
+    path: path.resolve(__dirname, 'dist'),
   }
 }
