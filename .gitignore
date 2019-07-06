@@ -1,1 +1,2 @@
-public
+dist/*.js
+dist/*.woff2
