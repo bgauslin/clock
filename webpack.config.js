@@ -1,11 +1,13 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  entry: './src/js/clock.js',
   devServer: {
     contentBase: './dist'
   },
+  entry: './src/js/clock.js',
+  mode: 'development',
   module: {
     rules: [
       {
@@ -27,5 +29,13 @@ module.exports = {
   output: {
     filename: 'clock.js',
     path: path.resolve(__dirname, 'dist'),
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new CopyPlugin([
+      { from: 'src/apache' },
+      { from: 'src/html' },
+      { from: 'src/icons' },
+    ]),
+  ]
 }
