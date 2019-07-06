@@ -3,7 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// TODO: Babel, Uglify, Autoprefixer, environment config
+// TODO: Autoprefixer, minify CSS, uglify/minify JS, dev/prod config.
 module.exports = {
   // mode: 'development',
   devServer: {
@@ -32,6 +32,16 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
       {
         test: /\.styl$/,
         use: [
