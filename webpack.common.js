@@ -5,25 +5,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/js/clock.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Clock',
       meta: {
-        description: 'Analog clock whose nine sets of hands reveal patterns of time',
-        viewport: 'width=device-width,initial-scale=1',
+        'description': 'Analog clock whose nine sets of hands reveal patterns of time',
+        'viewport': 'width=device-width,initial-scale=1',
         'apple-mobile-web-app-capable': 'yes',
       },
-      hash: true,
     }),
     new CopyPlugin([
       { from: 'src/apache' },
       { from: 'src/icons' },
     ]),
   ],
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-  },
   module: {
     rules: [
       {
@@ -48,9 +47,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader',
-        ]
+        use: ['file-loader']
       }
     ]
   }
