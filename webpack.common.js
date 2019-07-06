@@ -11,7 +11,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Clock',
       meta: {
-        description: 'DESCRIPTION GOES HERE',
+        description: 'Analog clock whose nine sets of hands reveal patterns of time',
         viewport: 'width=device-width,initial-scale=1',
         'apple-mobile-web-app-capable': 'yes',
       },
