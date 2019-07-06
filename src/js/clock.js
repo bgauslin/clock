@@ -1,6 +1,7 @@
 import { Clock } from './modules/Clock';
 import { Theme } from './modules/Theme';
 import { Utilities } from './modules/Utilities';
+import '../stylus/clock.styl';
 
 /** @const {string} */
 const CLOCK_ELEMENT = 'n-clock';
