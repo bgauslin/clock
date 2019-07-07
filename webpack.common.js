@@ -7,6 +7,7 @@ module.exports = {
   entry: './src/js/clock.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   plugins: [
     new CleanWebpackPlugin(),
