@@ -14,24 +14,8 @@ module.exports = {
       { from: 'src/root' },
     ]),
     new HtmlWebpackPlugin({
-      inject: false,
-      template: require('html-webpack-template'),
-      lang: 'en',
-      title: 'Clock',
-      meta: [
-        {
-          name: 'description',
-          content: 'Analog clock whose nine sets of hands reveal patterns of time',
-        },
-        {
-          name: 'viewport',
-          content: 'width=device-width,initial-scale=1',
-        },
-        {
-          name: 'apple-mobile-web-app-capable',
-          content: 'yes',
-        },
-      ],
+      filename: 'index.html',
+      template: 'src/html/index.pug',
     }),
   ],
   module: {
@@ -54,6 +38,13 @@ module.exports = {
           'css-loader',
           'postcss-loader',
           'stylus-loader',
+        ]
+      },
+      {
+        test: /\.pug$/,
+        use: [
+          'raw-loader',
+          'pug-html-loader',
         ]
       },
       {
