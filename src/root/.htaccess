@@ -5,7 +5,7 @@ RewriteEngine on
 # Redirect all paths to index since this is an SPA.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule (.*) index.php [QSA,L]
+RewriteRule (.*) index.html [QSA,L]
 
 # Redirect www to non-www.
 RewriteCond %{HTTP_HOST} ^www\.(.+)$
