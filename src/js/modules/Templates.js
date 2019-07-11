@@ -24,6 +24,8 @@ class Templates {
    * @public
    */
   init() {
+    // TODO: Add a header to this project. Accessibility score is pretty bad without it.
+    // TODO: Add a main.content element and refactor .clocks and .clocks__frame
     this.renderClockContainer_();
     customElements.define(CLOCK_ELEMENT, Clock);
     this.renderClocks_(CLOCKS_SELECTOR);
