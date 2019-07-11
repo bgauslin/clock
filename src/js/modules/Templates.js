@@ -63,8 +63,8 @@ class Templates {
     const { label, title, url, yearStart, yearEnd } = FOOTER_INFO;
     document.body.innerHTML += `
       <p class="copyright">
-        <span class="copyright__bug">© ${yearStart}-${yearEnd}</span>
-        <a class="copyright__link"
+        <span class="copyright__years">© ${yearStart}-${yearEnd}</span>
+        <a class="copyright__owner"
             href="${url}"
             title="${title} (opens in a new window)"
             target="_blank"

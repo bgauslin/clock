@@ -6,13 +6,16 @@
   padding px_to_rem(16)
   text-align center
 
-.copyright__bug
-.copyright__link
+.copyright__years
+.copyright__owner
   transition color var(--transition)
 
-.copyright__link
+.copyright__years
+  margin-right px_to_em(4)
+
+.copyright__owner
   font-variation-settings 'wght' 600
   link(var(--link), var(--link), var(--link-active), var(--link-active))
 
-[no-touch] .copyright__link:hover
+[no-touch] .copyright__owner:hover
   transition color var(--transition)
