@@ -27,7 +27,7 @@ class Templates {
     this.renderClockContainer_();
     customElements.define(CLOCK_ELEMENT, Clock);
     this.renderClocks_(CLOCKS_SELECTOR);
-    this.renderCopyright_();
+    this.renderFooter_();
   }
 
   /**
@@ -56,20 +56,22 @@ class Templates {
   }
 
   /**
-   * Renders a copyright notice and link.
+   * Renders a footer with a copyright notice and link.
    * @private
    */
-  renderCopyright_() {
+  renderFooter_() {
     const { label, title, url, yearStart, yearEnd } = FOOTER_INFO;
     document.body.innerHTML += `
-      <p class="copyright">
-        <span class="copyright__years">© ${yearStart}-${yearEnd}</span>
-        <a class="copyright__owner"
-            href="${url}"
-            title="${title} (opens in a new window)"
-            target="_blank"
-            rel="noopener">${label}</a>
-      </p>
+      <footer class="footer">
+        <p class="copyright">
+          <span class="copyright__years">© ${yearStart}-${yearEnd}</span>
+          <a class="copyright__owner"
+              href="${url}"
+              title="${title} (opens in a new window)"
+              target="_blank"
+              rel="noopener">${label}</a>
+        </p>
+      </footer>
     `;
   }
 }
