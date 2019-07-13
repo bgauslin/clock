@@ -20,15 +20,14 @@ class Templates {
   constructor() {};
 
   /**
-   * Renders all app elements into the DOM.
+   * Defines custom elements, then renders elements into the DOM.
    * @public
    */
   init() {
-    // TODO: Add a header to this project. Accessibility score is pretty bad without it.
-    // TODO: Add a main.content element and refactor .clocks and .clocks__frame
+    customElements.define(CLOCK_ELEMENT, Clock);
+
     this.renderHeader_();
     this.renderClockContainer_();
-    customElements.define(CLOCK_ELEMENT, Clock);
     this.renderClocks_(CLOCKS_SELECTOR);
     this.renderFooter_();
   }
@@ -40,7 +39,9 @@ class Templates {
   renderHeader_() {
     document.body.innerHTML += `
       <header class="header">
-        <h1 class="site-name">Clock</h1>
+        <div class="header__frame">
+          <h1 class="site-name">${document.title}</h1>
+        </div>
       </header>
     `;
   }

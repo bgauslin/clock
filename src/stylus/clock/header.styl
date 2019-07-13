@@ -1,12 +1,21 @@
 .header
-  align-items center
+  background var(--face)
+  border-bottom 1px solid var(--border)
   color var(--text)
-  display flex
   grid-area header
   height var(--header-height)
-  justify-content center
+  padding 0 5vw
   position sticky
   top 0
+  transition background var(--transition-theme), border var(--transition-theme), color var(--transition-theme)
+
+.header__frame
+  align-items center
+  display flex
+  height 100%
+  justify-content space-between
+  margin 0 auto
+  max-width CLOCKS_MAX_WIDTH
 
 .site-name
   font-size var(--site-header)
