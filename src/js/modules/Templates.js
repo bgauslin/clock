@@ -26,10 +26,23 @@ class Templates {
   init() {
     // TODO: Add a header to this project. Accessibility score is pretty bad without it.
     // TODO: Add a main.content element and refactor .clocks and .clocks__frame
+    this.renderHeader_();
     this.renderClockContainer_();
     customElements.define(CLOCK_ELEMENT, Clock);
     this.renderClocks_(CLOCKS_SELECTOR);
     this.renderFooter_();
+  }
+
+  /**
+   * Renders header element.
+   * @private
+   */
+  renderHeader_() {
+    document.body.innerHTML += `
+      <header class="header">
+        <h1 class="site-name">Clock</h1>
+      </header>
+    `;
   }
 
   /**
@@ -38,9 +51,9 @@ class Templates {
    */
   renderClockContainer_() {
     document.body.innerHTML += `
-      <div class="clocks">
+      <main class="clocks">
         <div class="clocks__frame"></div>
-      </div>
+      </main>
     `;
   }
 

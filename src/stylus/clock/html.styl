@@ -10,10 +10,11 @@ body
 body
   background var(--background)
   display grid
-  grid-template-areas 'content'\
+  grid-template-areas 'header'\
+                      'content'\
                       'footer'
   grid-template-columns 1fr
-  grid-template-rows 1fr auto
+  grid-template-rows auto 1fr auto
   min-height 100vh // fallback
   min-height calc(var(--viewport-unit, 1vh) * 100)
   transition background var(--transition-theme), color var(--transition-theme)
