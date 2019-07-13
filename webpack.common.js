@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/js/clock.js',
+  entry: ['@babel/polyfill', './src/js/clock.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
@@ -12,6 +12,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin([
+      { from: 'src/json' },
       { from: 'src/root' },
     ]),
     new HtmlWebpackPlugin({
@@ -27,7 +28,8 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
+            plugins: ['transform-regenerator'],
           }
         }
       },
