@@ -1,7 +1,5 @@
+import { ColorPicker } from './ColorPicker';
 import { Clock } from './Clock';
-
-/** @const {string} */
-const CLOCK_ELEMENT = 'my-clock';
 
 /** @const {string} */
 const CLOCKS_SELECTOR = '.clocks__frame';
@@ -24,7 +22,8 @@ class Templates {
    * @public
    */
   init() {
-    customElements.define(CLOCK_ELEMENT, Clock);
+    customElements.define('my-clock', Clock);
+    customElements.define('color-picker', ColorPicker);
 
     this.renderHeader_();
     this.renderClockContainer_();
@@ -41,6 +40,7 @@ class Templates {
       <header class="header">
         <div class="header__frame">
           <h1 class="site-name">${document.title}</h1>
+          <color-picker src="/colors.json"></color-picker>
         </div>
       </header>
     `;
@@ -67,7 +67,7 @@ class Templates {
   renderClocks_(selector, n = 9) {
     const containerEl = document.querySelector(selector);
     for (let i = 1; i <= n; i++) {
-      containerEl.innerHTML += `<${CLOCK_ELEMENT}></${CLOCK_ELEMENT}>\n`;
+      containerEl.innerHTML += `<my-clock></my-clock>\n`;
     }
   }
 
