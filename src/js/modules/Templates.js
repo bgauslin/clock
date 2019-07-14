@@ -48,11 +48,10 @@ class Templates {
 
   /**
    * Renders clock custom elements.
-   * @param {!string} selector - Element's selector for attaching clocks to.
    * @param {?number=} n - Number of clocks to render.
    * @private
    */
-  renderClocks_(selector, n = 9) {
+  renderClocks_(n = 9) {
     let clocks = '';
     for (let i = 1; i <= n; i++) {
       clocks += '<analog-clock></analog-clock>';
