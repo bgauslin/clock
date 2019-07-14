@@ -6,11 +6,27 @@
   --transition-theme 1.5s
   --fineprint px_to_em(12)
 
+  // TODO: Make this a hash and loop
+  [color=white]
+    --face white
+    --hands black
+
+  [color=black]
+    --face black
+    --hands white
+
+  [color=red]
+    --face #c00
+    --hands white
+
+  [color=yellow]
+    --face yellow
+    --hands black
+
   [theme=light]
     --background #f7f7f7
     --border #ddd
-    --face white
-    --hands black
+    --header-background white
     --link rgba(black, .7)
     --link-active black
     --text rgba(black, .7)
@@ -18,8 +34,7 @@
   [theme=dark]
     --background #111
     --border #222
-    --face black
-    --hands white
+    --header-background black
     --link rgba(white, .7)
     --link-active white
     --text rgba(white, .7)

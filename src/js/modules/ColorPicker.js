@@ -11,28 +11,12 @@ const CssClass = {
   MENU: 'menu',
 };
 
-/** @const {Array<Object>} */
+/** @const {Array} */
 const Colors = [
-  {
-    name: "white",
-    face: "white",
-    hands: "black",
-  },
-  {
-    name: "black",
-    face: "black",
-    hands: "white",
-  },
-  {
-    name: "red",
-    face: "#c00",
-    hands: "white",
-  },
-  {
-    name: "yellow",
-    face: "mustard",
-    hands: "black",
-  }
+  'white',
+  'black',
+  'red',
+  'yellow',
 ];
 
 /** @class */
@@ -68,10 +52,7 @@ class ColorPicker extends HTMLElement {
    */
   updateColor_() {
     const colorName = this.getAttribute(Attribute.COLOR);
-    const cssValues = this.colors_.find(color => color.name === colorName);
-    for (const property in cssValues) {
-      document.documentElement.style.setProperty(`--${property}`, cssValues[property]);
-    }
+    document.body.setAttribute(Attribute.COLOR, colorName);
     localStorage.setItem(Attribute.COLOR, colorName);
   }  
   
@@ -80,15 +61,12 @@ class ColorPicker extends HTMLElement {
    * @private
    */
   setupDom_() {
-    this.colors_ = Colors;
     let listItems = '';
-
-    this.colors_.forEach((color) => {
-      const name = color.name;
+    Colors.forEach((color) => {
       listItems += `
         <li class="${CssClass.MENU}__item">
-          <label for="${name}">
-            <input type="radio" id="${name}" value="${name}">${name}
+          <label for="${color}">
+            <input type="radio" id="${color}" value="${color}">${color}
           </label>
         </li>
       `;
