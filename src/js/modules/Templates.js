@@ -3,9 +3,6 @@ import { Clock } from './Clock';
 import { ColorPicker } from './ColorPicker';
 import { Themifier } from './Themifier';
 
-/** @const {string} */
-const CLOCKS_SELECTOR = '.clocks__frame';
-
 /** @const {Object} */
 const FOOTER_INFO = {
   label: 'Ben Gauslin',
@@ -29,8 +26,7 @@ class Templates {
     customElements.define('app-theme', Themifier);
 
     this.renderHeader_();
-    this.renderClockContainer_();
-    this.renderClocks_(CLOCKS_SELECTOR);
+    this.renderClocks_();
     this.renderFooter_();
   }
 
@@ -51,28 +47,24 @@ class Templates {
   }
 
   /**
-   * Renders container element for all clock custom elements.
-   * @private
-   */
-  renderClockContainer_() {
-    document.body.innerHTML += `
-      <main class="clocks">
-        <div class="clocks__frame"></div>
-      </main>
-    `;
-  }
-
-  /**
    * Renders clock custom elements.
    * @param {!string} selector - Element's selector for attaching clocks to.
    * @param {?number=} n - Number of clocks to render.
    * @private
    */
   renderClocks_(selector, n = 9) {
-    const containerEl = document.querySelector(selector);
+    let clocks = '';
     for (let i = 1; i <= n; i++) {
-      containerEl.innerHTML += `<analog-clock></analog-clock>\n`;
+      clocks += '<analog-clock></analog-clock>';
     }
+
+    document.body.innerHTML += `
+      <main class="clocks">
+        <div class="clocks__frame">
+          ${clocks}
+        </div>
+      </main>
+    `;
   }
 
   /**
