@@ -13,6 +13,9 @@ const Colors = [
 class ColorPicker extends HTMLElement {
   constructor() {
     super();
+
+    /** @const {string} */
+    this.initialColor_ = null;
   }
   
   static get observedAttributes() {
@@ -21,12 +24,12 @@ class ColorPicker extends HTMLElement {
   
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === COLOR_ATTR) {
-      this.updateColor_();
+      this.updateColor_(oldValue, newValue);
     }
   }
   
   connectedCallback() {
-    this.initialColor_();
+    this.setInitialColor_();
     this.setupDom_();
     this.handleEvents_();
   }
@@ -35,8 +38,14 @@ class ColorPicker extends HTMLElement {
    * Sets a color and saves it to localStorage.
    * @private
    */
-  updateColor_() {
+  updateColor_(oldValue, newValue) {
     const colorName = this.getAttribute(COLOR_ATTR);
+    const oldEl = this.querySelector(`[value=${oldValue}]`);
+    const newEl = this.querySelector(`[value=${newValue}]`);
+
+    if (oldEl) oldEl.checked = false;
+    if (newEl) newEl.checked = true;
+
     document.body.setAttribute(COLOR_ATTR, colorName);
     localStorage.setItem(COLOR_ATTR, colorName);
   }  
@@ -45,9 +54,9 @@ class ColorPicker extends HTMLElement {
    * Sets initial color when custom element is first connected.
    * @private
    */
-  initialColor_() {
-    const initialColor = localStorage.getItem(COLOR_ATTR) || 'white';
-    this.setAttribute(COLOR_ATTR, initialColor);
+  setInitialColor_() {
+    this.initialColor_ = localStorage.getItem(COLOR_ATTR) || Colors[0];
+    this.setAttribute(COLOR_ATTR, this.initialColor_);
   }
 
   /**
@@ -57,10 +66,11 @@ class ColorPicker extends HTMLElement {
   setupDom_() {
     let listItems = '';
     Colors.forEach((color) => {
+      const checked = (color === this.initialColor_) ? 'checked' : '';
       listItems += `
         <li class="item">
           <label for="${color}" class="item__label">
-            <input class="option" type="radio" name="color" value="${color}">
+            <input class="option" type="radio" name="color" value="${color}" ${checked}>
             <span class="option__label" option="${color}">${color}</span>
           </label>
         </li>

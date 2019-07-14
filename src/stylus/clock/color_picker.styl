@@ -6,13 +6,11 @@
   appearance none
   background 0
   border 0
-  css_icon_menu(black) // TODO: Set icon color via custom property.
   cursor pointer
   display none
   height var(--header-height)
   justify-content center
-  margin 0
-  // margin 0 px_to_rem(-12) 0 0
+  margin 0 px_to_rem(-12) 0 0
   opacity 1
   outline 0
   transition opacity var(--transition), transform var(--transition)
@@ -30,7 +28,14 @@
 [no-touch] .settings__toggle:hover
   opacity .75
 
-// =============================================================================
+.settings__toggle::before
+  transition border-color var(--transition-theme)
+
+[theme=light] .settings__toggle
+  css_icon_menu(black)
+
+[theme=dark] .settings__toggle
+  css_icon_menu(white)
 
 // TODO: Add a box-shadow to .menu
 .menu
@@ -85,14 +90,17 @@
   cursor pointer
 
 // Settings options.
+// Hide the radio button and use its label as the hit area.
 .option
+  appearance none
+  height 0
   position absolute
-  top -20px
+  width 0
+  z-index -1
 
 .option__label
   align-items center
-  background #ccc
-  border 3px solid var(--lighter-grey)
+  border 3px solid #eee
   border-radius 50%
   color transparent
   display inline-flex
@@ -102,22 +110,15 @@
   width MENU_ITEM_SIZE
   z-index -1
 
+for name, values in Colors
+  .option__label[option={name}]
+    background '%s' % values.face
+
 [no-touch] .option__label
   transition border var(--transition)
 
-// TODO: Set background of each option__label to its respective color.
-// .option__label[option=light]
-//   background white
-
-// .option__label[option=sepia]
-//   background '%s' % Theme.SEPIA
-
-// .option__label[option=dark]
-//   background '%s' % Theme.DARK
-
 .option:checked + .option__label
-  border-color blue // TODO: Update checked color.
+  border-color #666
 
 [no-touch] .item__label:hover .option:not(:checked) + .option__label
-  border-color var(--light-grey)
-
+  border-color #ccc
