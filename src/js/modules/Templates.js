@@ -1,5 +1,5 @@
-import { ColorPicker } from './ColorPicker';
 import { Clock } from './Clock';
+import { ColorPicker } from './ColorPicker';
 
 /** @const {string} */
 const CLOCKS_SELECTOR = '.clocks__frame';

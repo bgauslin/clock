@@ -4,8 +4,6 @@
 
 .settings__toggle
   appearance none
-  background 0
-  border 0
   cursor pointer
   display none
   height var(--header-height)
@@ -41,20 +39,17 @@
 .menu
   background white
   border-radius px_to_rem(4)
-  color var(--dark-grey)
-  // margin-top (GRID_GAP / 2)
-  // max-width 'calc(100vw - %s)' % GRID_GAP
   opacity 0
   padding px_to_rem(12)
   position absolute
   right px_to_rem(-8)
-  transition opacity var(--transition) ease-out, transform var(--transition) ease-out, visibility var(--transition) ease-out
   transform 'translateY(-%s)' % px_to_rem(12)
+  transition opacity var(--transition), transform var(--transition), visibility var(--transition)
   visibility hidden
   z-index -1
 
   @media Breakpoint.MEDIUM
-    margin-top -4px
+    margin-top px_to_rem(-4)
 
 .settings__toggle:checked + .menu
   opacity 1
@@ -66,7 +61,7 @@
   content ''
   css_triangle(white, MENU_ARROW, 'up')
   position absolute
-  right 8px
+  right px_to_rem(8)
   top (- MENU_ARROW)
 
 // Settings lists.
@@ -100,7 +95,7 @@
 
 .option__label
   align-items center
-  border 3px solid #eee
+  border 2px solid #eee
   border-radius 50%
   color transparent
   display inline-flex
