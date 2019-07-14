@@ -1,11 +1,9 @@
 color-picker
   margin 0 0 0 auto
-
-.settings
   position relative
   z-index 1
 
-.settings__toggle
+.toggle
   cursor pointer
   display none
   height var(--header-height)
@@ -14,20 +12,20 @@ color-picker
   transition opacity var(--transition), transform var(--transition)
   width var(--button-width)
 
-.settings__toggle:active
+.toggle:active
   transform scale(.85)
 
-.settings__toggle:checked
-[no-touch] .settings__toggle:hover
+.toggle:checked
+[no-touch] .toggle:hover
   opacity 1
 
-.settings__toggle::before
+.toggle::before
   transition border-color var(--transition)
 
-[theme=light] .settings__toggle
+[theme=light] .toggle
   css_icon_menu(black)
 
-[theme=dark] .settings__toggle
+[theme=dark] .toggle
   css_icon_menu(white)
 
 .menu
@@ -47,7 +45,7 @@ color-picker
   @media Breakpoint.MEDIUM
     margin-top px_to_rem(-8)
 
-.settings__toggle:checked + .menu
+.toggle:checked + .menu
   opacity 1
   transform translateY(0)
   visibility visible
@@ -61,7 +59,7 @@ color-picker
   right 0
   top 0
 
-.settings__toggle:checked ~ .click-mask
+.toggle:checked ~ .click-mask
   pointer-events auto
 
 // Menu arrow via rotated square with a shadow.

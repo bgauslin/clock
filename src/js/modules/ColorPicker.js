@@ -17,7 +17,7 @@ const Colors = [
 /** @enum {string} */
 const CssClass = {
   MASK: 'click-mask',
-  TOGGLE: 'settings__toggle',
+  TOGGLE: 'toggle',
 };
 
 /** @class */
@@ -88,16 +88,14 @@ class ColorPicker extends HTMLElement {
       `;
     });
 
-    this.innerHTML = `
-      <div class="settings">
-        <input class="${CssClass.TOGGLE}" type="checkbox" aria-label="Color options">
-        <div class="menu">
-          <ul class="menu__list">
-            ${listItems}
-          </ul>
-        </div>
-        <div class="${CssClass.MASK}"></div>
+    this.innerHTML = `      
+      <input class="${CssClass.TOGGLE}" type="checkbox" aria-label="Color options">
+      <div class="menu">
+        <ul class="menu__list">
+          ${listItems}
+        </ul>
       </div>
+      <div class="${CssClass.MASK}"></div>
     `;
   }
 
