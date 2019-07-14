@@ -62,7 +62,7 @@ class ColorPicker extends HTMLElement {
   }  
   
   /**
-   * Sets initial color when custom element is first connected.
+   * Sets initial color when element is first connected.
    * @private
    */
   setInitialColor_() {
@@ -71,7 +71,7 @@ class ColorPicker extends HTMLElement {
   }
 
   /**
-   * Creates all DOM elements and attached them to the DOM.
+   * Creates elements and attaches them to the DOM.
    * @private
    */
   setupDom_() {
