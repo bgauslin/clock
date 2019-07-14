@@ -1,5 +1,6 @@
 import { Clock } from './Clock';
 import { ColorPicker } from './ColorPicker';
+import { Themifier } from './Themifier';
 
 /** @const {string} */
 const CLOCKS_SELECTOR = '.clocks__frame';
@@ -15,15 +16,14 @@ const FOOTER_INFO = {
 
 /** @class */
 class Templates {
-  constructor() {};
-
   /**
-   * Defines custom elements, then renders elements into the DOM.
+   * Defines custom elements then renders all elements into the DOM.
    * @public
    */
   init() {
-    customElements.define('my-clock', Clock);
+    customElements.define('analog-clock', Clock);
     customElements.define('color-picker', ColorPicker);
+    customElements.define('app-theme', Themifier);
 
     this.renderHeader_();
     this.renderClockContainer_();
@@ -41,6 +41,7 @@ class Templates {
         <div class="header__frame">
           <h1 class="site-name">${document.title}</h1>
           <color-picker></color-picker>
+          <app-theme is="button"></app-theme>
         </div>
       </header>
     `;
@@ -67,7 +68,7 @@ class Templates {
   renderClocks_(selector, n = 9) {
     const containerEl = document.querySelector(selector);
     for (let i = 1; i <= n; i++) {
-      containerEl.innerHTML += `<my-clock></my-clock>\n`;
+      containerEl.innerHTML += `<analog-clock></analog-clock>\n`;
     }
   }
 

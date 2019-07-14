@@ -1,15 +1,11 @@
 require('dotenv').config();
 
 import { Templates } from './modules/Templates';
-import { Theme } from './modules/Theme';
 import { Utilities } from './modules/Utilities';
 import '../stylus/clock.styl';
 
 /** @instance */
 const templates = new Templates();
-
-/** @instance */
-const theme = new Theme();
 
 /** @instance */
 const utilities = new Utilities();
@@ -20,7 +16,6 @@ const utilities = new Utilities();
  */
 document.addEventListener('DOMContentLoaded', () => {
   templates.init();
-  theme.init();
   utilities.init();
 }, { once: true } );
 
