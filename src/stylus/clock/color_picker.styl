@@ -31,9 +31,14 @@ color-picker
 .menu
   background white
   border-radius px_to_rem(4)
+  display grid
   elevation(1)
+  grid-gap px_to_rem(8)
+  grid-template-columns repeat(4, 1fr)
   max-width 50vw // TODO: Calculate max-width based on item size and gaps.
   opacity 0
+  list-style none
+  margin 0
   padding px_to_rem(12)
   position absolute
   right px_to_rem(4)
@@ -86,15 +91,6 @@ color-picker
   top 0
   width (MENU_ARROW * 2)
 
-// Settings lists.
-.menu__list
-  display grid
-  grid-gap px_to_rem(8)
-  grid-template-columns repeat(4, 1fr)
-  list-style none
-  margin 0
-  padding 0
-
 .item__label
   display block
   height MENU_ITEM_SIZE
@@ -111,7 +107,6 @@ color-picker
   position absolute
   visibility hidden
   width 0
-  // z-index -1
 
 .option__label
   align-items center
