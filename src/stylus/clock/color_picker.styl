@@ -3,14 +3,12 @@
   z-index 1
 
 .settings__toggle
-  appearance none
   cursor pointer
   display none
   height var(--header-height)
   justify-content center
   margin 0 px_to_rem(-12) 0 0
   opacity 1
-  outline 0
   transition opacity var(--transition), transform var(--transition)
   width var(--header-height)
 
@@ -114,11 +112,11 @@
 
 // Hide each item's radio button and use its label as the hit area.
 .option
-  appearance none
   height 0
   position absolute
+  visibility hidden
   width 0
-  z-index -1
+  // z-index -1
 
 .option__label
   align-items center
