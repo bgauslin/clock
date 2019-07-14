@@ -7,7 +7,7 @@
   margin 5vh 5vw
   max-width CLOCKS_MAX_WIDTH
   overflow hidden
-  transition background var(--transition-theme), border var(--transition-theme)
+  transition background var(--transition), border var(--transition)
 
 .clocks__frame
   display flex
@@ -26,8 +26,8 @@ analog-clock
 .clock__hand
   stroke var(--hands)
   stroke-width '%spx' % (Clock.STROKE_WIDTH * 2)
-  transition stroke var(--transition-theme)
+  transition stroke var(--transition)
 
 .clock__pivot
   fill var(--hands)
-  transition fill var(--transition-theme)
+  transition fill var(--transition)

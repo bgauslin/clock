@@ -1,12 +1,20 @@
 app-theme
   align-items center
-  color var(--text)
+  color var(--link)
   cursor pointer
   display flex
   height var(--header-height)
   justify-content center
-  transition color var(--transition-theme)
-  width var(--header-height)
+  margin-right px_to_rem(-8)
+  transition color var(--transition), transform var(--transition)
+  width var(--button-width)
+
+  &:hover
+  &:focus
+    color var(--link-active)
+
+  &:active
+    transform scale(.85)
 
 .icon--contrast
   width px_to_rem(22)
