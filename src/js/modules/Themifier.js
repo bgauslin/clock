@@ -38,7 +38,6 @@ class Themifier extends HTMLElement {
   setInitialTheme_() {
     this.initialTheme_ = localStorage.getItem('theme') || Theme.DEFAULT;
     this.setAttribute(THEME_ATTR, this.initialTheme_);
-    console.log('this.initialTheme_', this.initialTheme_);
   }
 
   /**
