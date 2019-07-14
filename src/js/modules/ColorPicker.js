@@ -6,7 +6,12 @@ const Colors = [
   'white',
   'black',
   'red',
+  'orange',
   'yellow',
+  'green',
+  'blue',
+  'indigo',
+  'violet',
 ];
 
 /** @enum {string} */
