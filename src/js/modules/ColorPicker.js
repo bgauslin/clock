@@ -90,7 +90,7 @@ class ColorPicker extends HTMLElement {
 
     this.innerHTML = `
       <div class="settings">
-        <input type="checkbox" class="${CssClass.TOGGLE}" checked>
+        <input type="checkbox" class="${CssClass.TOGGLE}">
         <div class="menu">
           <ul class="menu__list">
             ${listItems}
