@@ -4,7 +4,6 @@ const COLOR_ATTR = 'color';
 /** @const {Array} */
 const Colors = [
   'white',
-  'black',
   'red',
   'orange',
   'yellow',
@@ -12,6 +11,7 @@ const Colors = [
   'blue',
   'indigo',
   'violet',
+  'black',
 ];
 
 /** @enum {string} */
@@ -90,7 +90,7 @@ class ColorPicker extends HTMLElement {
 
     this.innerHTML = `
       <div class="settings">
-        <input type="checkbox" class="${CssClass.TOGGLE}">
+        <input type="checkbox" class="${CssClass.TOGGLE}" checked>
         <div class="menu">
           <ul class="menu__list">
             ${listItems}

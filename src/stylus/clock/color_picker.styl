@@ -35,10 +35,11 @@
 [theme=dark] .settings__toggle
   css_icon_menu(white)
 
-// TODO: Add a box-shadow to .menu
 .menu
   background white
   border-radius px_to_rem(4)
+  elevation(1)
+  max-width 50vw // TODO: Calculate max-width based on item size and gaps.
   opacity 0
   padding px_to_rem(12)
   position absolute
@@ -49,7 +50,7 @@
   z-index -1
 
   @media Breakpoint.MEDIUM
-    margin-top px_to_rem(-4)
+    margin-top px_to_rem(-8)
 
 .settings__toggle:checked + .menu
   opacity 1
@@ -68,23 +69,38 @@
 .settings__toggle:checked ~ .click-mask
   pointer-events auto
 
-// Menu arrow.
+// Menu arrow via rotated square with a shadow.
 .menu::before
+  background white
   content ''
-  css_triangle(white, MENU_ARROW, 'up')
+  display block
+  elevation(1)
+  height MENU_ARROW
   position absolute
-  right px_to_rem(8)
-  top (- MENU_ARROW)
+  right MENU_ARROW
+  top (- MENU_ARROW / 2)
+  transform rotate(45deg)
+  width MENU_ARROW
+
+// Cover for bottom half of menu arrow's shadow.
+.menu::after
+  background white
+  content ''
+  display block
+  height MENU_ARROW
+  position absolute
+  right (MENU_ARROW / 2)
+  top 0
+  width (MENU_ARROW * 2)
 
 // Settings lists.
 .menu__list
-  display flex
+  display grid
+  grid-gap px_to_rem(8)
+  grid-template-columns repeat(4, 1fr)
   list-style none
   margin 0
   padding 0
-
-.item:not(:last-child)
-  margin 0 px_to_rem(8) 0 0
 
 .item__label
   display block
@@ -96,8 +112,7 @@
 [no-touch] .item__label:hover
   cursor pointer
 
-// Settings options.
-// Hide the radio button and use its label as the hit area.
+// Hide each item's radio button and use its label as the hit area.
 .option
   appearance none
   height 0
