@@ -27,10 +27,7 @@ class Themifier extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('Themifier');
-
     this.setInitialTheme_();
-    this.setupDom_();
     this.handleEvents_();
   }
 
@@ -42,14 +39,6 @@ class Themifier extends HTMLElement {
     this.initialTheme_ = localStorage.getItem('theme') || Theme.DEFAULT;
     this.setAttribute(THEME_ATTR, this.initialTheme_);
     console.log('this.initialTheme_', this.initialTheme_);
-  }
-
-  /**
-   * Adds a label to the custom element.
-   * @private
-   */
-  setupDom_() {
-    this.textContent = 'Theme';
   }
 
   /**
