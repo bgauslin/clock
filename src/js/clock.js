@@ -1,11 +1,9 @@
+require('dotenv').config();
+
 import { Templates } from './modules/Templates';
 import { Theme } from './modules/Theme';
 import { Utilities } from './modules/Utilities';
 import '../stylus/clock.styl';
-
-if (process.env.NODE_ENV !== 'production') {
-  console.warn('Development mode');
-}
 
 /** @instance */
 const templates = new Templates();
@@ -14,12 +12,7 @@ const templates = new Templates();
 const theme = new Theme();
 
 /** @instance */
-const utilities = new Utilities({
-  analyticsSettings: {
-    domain: 'clock.gauslin.com',
-    id: 'UA-626192-16',
-  },
-});
+const utilities = new Utilities();
 
 /**
  * Initializes app when the DOM is ready.

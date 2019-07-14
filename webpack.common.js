@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -14,11 +15,15 @@ module.exports = {
     new CopyPlugin([
       { from: 'src/root' },
     ]),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/html/index.pug',
     }),
   ],
+  node: {
+    fs: 'empty',
+  },
   module: {
     rules: [
       {
