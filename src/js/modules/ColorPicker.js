@@ -1,15 +1,5 @@
 /** @enum {string} */
-const Attribute = {
-  CHECKED: 'checked',
-  COLOR: 'color',
-  INACTIVE: 'inactive',
-  SRC: 'src',
-};
-
-/** @enum {string} */
-const CssClass = {
-  MENU: 'menu',
-};
+const COLOR_ATTR = 'color';
 
 /** @const {Array} */
 const Colors = [
@@ -26,16 +16,17 @@ class ColorPicker extends HTMLElement {
   }
   
   static get observedAttributes() {
-    return [Attribute.COLOR];
+    return [COLOR_ATTR];
   }
   
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === Attribute.COLOR) {
+    if (name === COLOR_ATTR) {
       this.updateColor_();
     }
   }
   
   connectedCallback() {
+    this.initialColor_();
     this.setupDom_();
     this.handleEvents_();
   }
@@ -45,13 +36,22 @@ class ColorPicker extends HTMLElement {
    * @private
    */
   updateColor_() {
-    const colorName = this.getAttribute(Attribute.COLOR);
-    document.body.setAttribute(Attribute.COLOR, colorName);
-    localStorage.setItem(Attribute.COLOR, colorName);
+    const colorName = this.getAttribute(COLOR_ATTR);
+    document.body.setAttribute(COLOR_ATTR, colorName);
+    localStorage.setItem(COLOR_ATTR, colorName);
   }  
   
   /**
-   * @description ...
+   * Sets initial color when custom element is first connected.
+   * @private
+   */
+  initialColor_() {
+    const initialColor = localStorage.getItem(COLOR_ATTR) || 'white';
+    this.setAttribute(COLOR_ATTR, initialColor);
+  }
+
+  /**
+   * Creates all DOM elements and attached them to the DOM.
    * @private
    */
   setupDom_() {
@@ -69,9 +69,9 @@ class ColorPicker extends HTMLElement {
 
     this.innerHTML = `
       <div class="settings">
-        <input type="checkbox" class="settings__toggle" checked>
-        <div class="${CssClass.MENU}">
-          <ul class="${CssClass.MENU}__list">
+        <input type="checkbox" class="settings__toggle">
+        <div class="menu">
+          <ul class="menu__list">
             ${listItems}
           </ul>
         </div>
@@ -80,17 +80,14 @@ class ColorPicker extends HTMLElement {
   }
 
   /**
-   * TODO...
+   * Updates the color when a new color option is clicked.
    * @private
    */
   handleEvents_() {
     this.addEventListener('click', (e) => {
-      console.log('clicked', e.target);
-      e.preventDefault();
-
       const value = e.target.getAttribute('for');
       if (value) {
-        this.setAttribute(Attribute.COLOR, value);
+        this.setAttribute(COLOR_ATTR, value);
       }
     });
   }
