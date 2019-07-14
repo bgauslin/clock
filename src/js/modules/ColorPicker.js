@@ -9,6 +9,12 @@ const Colors = [
   'yellow',
 ];
 
+/** @enum {string} */
+const CssClass = {
+  MASK: 'click-mask',
+  TOGGLE: 'settings__toggle',
+};
+
 /** @class */
 class ColorPicker extends HTMLElement {
   constructor() {
@@ -79,12 +85,13 @@ class ColorPicker extends HTMLElement {
 
     this.innerHTML = `
       <div class="settings">
-        <input type="checkbox" class="settings__toggle">
+        <input type="checkbox" class="${CssClass.TOGGLE}">
         <div class="menu">
           <ul class="menu__list">
             ${listItems}
           </ul>
         </div>
+        <div class="${CssClass.MASK}"></div>
       </div>
     `;
   }
@@ -99,6 +106,12 @@ class ColorPicker extends HTMLElement {
       if (value) {
         this.setAttribute(COLOR_ATTR, value);
       }
+    });
+
+    const clickMask = document.querySelector(`.${CssClass.MASK}`);
+    const toggle = this.querySelector(`.${CssClass.TOGGLE}`);
+    clickMask.addEventListener('click', (e) => {
+      toggle.checked = false;
     });
   }
 }

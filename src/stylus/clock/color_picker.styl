@@ -55,6 +55,18 @@
   opacity 1
   transform translateY(0)
   visibility visible
+  z-index 1
+
+.click-mask
+  bottom 0
+  left 0
+  pointer-events none
+  position fixed
+  right 0
+  top 0
+
+.settings__toggle:checked ~ .click-mask
+  pointer-events auto
 
 // Menu arrow.
 .menu::before
