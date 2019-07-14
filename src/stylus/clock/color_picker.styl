@@ -1,0 +1,123 @@
+.settings
+  position relative
+  z-index 1
+
+.settings__toggle
+  appearance none
+  background 0
+  border 0
+  css_icon_menu(black) // TODO: Set icon color via custom property.
+  cursor pointer
+  display none
+  height var(--header-height)
+  justify-content center
+  margin 0
+  // margin 0 px_to_rem(-12) 0 0
+  opacity 1
+  outline 0
+  transition opacity var(--transition), transform var(--transition)
+  width var(--header-height)
+
+  &:active
+    transform scale(.85)
+
+  &:checked
+    opacity .75
+
+  @media Breakpoint.MEDIUM
+    margin-right px_to_rem(-20)
+
+[no-touch] .settings__toggle:hover
+  opacity .75
+
+// =============================================================================
+
+// TODO: Add a box-shadow to .menu
+.menu
+  background white
+  border-radius px_to_rem(4)
+  color var(--dark-grey)
+  // margin-top (GRID_GAP / 2)
+  // max-width 'calc(100vw - %s)' % GRID_GAP
+  opacity 0
+  padding px_to_rem(12)
+  position absolute
+  right px_to_rem(-8)
+  transition opacity var(--transition) ease-out, transform var(--transition) ease-out, visibility var(--transition) ease-out
+  transform 'translateY(-%s)' % px_to_rem(12)
+  visibility hidden
+  z-index -1
+
+  @media Breakpoint.MEDIUM
+    margin-top -4px
+
+.settings__toggle:checked + .menu
+  opacity 1
+  transform translateY(0)
+  visibility visible
+
+// Menu arrow.
+.menu::before
+  content ''
+  css_triangle(white, MENU_ARROW, 'up')
+  position absolute
+  right 8px
+  top (- MENU_ARROW)
+
+// Settings lists.
+.menu__list
+  display flex
+  list-style none
+  margin 0
+  padding 0
+
+.item:not(:last-child)
+  margin 0 px_to_rem(12) 0 0
+
+.item__label
+  display block
+  height MENU_ITEM_SIZE
+  overflow hidden
+  position relative
+  width MENU_ITEM_SIZE
+
+[no-touch] .item__label:hover
+  cursor pointer
+
+// Settings options.
+.option
+  position absolute
+  top -20px
+
+.option__label
+  align-items center
+  background #ccc
+  border 3px solid var(--lighter-grey)
+  border-radius 50%
+  color transparent
+  display inline-flex
+  height MENU_ITEM_SIZE
+  justify-content center
+  position relative
+  width MENU_ITEM_SIZE
+  z-index -1
+
+[no-touch] .option__label
+  transition border var(--transition)
+
+// TODO: Set background of each option__label to its respective color.
+// .option__label[option=light]
+//   background white
+
+// .option__label[option=sepia]
+//   background '%s' % Theme.SEPIA
+
+// .option__label[option=dark]
+//   background '%s' % Theme.DARK
+
+.option:checked + .option__label
+  border-color blue // TODO: Update checked color.
+
+[no-touch] .item__label:hover .option:not(:checked) + .option__label
+  border-color var(--light-grey)
+

@@ -1,5 +1,14 @@
 @import 'functions';
 
+// @const String
+BUTTON_HEIGHT = px_to_rem(40)
+
+// @const String
+MENU_ARROW = 10px
+
+// @const String
+MENU_ITEM_SIZE = px_to_rem(40)
+
 // @type Hash
 Breakpoint = {
   MEDIUM: 'screen and (min-width: %s)' % px_to_rem(640)
@@ -28,3 +37,27 @@ CLOCKS_MAX_WIDTH = 40rem // = 512px
 // Calculate the offset as a percentage for laying out clocks mathematically.
 // @type Number
 CLOCK_OFFSET = (Clock.SIZE - Clock.HOURS_HAND_LENGTH - MINUTES_HAND_LENGTH) * CLOCK_WIDTH
+
+// @type
+// Colors = {
+//   {
+//     name: white
+//     face: white
+//     hands: black
+//   },
+//   {
+//     name: black
+//     face: black
+//     hands: white
+//   },
+//   {
+//     name: red
+//     face: #c00
+//     hands: white
+//   },
+//   {
+//     name: yellow
+//     face: yellow
+//     hands: black
+//   }
+// }

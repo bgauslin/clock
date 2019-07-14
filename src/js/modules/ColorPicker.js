@@ -23,12 +23,6 @@ const Colors = [
 class ColorPicker extends HTMLElement {
   constructor() {
     super();
-
-    /** @const {?Element} */
-    this.menuEl_ = null;
-    
-    /** @const {?Array} */
-    this.colors_ = null;
   }
   
   static get observedAttributes() {
@@ -64,20 +58,23 @@ class ColorPicker extends HTMLElement {
     let listItems = '';
     Colors.forEach((color) => {
       listItems += `
-        <li class="${CssClass.MENU}__item">
-          <label for="${color}">
-            <input type="radio" id="${color}" value="${color}">${color}
+        <li class="item">
+          <label for="${color}" class="item__label">
+            <input class="option" type="radio" name="color" value="${color}">
+            <span class="option__label" option="${color}">${color}</span>
           </label>
         </li>
       `;
     });
 
     this.innerHTML = `
-      <div class="${CssClass.MENU}">
-        <input type="checkbox" class="${CssClass.MENU}__toggle">
-        <ul class="${CssClass.MENU}__list">
-          ${listItems}
-        </ul>
+      <div class="settings">
+        <input type="checkbox" class="settings__toggle" checked>
+        <div class="${CssClass.MENU}">
+          <ul class="${CssClass.MENU}__list">
+            ${listItems}
+          </ul>
+        </div>
       </div>
     `;
   }
@@ -90,8 +87,10 @@ class ColorPicker extends HTMLElement {
     this.addEventListener('click', (e) => {
       console.log('clicked', e.target);
       e.preventDefault();
-      if (e.target.value) {
-        this.setAttribute(Attribute.COLOR, e.target.value);
+
+      const value = e.target.getAttribute('for');
+      if (value) {
+        this.setAttribute(Attribute.COLOR, value);
       }
     });
   }
