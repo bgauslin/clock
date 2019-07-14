@@ -11,6 +11,30 @@ const CssClass = {
   MENU: 'menu',
 };
 
+/** @const {Array<Object>} */
+const Colors = [
+  {
+    name: "white",
+    face: "white",
+    hands: "black",
+  },
+  {
+    name: "black",
+    face: "black",
+    hands: "white",
+  },
+  {
+    name: "red",
+    face: "#c00",
+    hands: "white",
+  },
+  {
+    name: "yellow",
+    face: "mustard",
+    hands: "black",
+  }
+];
+
 /** @class */
 class ColorPicker extends HTMLElement {
   constructor() {
@@ -34,23 +58,8 @@ class ColorPicker extends HTMLElement {
   }
   
   connectedCallback() {
-    this.fetchColors_();
-  }
-
-  /**
-   * @description ...
-   * @private
-   */
-  async fetchColors_() {
-    const colorsDataSrc = this.getAttribute(Attribute.SRC);    
-    if (colorsDataSrc) {
-      this.removeAttribute(Attribute.SRC); 
-      const response = await fetch(colorsDataSrc);
-      this.colors_ = await response.json();
-      console.log('fetchColors_() called!');
-
-      this.setupDom_();
-    }
+    this.setupDom_();
+    this.handleEvents_();
   }
 
   /**
@@ -71,17 +80,20 @@ class ColorPicker extends HTMLElement {
    * @private
    */
   setupDom_() {
-    console.log('setupDom_() called!');
-    console.log('this.colors_', this.colors_);
-
+    this.colors_ = Colors;
     let listItems = '';
-    
+
     this.colors_.forEach((color) => {
-      listItems += this.menuItem_(color.name);
+      const name = color.name;
+      listItems += `
+        <li class="${CssClass.MENU}__item">
+          <label for="${name}">
+            <input type="radio" id="${name}" value="${name}">${name}
+          </label>
+        </li>
+      `;
     });
 
-    console.log(this);
-    
     this.innerHTML = `
       <div class="${CssClass.MENU}">
         <input type="checkbox" class="${CssClass.MENU}__toggle">
@@ -93,36 +105,16 @@ class ColorPicker extends HTMLElement {
   }
 
   /**
-   * Creates theming options and attaches them to an element.
-   * @param {!string} name
-   * @return HTML for a menu item.
+   * TODO...
    * @private
    */
-  menuItem_(name) {
-    return `
-      <li class="${CssClass.MENU}__item">
-        <input class="${CssClass.MENU}__item__option" type="radio" name="${name}" value="${name}">
-        <label class="${CssClass.MENU}__item__label" for="${name}">${name}</label>
-      </li>
-    `;
-  }
-
-  /**
-   * Sets current option and adds a listener to each option.
-   * @param {!string} option - Color to set on the custom element,
-   *     which is also the 'name' of the input.
-   * @private
-   */
-  updateOptions_(option) {
-    [...this.menuEl_.querySelectorAll(`[name=${option}]`)].forEach((el) => {
-      if (currentAttr == el.value) {
-        el.setAttribute(Attribute.CHECKED, '');
+  handleEvents_() {
+    this.addEventListener('click', (e) => {
+      console.log('clicked', e.target);
+      e.preventDefault();
+      if (e.target.value) {
+        this.setAttribute(Attribute.COLOR, e.target.value);
       }
-      
-      // TODO: Set single listener on element and add an event handler.
-      el.addEventListener('click', () => {
-        this.updateColor_(option, el.value);
-      });
     });
   }
 }

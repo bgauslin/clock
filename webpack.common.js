@@ -12,7 +12,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin([
-      { from: 'src/json' },
       { from: 'src/root' },
     ]),
     new HtmlWebpackPlugin({

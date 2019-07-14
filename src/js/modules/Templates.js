@@ -40,7 +40,7 @@ class Templates {
       <header class="header">
         <div class="header__frame">
           <h1 class="site-name">${document.title}</h1>
-          <color-picker src="/colors.json"></color-picker>
+          <color-picker></color-picker>
         </div>
       </header>
     `;
