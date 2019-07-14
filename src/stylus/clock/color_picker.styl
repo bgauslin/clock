@@ -10,18 +10,16 @@ color-picker
   display none
   height var(--header-height)
   justify-content center
-  opacity 1
+  opacity .75
   transition opacity var(--transition), transform var(--transition)
   width var(--button-width)
 
-  &:active
-    transform scale(.85)
+.settings__toggle:active
+  transform scale(.85)
 
-  &:checked
-    opacity .75
-
+.settings__toggle:checked
 [no-touch] .settings__toggle:hover
-  opacity .75
+  opacity 1
 
 .settings__toggle::before
   transition border-color var(--transition)
