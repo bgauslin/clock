@@ -6,7 +6,7 @@
   --transition .3s ease-out
   --fineprint px_to_em(12)
 
-  for name, values in Colors
+  for name, values in ColorPalette
     [color={name}]
       --face '%s' % values.face
       --hands '%s' % values.hands
@@ -15,17 +15,17 @@
     --background #f7f7f7
     --border #ddd
     --header-background white
-    --link rgba(black, .7)
-    --link-active black
-    --text rgba(black, .7)
+    --link DARK_GREY
+    --link-active rgba(DARK_GREY, .7)
+    --text DARK_GREY
 
   [theme=dark]
-    --background #111
-    --border #222
-    --header-background black
-    --link rgba(white, .7)
-    --link-active white
-    --text rgba(white, .7)
+    --background #262626
+    --border #333
+    --header-background DARK_GREY
+    --link white
+    --link-active rgba(white, .7)
+    --text white
 
   @media Breakpoint.MEDIUM
     --fineprint px_to_em(14)

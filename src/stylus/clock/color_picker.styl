@@ -4,29 +4,25 @@ color-picker
   z-index 1
 
 .toggle
+  align-items center
+  color var(--link)
   cursor pointer
-  display none
+  display flex
   height var(--header-height)
   justify-content center
-  opacity .75
-  transition opacity var(--transition), transform var(--transition)
+  transition color var(--transition)
   width var(--button-width)
 
-.toggle:active
-  transform scale(.85)
+.toggle:hover
+.toggle:focus
+  color var(--link-active)
 
-.toggle:checked
-[no-touch] .toggle:hover
-  opacity 1
+.toggle:active > .icon
+  transform scale(.75)
+  transition transform var(--transition)
 
-.toggle::before
-  transition border-color var(--transition)
-
-[theme=light] .toggle
-  css_icon_menu(black)
-
-[theme=dark] .toggle
-  css_icon_menu(white)
+.toggle > .icon
+  width px_to_rem(20)
 
 .menu
   background white
@@ -120,7 +116,7 @@ color-picker[open] .click-mask
   width MENU_ITEM_SIZE
   z-index -1
 
-for name, values in Colors
+for name, values in ColorPalette
   .option__label[option={name}]
     background '%s' % values.face
 

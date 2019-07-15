@@ -6,15 +6,16 @@ app-theme
   height var(--header-height)
   justify-content center
   margin-right px_to_rem(-8)
-  transition color var(--transition), transform var(--transition)
+  transition color var(--transition)
   width var(--button-width)
 
-  &:hover
-  &:focus
-    color var(--link-active)
+app-theme:hover
+app-theme:focus
+  color var(--link-active)
 
-  &:active
-    transform scale(.85)
-
-.icon--contrast
-  width px_to_rem(22)
+app-theme:active > .icon
+  transform scale(.75)
+  transition transform var(--transition)
+  
+app-theme > .icon
+  width px_to_rem(20)
