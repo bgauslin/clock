@@ -31,11 +31,10 @@ color-picker
   elevation(1)
   grid-gap px_to_rem(8)
   grid-template-columns repeat(4, 1fr)
-  max-width 50vw // TODO: Calculate max-width based on item size and gaps.
-  opacity 0
   list-style none
   margin 0
-  padding px_to_rem(12)
+  opacity 0
+  padding px_to_rem(14)
   position absolute
   right px_to_rem(4)
   transform 'translateY(-%s)' % px_to_rem(12)
@@ -90,7 +89,6 @@ color-picker[open] .click-mask
 .item__label
   display block
   height MENU_ITEM_SIZE
-  overflow hidden
   position relative
   width MENU_ITEM_SIZE
 
@@ -106,7 +104,7 @@ color-picker[open] .click-mask
 
 .option__label
   align-items center
-  border 2px solid #eee
+  border 2px solid white
   border-radius 50%
   color transparent
   display inline-flex
@@ -116,15 +114,18 @@ color-picker[open] .click-mask
   width MENU_ITEM_SIZE
   z-index -1
 
+.option__label[option=white]
+  border-color #eee
+
 for name, values in ColorPalette
   .option__label[option={name}]
     background '%s' % values.face
 
 [no-touch] .option__label
-  transition border var(--transition)
+  transition transform var(--transition)
 
 .option:checked + .option__label
-  border-color #666
+  border-color DARK_GREY
 
 [no-touch] .item__label:hover .option:not(:checked) + .option__label
-  border-color #ccc
+  transform scale(1.1)
