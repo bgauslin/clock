@@ -7,13 +7,24 @@ const OPEN_ATTR = 'open';
 /** @const {Array<string>} */
 const Colors = [
   'white',
-  'red',
+  'darkred',
+  'crimson',
+  'tomato',
   'orange',
-  'yellow',
-  'green',
-  'blue',
+  'gold',
+  'khaki',
+  'yellowgreen',
+  'seagreen',
+  'teal',
+  'lightskyblue',
+  'steelblue',
+  'royalblue',
+  'midnightblue',
   'indigo',
+  'blueviolet',
   'violet',
+  'hotpink',
+  'silver',
   'black',
 ];
 
