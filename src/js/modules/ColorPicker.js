@@ -103,7 +103,7 @@ class ColorPicker extends HTMLElement {
   }
 
   /**
-   * Renders an inline 'palette' SVG icon.
+   * Renders an inline color palette SVG icon.
    * @private
    */
   renderIcon_() {

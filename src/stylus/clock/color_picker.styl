@@ -13,15 +13,15 @@ color-picker
   transition color var(--transition)
   width var(--button-width)
 
-.toggle:hover
 .toggle:focus
+[no-touch] .toggle:hover
   color var(--link-active)
 
 .toggle:active > .icon
   transform scale(.75)
   transition transform var(--transition)
 
-.toggle > .icon
+.icon--palette
   width px_to_rem(20)
 
 .menu

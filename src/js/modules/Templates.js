@@ -84,13 +84,13 @@ class Templates {
   }
 
   /**
-   * Renders an inline 'contrast' SVG icon.
+   * Renders an inline theming SVG icon.
    * @private
    */
   renderIcon_() {
     const svgPath = 'M0.375 12 C0.375 18.42 5.58 23.625 12 23.625 18.42 23.625 23.625 18.42 23.625 12 23.625 5.58 18.42 0.375 12 0.375 5.58 0.375 0.375 5.58 0.375 12 Z M12 20.625 L12 3.375 C16.767 3.375 20.625 7.233 20.625 12 20.625 16.767 16.767 20.625 12 20.625 Z';
     return `
-      <svg class="icon icon--contrast" viewbox="0 0 24 24">
+      <svg class="icon icon--themifier" viewbox="0 0 24 24">
         <path d="${svgPath}"/>
       </svg>
     `;

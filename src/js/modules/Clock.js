@@ -23,7 +23,7 @@ class Clock extends HTMLElement {
   constructor() {
     super();
 
-    /** @const {number} */
+    /** @const {?number} */
     this.previousMinutesAngle_ = null;
   }
   

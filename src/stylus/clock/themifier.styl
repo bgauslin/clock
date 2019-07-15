@@ -9,13 +9,13 @@ app-theme
   transition color var(--transition)
   width var(--button-width)
 
-app-theme:hover
 app-theme:focus
+[no-touch] app-theme:hover
   color var(--link-active)
 
 app-theme:active > .icon
   transform scale(.75)
   transition transform var(--transition)
-  
-app-theme > .icon
+
+.icon--themifier
   width px_to_rem(20)
