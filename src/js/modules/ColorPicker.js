@@ -1,6 +1,9 @@
 /** @enum {string} */
 const COLOR_ATTR = 'color';
 
+/** @enum {string} */
+const OPEN_ATTR = 'open';
+
 /** @const {Array<string>} */
 const Colors = [
   'white',
@@ -105,16 +108,25 @@ class ColorPicker extends HTMLElement {
    */
   handleEvents_() {
     this.addEventListener('click', (e) => {
+      // Toggle the menu open/closed.
+      if (e.target.classList.contains('toggle')) {
+        if (this.hasAttribute(OPEN_ATTR)) {
+          this.removeAttribute(OPEN_ATTR);
+        } else {
+          this.setAttribute(OPEN_ATTR, '');
+        }
+      }
+
+      // Change the current color.
       const value = e.target.getAttribute('for');
       if (value) {
         this.setAttribute(COLOR_ATTR, value);
       }
     });
 
-    const clickMask = document.querySelector(`.${CssClass.MASK}`);
-    const toggle = this.querySelector(`.${CssClass.TOGGLE}`);
-    clickMask.addEventListener('click', (e) => {
-      toggle.checked = false;
+    // Close the menu when clicking outside of the menu.
+    document.querySelector(`.${CssClass.MASK}`).addEventListener('click', (e) => {
+      this.removeAttribute(OPEN_ATTR);
     });
   }
 }

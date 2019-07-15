@@ -50,7 +50,7 @@ color-picker
   @media Breakpoint.MEDIUM
     margin-top px_to_rem(-8)
 
-.toggle:checked + .menu
+color-picker[open] .menu
   opacity 1
   transform translateY(0)
   visibility visible
@@ -64,7 +64,7 @@ color-picker
   right 0
   top 0
 
-.toggle:checked ~ .click-mask
+color-picker[open] .click-mask
   pointer-events auto
 
 // Menu arrow via rotated square with a shadow.
