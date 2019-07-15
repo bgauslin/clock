@@ -1,4 +1,3 @@
-import fastclick from 'fastclick';
 import { Clock } from './Clock';
 import { ColorPicker } from './ColorPicker';
 import { Themifier } from './Themifier';
@@ -19,8 +18,6 @@ class Templates {
    * @public
    */
   init() {
-    fastclick.attach(document.body);
-
     customElements.define('analog-clock', Clock);
     customElements.define('color-picker', ColorPicker);
     customElements.define('app-theme', Themifier);

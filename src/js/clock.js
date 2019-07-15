@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+import fastclick from 'fastclick';
 import { Templates } from './modules/Templates';
 import { Utilities } from './modules/Utilities';
 import '../stylus/clock.styl';
@@ -15,6 +16,7 @@ const utilities = new Utilities();
  * @listens DOMContentLoaded
  */
 document.addEventListener('DOMContentLoaded', () => {
+  fastclick.attach(document.body);
   templates.init();
   utilities.init();
 }, { once: true } );
