@@ -10,19 +10,19 @@ color-picker
   display flex
   height var(--header-height)
   justify-content center
-  transition color var(--transition)
+  transition color var(--transition), transform var(--transition)
   width var(--button-width)
 
 .toggle:focus
+.toggle:active
 [no-touch] .toggle:hover
   color var(--link-active)
 
-.toggle:active > .icon
-  transform scale(.75)
-  transition transform var(--transition)
+.toggle:active
+  transform scale(.8)
 
 .icon--palette
-  width px_to_rem(20)
+  flex 0 0 px_to_rem(20)
 
 .menu
   background white
