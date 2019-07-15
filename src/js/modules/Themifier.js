@@ -12,7 +12,7 @@ class Themifier extends HTMLElement {
   constructor() {
     super();
 
-    /** @const {string} */
+    /** @private {?string} */
     this.initialTheme_ = null;
   }
 

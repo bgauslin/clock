@@ -39,7 +39,7 @@ class ColorPicker extends HTMLElement {
   constructor() {
     super();
 
-    /** @const {string} */
+    /** @private {?string} */
     this.initialColor_ = null;
   }
   
