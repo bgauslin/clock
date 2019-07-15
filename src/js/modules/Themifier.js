@@ -20,12 +20,14 @@ class Themifier extends HTMLElement {
     return [THEME_ATTR];
   }
   
+  /** @callback */
   attributeChangedCallback(name) {
     if (name === THEME_ATTR) {
       this.updateTheme_();
     }
   }
 
+  /** @callback */
   connectedCallback() {
     this.setInitialTheme_();
     this.handleEvents_();

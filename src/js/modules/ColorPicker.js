@@ -1,7 +1,7 @@
 /** @enum {string} */
 const COLOR_ATTR = 'color';
 
-/** @const {Array} */
+/** @const {Array<string>} */
 const Colors = [
   'white',
   'red',
@@ -33,12 +33,14 @@ class ColorPicker extends HTMLElement {
     return [COLOR_ATTR];
   }
   
+  /** @callback */
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === COLOR_ATTR) {
       this.updateColor_(oldValue, newValue);
     }
   }
   
+  /** @callback */
   connectedCallback() {
     this.setInitialColor_();
     this.setupDom_();

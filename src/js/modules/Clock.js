@@ -24,7 +24,7 @@ class Clock extends HTMLElement {
     super();
 
     /** @const {number} */
-    this.previousMinutesAngle = null;
+    this.previousMinutesAngle_ = null;
   }
   
   /** @callback */
@@ -54,8 +54,8 @@ class Clock extends HTMLElement {
     const minutesAngle = minutes * 6;
 
     // Redraw clock only when the minutes angle has changed (i.e. every minute).
-    if (minutesAngle !== this.previousMinutesAngle) {
-      this.previousMinutesAngle = minutesAngle;
+    if (minutesAngle !== this.previousMinutesAngle_) {
+      this.previousMinutesAngle_ = minutesAngle;
       this.innerHTML = `
         <svg viewbox="0 0 ${ClockDimensions.SIZE} ${ClockDimensions.SIZE}">
           <g>
