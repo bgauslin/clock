@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 import fastclick from 'fastclick';
 import { Templates } from './modules/Templates';
 import { Utilities } from './modules/Utilities';
