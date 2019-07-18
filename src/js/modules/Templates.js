@@ -12,7 +12,7 @@ const FOOTER_INFO = {
 }
 
 /** @class */
-class Templates {
+class App {
   /**
    * Defines custom elements then renders all elements into the DOM.
    * @public
@@ -97,4 +97,4 @@ class Templates {
   }
 }
 
-export { Templates };
+export { App };
