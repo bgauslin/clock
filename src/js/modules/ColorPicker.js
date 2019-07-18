@@ -44,8 +44,7 @@ class ColorPicker extends HTMLElement {
         } else {
           this.setAttribute(OPEN_ATTR, '');
 
-          // TODO: Temporary click closer to be replaced with something more
-          // specific.
+          // If it's open, close the menu on the next click.
           window.requestAnimationFrame(() => {
             document.addEventListener('click', (e) => {
               this.removeAttribute(OPEN_ATTR);
@@ -81,15 +80,14 @@ class ColorPicker extends HTMLElement {
    * @private
    */
   updateColor_(oldValue, newValue) {
-    const colorName = this.getAttribute(COLOR_ATTR);
     const oldEl = this.querySelector(`[value=${oldValue}]`);
     const newEl = this.querySelector(`[value=${newValue}]`);
 
     if (oldEl) oldEl.checked = false;
     if (newEl) newEl.checked = true;
 
-    document.body.setAttribute(COLOR_ATTR, colorName);
-    localStorage.setItem(COLOR_ATTR, colorName);
+    document.body.setAttribute(COLOR_ATTR, newValue);
+    localStorage.setItem(COLOR_ATTR, newValue);
   }  
   
   /**
@@ -99,7 +97,7 @@ class ColorPicker extends HTMLElement {
   setupDom_() {
     let listItems = '';
     Colors.forEach((color) => {
-      const checked = (color === this.initialColor_) ? 'checked' : '';
+      const checked = (color === this.getAttribute(COLOR_ATTR)) ? 'checked' : '';
       listItems += `
         <li class="item">
           <label for="${color}" class="item__label">

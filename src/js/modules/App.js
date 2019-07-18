@@ -11,7 +11,7 @@ class App {
   init() {
     customElements.define('analog-clock', Clock);
     customElements.define('color-picker', ColorPicker);
-    customElements.define('x-theme', Themifier);
+    customElements.define('clocks-theme', Themifier);
 
     this.renderHeader_();
     this.renderClocks_();
@@ -28,14 +28,14 @@ class App {
         <div class="header__frame">
           <h1 class="site-name">${document.title}</h1>
           <color-picker class="color-picker"></color-picker>
-          <x-theme class="themifier">${this.renderIcon_()}</x-theme>
+          <clocks-theme class="themifier"></clocks-theme>
         </div>
       </header>
     `;
   }
 
   /**
-   * Renders clock custom elements.
+   * Renders clock elements.
    * @param {?number=} n - Number of clocks to render.
    * @private
    */
@@ -59,7 +59,12 @@ class App {
    * @private
    */
   renderFooter_() {
-    const { label, title, url, yearStart, yearEnd } = FOOTER_INFO;
+    const label = 'Ben Gauslin';
+    const title = 'Ben Gauslin’s Website';
+    const url = 'https://gauslin.com';
+    const yearStart = '2018';
+    const yearEnd = new Date().getFullYear().toString().substr(-2);
+
     document.body.innerHTML += `
       <footer class="footer">
         <p class="copyright">
@@ -73,28 +78,6 @@ class App {
       </footer>
     `;
   }
-
-  /**
-   * Renders an inline theming SVG icon.
-   * @private
-   */
-  renderIcon_() {
-    const svgPath = 'M0.375 12 C0.375 18.42 5.58 23.625 12 23.625 18.42 23.625 23.625 18.42 23.625 12 23.625 5.58 18.42 0.375 12 0.375 5.58 0.375 0.375 5.58 0.375 12 Z M12 20.625 L12 3.375 C16.767 3.375 20.625 7.233 20.625 12 20.625 16.767 16.767 20.625 12 20.625 Z';
-    return `
-      <svg class="icon icon--themifier" viewbox="0 0 24 24">
-        <path d="${svgPath}"/>
-      </svg>
-    `;
-  }
-}
-
-/** @const {Object} */
-const FOOTER_INFO = {
-  label: 'Ben Gauslin',
-  title: 'Ben Gauslin’s Website',
-  url: 'https://gauslin.com',
-  yearStart: '2018',
-  yearEnd: new Date().getFullYear().toString().substr(-2),
 }
 
 export { App };
