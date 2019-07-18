@@ -1,14 +1,14 @@
 require('dotenv').config();
 import fastclick from 'fastclick';
 import { App } from './modules/App';
-import { Utilities } from './modules/Utilities';
+import { Tools } from './modules/Tools';
 import '../stylus/clock.styl';
 
 /** @instance */
 const app = new App();
 
 /** @instance */
-const utilities = new Utilities();
+const tools = new Tools();
 
 /**
  * Initializes app when the DOM is ready.
@@ -16,7 +16,7 @@ const utilities = new Utilities();
  */
 document.addEventListener('DOMContentLoaded', () => {
   app.init();
-  utilities.init();
+  tools.init();
   fastclick.attach(document.body);
 }, { once: true } );
 
@@ -25,5 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
  * @listens resize
  */
 window.addEventListener('resize', () => {
-  utilities.viewportHeight();
+  tools.viewportHeight();
 }, { passive: true });
