@@ -2,15 +2,6 @@ import { Clock } from './Clock';
 import { ColorPicker } from './ColorPicker';
 import { Themifier } from './Themifier';
 
-/** @const {Object} */
-const FOOTER_INFO = {
-  label: 'Ben Gauslin',
-  title: 'Ben Gauslin’s Website',
-  url: 'https://gauslin.com',
-  yearStart: '2018',
-  yearEnd: new Date().getFullYear().toString().substr(-2),
-}
-
 /** @class */
 class App {
   /**
@@ -95,6 +86,15 @@ class App {
       </svg>
     `;
   }
+}
+
+/** @const {Object} */
+const FOOTER_INFO = {
+  label: 'Ben Gauslin',
+  title: 'Ben Gauslin’s Website',
+  url: 'https://gauslin.com',
+  yearStart: '2018',
+  yearEnd: new Date().getFullYear().toString().substr(-2),
 }
 
 export { App };

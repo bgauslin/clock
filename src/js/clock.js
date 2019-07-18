@@ -1,5 +1,4 @@
 require('dotenv').config();
-import fastclick from 'fastclick';
 import { App } from './modules/App';
 import { Tools } from './modules/Tools';
 import '../stylus/clock.styl';
@@ -17,7 +16,6 @@ const tools = new Tools();
 document.addEventListener('DOMContentLoaded', () => {
   app.init();
   tools.init();
-  fastclick.attach(document.body);
 }, { once: true } );
 
 /**
