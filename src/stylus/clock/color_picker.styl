@@ -3,7 +3,7 @@
   position relative
   z-index 1
 
-.toggle
+.color-picker__toggle
   align-items center
   color var(--link)
   cursor pointer
@@ -13,18 +13,18 @@
   transition color var(--transition), transform var(--transition)
   width var(--button-width)
 
-.toggle:focus
-.toggle:active
-[no-touch] .toggle:hover
+.color-picker__toggle:focus
+.color-picker__toggle:active
+[no-touch] .color-picker__toggle:hover
   color var(--link-active)
 
-.toggle:active
+.color-picker__toggle:active
   transform scale(.8)
 
-.toggle__icon
+.color-picker__icon
   flex 0 0 px_to_rem(20)
 
-.menu
+.color-picker__menu
   background white
   border-radius px_to_rem(4)
   display grid
@@ -45,14 +45,14 @@
   @media Breakpoint.MEDIUM
     margin-top px_to_rem(-8)
 
-.color-picker[open] .menu
+[open] > .color-picker__menu
   opacity 1
   transform translateY(0)
   visibility visible
   z-index 1
 
 // Menu arrow via rotated square with a shadow.
-.menu::before
+.color-picker__menu::before
   background white
   content ''
   display block
@@ -65,7 +65,7 @@
   width MENU_ARROW
 
 // Cover for bottom half of menu arrow's shadow.
-.menu::after
+.color-picker__menu::after
   background white
   content ''
   display block
@@ -75,23 +75,23 @@
   top 0
   width (MENU_ARROW * 2)
 
-.item__label
+.color-picker__label
   display block
   height MENU_ITEM_SIZE
   position relative
   width MENU_ITEM_SIZE
 
-[no-touch] .item__label:hover
+[no-touch] .color-picker__label:hover
   cursor pointer
 
 // Hide each item's radio button and use its label as the hit area.
-.option
+.color-picker__option
   height 0
   position absolute
   visibility hidden
   width 0
 
-.option__label
+.color-picker__swatch
   align-items center
   border 2px solid white
   border-radius 50%
@@ -103,18 +103,18 @@
   width MENU_ITEM_SIZE
   z-index -1
 
-.option__label[option=white]
+.color-picker__swatch[option=white]
   border-color #eee
 
 for name, values in ColorPalette
-  .option__label[option={name}]
+  .color-picker__swatch[option={name}]
     background '%s' % values.face
 
-[no-touch] .option__label
+[no-touch] .color-picker__swatch
   transition transform var(--transition)
 
-.option:checked + .option__label
+.color-picker__option:checked + .color-picker__swatch
   border-color DARK_GREY
 
-[no-touch] .item__label:hover .option:not(:checked) + .option__label
+[no-touch] .color-picker__label:hover .color-picker__option:not(:checked) + .color-picker__swatch
   transform scale(1.1)

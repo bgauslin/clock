@@ -1,4 +1,7 @@
 /** @const {string} */
+const CLASSNAME = 'themifier';
+
+/** @const {string} */
 const THEME_ATTR = 'theme';
 
 /** @enum {string} */
@@ -8,9 +11,13 @@ const Theme = {
 }
 
 /** @class */
-class Themifier extends HTMLElement {
+class Themifier extends HTMLButtonElement {
   constructor() {
     super();
+
+    // Set base classname for styling and ARIA label for a11y.
+    this.classList.add(CLASSNAME);
+    this.setAttribute('aria-label', 'Change theme');
 
     // Set theme to stored value if it exists; default otherwise.
     this.setAttribute(THEME_ATTR,
@@ -33,7 +40,7 @@ class Themifier extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = `  
-      <svg class="themifier__icon" viewbox="0 0 24 24">
+      <svg class="${CLASSNAME}__icon" viewbox="0 0 24 24">
         <path d="M0.375 12 C0.375 18.42 5.58 23.625 12 23.625 18.42 23.625 23.625 18.42 23.625 12 23.625 5.58 18.42 0.375 12 0.375 5.58 0.375 0.375 5.58 0.375 12 Z M12 20.625 L12 3.375 C16.767 3.375 20.625 7.233 20.625 12 20.625 16.767 16.767 20.625 12 20.625 Z"/>
       </svg>
     `;

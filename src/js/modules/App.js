@@ -11,7 +11,7 @@ class App {
   init() {
     customElements.define('analog-clock', Clock);
     customElements.define('color-picker', ColorPicker);
-    customElements.define('clocks-theme', Themifier);
+    customElements.define('app-theme', Themifier, {extends: 'button'});
 
     this.renderHeader_();
     this.renderClocks_();
@@ -27,8 +27,8 @@ class App {
       <header class="header">
         <div class="header__frame">
           <h1 class="site-name">${document.title}</h1>
-          <color-picker class="color-picker"></color-picker>
-          <clocks-theme class="themifier"></clocks-theme>
+          <color-picker></color-picker>
+          <button is="app-theme"></button>
         </div>
       </header>
     `;
