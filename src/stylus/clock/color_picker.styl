@@ -1,4 +1,4 @@
-color-picker
+.color-picker
   margin 0 0 0 auto
   position relative
   z-index 1
@@ -45,22 +45,11 @@ color-picker
   @media Breakpoint.MEDIUM
     margin-top px_to_rem(-8)
 
-color-picker[open] .menu
+.color-picker[open] .menu
   opacity 1
   transform translateY(0)
   visibility visible
   z-index 1
-
-.click-mask
-  bottom 0
-  left 0
-  pointer-events none
-  position fixed
-  right 0
-  top 0
-
-color-picker[open] .click-mask
-  pointer-events auto
 
 // Menu arrow via rotated square with a shadow.
 .menu::before

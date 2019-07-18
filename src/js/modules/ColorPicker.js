@@ -28,37 +28,52 @@ const Colors = [
   'black',
 ];
 
-/** @enum {string} */
-const CssClass = {
-  MASK: 'click-mask',
-  TOGGLE: 'toggle',
-};
-
 /** @class */
 class ColorPicker extends HTMLElement {
   constructor() {
     super();
 
-    /** @private {?string} */
-    this.initialColor_ = null;
+    this.setAttribute(COLOR_ATTR,
+      localStorage.getItem(COLOR_ATTR) || Colors[0]);
+
+    this.addEventListener('click', (e) => {
+      // Toggle the menu open/closed.
+      if (e.target.classList.contains('toggle')) {
+        if (this.hasAttribute(OPEN_ATTR)) {
+          this.removeAttribute(OPEN_ATTR);
+        } else {
+          this.setAttribute(OPEN_ATTR, '');
+
+          // TODO: Temporary click closer to be replaced with something more
+          // specific.
+          window.requestAnimationFrame(() => {
+            document.addEventListener('click', (e) => {
+              this.removeAttribute(OPEN_ATTR);
+            }, { once: true });
+          });
+        }
+      }
+
+      // Change the current color.
+      const newColor = e.target.getAttribute('for');
+      if (newColor) {
+        this.setAttribute(COLOR_ATTR, newColor);
+      }
+    });
   }
   
   static get observedAttributes() {
     return [COLOR_ATTR];
   }
-  
+
   /** @callback */
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === COLOR_ATTR) {
-      this.updateColor_(oldValue, newValue);
-    }
+    this.updateColor_(oldValue, newValue);
   }
   
   /** @callback */
   connectedCallback() {
-    this.setInitialColor_();
     this.setupDom_();
-    this.handleEvents_();
   }
 
   /**
@@ -78,15 +93,6 @@ class ColorPicker extends HTMLElement {
   }  
   
   /**
-   * Sets initial color when element is first connected.
-   * @private
-   */
-  setInitialColor_() {
-    this.initialColor_ = localStorage.getItem(COLOR_ATTR) || Colors[0];
-    this.setAttribute(COLOR_ATTR, this.initialColor_);
-  }
-
-  /**
    * Creates elements and attaches them to the DOM.
    * @private
    */
@@ -105,16 +111,15 @@ class ColorPicker extends HTMLElement {
     });
 
     this.innerHTML = `      
-      <button class="${CssClass.TOGGLE}" aria-label="Color options">${this.renderIcon_()}</button>
+      <button class="toggle" aria-label="Color options">${this.renderIcon_()}</button>
       <ul class="menu">
         ${listItems}
       </ul>
-      <div class="${CssClass.MASK}"></div>
     `;
   }
 
   /**
-   * Renders an inline color palette SVG icon.
+   * Renders an inline SVG icon.
    * @private
    */
   renderIcon_() {
@@ -124,34 +129,6 @@ class ColorPicker extends HTMLElement {
         <path d="${svgPath}"/>
       </svg>
     `;
-  }
-
-  /**
-   * Updates the color when a new color option is clicked.
-   * @private
-   */
-  handleEvents_() {
-    this.addEventListener('click', (e) => {
-      // Toggle the menu open/closed.
-      if (e.target.classList.contains('toggle')) {
-        if (this.hasAttribute(OPEN_ATTR)) {
-          this.removeAttribute(OPEN_ATTR);
-        } else {
-          this.setAttribute(OPEN_ATTR, '');
-        }
-      }
-
-      // Change the current color.
-      const value = e.target.getAttribute('for');
-      if (value) {
-        this.setAttribute(COLOR_ATTR, value);
-      }
-    });
-
-    // Close the menu when clicking outside of the menu.
-    document.querySelector(`.${CssClass.MASK}`).addEventListener('click', (e) => {
-      this.removeAttribute(OPEN_ATTR);
-    });
   }
 }
 
