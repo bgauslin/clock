@@ -19,11 +19,16 @@ class DigitalClock extends HTMLElement {
    */
   displayTime_() {
     const now = new Date();
-    const h = now.getHours();
-    const m = this.zeroPad_(now.getMinutes());
-    const s = this.zeroPad_(now.getSeconds());
-    
-    this.textContent = `${h}:${m}:${s}`;
+
+    let hours = now.getHours();
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const ampm = (hours >= 12) ? 'pm' : 'am';
+
+    const minutes = this.zeroPad_(now.getMinutes());
+    const seconds = this.zeroPad_(now.getSeconds());
+  
+    this.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
   }
 
   /**
