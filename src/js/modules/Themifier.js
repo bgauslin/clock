@@ -26,12 +26,15 @@ class Themifier extends HTMLElement {
 
     // Toggle theme when clicked.
     this.addEventListener('click', () => {
-      const newTheme = (
-        this.getAttribute(THEME_ATTR) === Theme.DEFAULT
-        ? Theme.ALT
-        : Theme.DEFAULT
-      );
-      this.setAttribute(THEME_ATTR, newTheme);
+      this.toggleTheme_();
+    });
+
+    // Toggle theme with space bar or enter key.
+    this.addEventListener('keydown', (e) => {
+      if (e.keyCode === 13 || e.keyCode === 32) {
+        e.preventDefault();
+        this.toggleTheme_();
+      }
     });
   }
 
@@ -51,6 +54,15 @@ class Themifier extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     document.body.setAttribute(THEME_ATTR, newValue);
     localStorage.setItem(THEME_ATTR, newValue);
+  }
+
+  toggleTheme_() {
+    const newTheme = (
+      this.getAttribute(THEME_ATTR) === Theme.DEFAULT
+      ? Theme.ALT
+      : Theme.DEFAULT
+    );
+    this.setAttribute(THEME_ATTR, newTheme);
   }
 }
 
