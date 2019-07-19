@@ -19,25 +19,12 @@ class DigitalClock extends HTMLElement {
    */
   displayTime_() {
     const now = new Date();
-
-    let hours = now.getHours();
-    const ampm = (hours >= 12) ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-   
-
-    const minutes = this.zeroPad_(now.getMinutes());
-    const seconds = this.zeroPad_(now.getSeconds());
-  
-    this.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-  }
-
-  /**
-   * Prepends a zero for values below 10.
-   * @private
-   */
-  zeroPad_(n) {
-    return (n < 10) ? `0${n}` : n;
+    this.textContent = now.toLocaleString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true,
+    });
   }
 }
 
