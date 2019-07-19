@@ -1,10 +1,10 @@
 /** @const {string} */
 const CLASSNAME = 'color-picker';
 
-/** @enum {string} */
+/** @const {string} */
 const COLOR_ATTR = 'color';
 
-/** @enum {string} */
+/** @const {string} */
 const OPEN_ATTR = 'open';
 
 /** @const {Array<string>} */
@@ -36,8 +36,10 @@ class ColorPicker extends HTMLElement {
   constructor() {
     super();
 
+    // Add classname for styling.
     this.classList.add(CLASSNAME);
 
+    // Get saved color if it exists; set default color otherwise.
     this.setAttribute(COLOR_ATTR,
       localStorage.getItem(COLOR_ATTR) || Colors[0]);
 
@@ -81,7 +83,7 @@ class ColorPicker extends HTMLElement {
   }
 
   /**
-   * Sets a color and saves it to localStorage.
+   * Sets the current color and saves it to localStorage.
    * @private
    */
   updateColor_(oldValue, newValue) {
