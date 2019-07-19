@@ -1,5 +1,6 @@
-import { Clock } from './Clock';
+import { AnalogClock } from './AnalogClock';
 import { ColorPicker } from './ColorPicker';
+import { DigitalClock } from './DigitalClock';
 import { Themifier } from './Themifier';
 
 /** @class */
@@ -9,8 +10,9 @@ class App {
    * @public
    */
   init() {
-    customElements.define('analog-clock', Clock);
+    customElements.define('analog-clock', AnalogClock);
     customElements.define('color-picker', ColorPicker);
+    customElements.define('digital-clock', DigitalClock);
     customElements.define('app-theme', Themifier);
 
     this.renderHeader_();
@@ -26,7 +28,9 @@ class App {
     document.body.innerHTML += `
       <header class="header">
         <div class="header__frame">
-          <h1 class="site-name">${document.title}</h1>
+          <h1 class="site-name">
+            <digital-clock></digital-clock>
+          </h1>
           <color-picker></color-picker>
           <app-theme></app-theme>
         </div>

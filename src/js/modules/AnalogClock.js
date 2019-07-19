@@ -19,7 +19,7 @@ const MINUTES_HAND_LENGTH = ClockDimensions.CENTER - ClockDimensions.STROKE_WIDT
 const MINUTES_HAND_END = ClockDimensions.CENTER - MINUTES_HAND_LENGTH;
 
 /** @class */
-class Clock extends HTMLElement {
+class AnalogClock extends HTMLElement {
   constructor() {
     super();
 
@@ -84,4 +84,4 @@ class Clock extends HTMLElement {
   }
 }
 
-export { Clock };
+export { AnalogClock };
