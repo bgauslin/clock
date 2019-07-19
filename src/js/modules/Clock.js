@@ -23,6 +23,9 @@ class Clock extends HTMLElement {
   constructor() {
     super();
 
+    // Add a classname for styling.
+    this.classList.add('clock');
+
     /** @private {?number} */
     this.previousMinutesAngle_ = null;
   }
