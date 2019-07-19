@@ -31,7 +31,7 @@ class Tools {
   }
 
   /**
-   * Adds 'no-touch' attribute if not a touch-enabled device.
+   * Attaches fastclick if device is touch-enabled; adds 'no-touch' attribute if not.
    * @private
    */
   noTouch_() {
