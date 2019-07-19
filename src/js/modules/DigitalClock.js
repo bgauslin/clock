@@ -5,26 +5,20 @@ class DigitalClock extends HTMLElement {
 
   /** @callback */
   connectedCallback() {
-    setInterval(() => this.displayTime_(), 1000);
+    setInterval(() => {
+      const now = new Date();
+      this.textContent = now.toLocaleString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: false,
+      });
+    }, 1000);
   }
   
   /** @callback */
   disconnectedCallback() {
     clearInterval();
-  }
-
-  /**
-   * Displays the current time.
-   * @private
-   */
-  displayTime_() {
-    const now = new Date();
-    this.textContent = now.toLocaleString('en-US', {
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      hour12: true,
-    });
   }
 }
 
