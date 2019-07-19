@@ -21,9 +21,10 @@ class DigitalClock extends HTMLElement {
     const now = new Date();
 
     let hours = now.getHours();
+    const ampm = (hours >= 12) ? 'pm' : 'am';
     hours = hours % 12;
     hours = hours ? hours : 12;
-    const ampm = (hours >= 12) ? 'pm' : 'am';
+   
 
     const minutes = this.zeroPad_(now.getMinutes());
     const seconds = this.zeroPad_(now.getSeconds());
