@@ -34,7 +34,7 @@
   list-style none
   margin-top px_to_rem(8)
   opacity 0
-  padding MENU_ARROW
+  padding px_to_rem(12)
   position absolute
   right px_to_rem(-2)
   transform 'translateY(-%s)' % px_to_rem(12)
@@ -75,6 +75,10 @@
   top 0
   width (MENU_ARROW * 2)
 
+// Place the items above the arrow cover.
+.color-picker__item
+  z-index 1
+
 .color-picker__label
   display block
   height MENU_ITEM_SIZE
@@ -106,15 +110,27 @@
 .color-picker__swatch[option=white]
   border-color #eee
 
+.color-picker__option:checked + .color-picker__swatch::after
+  border-radius 50%
+  content ''
+  height px_to_rem(8)
+  width px_to_rem(8)
+  position absolute
+
 for name, values in ColorPalette
+  face_rgb = rgb(values.face)
+
   .color-picker__swatch[option={name}]
     background '%s' % values.face
+  
+  .color-picker__option:checked + .color-picker__swatch[option={name}]
+    border-color mix(black, face_rgb, 30%)
+  
+  .color-picker__option:checked + .color-picker__swatch[option={name}]::after
+    background '%s' % values.hands
 
 [no-touch] .color-picker__swatch
   transition transform var(--transition)
-
-.color-picker__option:checked + .color-picker__swatch
-  border-color DARK_GREY
 
 [no-touch] .color-picker__label:hover .color-picker__option:not(:checked) + .color-picker__swatch
   transform scale(1.1)
