@@ -46,7 +46,7 @@ class App {
   renderClocks_(n = 9) {
     let clocks = '';
     for (let i = 1; i <= n; i++) {
-      clocks += '<analog-clock></analog-clock>';
+      clocks += '<analog-clock class="clock"></analog-clock>';
     }
 
     document.body.innerHTML += `
