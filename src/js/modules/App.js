@@ -31,8 +31,8 @@ class App {
           <h1 class="site-name">
             <digital-clock></digital-clock>
           </h1>
-          <color-picker></color-picker>
-          <app-theme></app-theme>
+          <color-picker class="color-picker"></color-picker>
+          <app-theme class="themifier"></app-theme>
         </div>
       </header>
     `;

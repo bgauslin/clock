@@ -1,7 +1,4 @@
 /** @const {string} */
-const CLASSNAME = 'themifier';
-
-/** @const {string} */
 const THEME_ATTR = 'theme';
 
 /** @enum {string} */
@@ -15,8 +12,7 @@ class Themifier extends HTMLElement {
   constructor() {
     super();
 
-    // Set base classname for styling and attributes for a11y.
-    this.classList.add(CLASSNAME);
+    // Set attributes for accessibility.
     this.setAttribute('aria-label', 'Change theme');
     this.setAttribute('tabindex', '0');
 
@@ -25,9 +21,7 @@ class Themifier extends HTMLElement {
       localStorage.getItem(THEME_ATTR) || Theme.DEFAULT);
 
     // Toggle theme when clicked.
-    this.addEventListener('click', () => {
-      this.toggleTheme_();
-    });
+    this.addEventListener('click', () => this.toggleTheme_());
 
     // Toggle theme with space bar or enter key.
     this.addEventListener('keydown', (e) => {
@@ -42,9 +36,10 @@ class Themifier extends HTMLElement {
     return [THEME_ATTR];
   }
 
+  /** @callback */
   connectedCallback() {
     this.innerHTML = `
-      <svg class="${CLASSNAME}__icon" viewbox="0 0 24 24">
+      <svg class="${this.className}__icon" viewbox="0 0 24 24">
         <path d="M0.375 12 C0.375 18.42 5.58 23.625 12 23.625 18.42 23.625 23.625 18.42 23.625 12 23.625 5.58 18.42 0.375 12 0.375 5.58 0.375 0.375 5.58 0.375 12 Z M12 20.625 L12 3.375 C16.767 3.375 20.625 7.233 20.625 12 20.625 16.767 16.767 20.625 12 20.625 Z"/>
       </svg>
     `;
@@ -56,6 +51,16 @@ class Themifier extends HTMLElement {
     localStorage.setItem(THEME_ATTR, newValue);
   }
 
+  /** @callback */
+  disconnectedCallback() {
+    this.removeEventListener('click', null);
+    this.removeEventListener('keydown', null);
+  }
+
+  /**
+   * Toggles the theme.
+   * @private
+   */
   toggleTheme_() {
     const newTheme = (
       this.getAttribute(THEME_ATTR) === Theme.DEFAULT
