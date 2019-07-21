@@ -11,7 +11,7 @@ class DigitalClock extends HTMLElement {
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',
-        hour12: false,
+        hour12: true,
       });
     }, 1000);
   }

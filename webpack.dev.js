@@ -7,6 +7,6 @@ module.exports = merge(common, {
     filename: 'clock.js',
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
   },
 });
