@@ -54,7 +54,7 @@
 // Menu arrow via rotated square with a shadow.
 .color-picker__menu::before
   background white
-  clip-path polygon((- MENU_ARROW / 2) (- MENU_ARROW / 2), 0 MENU_ARROW, MENU_ARROW 0)
+  clip-path polygon(px_to_rem(-4) px_to_rem(-4), px_to_rem(-4) px_to_rem(20), px_to_rem(20) px_to_rem(-4))
   content ''
   display block
   elevation(1)
