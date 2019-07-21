@@ -24,6 +24,8 @@
 .color-picker__icon
   flex 0 0 px_to_rem(20)
 
+// [1] Must be greater than MENU_ARROW
+// TODO: Update after applying clip-path the ::before pseudo-element.
 .color-picker__menu
   background white
   border-radius px_to_rem(4)
@@ -34,7 +36,7 @@
   list-style none
   margin-top px_to_rem(8)
   opacity 0
-  padding px_to_rem(12)
+  padding px_to_rem(18) // [1]
   position absolute
   right px_to_rem(-2)
   transform 'translateY(-%s)' % px_to_rem(12)
@@ -65,6 +67,7 @@
   width MENU_ARROW
 
 // Cover for bottom half of menu arrow's shadow.
+// TODO: Apply clip-path to ::before pseudo-element instead
 .color-picker__menu::after
   background white
   content ''
@@ -74,10 +77,6 @@
   right (MENU_ARROW / 2)
   top 0
   width (MENU_ARROW * 2)
-
-// Place the items above the arrow cover.
-.color-picker__item
-  z-index 1
 
 .color-picker__label
   display block
