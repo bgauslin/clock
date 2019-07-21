@@ -97,24 +97,27 @@
   border-color #eee
 
 .color-picker__option:checked + .color-picker__swatch::after
-  background 2px 2px no-repeat
   content ''
-  height 100%
-  width 100%
+  display inline-block
+  height px_to_rem(7)
+  left px_to_rem(6)
   position absolute
-  transform scale(.75)
+  top px_to_rem(7)
+  transform rotate(-45deg)
+  width px_to_rem(14)
 
-for name, values in ColorPalette
-  face_rgb = rgb(values.face)
+for name, value in ColorPalette
+  face_rgb = rgb(value.face)
 
   .color-picker__swatch[option={name}]
-    background '%s' % values.face
+    background '%s' % value.face
   
   .color-picker__option:checked + .color-picker__swatch[option={name}]
     border-color mix(black, face_rgb, 30%)
   
   .color-picker__option:checked + .color-picker__swatch[option={name}]::after
-    background-image url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path fill='white' d='M8.151 20.597 L0.351 12.797 C-0.117 12.328 -0.117 11.569 0.351 11.1 L2.048 9.403 C2.517 8.934 3.277 8.934 3.745 9.403 L9 14.657 20.254 3.403 C20.723 2.934 21.483 2.934 21.951 3.403 L23.648 5.1 C24.117 5.569 24.117 6.328 23.648 6.797 L9.849 20.597 C9.38 21.066 8.62 21.066 8.151 20.597 Z'/></svg>")
+    border-bottom '2px solid %s' % value.hands
+    border-left '2px solid %s' % value.hands
 
 [no-touch] .color-picker__swatch
   transition transform var(--transition)
