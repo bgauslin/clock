@@ -32,18 +32,18 @@
   grid-gap px_to_rem(8)
   grid-template-columns repeat(4, 1fr)
   list-style none
-  margin 0
+  margin-top px_to_rem(8)
   opacity 0
-  padding px_to_rem(14)
+  padding MENU_ARROW
   position absolute
-  right px_to_rem(4)
+  right px_to_rem(-2)
   transform 'translateY(-%s)' % px_to_rem(12)
   transition opacity var(--transition), transform var(--transition), visibility var(--transition)
   visibility hidden
   z-index -1
 
   @media Breakpoint.MEDIUM
-    margin-top px_to_rem(-8)
+    margin-top px_to_rem(-2)
 
 [open] > .color-picker__menu
   opacity 1
