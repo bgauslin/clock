@@ -1,3 +1,4 @@
+/** @class */
 class DigitalClock extends HTMLElement {
   constructor() {
     super();
@@ -24,7 +25,6 @@ class DigitalClock extends HTMLElement {
       hour12: true,
     });
   }
-
 }
 
 export { DigitalClock };
