@@ -56,27 +56,28 @@ class AnalogClock extends HTMLElement {
     // Redraw clock only when the minutes angle has changed (i.e. every minute).
     if (minutesAngle !== this.previousMinutesAngle_) {
       this.previousMinutesAngle_ = minutesAngle;
-      this.innerHTML = `
-        <svg viewbox="0 0 ${ClockDimensions.SIZE} ${ClockDimensions.SIZE}">
-          <g>
-            <line
-              class="clock__hand"
-              x1="${ClockDimensions.CENTER}" y1="${ClockDimensions.CENTER}"
-              x2="${ClockDimensions.CENTER}" y2="${HOURS_HAND_END}"
-              transform="rotate(${hoursAngle}, ${ClockDimensions.CENTER}, ${ClockDimensions.CENTER})"/>
-            <line
-              class="clock__hand"
-              x1="${ClockDimensions.CENTER}" y1="${ClockDimensions.CENTER}"
-              x2="${ClockDimensions.CENTER}" y2="${MINUTES_HAND_END}"
-              transform="rotate(${minutesAngle}, ${ClockDimensions.CENTER}, ${ClockDimensions.CENTER})"/>
-            <circle
-              class="clock__pivot"
-              cx="${ClockDimensions.CENTER}"
-              cy="${ClockDimensions.CENTER}"
-              r="${ClockDimensions.STROKE_WIDTH}"/>
-          </g>
-        </svg>
+      const html = `\
+        <svg viewbox="0 0 ${ClockDimensions.SIZE} ${ClockDimensions.SIZE}">\
+          <g>\
+            <line \
+              class="clock__hand" \
+              x1="${ClockDimensions.CENTER}" y1="${ClockDimensions.CENTER}" \
+              x2="${ClockDimensions.CENTER}" y2="${HOURS_HAND_END}" \
+              transform="rotate(${hoursAngle}, ${ClockDimensions.CENTER}, ${ClockDimensions.CENTER})"/>\
+            <line \
+              class="clock__hand" \
+              x1="${ClockDimensions.CENTER}" y1="${ClockDimensions.CENTER}" \
+              x2="${ClockDimensions.CENTER}" y2="${MINUTES_HAND_END}" \
+              transform="rotate(${minutesAngle}, ${ClockDimensions.CENTER}, ${ClockDimensions.CENTER})"/>\
+            <circle \
+              class="clock__pivot" \
+              cx="${ClockDimensions.CENTER}" \
+              cy="${ClockDimensions.CENTER}" \
+              r="${ClockDimensions.STROKE_WIDTH}"/>\
+          </g>\
+        </svg>\
       `;
+      this.innerHTML = html.replace(/\s\s/g, '');
     }
   }
 }
