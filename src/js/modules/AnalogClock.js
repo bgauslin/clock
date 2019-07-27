@@ -1,19 +1,18 @@
 /** @enum {number} */
 const ClockDimensions = {
-  SIZE: 100,
-  CENTER: 50, // Half of SIZE
-  STROKE_WIDTH: 3,
   HOURS_HAND_LENGTH: 30,
+  SIZE: 100,
+  STROKE_WIDTH: 3,
 }
 
 /** @const {number} */
-const HOURS_HAND_END = ClockDimensions.CENTER - ClockDimensions.HOURS_HAND_LENGTH;
+const CENTER = ClockDimensions.SIZE / 2
 
 /** @const {number} */
-const MINUTES_HAND_LENGTH = ClockDimensions.CENTER - ClockDimensions.STROKE_WIDTH;
+const HOURS_HAND_END = CENTER - ClockDimensions.HOURS_HAND_LENGTH;
 
 /** @const {number} */
-const MINUTES_HAND_END = ClockDimensions.CENTER - MINUTES_HAND_LENGTH;
+const MINUTES_HAND_END = 0;
 
 /** @class */
 class AnalogClock extends HTMLElement {
@@ -58,18 +57,18 @@ class AnalogClock extends HTMLElement {
           <g>\
             <line \
               class="clock__hand" \
-              x1="${ClockDimensions.CENTER}" y1="${ClockDimensions.CENTER}" \
-              x2="${ClockDimensions.CENTER}" y2="${HOURS_HAND_END}" \
-              transform="rotate(${hoursAngle}, ${ClockDimensions.CENTER}, ${ClockDimensions.CENTER})"/>\
+              x1="${CENTER}" y1="${CENTER}" \
+              x2="${CENTER}" y2="${HOURS_HAND_END}" \
+              transform="rotate(${hoursAngle}, ${CENTER}, ${CENTER})"/>\
             <line \
               class="clock__hand" \
-              x1="${ClockDimensions.CENTER}" y1="${ClockDimensions.CENTER}" \
-              x2="${ClockDimensions.CENTER}" y2="${MINUTES_HAND_END}" \
-              transform="rotate(${minutesAngle}, ${ClockDimensions.CENTER}, ${ClockDimensions.CENTER})"/>\
+              x1="${CENTER}" y1="${CENTER}" \
+              x2="${CENTER}" y2="${MINUTES_HAND_END}" \
+              transform="rotate(${minutesAngle}, ${CENTER}, ${CENTER})"/>\
             <circle \
               class="clock__pivot" \
-              cx="${ClockDimensions.CENTER}" \
-              cy="${ClockDimensions.CENTER}" \
+              cx="${CENTER}" \
+              cy="${CENTER}" \
               r="${ClockDimensions.STROKE_WIDTH}"/>\
           </g>\
         </svg>\
