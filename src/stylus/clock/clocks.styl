@@ -1,14 +1,26 @@
-// [1] Each clock fully sits within a 10 x 10 grid, but we want the hour and 
-// minute hands to touch at 6 PM and make 3 continuous vertical lines, so the
-// layout for each clock is on an 8 x 8 grid:
+// Each clock sits within a 10 x 10 grid, but we want the hour and  minute hands
+// to touch at 6 PM and make 3 continuous vertical lines, so the grid_max for each
+// clock is on an 8-cell interval. The total number of grid cells is the
+// interval x 3 clocks, plus half the interval on each side. This ultimately
+// creates a 4 x 4 grid (with 8 divisions within each section) where each clock
+// is centered on the 'major' 4 x 4 grid line intersections.
 //
 //    3  hours hand length
 // +  5  seconds hand length
 // ----
-// =  8  layout interval
-// x  4  three clocks, where each clock is centered on a grid line intersection, plus half the interval on each side
+// =  8  grid_max interval
+// x  4  'major' grid cells with 8 'minor' cells within each
 // ----
-// = 32  grid cells in each direction
+// = 32  css grid cells in each direction
+//
+// The starting point for the first clock on the css grid is column 4 and row 4,
+// with an increase of 8 for each successive clock.
+
+clock_span = 10 // actual width of each clock
+clock_total = 9 // 3 x 3 = 9 clocks
+interval = 8    // clock placement for minute and hour hand alignment
+grid_max = 3    // i.e. 3 x 3
+start = 4       // half of interval
 
 .clocks
   align-self center
@@ -16,8 +28,8 @@
   display grid
   elevation(1)
   grid-area content
-  grid-template-columns repeat(32, 1fr) // [1]
-  grid-template-rows repeat(32, 1fr) // [1]
+  grid-template-columns 'repeat(%s, 1fr)' % ((grid_max + 1) * interval)
+  grid-template-rows 'repeat(%s, 1fr)' % ((grid_max + 1) * interval)
   justify-self center
   margin 5vh 5vw
   max-width MAX_WIDTH
@@ -27,22 +39,17 @@
 .clock
   display block
 
-// [2] Each clock is 10 grid cells wide, but is laid out every 8 cells to make
-// the hour and minutes hand a continuous vertical line at 6 PM. The starting
-// point for the first clock is column 4 and row 4, with an increase of 8 for
-// each successive clock.
 row = 0
 column = 0
-column_total = 3
-clock_total = 9
-tracks = (4 12 20) // [2]
-
 for i in (1..clock_total)
-  .clock:nth-child({i})
-    grid-column '%s / span 10' % tracks[column]
-    grid-row '%s / span 10' % tracks[row]
+  grid_column = (column * interval) + start
+  grid_row = (row * interval) + start
 
-  if i % column_total == 0
+  .clock:nth-child({i})
+    grid-column '%s / span %s' % (grid_column clock_span)
+    grid-row '%s / span %s' % (grid_row clock_span)
+
+  if i % grid_max == 0
     column = 0
     row += 1
   else
@@ -50,7 +57,7 @@ for i in (1..clock_total)
 
 .clock__hand
   stroke var(--hands)
-  stroke-width 6px
+  stroke-width 6px // Double the value of the SVG pivot's value.
   transition stroke var(--transition)
 
 .clock__pivot
