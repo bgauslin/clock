@@ -51,9 +51,7 @@ class App {
 
     document.body.innerHTML += `
       <main class="clocks">
-        <div class="clocks__frame">
-          ${clocks}
-        </div>
+        ${clocks}
       </main>
     `;
   }
