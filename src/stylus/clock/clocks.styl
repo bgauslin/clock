@@ -1,11 +1,14 @@
 // [1] Each clock fully sits within a 10 x 10 grid, but we want the hour and 
-// minute hands to touch at noon andto make continuous vertical lines, so the
-// actual layout for each clock is on an 8 x 8 grid:
-//    3 hours hand length
-// +  5 seconds hand length
-// =  8 overall clock width
-// x  4 since each clock is centered on a grid line intersection
-// = 32 grid cells in each direction
+// minute hands to touch at 6 PM and make 3 continuous vertical lines, so the
+// layout for each clock is on an 8 x 8 grid:
+//
+//    3  hours hand length
+// +  5  seconds hand length
+// ----
+// =  8  layout interval
+// x  4  three clocks, where each clock is centered on a grid line intersection, plus half the interval on each side
+// ----
+// = 32  grid cells in each direction
 
 .clocks
   align-self center
@@ -24,41 +27,26 @@
 .clock
   display block
 
-.clock:nth-child(1)
-  grid-column 4 / span 10
-  grid-row 4 / span 10
+// [2] Each clock is 10 grid cells wide, but is laid out every 8 cells to make
+// the hour and minutes hand a continuous vertical line at 6 PM. The starting
+// point for the first clock is column 4 and row 4, with an increase of 8 for
+// each successive clock.
+row = 0
+column = 0
+column_total = 3
+clock_total = 9
+tracks = (4 12 20) // [2]
 
-.clock:nth-child(2)
-  grid-column 12 / span 10
-  grid-row 4 / span 10
+for i in (1..clock_total)
+  .clock:nth-child({i})
+    grid-column '%s / span 10' % tracks[column]
+    grid-row '%s / span 10' % tracks[row]
 
-.clock:nth-child(3)
-  grid-column 20 / span 10
-  grid-row 4 / span 10
-
-.clock:nth-child(4)
-  grid-column 4 / span 10
-  grid-row 12 / span 10
-
-.clock:nth-child(5)
-  grid-column 12 / span 10
-  grid-row 12 / span 10
-
-.clock:nth-child(6)
-  grid-column 20 / span 10
-  grid-row 12 / span 10
-
-.clock:nth-child(7)
-  grid-column 4 / span 10
-  grid-row 20 / span 10
-
-.clock:nth-child(8)
-  grid-column 12 / span 10
-  grid-row 20 / span 10
-
-.clock:nth-child(9)
-  grid-column 20 / span 10
-  grid-row 20 / span 10
+  if i % column_total == 0
+    column = 0
+    row += 1
+  else
+    column += 1
 
 .clock__hand
   stroke var(--hands)
