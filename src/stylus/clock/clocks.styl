@@ -1,11 +1,20 @@
+// [1] Each clock fully sits within a 10 x 10 grid, but we want the hour and 
+// minute hands to touch at noon andto make continuous vertical lines, so the
+// actual layout for each clock is on an 8 x 8 grid:
+//    3 hours hand length
+// +  5 seconds hand length
+// =  8 overall clock width
+// x  4 since each clock is centered on a grid line intersection
+// = 32 grid cells in each direction
+
 .clocks
   align-self center
   background var(--face)
   display grid
   elevation(1)
   grid-area content
-  grid-template-columns repeat(32, 1fr)
-  grid-template-rows repeat(32, 1fr)
+  grid-template-columns repeat(32, 1fr) // [1]
+  grid-template-rows repeat(32, 1fr) // [1]
   justify-self center
   margin 5vh 5vw
   max-width CLOCKS_MAX_WIDTH
