@@ -1,15 +1,17 @@
-/** @enum {number} */
-const ClockDimensions = {
-  HOURS_HAND_LENGTH: 30,
-  SIZE: 100,
-  STROKE_WIDTH: 3,
-}
+/** @const {number} */
+const HOURS_HAND_LENGTH = 30;
 
 /** @const {number} */
-const CENTER = ClockDimensions.SIZE / 2
+const STROKE_WIDTH = 3;
 
 /** @const {number} */
-const HOURS_HAND_END = CENTER - ClockDimensions.HOURS_HAND_LENGTH;
+const SIZE = 100;
+
+/** @const {number} */
+const CENTER = SIZE / 2;
+
+/** @const {number} */
+const HOURS_HAND_END = CENTER - HOURS_HAND_LENGTH;
 
 /** @const {number} */
 const MINUTES_HAND_END = 0;
@@ -53,7 +55,7 @@ class AnalogClock extends HTMLElement {
     if (minutesAngle !== this.previousMinutesAngle_) {
       this.previousMinutesAngle_ = minutesAngle;
       const html = `\
-        <svg viewbox="0 0 ${ClockDimensions.SIZE} ${ClockDimensions.SIZE}">\
+        <svg viewbox="0 0 ${SIZE} ${SIZE}">\
           <g>\
             <line \
               class="clock__hand" \
@@ -69,7 +71,7 @@ class AnalogClock extends HTMLElement {
               class="clock__pivot" \
               cx="${CENTER}" \
               cy="${CENTER}" \
-              r="${ClockDimensions.STROKE_WIDTH}"/>\
+              r="${STROKE_WIDTH}"/>\
           </g>\
         </svg>\
       `;
