@@ -1,6 +1,6 @@
-// Each clock sits within a 10 x 10 grid, but we want the hour and  minute hands
-// to touch at 6 PM and make 3 continuous vertical lines, so the grid_max for each
-// clock is on an 8-cell interval. The total number of grid cells is the
+// Each clock sits within a 10 x 10 grid, but we want the hour and minute hands
+// to touch at 6 PM and make 3 continuous vertical lines, so the grid_count for
+// each clock is on an 8-cell interval. The total number of grid cells is the
 // interval x 3 clocks, plus half the interval on each side. This ultimately
 // creates a 4 x 4 grid (with 8 divisions within each section) where each clock
 // is centered on the 'major' 4 x 4 grid line intersections.
@@ -8,19 +8,19 @@
 //    3  hours hand length
 // +  5  seconds hand length
 // ----
-// =  8  grid_max interval
+// =  8  interval
 // x  4  'major' grid cells with 8 'minor' cells within each
 // ----
 // = 32  css grid cells in each direction
 //
-// The starting point for the first clock on the css grid is column 4 and row 4,
-// with an increase of 8 for each successive clock.
+// The starting point for the first clock on the css grid is column 4 and row 4
+// (i.e. half the interval), with an increase of 8 for each successive clock.
 
-clock_span = 10 // actual width of each clock
-clock_total = 9 // 3 x 3 = 9 clocks
-interval = 8    // clock placement for minute and hour hand alignment
-grid_max = 3    // i.e. 3 x 3
-start = 4       // half of interval
+clock_span = 10
+interval = 8
+grid_count = 3 // i.e. 3 x 3
+start = interval / 2
+total = grid_count * grid_count
 
 .clocks
   align-self center
@@ -28,8 +28,8 @@ start = 4       // half of interval
   display grid
   elevation(1)
   grid-area content
-  grid-template-columns 'repeat(%s, 1fr)' % ((grid_max + 1) * interval)
-  grid-template-rows 'repeat(%s, 1fr)' % ((grid_max + 1) * interval)
+  grid-template-columns 'repeat(%s, 1fr)' % ((grid_count + 1) * interval)
+  grid-template-rows 'repeat(%s, 1fr)' % ((grid_count + 1) * interval)
   justify-self center
   margin 5vh 5vw
   max-width MAX_WIDTH
@@ -41,7 +41,7 @@ start = 4       // half of interval
 
 row = 0
 column = 0
-for i in (1..clock_total)
+for i in (1..total)
   grid_column = (column * interval) + start
   grid_row = (row * interval) + start
 
@@ -49,7 +49,7 @@ for i in (1..clock_total)
     grid-column '%s / span %s' % (grid_column clock_span)
     grid-row '%s / span %s' % (grid_row clock_span)
 
-  if i % grid_max == 0
+  if i % grid_count == 0
     column = 0
     row += 1
   else
