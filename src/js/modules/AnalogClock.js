@@ -27,10 +27,7 @@ class AnalogClock extends HTMLElement {
   
   /** @callback */
   connectedCallback() {
-    // Render clock immediately since screen is blank for a second otherwise.
-    this.setHands_(); 
-
-    // Check the time every second.
+    this.setHands_();
     setInterval(() => this.setHands_(), 1000);
   }
 
