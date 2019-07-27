@@ -1,18 +1,16 @@
 .clocks
   align-self center
   background var(--face)
+  display grid
   elevation(1)
   grid-area content
+  grid-template-columns repeat(32, 1fr)
+  grid-template-rows repeat(32, 1fr)
   justify-self center
   margin 5vh 5vw
   max-width CLOCKS_MAX_WIDTH
   overflow hidden
   transition background var(--transition), border var(--transition)
-
-.clocks__frame
-  display grid
-  grid-template-columns repeat(32, 1fr)
-  grid-template-rows repeat(32, 1fr)
 
 .clock
   display block

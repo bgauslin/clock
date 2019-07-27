@@ -52,9 +52,7 @@ class App {
 
     const html = `\
       <main class="clocks">\
-        <div class="clocks__frame">\
-          ${clocks}\
-        </div>\
+        ${clocks}\
       </main>\
     `;
 
