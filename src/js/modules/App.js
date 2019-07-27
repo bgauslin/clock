@@ -25,17 +25,18 @@ class App {
    * @private
    */
   renderHeader_() {
-    document.body.innerHTML += `
-      <header class="header">
-        <div class="header__frame">
-          <h1 class="site-name">
-            <digital-clock></digital-clock>
-          </h1>
-          <color-picker class="color-picker"></color-picker>
-          <app-theme class="themifier"></app-theme>
-        </div>
-      </header>
+    const html = `\
+      <header class="header">\
+        <div class="header__frame">\
+          <h1 class="site-name">\
+            <digital-clock></digital-clock>\
+          </h1>\
+          <color-picker class="color-picker"></color-picker>\
+          <app-theme class="themifier"></app-theme>\
+        </div>\
+      </header>\
     `;
+    document.body.innerHTML += html.replace(/\s\s/g, '');
   }
 
   /**
@@ -49,11 +50,15 @@ class App {
       clocks += '<analog-clock class="clock"></analog-clock>';
     }
 
-    document.body.innerHTML += `
-      <main class="clocks">
-        ${clocks}
-      </main>
+    const html = `\
+      <main class="clocks">\
+        <div class="clocks__frame">\
+          ${clocks}\
+        </div>\
+      </main>\
     `;
+
+    document.body.innerHTML += html.replace(/\s\s/g, '');
   }
 
   /**
@@ -70,7 +75,7 @@ class App {
     };
     const { label, title, url, yearStart, yearEnd } = footer;
 
-    document.body.innerHTML += `
+    const html = `
       <footer class="footer">
         <p class="copyright">
           <span class="copyright__years">© ${yearStart}-${yearEnd}</span>
@@ -82,6 +87,8 @@ class App {
         </p>
       </footer>
     `;
+
+    document.body.innerHTML += html.replace(/\s\s/g, '');
   }
 }
 
