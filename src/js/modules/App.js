@@ -1,7 +1,7 @@
-import { AnalogClock } from './AnalogClock';
-import { ColorPicker } from './ColorPicker';
-import { DigitalClock } from './DigitalClock';
-import { Themifier } from './Themifier';
+import { AnalogClock } from '../components/AnalogClock';
+import { ColorPicker } from '../components/ColorPicker';
+import { DigitalClock } from '../components/DigitalClock';
+import { Themifier } from '../components/Themifier';
 
 /** @class */
 class App {
