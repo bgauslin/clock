@@ -18,11 +18,11 @@ const MINUTES_HAND_END = 0;
 
 /** @class */
 class AnalogClock extends HTMLElement {
+  previousMinutesAngle_: number;
+
   constructor() {
     super();
-
-    /** @private {?number} */
-    this.previousMinutesAngle_ = null;
+    this.previousMinutesAngle_ = 0;
   }
   
   /** @callback */
