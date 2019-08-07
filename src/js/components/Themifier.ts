@@ -47,7 +47,7 @@ class Themifier extends HTMLElement {
   }
 
   /** @callback */
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     document.body.setAttribute(THEME_ATTR, newValue);
     localStorage.setItem(THEME_ATTR, newValue);
   }
