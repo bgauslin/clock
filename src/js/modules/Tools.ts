@@ -15,6 +15,7 @@ class Tools {
     this.googleAnalytics_();
   }
 
+  // TODO: Fix TS errors with googleAnalytics_()
   /**
    * Initializes Google Analytics tracking.
    * @private
@@ -30,6 +31,7 @@ class Tools {
     }
   }
 
+  // TODO: Fix TS errors with DocumentTouch
   /**
    * Attaches fastclick if device is touch-enabled; adds 'no-touch' attribute if not.
    * @private
