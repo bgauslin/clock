@@ -3,13 +3,11 @@ class DigitalClock extends HTMLElement {
     super();
   }
 
-  /** @callback */
   connectedCallback(): void {
     this.setTime_();
     setInterval(() => this.setTime_(), 1000);
   }
   
-  /** @callback */
   disconnectedCallback(): void {
     clearInterval();
   }
