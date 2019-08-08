@@ -3,6 +3,13 @@ import { ColorPicker } from '../components/ColorPicker';
 import { DigitalClock } from '../components/DigitalClock';
 import { Themifier } from '../components/Themifier';
 
+enum FooterInfo {
+  label = 'Ben Gauslin',
+  title = 'Ben Gauslin’s Website',
+  url = 'https://gauslin.com',
+  yearStart = '2018',
+};
+
 class App {
   /**
    * Defines custom elements then renders all elements into the DOM.
@@ -58,13 +65,7 @@ class App {
    * Renders a footer with a copyright notice and link.
    */
   private renderFooter_(): void {
-    enum footer {
-      label = 'Ben Gauslin',
-      title = 'Ben Gauslin’s Website',
-      url = 'https://gauslin.com',
-      yearStart = '2018',
-    };
-    const { label, title, url, yearStart } = footer;
+    const { label, title, url, yearStart } = FooterInfo;
     const yearEnd = new Date().getFullYear().toString().substr(-2);
 
     const html = `
