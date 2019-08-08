@@ -41,10 +41,9 @@ class App {
 
   /**
    * Renders clock elements.
-   * @param {?number=} n - Number of clocks to render.
    * @private
    */
-  renderClocks_(n = 9) {
+  renderClocks_(n: number = 9) {
     let clocks = '';
     for (let i = 1; i <= n; i++) {
       clocks += '<analog-clock class="clock"></analog-clock>';
