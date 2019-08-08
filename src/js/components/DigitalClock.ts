@@ -1,22 +1,20 @@
-/** @class */
 class DigitalClock extends HTMLElement {
   constructor() {
     super();
   }
 
   /** @callback */
-  connectedCallback() {
+  connectedCallback(): void {
     this.setTime_();
     setInterval(() => this.setTime_(), 1000);
   }
   
   /** @callback */
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     clearInterval();
   }
 
-  /** @private */
-  setTime_() {
+  private setTime_(): void {
     const now = new Date();
     this.textContent = now.toLocaleString('en-US', {
       hour: 'numeric',

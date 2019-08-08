@@ -1,11 +1,6 @@
-/** @const {string} */
-const COLOR_ATTR = 'color';
-
-/** @const {string} */
-const OPEN_ATTR = 'open';
-
-/** @const {Array<string>} */
-const Colors = [
+const COLOR_ATTR: string  = 'color';
+const OPEN_ATTR: string = 'open';
+const Colors: string[] = [
   'white',
   'darkred',
   'crimson',
@@ -28,7 +23,6 @@ const Colors = [
   'black',
 ];
 
-/** @class */
 class ColorPicker extends HTMLElement {
   constructor() {
     super();
@@ -45,26 +39,22 @@ class ColorPicker extends HTMLElement {
     return [COLOR_ATTR];
   }
 
-  /** @callback */
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
     this.updateColor_(oldValue, newValue);
   }
   
-  /** @callback */
-  connectedCallback() {
+  connectedCallback(): void {
     this.setup_();
   }
 
-  /** @callback */
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     this.removeEventListener('click', null);
   }
 
   /**
    * Sets the current color and saves it to localStorage.
-   * @private
    */
-  updateColor_(oldValue: string, newValue: string) {
+  private updateColor_(oldValue: string, newValue: string): void {
     const oldEl = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
     const newEl = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
 
@@ -76,12 +66,11 @@ class ColorPicker extends HTMLElement {
   }  
 
   /**
-   * Change the current color if a swatch was clicked, and toggles the menu
+   * Changes the current color if a swatch was clicked, and toggles the menu
    * open/closed if the icon was clicked. If the menu is open, the next click
    * closes it.
-   * @private
    */
-  handleClick_(e: Event) {
+  private handleClick_(e: Event): void {
     const target = <HTMLInputElement>e.target;
     const newColor = target.getAttribute('for');
     if (newColor) {
@@ -104,9 +93,8 @@ class ColorPicker extends HTMLElement {
 
   /**
    * Creates elements and attaches them to the DOM.
-   * @private
    */
-  setup_() {
+  private setup_(): void {
     let listItems = '';
     Colors.forEach((color) => {
       const checked = (color === this.getAttribute(COLOR_ATTR)) ? 'checked' : '';

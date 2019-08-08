@@ -3,13 +3,11 @@ import { ColorPicker } from '../components/ColorPicker';
 import { DigitalClock } from '../components/DigitalClock';
 import { Themifier } from '../components/Themifier';
 
-/** @class */
 class App {
   /**
    * Defines custom elements then renders all elements into the DOM.
-   * @public
    */
-  init() {
+  public init(): void {
     customElements.define('analog-clock', AnalogClock);
     customElements.define('color-picker', ColorPicker);
     customElements.define('digital-clock', DigitalClock);
@@ -22,9 +20,8 @@ class App {
 
   /**
    * Renders header element.
-   * @private
    */
-  renderHeader_() {
+  private renderHeader_(): void {
     const html = `\
       <header class="header">\
         <div class="header__frame">\
@@ -41,9 +38,8 @@ class App {
 
   /**
    * Renders clock elements.
-   * @private
    */
-  renderClocks_(n: number = 9) {
+  private renderClocks_(n: number = 9): void {
     let clocks = '';
     for (let i = 1; i <= n; i++) {
       clocks += '<analog-clock class="clock"></analog-clock>';
@@ -60,17 +56,16 @@ class App {
 
   /**
    * Renders a footer with a copyright notice and link.
-   * @private
    */
-  renderFooter_() {
-    const footer = {
-      label: 'Ben Gauslin',
-      title: 'Ben Gauslin’s Website',
-      url: 'https://gauslin.com',
-      yearStart: '2018',
-      yearEnd: new Date().getFullYear().toString().substr(-2),
+  private renderFooter_(): void {
+    enum footer {
+      label = 'Ben Gauslin',
+      title = 'Ben Gauslin’s Website',
+      url = 'https://gauslin.com',
+      yearStart = '2018',
     };
-    const { label, title, url, yearStart, yearEnd } = footer;
+    const { label, title, url, yearStart } = footer;
+    const yearEnd = new Date().getFullYear().toString().substr(-2);
 
     const html = `
       <footer class="footer">

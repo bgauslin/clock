@@ -1,46 +1,31 @@
-/** @const {number} */
-const HOURS_HAND_LENGTH = 30;
+const HOURS_HAND_LENGTH: number = 30;
+const STROKE_WIDTH: number = 3;
+const SIZE: number = 100;
+const CENTER: number = SIZE / 2;
+const HOURS_HAND_END: number = CENTER - HOURS_HAND_LENGTH;
+const MINUTES_HAND_END: number = 0;
 
-/** @const {number} */
-const STROKE_WIDTH = 3;
-
-/** @const {number} */
-const SIZE = 100;
-
-/** @const {number} */
-const CENTER = SIZE / 2;
-
-/** @const {number} */
-const HOURS_HAND_END = CENTER - HOURS_HAND_LENGTH;
-
-/** @const {number} */
-const MINUTES_HAND_END = 0;
-
-/** @class */
 class AnalogClock extends HTMLElement {
-  previousMinutesAngle_: number;
+  private previousMinutesAngle_: number;
 
   constructor() {
     super();
     this.previousMinutesAngle_ = 0;
   }
   
-  /** @callback */
-  connectedCallback() {
+  connectedCallback(): void {
     this.setHands_();
     setInterval(() => this.setHands_(), 1000);
   }
 
-  /** @callback */
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     clearInterval();
   }
 
   /**
    * Calculates rotations for hours and minutes hands and renders an SVG.
-   * @private
    */
-  setHands_() {
+  private setHands_(): void {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();

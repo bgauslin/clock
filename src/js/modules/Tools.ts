@@ -1,15 +1,12 @@
 import fastclick from 'fastclick';
 
-/** @const {string} */
-const NO_TOUCH_ATTR = 'no-touch';
+const NO_TOUCH_ATTR: string = 'no-touch';
 
-/** @class */
 class Tools {
   /**
    * Initializes handy site-wide methods.
-   * @public
    */
-  init() {
+  public init() {
     this.noTouch_();
     this.viewportHeight();
     this.googleAnalytics_();
@@ -17,9 +14,8 @@ class Tools {
 
   /**
    * Initializes Google Analytics tracking.
-   * @private
    */
-  googleAnalytics_() {
+  private googleAnalytics_(): void {
     if (process.env.NODE_ENV === 'production') {
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*(<any>new Date());a=s.createElement(o),
@@ -30,11 +26,11 @@ class Tools {
     }
   }
 
+  // TODO: fix TS warning for attach
   /**
    * Attaches fastclick if device is touch-enabled; adds 'no-touch' attribute if not.
-   * @private
    */
-  noTouch_() {
+  private noTouch_(): void {
     if (('ontouchstart' in window) || (<any>window).DocumentTouch) {
       fastclick.attach(document.body);
     } else {
@@ -45,9 +41,8 @@ class Tools {
   /**
    * Sets custom property for viewport height that updates 'vh' calculation due
    * to iOS Safari behavior where chrome appears and disappears when scrolling.
-   * @public
    */
-  viewportHeight() {
+  public viewportHeight(): void {
     const viewportUnit = window.innerHeight / 100;
     document.documentElement.style.setProperty('--viewport-unit', `${viewportUnit}px`);
   }
