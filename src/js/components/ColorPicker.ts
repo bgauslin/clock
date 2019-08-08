@@ -46,7 +46,7 @@ class ColorPicker extends HTMLElement {
   }
 
   /** @callback */
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     this.updateColor_(oldValue, newValue);
   }
   
@@ -79,16 +79,16 @@ class ColorPicker extends HTMLElement {
    * Change the current color if a swatch was clicked, and toggles the menu
    * open/closed if the icon was clicked. If the menu is open, the next click
    * closes it.
-   * @param {!BrowserEvent} e
    * @private
    */
-  handleClick_(e) {
-    const newColor = e.target.getAttribute('for');
+  handleClick_(e: Event) {
+    const target = <HTMLInputElement>e.target;
+    const newColor = target.getAttribute('for');
     if (newColor) {
       this.setAttribute(COLOR_ATTR, newColor);
     }
     
-    if (e.target.classList.contains(`${this.className}__toggle`)) {
+    if (target.classList.contains(`${this.className}__toggle`)) {
       if (this.hasAttribute(OPEN_ATTR)) {
         this.removeAttribute(OPEN_ATTR);
       } else {
