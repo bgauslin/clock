@@ -68,17 +68,17 @@ class App {
     const { label, title, url, yearStart } = FooterInfo;
     const yearEnd = new Date().getFullYear().toString().substr(-2);
 
-    const html = `
-      <footer class="footer">
-        <p class="copyright">
-          <span class="copyright__years">© ${yearStart}-${yearEnd}</span>
-          <a class="copyright__owner"
-              href="${url}"
-              title="${title} (opens in a new window)"
-              target="_blank"
-              rel="noopener">${label}</a>
-        </p>
-      </footer>
+    const html = `\
+      <footer class="footer">\
+        <p class="copyright">\
+          <span class="copyright__years">© ${yearStart}-${yearEnd}</span>\
+          <a class="copyright__owner" \
+              href="${url}" \
+              title="${title} (opens in a new window)" \
+              target="_blank" \
+              rel="noopener">${label}</a>\
+        </p>\
+      </footer>\
     `;
 
     document.body.innerHTML += html.replace(/\s\s/g, '');
