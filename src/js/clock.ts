@@ -3,10 +3,7 @@ import { App } from './modules/App';
 import { Tools } from './modules/Tools';
 import '../stylus/clock.styl';
 
-/** @instance */
 const app = new App();
-
-/** @instance */
 const tools = new Tools();
 
 /**

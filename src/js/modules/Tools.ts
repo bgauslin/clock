@@ -6,7 +6,7 @@ class Tools {
   /**
    * Initializes handy site-wide methods.
    */
-  public init() {
+  public init(): void {
     this.noTouch_();
     this.viewportHeight();
     this.googleAnalytics_();
@@ -26,7 +26,6 @@ class Tools {
     }
   }
 
-  // TODO: fix TS warning for attach
   /**
    * Attaches fastclick if device is touch-enabled; adds 'no-touch' attribute if not.
    */
