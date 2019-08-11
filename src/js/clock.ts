@@ -1,14 +1,13 @@
 require('dotenv').config();
 import { App } from './modules/App';
 import { Tools } from './modules/Tools';
-import '../stylus/clock.styl';
+import '../stylus/clock.styl'; // Stylesheet for Webpack
 
 const app = new App();
 const tools = new Tools();
 
 /**
  * Initializes app when the DOM is ready.
- * @listens DOMContentLoaded
  */
 document.addEventListener('DOMContentLoaded', () => {
   app.init();
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Updates 'vh' value when window is resized.
- * @listens resize
  */
 window.addEventListener('resize', () => {
   tools.viewportHeight();

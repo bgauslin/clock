@@ -15,7 +15,7 @@ class AnalogClock extends HTMLElement {
   
   connectedCallback(): void {
     this.setHands_();
-    setInterval(() => this.setHands_(), 1000);
+    setInterval(() => this.setHands_(), 1000); // 1 second
   }
 
   disconnectedCallback(): void {

@@ -28,14 +28,11 @@ class ColorPicker extends HTMLElement {
     super();
 
     // Get saved color if it exists; set default color otherwise.
-    this.setAttribute(COLOR_ATTR,
-      localStorage.getItem(COLOR_ATTR) || Colors[0]);
-
-    /** @listens click */
+    this.setAttribute(COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || Colors[0]);
     this.addEventListener('click', (e) => this.handleClick_(e));
   }
   
-  static get observedAttributes() {
+  static get observedAttributes(): string[] {
     return [COLOR_ATTR];
   }
 

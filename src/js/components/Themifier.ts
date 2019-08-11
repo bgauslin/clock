@@ -16,10 +16,8 @@ class Themifier extends HTMLElement {
     // Set theme to stored value if it exists; default otherwise.
     this.setAttribute(THEME_ATTR, localStorage.getItem(THEME_ATTR) || Theme.Default);
 
-    // Toggle theme when clicked.
+    // Toggle theme when clicked, or with space bar or enter key.
     this.addEventListener('click', () => this.toggleTheme_());
-
-    // Toggle theme with space bar or enter key.
     this.addEventListener('keydown', (e) => {
       if (e.keyCode === 13 || e.keyCode === 32) {
         e.preventDefault();
@@ -28,7 +26,7 @@ class Themifier extends HTMLElement {
     });
   }
 
-  static get observedAttributes() {
+  static get observedAttributes(): string[] {
     return [THEME_ATTR];
   }
 
