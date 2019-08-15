@@ -1,5 +1,7 @@
 const COLOR_ATTR: string  = 'color';
+
 const OPEN_ATTR: string = 'open';
+
 const Colors: string[] = [
   'white',
   'darkred',

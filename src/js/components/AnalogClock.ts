@@ -1,8 +1,13 @@
 const HOURS_HAND_LENGTH: number = 30;
+
 const STROKE_WIDTH: number = 3;
+
 const SIZE: number = 100;
+
 const CENTER: number = SIZE / 2;
+
 const HOURS_HAND_END: number = CENTER - HOURS_HAND_LENGTH;
+
 const MINUTES_HAND_END: number = 0;
 
 class AnalogClock extends HTMLElement {
