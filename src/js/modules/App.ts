@@ -1,8 +1,3 @@
-import { AnalogClock } from '../components/AnalogClock';
-import { ColorPicker } from '../components/ColorPicker';
-import { DigitalClock } from '../components/DigitalClock';
-import { Themifier } from '../components/Themifier';
-
 enum FooterInfo {
   label = 'Ben Gauslin',
   title = 'Ben Gauslin’s Website',
@@ -12,14 +7,9 @@ enum FooterInfo {
 
 class App {
   /**
-   * Defines custom elements then renders all elements into the DOM.
+   * Renders all elements into the DOM.
    */
   public init(): void {
-    customElements.define('analog-clock', AnalogClock);
-    customElements.define('color-picker', ColorPicker);
-    customElements.define('digital-clock', DigitalClock);
-    customElements.define('app-theme', Themifier);
-
     this.renderHeader_();
     this.renderClocks_();
     this.renderFooter_();
