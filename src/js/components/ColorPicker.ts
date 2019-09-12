@@ -57,8 +57,12 @@ class ColorPicker extends HTMLElement {
     const oldEl = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
     const newEl = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
 
-    if (oldEl) oldEl.checked = false;
-    if (newEl) newEl.checked = true;
+    if (oldEl) {
+      oldEl.checked = false;
+    }
+    if (newEl) {
+      newEl.checked = true;
+    }
 
     document.body.setAttribute(COLOR_ATTR, newValue);
     localStorage.setItem(COLOR_ATTR, newValue);

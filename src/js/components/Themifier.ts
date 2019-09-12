@@ -1,8 +1,8 @@
 const THEME_ATTR: string = 'theme';
 
 enum Theme {
-  Alt = 'dark',
-  Default = 'light',
+  ALT = 'dark',
+  DEFAULT = 'light',
 }
 
 class Themifier extends HTMLElement {
@@ -14,7 +14,7 @@ class Themifier extends HTMLElement {
     this.setAttribute('tabindex', '0');
 
     // Set theme to stored value if it exists; default otherwise.
-    this.setAttribute(THEME_ATTR, localStorage.getItem(THEME_ATTR) || Theme.Default);
+    this.setAttribute(THEME_ATTR, localStorage.getItem(THEME_ATTR) || Theme.DEFAULT);
 
     // Toggle theme when clicked, or with space bar or enter key.
     this.addEventListener('click', () => this.toggleTheme_());
@@ -53,11 +53,8 @@ class Themifier extends HTMLElement {
    * Toggles the theme.
    */
   private toggleTheme_(): void {
-    const newTheme = (
-      this.getAttribute(THEME_ATTR) === Theme.Default
-      ? Theme.Alt
-      : Theme.Default
-    );
+    const newTheme = this.getAttribute(THEME_ATTR) === Theme.DEFAULT ?
+        Theme.ALT : Theme.DEFAULT;
     this.setAttribute(THEME_ATTR, newTheme);
   }
 }

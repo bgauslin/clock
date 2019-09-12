@@ -38,8 +38,10 @@ class App {
    */
   private renderClocks_(n: number = 9): void {
     let clocks = '';
-    for (let i = 1; i <= n; i++) {
+    let i = 1;
+    while (i <= n) {
       clocks += '<analog-clock class="clock"></analog-clock>';
+      i++;
     }
 
     const html = `\

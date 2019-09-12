@@ -1,3 +1,5 @@
+const INTERVAL_MS: number = 1000;
+
 class DigitalClock extends HTMLElement {
   constructor() {
     super();
@@ -5,7 +7,7 @@ class DigitalClock extends HTMLElement {
 
   connectedCallback(): void {
     this.setTime_();
-    setInterval(() => this.setTime_(), 1000);
+    setInterval(() => this.setTime_(), INTERVAL_MS);
   }
   
   disconnectedCallback(): void {

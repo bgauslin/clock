@@ -10,6 +10,8 @@ const HOURS_HAND_END: number = CENTER - HOURS_HAND_LENGTH;
 
 const MINUTES_HAND_END: number = 0;
 
+const INTERVAL_MS: number = 1000;
+
 class AnalogClock extends HTMLElement {
   private previousMinutesAngle_: number;
 
@@ -20,7 +22,7 @@ class AnalogClock extends HTMLElement {
   
   connectedCallback(): void {
     this.setHands_();
-    setInterval(() => this.setHands_(), 1000); // 1 second
+    setInterval(() => this.setHands_(), INTERVAL_MS);
   }
 
   disconnectedCallback(): void {
