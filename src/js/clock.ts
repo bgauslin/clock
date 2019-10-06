@@ -10,10 +10,12 @@ import '../stylus/clock.styl'; // Stylesheet for Webpack
 /**
  * Define all custom elements.
  */
-customElements.define('analog-clock', AnalogClock);
-customElements.define('color-picker', ColorPicker);
-customElements.define('digital-clock', DigitalClock);
-customElements.define('app-theme', Themifier);
+const map = new Map();
+map.set(AnalogClock, 'analog-clock');
+map.set(ColorPicker, 'color-picker');
+map.set(DigitalClock, 'digital-clock');
+map.set(Themifier, 'app-theme');
+map.forEach((key, value) => customElements.define(key, value));
 
 /**
  * Create class instances.
