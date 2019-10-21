@@ -86,7 +86,7 @@ class ColorPicker extends HTMLElement {
       } else {
         this.setAttribute(OPEN_ATTR, '');
         window.requestAnimationFrame(() => {
-          document.addEventListener('click', (e) => {
+          document.addEventListener('click', () => {
             this.removeAttribute(OPEN_ATTR);
           }, { once: true });
         });
