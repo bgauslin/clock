@@ -8,6 +8,7 @@ body
   text-size-adjust none
 
 body
+  webfont()
   background var(--background)
   display grid
   grid-template-areas 'header'\
@@ -18,7 +19,6 @@ body
   min-height 100vh // fallback
   min-height calc(var(--viewport-unit, 1vh) * 100)
   transition background var(--transition), color var(--transition)
-  webfont()
 
 *
   box-sizing border-box

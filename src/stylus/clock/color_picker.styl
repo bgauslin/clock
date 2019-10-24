@@ -25,10 +25,10 @@
   flex 0 0 px_to_rem(20)
 
 .color-picker__menu
+  elevation(2)
   background white
   border-radius px_to_rem(4)
   display grid
-  elevation(2)
   grid-gap px_to_rem(8)
   grid-template-columns repeat(4, 1fr)
   list-style none
@@ -53,11 +53,11 @@
 
 // Menu arrow via rotated square with a shadow.
 .color-picker__menu::before
+  elevation(2)
   background white
   clip-path polygon(px_to_rem(-8) px_to_rem(-8), px_to_rem(-8) px_to_rem(24), px_to_rem(24) px_to_rem(-8))
   content ''
   display block
-  elevation(2)
   height MENU_ARROW
   position absolute
   right MENU_ARROW
