@@ -3,7 +3,7 @@ enum FooterInfo {
   title = 'Ben Gauslin’s Website',
   url = 'https://gauslin.com',
   yearStart = '2018',
-};
+}
 
 class App {
   /**
