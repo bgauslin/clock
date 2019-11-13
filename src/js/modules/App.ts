@@ -1,3 +1,5 @@
+import { Utils } from './Utils';
+
 enum FooterInfo {
   label = 'Ben Gauslin',
   title = 'Ben Gauslin’s Website',
@@ -6,10 +8,17 @@ enum FooterInfo {
 }
 
 class App {
+  private utils_: any;
+
+  constructor() {
+    this.utils_ = new Utils();
+  }
+
   /**
    * Renders all elements into the DOM.
    */
   public init(): void {
+    this.utils_.init();
     this.renderHeader_();
     this.renderClocks_();
     this.renderFooter_();
