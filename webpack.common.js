@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/js/clock.ts'],
+  entry: ['./src/js/clock.ts'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
@@ -36,13 +36,10 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/preset-env',
               '@babel/typescript',
             ],
             plugins: [
-              "@babel/proposal-class-properties",
-              "@babel/proposal-object-rest-spread",
-              'transform-regenerator',
+              'babel-plugin-transform-es2015-modules-commonjs',
             ],
           }
         }
