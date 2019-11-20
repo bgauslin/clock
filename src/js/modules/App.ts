@@ -72,7 +72,7 @@ class App {
     const html = `\
       <footer class="footer">\
         <p class="copyright">\
-          <span class="copyright__years">© ${yearStart}-${yearEnd}</span>\
+          <span class="copyright__years">© ${yearStart}–${yearEnd}</span>\
           <a class="copyright__owner" \
               href="${url}" \
               title="${title} (opens in a new window)" \
