@@ -14,6 +14,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyPlugin([
       { from: 'src/root' },
+      { from: 'src/pwa', to: 'pwa' },
     ]),
     new Dotenv(),
     new HtmlWebpackPlugin({
