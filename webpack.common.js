@@ -3,9 +3,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
+// TODO: Coordinate Webpack and Service Worker...
+// https://github.com/NekR/offline-plugin
 module.exports = {
-  entry: ['./src/js/clock.ts'],
+  entry: {
+    app: './src/js/clock.ts',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
@@ -21,6 +26,8 @@ module.exports = {
       filename: 'index.html',
       template: 'src/html/index.pug',
     }),
+    // It's always better if OfflinePlugin is the last plugin added.
+    new OfflinePlugin(),
   ],
   node: {
     fs: 'empty',

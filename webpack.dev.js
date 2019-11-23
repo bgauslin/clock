@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 module.exports = merge(common, {
   mode: 'development',
   output: {
-    filename: 'clock.js',
+    filename: '[name].js',
   },
   devServer: {
     contentBase: './dist',
