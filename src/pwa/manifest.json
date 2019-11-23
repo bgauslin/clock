@@ -1,10 +1,11 @@
 {
   "name": "Clock",
+  "short_name": "Clock",
   "description": "Analog clock whose nine sets of hands reveal patterns of time",
   "theme_color": "#000",
   "background_color": "#fff",
-  "display": "browser",
-  "Scope": "/",
+  "display": "standalone",
+  "scope": "/",
   "start_url": "/",
   "icons": [
     {

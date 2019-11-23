@@ -3,10 +3,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // TODO: Coordinate Webpack and Service Worker...
-// https://github.com/NekR/offline-plugin
+// https://webpack.js.org/guides/progressive-web-application/
+// https://www.smashingmagazine.com/2019/06/pwa-webpack-workbox/
 module.exports = {
   entry: {
     app: './src/js/clock.ts',
@@ -26,8 +27,10 @@ module.exports = {
       filename: 'index.html',
       template: 'src/html/index.pug',
     }),
-    // It's always better if OfflinePlugin is the last plugin added.
-    new OfflinePlugin(),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+    }),
   ],
   node: {
     fs: 'empty',
