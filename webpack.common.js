@@ -3,11 +3,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
-// TODO: Coordinate Webpack and Service Worker...
-// https://webpack.js.org/guides/progressive-web-application/
-// https://www.smashingmagazine.com/2019/06/pwa-webpack-workbox/
 module.exports = {
   entry: {
     app: './src/js/clock.ts',
@@ -27,10 +25,14 @@ module.exports = {
       filename: 'index.html',
       template: 'src/html/index.pug',
     }),
-    new WorkboxPlugin.InjectManifest({
-      swSrc: 'src/js/sw.js',
-      swDest: 'sw.js',
+    new MiniCssExtractPlugin({
+      filename: 'shell.css',
     }),
+    // new WorkboxPlugin.InjectManifest({
+    //   swSrc: 'src/js/sw.js',
+    //   swDest: 'sw.js',
+    //   exclude: [/\.htaccess$/, /robots.txt$/],
+    // }),
   ],
   node: {
     fs: 'empty',
@@ -56,7 +58,18 @@ module.exports = {
         }
       },
       {
-        test: /\.styl$/,
+        // Extract app shell styles to shell.css
+        test: /shell\.styl$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'stylus-loader',
+        ]
+      },
+      {
+        // Include main app styles in JS
+        test: /clock\.styl$/,
         exclude: /node_modules/, 
         use: [
           'style-loader',

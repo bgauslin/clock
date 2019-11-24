@@ -7,6 +7,13 @@ enum FooterInfo {
   yearStart = '2018',
 }
 
+enum CssClass {
+  CLOCKS = 'clocks',
+  CONTENT = 'content',
+  HEADER = 'header__frame',
+  SITE_NAME = 'site-name',
+}
+
 class App {
   private utils_: any;
 
@@ -37,8 +44,8 @@ class App {
    * Injects custom elements into the header.
    */
   private updateHeader_() {
-    const frameEl = document.querySelector('.header__frame');
-    const sitenameEl = document.querySelector('.site-name');
+    const headerEl = document.querySelector(`.${CssClass.HEADER}`);
+    const sitenameEl = document.querySelector(`.${CssClass.SITE_NAME}`);
 
     const digitalClock = document.createElement('digital-clock');
     sitenameEl.replaceChild(digitalClock, sitenameEl.childNodes[0]);
@@ -47,19 +54,21 @@ class App {
       <color-picker class="color-picker"></color-picker>\
       <app-theme class="themifier"></app-theme>\
     `;
-    frameEl.innerHTML += frameHtml.replace(/\s\s/g, '');
+    headerEl.innerHTML += frameHtml.replace(/\s\s/g, '');
   }
 
   /**
    * Renders clock elements.
    */
   private injectClocks_(n: number = 9): void {
-    const clocksEl = document.querySelector('.clocks');
+    const contentEl = document.querySelector(`.${CssClass.CONTENT}`);
     let i = 1;
     while (i <= n) {
-      clocksEl.innerHTML += '<analog-clock class="clock"></analog-clock>';
+      contentEl.innerHTML += '<analog-clock class="clock"></analog-clock>';
       i++;
     }
+    contentEl.classList.remove(CssClass.CONTENT);
+    contentEl.classList.add(CssClass.CLOCKS);
   }
 
   /**

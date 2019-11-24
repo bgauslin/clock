@@ -6,6 +6,7 @@ import { ColorPicker } from './components/ColorPicker';
 import { DigitalClock } from './components/DigitalClock';
 import { Themifier } from './components/Themifier';
 
+import '../stylus/shell.styl';
 import '../stylus/clock.styl';
 
 // Define all custom elements.
