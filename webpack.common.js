@@ -8,7 +8,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/js/clock.ts',
+    clock: './src/js/clock.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -25,13 +25,10 @@ module.exports = {
       filename: 'index.html',
       template: 'src/html/index.pug',
     }),
-    new MiniCssExtractPlugin({
-      filename: 'shell.css',
-    }),
     new WorkboxPlugin.InjectManifest({
       swSrc: 'src/js/sw.js',
       swDest: 'sw.js',
-      exclude: [/\.htaccess$/, /robots.txt$/],
+      exclude: [/\.htaccess$/, /robots\.txt$/],
     }),
   ],
   node: {
@@ -58,21 +55,9 @@ module.exports = {
         }
       },
       {
-        // Extract app shell styles to shell.css
-        test: /shell\.styl$/,
+        test: /\.styl$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'stylus-loader',
-        ]
-      },
-      {
-        // Include main app styles in JS
-        test: /clock\.styl$/,
-        exclude: /node_modules/, 
-        use: [
-          'style-loader',
           'css-loader',
           'postcss-loader',
           'stylus-loader',
