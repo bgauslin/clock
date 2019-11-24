@@ -57,11 +57,17 @@ module.exports = {
       {
         test: /\.styl$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+              reloadAll: true,
+            },
+          },
           'css-loader',
           'postcss-loader',
           'stylus-loader',
-        ]
+        ],
       },
       {
         test: /\.pug$/,
