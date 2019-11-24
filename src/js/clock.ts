@@ -17,16 +17,18 @@ map.set(Themifier, 'app-theme');
 map.forEach((key, value) => customElements.define(key, value));
 
 // Create app instance and initialize it.
-const app = new App();
-app.init();
+window.addEventListener('DOMContentLoaded', () => {
+  const app = new App();
+  app.init();
+}, { once: true });
 
 // Register the Service Worker.
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/service-worker.js').then(registration => {
-//       console.log('SW registered: ', registration);
-//     }).catch(registrationError => {
-//       console.log('SW registration failed: ', registrationError);
-//     });
-//   });
-// }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
+}

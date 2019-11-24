@@ -27,9 +27,9 @@ module.exports = {
       filename: 'index.html',
       template: 'src/html/index.pug',
     }),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
+    new WorkboxPlugin.InjectManifest({
+      swSrc: 'src/js/sw.js',
+      swDest: 'sw.js',
     }),
   ],
   node: {
