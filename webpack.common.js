@@ -28,11 +28,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'shell.css',
     }),
-    // new WorkboxPlugin.InjectManifest({
-    //   swSrc: 'src/js/sw.js',
-    //   swDest: 'sw.js',
-    //   exclude: [/\.htaccess$/, /robots.txt$/],
-    // }),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: 'src/js/sw.js',
+      swDest: 'sw.js',
+      exclude: [/\.htaccess$/, /robots.txt$/],
+    }),
   ],
   node: {
     fs: 'empty',
