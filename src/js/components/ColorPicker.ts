@@ -28,9 +28,6 @@ const Colors: string[] = [
 class ColorPicker extends HTMLElement {
   constructor() {
     super();
-
-    // Get saved color if it exists; set default color otherwise.
-    this.setAttribute(COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || Colors[0]);
     this.addEventListener('click', (e) => this.handleClick_(e));
   }
   
@@ -41,8 +38,10 @@ class ColorPicker extends HTMLElement {
   attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
     this.updateColor_(oldValue, newValue);
   }
-  
-  connectedCallback(): void {
+
+  connectedCallback(): void {  
+    // Get saved color if it exists; set default color otherwise.
+    this.setAttribute(COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || Colors[0]);
     this.setup_();
   }
 

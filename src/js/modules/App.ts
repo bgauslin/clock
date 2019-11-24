@@ -19,70 +19,69 @@ class App {
    */
   public init(): void {
     this.utils_.init();
-    this.renderHeader_();
-    this.renderClocks_();
-    this.renderFooter_();
+    this.removeNoScript_();
+    this.updateHeader_();
+    this.injectClocks_();
+    this.updateFooter_();
   }
 
   /**
-   * Renders header element.
+   * Removes all noscript elements from the DOM.
    */
-  private renderHeader_(): void {
-    const html = `\
-      <header class="header">\
-        <div class="header__frame">\
-          <h1 class="site-name">\
-            <digital-clock></digital-clock>\
-          </h1>\
-          <color-picker class="color-picker"></color-picker>\
-          <app-theme class="themifier"></app-theme>\
-        </div>\
-      </header>\
+  private removeNoScript_() {
+    const noscriptEls = document.getElementsByTagName('noscript');
+    [...noscriptEls].forEach(el => el.parentNode.removeChild(el));
+  }
+
+  /**
+   * Injects custom elements into the header.
+   */
+  private updateHeader_() {
+    const frameEl = document.querySelector('.header__frame');
+    const sitenameEl = document.querySelector('.site-name');
+
+    const digitalClock = document.createElement('digital-clock');
+    sitenameEl.replaceChild(digitalClock, sitenameEl.childNodes[0]);
+
+    const frameHtml = `\
+      <color-picker class="color-picker"></color-picker>\
+      <app-theme class="themifier"></app-theme>\
     `;
-    document.body.innerHTML += html.replace(/\s\s/g, '');
+    frameEl.innerHTML += frameHtml.replace(/\s\s/g, '');
   }
 
   /**
    * Renders clock elements.
    */
-  private renderClocks_(n: number = 9): void {
-    let clocks = '';
+  private injectClocks_(n: number = 9): void {
+    const clocksEl = document.querySelector('.clocks');
     let i = 1;
     while (i <= n) {
-      clocks += '<analog-clock class="clock"></analog-clock>';
+      clocksEl.innerHTML += '<analog-clock class="clock"></analog-clock>';
       i++;
     }
-
-    const html = `\
-      <main class="clocks">\
-        ${clocks}\
-      </main>\
-    `;
-
-    document.body.innerHTML += html.replace(/\s\s/g, '');
   }
 
   /**
    * Renders a footer with a copyright notice and link.
    */
-  private renderFooter_(): void {
+  private updateFooter_(): void {
     const { label, title, url, yearStart } = FooterInfo;
     const yearEnd = new Date().getFullYear().toString().substr(-2);
 
-    const html = `\
-      <footer class="footer">\
-        <p class="copyright">\
-          <span class="copyright__years">© ${yearStart}–${yearEnd}</span>\
-          <a class="copyright__owner" \
-              href="${url}" \
-              title="${title} (opens in a new window)" \
-              target="_blank" \
-              rel="noopener">${label}</a>\
-        </p>\
-      </footer>\
+    const yearsEl = document.querySelector('.copyright__years');
+    const ownerEl = document.querySelector('.copyright__owner');
+
+    const ownerElHtml = `\
+      <a class="copyright__owner" \
+          href="${url}" \
+          title="${title} (opens in a new window)" \
+          target="_blank" \
+          rel="noopener">${label}</a>\
     `;
 
-    document.body.innerHTML += html.replace(/\s\s/g, '');
+    yearsEl.textContent = `© ${yearStart}–${yearEnd}`;
+    ownerEl.innerHTML = ownerElHtml.replace(/\s\s/g, '');
   }
 }
 

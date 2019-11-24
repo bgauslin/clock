@@ -7,9 +7,16 @@ html(lang="en")
     meta(name="viewport" content="width=device-width,initial-scale=1")
     meta(name="theme-color" content="#fff")
     meta(name="apple-mobile-web-app-capable" content="yes")
-    link(href="https://assets.gauslin.com/fonts/AvenirNext-Variable.woff2" rel="preload" as="font" type="font/woff2" crossorigin="crossorigin")
+    link(rel="preload" href="https://assets.gauslin.com/fonts/AvenirNext-Variable.woff2" as="font" type="font/woff2" crossorigin="crossorigin")
     link(rel="manifest" href="/pwa/manifest.json")
     link(rel="apple-touch-icon" href="/apple-touch-icon.png")
   body
-    noscript Please enable JavaScript to view.
-
+    header.header
+      div.header__frame
+        h1.site-name Clock
+    main.clocks
+      noscript Please <a href="https://www.enable-javascript.com/" title="How to enable JavaScript in your browser">enable JavaScript</a> to view this app.
+    footer.footer
+      p.copyright
+        span.copyright__years ©
+        a.copyright__owner Ben Gauslin
