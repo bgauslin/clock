@@ -1,11 +1,5 @@
 import { Utils } from './Utils';
-
-enum FooterInfo {
-  label = 'Ben Gauslin',
-  title = 'Ben Gauslin’s Website',
-  url = 'https://gauslin.com',
-  yearStart = '2018',
-}
+import { StringTypeAnnotation } from 'babel-types';
 
 enum CssClass {
   CLOCKS = 'clocks',
@@ -15,9 +9,11 @@ enum CssClass {
 }
 
 class App {
+  private startYear_: string;
   private utils_: any;
 
-  constructor() {
+  constructor(startYear: string) {
+    this.startYear_ = startYear || '';
     this.utils_ = new Utils();
   }
 
@@ -26,18 +22,9 @@ class App {
    */
   public init(): void {
     this.utils_.init();
-    this.removeNoScript_();
     this.updateHeader_();
     this.injectClocks_();
-    this.updateCopyright_('2018');
-  }
-
-  /**
-   * Removes all noscript elements from the DOM.
-   */
-  private removeNoScript_() {
-    const noscriptEls = document.getElementsByTagName('noscript');
-    [...noscriptEls].forEach(el => el.parentNode.removeChild(el));
+    this.updateCopyright_();
   }
 
   /**
@@ -58,15 +45,16 @@ class App {
   }
 
   /**
-   * Renders clock elements.
+   * Clears out content element and renders clocks inside of it.
    */
   private injectClocks_(n: number = 9): void {
     const contentEl = document.querySelector(`.${CssClass.CONTENT}`);
-    let i = 1;
-    while (i <= n) {
+    contentEl.innerHTML = '';
+
+    for (let i = 1; i <= n; i++) {
       contentEl.innerHTML += '<analog-clock class="clock"></analog-clock>';
-      i++;
     }
+
     contentEl.classList.remove(CssClass.CONTENT);
     contentEl.classList.add(CssClass.CLOCKS);
   }
@@ -74,10 +62,10 @@ class App {
   /**
    * Updates copyright blurb with current year.
    */
-  private updateCopyright_(start: string): void {
-    const end = new Date().getFullYear().toString().substr(-2);
+  private updateCopyright_(): void {
+    const currentYear = new Date().getFullYear().toString().substr(-2);
     const el = document.querySelector('.copyright__years');
-    el.textContent = `© ${start}–${end}`;
+    el.textContent = `© ${this.startYear_}–${currentYear}`;
   }
 }
 

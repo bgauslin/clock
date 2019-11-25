@@ -18,7 +18,7 @@ map.forEach((key, value) => customElements.define(key, value));
 
 // Create app instance and initialize it.
 window.addEventListener('DOMContentLoaded', () => {
-  const app = new App();
+  const app = new App('2018');
   app.init();
 }, { once: true });
 
