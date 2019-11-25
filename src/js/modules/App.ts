@@ -29,7 +29,7 @@ class App {
     this.removeNoScript_();
     this.updateHeader_();
     this.injectClocks_();
-    this.updateFooter_();
+    this.updateCopyright_('2018');
   }
 
   /**
@@ -72,25 +72,12 @@ class App {
   }
 
   /**
-   * Renders a footer with a copyright notice and link.
+   * Updates copyright blurb with current year.
    */
-  private updateFooter_(): void {
-    const { label, title, url, yearStart } = FooterInfo;
-    const yearEnd = new Date().getFullYear().toString().substr(-2);
-
-    const yearsEl = document.querySelector('.copyright__years');
-    const ownerEl = document.querySelector('.copyright__owner');
-
-    const ownerElHtml = `\
-      <a class="copyright__owner" \
-          href="${url}" \
-          title="${title} (opens in a new window)" \
-          target="_blank" \
-          rel="noopener">${label}</a>\
-    `;
-
-    yearsEl.textContent = `© ${yearStart}–${yearEnd}`;
-    ownerEl.innerHTML = ownerElHtml.replace(/\s\s/g, '');
+  private updateCopyright_(start: string): void {
+    const end = new Date().getFullYear().toString().substr(-2);
+    const el = document.querySelector('.copyright__years');
+    el.textContent = `© ${start}–${end}`;
   }
 }
 
