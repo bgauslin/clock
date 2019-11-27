@@ -3,7 +3,7 @@
   background var(--header-background)
   color var(--text)
   grid-area header
-  padding 0 5vw
+  padding 0 env(safe-area-inset-right) 0 env(safe-area-inset-left)
   position sticky
   top 0
   transition background var(--transition), border var(--transition), color var(--transition)
@@ -13,7 +13,8 @@
   display flex
   height var(--header-height)
   margin 0 auto
-  max-width MAX_WIDTH
+  max-width 'calc(%s + 10vw)' % MAX_WIDTH
+  padding 0 5vw
 
 .site-name
   font-size var(--site-header)
