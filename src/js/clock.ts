@@ -4,6 +4,7 @@ import { AnalogClock } from './components/AnalogClock';
 import { App } from './modules/App';
 import { ColorPicker } from './components/ColorPicker';
 import { DigitalClock } from './components/DigitalClock';
+import { ShiftyHeader } from './components/ShiftyHeader';
 import { Themifier } from './components/Themifier';
 
 import '../stylus/clock.styl';
@@ -13,6 +14,7 @@ const map = new Map();
 map.set(AnalogClock, 'analog-clock');
 map.set(ColorPicker, 'color-picker');
 map.set(DigitalClock, 'digital-clock');
+map.set(ShiftyHeader, 'app-header');
 map.set(Themifier, 'app-theme');
 map.forEach((key, value) => customElements.define(key, value));
 
