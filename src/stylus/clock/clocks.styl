@@ -23,9 +23,9 @@ start = interval / 2
 total = grid_count * grid_count
 
 .clocks
-  elevation(1)
   align-self center
   background var(--face)
+  border 1px solid var(--border)
   display grid
   grid-area content
   grid-template-columns 'repeat(%s, 1fr)' % ((grid_count + 1) * interval)
