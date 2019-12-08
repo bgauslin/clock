@@ -46,8 +46,8 @@ class ShiftyHeader extends HTMLElement {
         this.shift_ = 0;
       }
 
-      // Apply CSS transform to shift the element vertically.
-      this.style.transform = `translate3d(0, ${-this.shift_}px, 0)`;
+      // Set custom property for shifting the element vertically.
+      this.style.setProperty('--shift-y', `-${this.shift_ / 16}rem`);
 
       // Update yScrollLast for determining scroll change on next tick.
       this.yScrollLast_ = (this.yScroll_ <= 0) ? 0 : this.yScroll_;
