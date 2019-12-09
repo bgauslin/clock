@@ -22,7 +22,7 @@ map.forEach((key, value) => customElements.define(key, value));
 window.addEventListener('DOMContentLoaded', () => {
   const app = new App('2018');
   app.init();
-}, { once: true });
+});
 
 // Register the Service Worker.
 if ('serviceWorker' in navigator) {
