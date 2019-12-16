@@ -1,13 +1,11 @@
 import fastclick from 'fastclick';
 
-const NO_TOUCH_ATTR: string = 'no-touch';
-
 class Utils {
   /**
    * Initializes handy site-wide methods.
    */
   public init(): void {
-    this.noTouch_();
+    this.isTouchEnabled_();
     this.googleAnalytics_();
     this.viewportHeight_();
     window.addEventListener('resize', () => this.viewportHeight_());
@@ -28,13 +26,12 @@ class Utils {
   }
 
   /**
-   * Attaches fastclick if device is touch-enabled; adds 'no-touch' attribute if not.
+   * Removes 'no-touch' attribute and adds fastclick if device is touch-enabled.
    */
-  private noTouch_(): void {
-    if (('ontouchstart' in window) || (<any>window).DocumentTouch) {
+  private isTouchEnabled_(): void {
+    if ('ontouchstart' in window || (<any>window).DocumentTouch) {
+      document.body.removeAttribute('no-touch');
       fastclick['attach'](document.body);
-    } else {
-      document.body.setAttribute(NO_TOUCH_ATTR, '');
     }
   }
 
