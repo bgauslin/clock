@@ -1,5 +1,4 @@
-import { Utils } from './Utils';
-import { StringTypeAnnotation } from 'babel-types';
+import {Utils} from './Utils';
 
 enum CssClass {
   CLOCKS = 'clocks',
@@ -69,4 +68,4 @@ class App {
   }
 }
 
-export { App };
+export {App};

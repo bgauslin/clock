@@ -54,4 +54,4 @@ class ShiftyHeader extends HTMLElement {
   }
 }
 
-export { ShiftyHeader };
+export {ShiftyHeader};

@@ -39,7 +39,7 @@ class ColorPicker extends HTMLElement {
     this.updateColor_(oldValue, newValue);
   }
 
-  connectedCallback(): void {  
+  connectedCallback(): void {
     // Get saved color if it exists; set default color otherwise.
     this.setAttribute(COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || Colors[0]);
     this.setup_();
@@ -87,7 +87,7 @@ class ColorPicker extends HTMLElement {
         window.requestAnimationFrame(() => {
           document.addEventListener('click', () => {
             this.removeAttribute(OPEN_ATTR);
-          }, { once: true });
+          }, {once: true});
         });
       }
     }
@@ -124,4 +124,4 @@ class ColorPicker extends HTMLElement {
   }
 }
 
-export { ColorPicker };
+export {ColorPicker};

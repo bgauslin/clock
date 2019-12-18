@@ -25,4 +25,4 @@ class DigitalClock extends HTMLElement {
   }
 }
 
-export { DigitalClock };
+export {DigitalClock};

@@ -59,4 +59,4 @@ class Themifier extends HTMLElement {
   }
 }
 
-export { Themifier };
+export {Themifier};

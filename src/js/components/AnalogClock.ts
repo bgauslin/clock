@@ -69,4 +69,4 @@ class AnalogClock extends HTMLElement {
   }
 }
 
-export { AnalogClock };
+export {AnalogClock};

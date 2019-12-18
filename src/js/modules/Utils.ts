@@ -45,4 +45,4 @@ class Utils {
   }
 }
 
-export { Utils };
+export {Utils};

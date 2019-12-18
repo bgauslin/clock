@@ -1,11 +1,11 @@
 require('dotenv').config();
 
-import { AnalogClock } from './components/AnalogClock';
-import { App } from './modules/App';
-import { ColorPicker } from './components/ColorPicker';
-import { DigitalClock } from './components/DigitalClock';
-import { ShiftyHeader } from './components/ShiftyHeader';
-import { Themifier } from './components/Themifier';
+import {AnalogClock} from './components/AnalogClock';
+import {App} from './modules/App';
+import {ColorPicker} from './components/ColorPicker';
+import {DigitalClock} from './components/DigitalClock';
+import {ShiftyHeader} from './components/ShiftyHeader';
+import {Themifier} from './components/Themifier';
 
 import '../stylus/clock.styl';
 
