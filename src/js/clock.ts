@@ -18,11 +18,8 @@ map.set(ShiftyHeader, 'app-header');
 map.set(Themifier, 'app-theme');
 map.forEach((key, value) => customElements.define(key, value));
 
-// Create app instance and initialize it.
-window.addEventListener('DOMContentLoaded', () => {
-  const app = new App('2018');
-  app.init();
-});
+// Initialize the app.
+window.addEventListener('DOMContentLoaded', () => new App('2018').init());
 
 // Register the Service Worker.
 if ('serviceWorker' in navigator) {
