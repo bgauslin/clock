@@ -15,7 +15,7 @@ class Themifier extends HTMLElement {
 
     // Toggle theme when clicked, or with space bar or enter key.
     this.addEventListener('click', () => this.toggleTheme_());
-    this.addEventListener('keydown', (e) => {
+    this.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.keyCode === 13 || e.keyCode === 32) {
         e.preventDefault();
         this.toggleTheme_();
