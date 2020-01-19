@@ -1,15 +1,9 @@
 const HOURS_HAND_LENGTH: number = 30;
-
 const STROKE_WIDTH: number = 3;
-
 const SIZE: number = 100;
-
 const CENTER: number = SIZE / 2;
-
 const HOURS_HAND_END: number = CENTER - HOURS_HAND_LENGTH;
-
 const MINUTES_HAND_END: number = 0;
-
 const INTERVAL_MS: number = 1000;
 
 class AnalogClock extends HTMLElement {
@@ -33,10 +27,12 @@ class AnalogClock extends HTMLElement {
    * Calculates rotations for hours and minutes hands and renders an SVG.
    */
   private setHands_(): void {
+    // Get the current time.
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
 
+    // Set angles for clock hands.
     const hoursAngle = (hours * 60 + minutes) * .5; 
     const minutesAngle = minutes * 6;
 

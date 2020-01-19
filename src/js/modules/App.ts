@@ -9,7 +9,7 @@ enum CssClass {
 
 class App {
   private startYear_: string;
-  private utils_: any;
+  private utils_: Utils;
 
   constructor(startYear: string) {
     this.startYear_ = startYear || '';
@@ -62,8 +62,8 @@ class App {
    * Updates copyright blurb with current year.
    */
   private updateCopyright_(): void {
-    const currentYear = new Date().getFullYear().toString().substr(-2);
     const el = document.querySelector('.copyright__years');
+    const currentYear = new Date().getFullYear().toString().substr(-2);
     el.textContent = `© ${this.startYear_}–${currentYear}`;
   }
 }

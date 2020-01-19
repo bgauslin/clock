@@ -53,12 +53,13 @@ class ColorPicker extends HTMLElement {
    * Sets the current color and saves it to localStorage.
    */
   private updateColor_(oldValue: string, newValue: string): void {
-    const oldEl = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
-    const newEl = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
+    const oldEl = <HTMLInputElement>this.querySelector(`[value=${oldValue}]`);
+    const newEl = <HTMLInputElement>this.querySelector(`[value=${newValue}]`);
 
     if (oldEl) {
       oldEl.checked = false;
     }
+
     if (newEl) {
       newEl.checked = true;
     }

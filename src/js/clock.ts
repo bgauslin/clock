@@ -7,6 +7,7 @@ import {DigitalClock} from './components/DigitalClock';
 import {ShiftyHeader} from './components/ShiftyHeader';
 import {Themifier} from './components/Themifier';
 
+// Import styles for injecting into DOM.
 import '../stylus/clock.styl';
 
 // Define all custom elements.
