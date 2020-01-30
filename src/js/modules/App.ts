@@ -29,7 +29,7 @@ class App {
   /**
    * Injects custom elements into the header.
    */
-  private updateHeader_() {
+  private updateHeader_(): void {
     const headerEl = document.querySelector(`.${CssClass.HEADER}`);
     const sitenameEl = document.querySelector(`.${CssClass.SITE_NAME}`);
 
