@@ -36,10 +36,7 @@ class App {
     const digitalClock = document.createElement('digital-clock');
     sitenameEl.replaceChild(digitalClock, sitenameEl.childNodes[0]);
 
-    const frameHtml = `\
-      <color-picker class="color-picker"></color-picker>\
-      <app-theme class="themifier"></app-theme>\
-    `;
+    const frameHtml = '<color-picker class="color-picker"></color-picker>';
     headerEl.innerHTML += frameHtml.replace(/\s\s/g, '');
   }
 

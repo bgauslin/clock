@@ -5,7 +5,6 @@ import {App} from './modules/App';
 import {ColorPicker} from './custom_elements/ColorPicker';
 import {DigitalClock} from './custom_elements/DigitalClock';
 import {ShiftyHeader} from './custom_elements/ShiftyHeader';
-import {Themifier} from './custom_elements/Themifier';
 
 // Import styles for injecting into DOM.
 import '../stylus/clock.styl';
@@ -16,7 +15,6 @@ map.set(AnalogClock, 'analog-clock');
 map.set(ColorPicker, 'color-picker');
 map.set(DigitalClock, 'digital-clock');
 map.set(ShiftyHeader, 'app-header');
-map.set(Themifier, 'app-theme');
 map.forEach((key, value) => customElements.define(key, value));
 
 // Initialize the app.

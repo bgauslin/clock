@@ -6,20 +6,22 @@
   --transition .3s ease-out
   --fineprint px_to_em(12)
 
-  for name, values in ColorPalette
-    [color={name}]
-      --face '%s' % values.face
-      --hands '%s' % values.hands
+  @media Breakpoint.MEDIUM
+    --fineprint px_to_em(14)
+    --footer-height px_to_rem(60)
+    --header-height px_to_rem(60)
+    --site-header px_to_rem(20)
 
-  [theme=light]
-    --background #f7f7f7
-    --border #ddd
-    --header-background rgba(white, .97)
-    --link DARK_GREY
-    --link-active rgba(DARK_GREY, .7)
-    --text DARK_GREY
+  // Default light theme.
+  --background #f7f7f7
+  --border #ddd
+  --header-background rgba(white, .97)
+  --link DARK_GREY
+  --link-active rgba(DARK_GREY, .7)
+  --text DARK_GREY
 
-  [theme=dark]
+  // Dark theme per user settings.
+  @media (prefers-color-scheme dark)
     --background #262626
     --border #333
     --header-background rgba(DARK_GREY, .95)
@@ -27,8 +29,8 @@
     --link-active rgba(white, .7)
     --text white
 
-  @media Breakpoint.MEDIUM
-    --fineprint px_to_em(14)
-    --footer-height px_to_rem(60)
-    --header-height px_to_rem(60)
-    --site-header px_to_rem(20)
+  // Color picker palette.
+  for name, values in ColorPalette
+    [color={name}]
+      --face '%s' % values.face
+      --hands '%s' % values.hands
