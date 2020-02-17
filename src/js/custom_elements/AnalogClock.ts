@@ -7,8 +7,8 @@ const MINUTES_HAND_END: number = 0;
 const INTERVAL_MS: number = 1000;
 
 class AnalogClock extends HTMLElement {
-  private previousMinutesAngle_: number;
   private interval_: any;
+  private previousMinutesAngle_: number;
 
   constructor() {
     super();
