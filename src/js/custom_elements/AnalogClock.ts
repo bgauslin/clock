@@ -8,19 +8,17 @@ const INTERVAL_MS: number = 1000;
 
 class AnalogClock extends HTMLElement {
   private previousMinutesAngle_: number;
+  private interval_: any;
 
   constructor() {
     super();
     this.previousMinutesAngle_ = 0;
     this.setHands_();
-  }
-
-  connectedCallback(): void {
-    setInterval(() => this.setHands_(), INTERVAL_MS);
+    this.interval_ = setInterval(() => this.setHands_(), INTERVAL_MS);
   }
 
   disconnectedCallback(): void {
-    clearInterval();
+    clearInterval(this.interval_);
   }
 
   /**

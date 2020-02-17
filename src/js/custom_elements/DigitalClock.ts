@@ -1,17 +1,16 @@
 const INTERVAL_MS: number = 1000;
 
 class DigitalClock extends HTMLElement {
+  private interval_: any;
+
   constructor() {
     super();
-  }
-
-  connectedCallback(): void {
     this.setTime_();
-    setInterval(() => this.setTime_(), INTERVAL_MS);
+    this.interval_ = setInterval(() => this.setTime_(), INTERVAL_MS);
   }
   
   disconnectedCallback(): void {
-    clearInterval();
+    clearInterval(this.interval_);
   }
 
   private setTime_(): void {

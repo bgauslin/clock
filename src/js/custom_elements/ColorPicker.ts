@@ -46,7 +46,7 @@ class ColorPicker extends HTMLElement {
   }
 
   disconnectedCallback(): void {
-    this.removeEventListener('click', null);
+    this.removeEventListener('click', this.handleClick_);
   }
 
   /**
