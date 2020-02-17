@@ -5,10 +5,13 @@ class DigitalClock extends HTMLElement {
 
   constructor() {
     super();
-    this.setTime_();
     this.interval_ = setInterval(() => this.setTime_(), INTERVAL_MS);
   }
-  
+
+  connectedCallback(): void {
+    this.setTime_();
+  }
+
   disconnectedCallback(): void {
     clearInterval(this.interval_);
   }
