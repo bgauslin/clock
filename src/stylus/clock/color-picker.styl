@@ -22,28 +22,28 @@
   transform scale(.8)
 
 .color-picker__icon
-  flex 0 0 px_to_rem(20)
+  flex 0 0 rem(20)
 
 .color-picker__menu
   elevation(2)
   background white
-  border-radius px_to_rem(4)
+  border-radius rem(4)
   display grid
-  grid-gap px_to_rem(8)
+  grid-gap rem(8)
   grid-template-columns repeat(4, 1fr)
   list-style none
-  margin px_to_rem(8) 0 0
+  margin rem(8) 0 0
   opacity 0
-  padding px_to_rem(12)
+  padding rem(12)
   position absolute
-  right px_to_rem(-2)
-  transform 'translateY(-%s)' % px_to_rem(12)
+  right rem(-2)
+  transform 'translateY(-%s)' % rem(12)
   transition opacity var(--transition), transform var(--transition), visibility var(--transition)
   visibility hidden
   z-index -1
 
   @media Breakpoint.MEDIUM
-    margin-top px_to_rem(-2)
+    margin-top rem(-2)
 
 [open] > .color-picker__menu
   opacity 1
@@ -55,7 +55,7 @@
 .color-picker__menu::before
   elevation(2)
   background white
-  clip-path polygon(px_to_rem(-8) px_to_rem(-8), px_to_rem(-8) px_to_rem(24), px_to_rem(24) px_to_rem(-8))
+  clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
   content ''
   display block
   height MENU_ARROW
@@ -99,12 +99,12 @@
 .color-picker__option:checked + .color-picker__swatch::after
   content ''
   display inline-block
-  height px_to_rem(7)
-  left px_to_rem(6)
+  height rem(7)
+  left rem(6)
   position absolute
-  top px_to_rem(7)
+  top rem(7)
   transform rotate(-45deg)
-  width px_to_rem(14)
+  width rem(14)
 
 for name, value in ColorPalette
   face_rgb = rgb(value.face)
