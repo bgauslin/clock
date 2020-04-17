@@ -27,7 +27,7 @@ const Colors: string[] = [
 class ColorPicker extends HTMLElement {
   constructor() {
     super();
-    this.addEventListener('click', (e: Event) => this.handleClick_(e));
+    this.addEventListener('click', this.handleClick_);
   }
   
   static get observedAttributes(): string[] {
