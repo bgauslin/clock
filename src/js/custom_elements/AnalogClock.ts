@@ -13,11 +13,8 @@ class AnalogClock extends HTMLElement {
   constructor() {
     super();
     this.previousMinutesAngle_ = 0;
-    this.interval_ = setInterval(() => this.setHands_(), INTERVAL_MS);
-  }
-
-  connectedCallback(): void {
     this.setHands_();
+    this.interval_ = setInterval(() => this.setHands_(), INTERVAL_MS);
   }
 
   disconnectedCallback(): void {
