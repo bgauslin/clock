@@ -8,7 +8,7 @@ class Utils {
     this.touchEnabled_();
     this.googleAnalytics_();
     this.setViewportHeight_();
-    window.addEventListener('resize', () => this.setViewportHeight_());
+    window.addEventListener('resize', this.setViewportHeight_);
   }
 
   /**
