@@ -14,11 +14,11 @@
   width var(--button-width)
 
 .color-picker__toggle:focus
-.color-picker__toggle:active
 [no-touch] .color-picker__toggle:hover
-  color var(--link-active)
+  transform scale(1.2)
 
 .color-picker__toggle:active
+  color var(--link-active)
   transform scale(.8)
 
 .color-picker__icon
@@ -71,6 +71,9 @@
   position relative
   width MENU_ITEM_SIZE
 
+.color-picker__label:focus
+  outline 0
+
 [no-touch] .color-picker__label:hover
   cursor pointer
 
@@ -122,5 +125,6 @@ for name, value in ColorPalette
 [no-touch] .color-picker__swatch
   transition transform var(--transition)
 
+.color-picker__label:focus .color-picker__option:not(:checked) + .color-picker__swatch
 [no-touch] .color-picker__label:hover .color-picker__option:not(:checked) + .color-picker__swatch
-  transform scale(1.1)
+  transform scale(1.2)

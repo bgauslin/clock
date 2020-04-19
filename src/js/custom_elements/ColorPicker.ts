@@ -25,9 +25,12 @@ const Colors: string[] = [
 ];
 
 class ColorPicker extends HTMLElement {
+  private closeMenuListener_: any;
+
   constructor() {
     super();
     this.addEventListener('click', this.handleClick_);
+    this.addEventListener('keyup', this.handleKey_)
   }
   
   static get observedAttributes(): string[] {
@@ -73,23 +76,56 @@ class ColorPicker extends HTMLElement {
    * closes it.
    */
   private handleClick_(e: Event): void {
-    const target = <HTMLInputElement>e.target;
-    const newColor = target.getAttribute('for');
-    if (newColor) {
-      this.setAttribute(COLOR_ATTR, newColor);
-    }
-    
+    const target = <HTMLElement>e.target
+    this.setColor_(target);
+
     if (target.classList.contains(`${this.className}__toggle`)) {
       if (this.hasAttribute(OPEN_ATTR)) {
         this.removeAttribute(OPEN_ATTR);
       } else {
         this.setAttribute(OPEN_ATTR, '');
         window.requestAnimationFrame(() => {
-          document.addEventListener('click', () => {
-            this.removeAttribute(OPEN_ATTR);
-          }, {once: true});
+          this.closeMenuListener_ = this.closeOnClick_.bind(this);
+          document.addEventListener('click', this.closeMenuListener_);
         });
       }
+    }
+  }
+
+  /**
+   * Adds then removes a listener that closes the menu if the user decides
+   * to not change the color swatch when the menu is open (i.e., when they
+   * make a 'cancel' or 'escape' click).
+   */
+  private closeOnClick_(): void {
+    this.removeAttribute(OPEN_ATTR);
+    document.removeEventListener('click', this.closeMenuListener_);
+  }
+
+  /**
+   * Adds keyboard navigation to the color picker menu.
+   */
+  private handleKey_(e: KeyboardEvent) {
+    switch (e.code) {
+      case 'Enter':
+        this.setColor_(<HTMLElement>e.target);
+        break;
+      case 'Escape':
+        this.removeAttribute(OPEN_ATTR);
+        break;
+    }
+  }
+
+  /**
+   * Updates the element's color attribute, which triggers its attribute changed
+   * callback.
+   */
+  private setColor_(target: HTMLElement) {
+    const newColor = target.getAttribute('for');
+    if (newColor) {
+      this.setAttribute(COLOR_ATTR, newColor);
+      this.removeAttribute(OPEN_ATTR);
+      document.removeEventListener('click', this.closeMenuListener_);
     }
   }
 
@@ -102,7 +138,7 @@ class ColorPicker extends HTMLElement {
       const checked = (color === this.getAttribute(COLOR_ATTR)) ? 'checked' : '';
       listItems += `\
         <li class="${this.className}__item">\
-          <label class="${this.className}__label" for="${color}">\
+          <label class="${this.className}__label" for="${color}" tabindex="0">\
             <input class="${this.className}__option" type="radio" name="color" value="${color}" ${checked}>\
             <span class="${this.className}__swatch" option="${color}">${color}</span>
           </label>\
