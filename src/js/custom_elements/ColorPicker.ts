@@ -32,7 +32,7 @@ class ColorPicker extends HTMLElement {
     super();
     this.closeMenuListener_ = this.closeMenu_.bind(this);
     this.addEventListener('click', this.handleClick_);
-    this.addEventListener('keyup', this.handleKey_)
+    this.addEventListener('keyup', this.handleKey_);
   }
   
   static get observedAttributes(): string[] {
@@ -49,6 +49,8 @@ class ColorPicker extends HTMLElement {
 
   disconnectedCallback(): void {
     this.removeEventListener('click', this.handleClick_);
+    this.removeEventListener('keyup', this.handleKey_);
+    document.removeEventListener('click', this.closeMenuListener_);
   }
 
   /**
