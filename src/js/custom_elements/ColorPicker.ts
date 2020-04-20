@@ -54,7 +54,7 @@ class ColorPicker extends HTMLElement {
   }
 
   /**
-   * Toggles the menu open/closed if the button was clicked and changes the
+   * Toggles the menu open/closed if the button was clicked, and changes the
    * color if a swatch was clicked. If the menu is open, the next click will
    * close it.
    */
@@ -91,7 +91,7 @@ class ColorPicker extends HTMLElement {
 
   /**
    * Closes the menu and removes the click-to-close listener that's added when
-   * the menu is opened with a button click.
+   * the menu is opened by the toggle button.
    */
   private closeMenu_(): void {
     this.removeAttribute(OPEN_ATTR);
@@ -101,7 +101,7 @@ class ColorPicker extends HTMLElement {
   /**
    * Updates the 'color' attribute and closes the menu.
    */
-  private setColor_(target: HTMLElement) {
+  private setColor_(target: HTMLElement): void {
     const newColor = target.getAttribute('for');
     if (newColor) {
       this.setAttribute(COLOR_ATTR, newColor);
