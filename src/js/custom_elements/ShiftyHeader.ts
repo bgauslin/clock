@@ -1,3 +1,7 @@
+/**
+ * Custom element that vertically shifts a fixed header in and out of the
+ * viewport based on scroll direction.
+ */
 class ShiftyHeader extends HTMLElement {
   private height_: number;
   private resizeListener_: any;

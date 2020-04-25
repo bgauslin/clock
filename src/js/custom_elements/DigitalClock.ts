@@ -1,5 +1,8 @@
 const INTERVAL_MS: number = 1000;
 
+/**
+ * Custom element that renders a digital clock based on system time.
+ */
 class DigitalClock extends HTMLElement {
   private interval_: any;
 

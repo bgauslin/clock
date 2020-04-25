@@ -7,6 +7,9 @@ enum CssClass {
   SITE_NAME = 'site-name',
 }
 
+/**
+ * Primary class that controls the app and renders all of its elements.
+ */
 class App {
   private startYear_: string;
   private utils_: Utils;

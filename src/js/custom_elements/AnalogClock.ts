@@ -6,6 +6,10 @@ const HOURS_HAND_END: number = CENTER - HOURS_HAND_LENGTH;
 const MINUTES_HAND_END: number = 0;
 const INTERVAL_MS: number = 1000;
 
+/**
+ * Custom element that renders the minute and hours hands of analog clock via
+ * SVG based on system time.
+ */
 class AnalogClock extends HTMLElement {
   private interval_: any;
   private previousMinutesAngle_: number;

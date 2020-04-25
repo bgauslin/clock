@@ -24,6 +24,11 @@ const Colors: string[] = [
   'black',
 ];
 
+/**
+ * Custom element that renders color swatches for a user to select that then
+ * sets an attribute coordinated with CSS rules to change the color styles of
+ * the clock's face and hands.
+ */
 class ColorPicker extends HTMLElement {
   private closeMenuListener_: any;
   private toggleButton_: HTMLButtonElement;
