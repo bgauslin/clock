@@ -64,7 +64,7 @@ class ColorPicker extends HTMLElement {
    * close it.
    */
   private handleClick_(e: Event): void {
-    const target = <HTMLElement>e.target
+    const target = e.target as HTMLElement;
 
     if (target === this.toggleButton_) {
       if (this.hasAttribute(OPEN_ATTR)) {
@@ -86,7 +86,7 @@ class ColorPicker extends HTMLElement {
   private handleKey_(e: KeyboardEvent) {
     switch (e.code) {
       case 'Enter':
-        this.setColor_(<HTMLElement>e.target);
+        this.setColor_(e.target as HTMLElement);
         break;
       case 'Escape':
         this.closeMenu_();
@@ -119,8 +119,8 @@ class ColorPicker extends HTMLElement {
    * attribute changes.
    */
   private updateColor_(oldValue: string, newValue: string): void {
-    const oldEl = <HTMLInputElement>this.querySelector(`[value=${oldValue}]`);
-    const newEl = <HTMLInputElement>this.querySelector(`[value=${newValue}]`);
+    const oldEl = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
+    const newEl = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
 
     if (oldEl) {
       oldEl.checked = false;

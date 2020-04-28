@@ -14,17 +14,20 @@ html(lang="en")
     link(rel="apple-touch-icon" href="/apple-touch-icon.png")
     link(rel="manifest" href="/pwa/manifest.json")
   body(no-touch)
-    app-header.header
-      div.header__frame
-        h1.site-name= title
-    main.content
-      noscript Please <a href="https://www.enable-javascript.com/" title="How to enable JavaScript in your browser">enable JavaScript</a> to view this app.
-    footer.footer
-      p.copyright
-        span.copyright__years © 2018
-        a.copyright__owner(
-          href="https://gauslin.com",
-          title="Ben Gauslin’s Website",
-          target="_blank",
-          rel="noopener",
-        ) Ben Gauslin
+    clock-app.app(year="2018")
+      app-header.header
+        div.header__frame
+          digital-clock(target=".site-name")
+            h1.site-name= title
+          color-picker.color-picker
+      main.content
+        noscript Please <a href="https://www.enable-javascript.com/" title="How to enable JavaScript in your browser">enable JavaScript</a> to view this app.
+      footer.footer
+        p.copyright
+          span.copyright__years © 2018
+          a.copyright__owner(
+            href="https://gauslin.com",
+            title="Ben Gauslin’s Website",
+            target="_blank",
+            rel="noopener",
+          ) Ben Gauslin
