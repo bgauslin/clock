@@ -1,53 +1,78 @@
-import {Utils} from '../modules/Utils';
+import fastclick from 'fastclick';
 
 const CLOCKS_CLASS: string = 'clocks';
-const CONTENT_CLASS: string = 'content';
-const COPYRIGHT_SELECTOR: string = '.copyright__years';
-const YEAR_ATTR: string = 'year';
+const TARGET_ATTR: string = 'target';
 
 /**
- * Custom element that initializes site-wide utilities, renders analog clock
- * elements, and updates the copyright years.
+ * Custom element that sets up the DOM and initialize site-wide features.
  */
 class App extends HTMLElement {
+  private hasSetup_: boolean;
+
   constructor() {
     super();
-    new Utils().init();
+    window.addEventListener('resize', this.viewportHeight_);
   }
 
   connectedCallback(): void {
-    this.injectClocks_(9);
-    this.updateCopyright_();
+    if (!this.hasSetup_) {
+      this.setupDom_();
+      this.touchEnabled_();
+      this.viewportHeight_();
+      this.googleAnalytics_();
+      this.hasSetup_ = true;
+    }
+  }
+
+  disconnectedCallback(): void {
+    window.removeEventListener('resize', this.viewportHeight_);
   }
 
   /**
-   * Clears out content element and renders analog clocks inside of it.
+   * Renders analog clocks into an existing DOM element.
    */
-  private injectClocks_(n: number): void {
-    const contentEl = this.querySelector(`.${CONTENT_CLASS}`);
-    contentEl.classList.remove(CONTENT_CLASS);
-    contentEl.classList.add(CLOCKS_CLASS);
+  private setupDom_(): void {
+    const el = this.querySelector(this.getAttribute(TARGET_ATTR));
+    el.innerHTML = '';
+    for (let i = 1; i <= 9; i++) {
+      el.innerHTML += '<analog-clock class="clock"></analog-clock>';
+    }
+    el.className = CLOCKS_CLASS;
 
-    contentEl.innerHTML = '';
-    for (let i = 1; i <= n; i++) {
-      contentEl.innerHTML += '<analog-clock class="clock"></analog-clock>';
+    this.removeAttribute(TARGET_ATTR);
+    document.body.removeAttribute('no-js');
+  }
+
+  /**
+   * Removes 'no-touch' attribute and adds fastclick if device is touch-enabled.
+   */
+  private touchEnabled_(): void {
+    if ('ontouchstart' in window || (window as any).DocumentTouch) {
+      document.body.removeAttribute('no-touch');
+      fastclick['attach'](document.body);
     }
   }
 
   /**
-   * Updates copyright years with the current year.
+   * Sets custom property for viewport height that updates 'vh' calculation due
+   * to iOS Safari behavior where chrome appears and disappears when scrolling.
    */
-  private updateCopyright_(): void {
-    const startYear = this.getAttribute(YEAR_ATTR);
-    const currentYear = new Date().getFullYear().toString();
+  private viewportHeight_(): void {
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight / 100}px`);
+  }
 
-    const startDecade = startYear.substr(-2);
-    const currentDecade = currentYear.substr(-2);
-
-    const el = this.querySelector(COPYRIGHT_SELECTOR);
-    el.textContent = (startDecade !== currentDecade) ? `© ${startYear}–${currentDecade}` : `© ${startYear}`;
-
-    this.removeAttribute(YEAR_ATTR);
+  /**
+   * Initializes Google Analytics tracking.
+   */
+  private googleAnalytics_(): void {
+    if (process.env.NODE_ENV === 'production') {
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*(new Date() as any);a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      (window as any).ga('create', process.env.GA_ID, 'auto');
+      (window as any).ga('send', 'pageview');
+    }
   }
 }
 

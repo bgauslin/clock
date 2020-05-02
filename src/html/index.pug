@@ -1,5 +1,6 @@
 - const title = "Clock"
 - const description = "Analog clock whose nine sets of hands reveal patterns of time"
+- const currentYear = new Date().getFullYear().toString().substr(-2)
 
 doctype html
 html(lang="en")
@@ -13,8 +14,8 @@ html(lang="en")
     link(rel="preload" href="https://assets.gauslin.com/fonts/AvenirNext-Variable.woff2" as="font" type="font/woff2" crossorigin="crossorigin")
     link(rel="apple-touch-icon" href="/apple-touch-icon.png")
     link(rel="manifest" href="/pwa/manifest.json")
-  body(no-touch)
-    clock-app.app(year="2018")
+  body(no-touch no-js)
+    clock-app.app(target=".content")
       app-header.header
         div.header__frame
           digital-clock(target=".site-name")
@@ -24,7 +25,7 @@ html(lang="en")
         noscript Please <a href="https://www.enable-javascript.com/" title="How to enable JavaScript in your browser">enable JavaScript</a> to view this app.
       footer.footer
         p.copyright
-          span.copyright__years © 2018
+          span.copyright__years © 2018–#{currentYear}
           a.copyright__owner(
             href="https://gauslin.com",
             title="Ben Gauslin’s Website",
