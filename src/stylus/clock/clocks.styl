@@ -34,7 +34,7 @@ total = grid_count * grid_count
   margin 5vh 5vw
   max-width MAX_WIDTH
   overflow hidden
-  transition background var(--transition), border var(--transition)
+  transition background TRANSITION, border TRANSITION
 
 .clock
   display block
@@ -58,8 +58,8 @@ for i in (1..total)
 .clock__hand
   stroke var(--hands)
   stroke-width 6px // Double the value of the SVG pivot's value.
-  transition stroke var(--transition)
+  transition stroke TRANSITION
 
 .clock__pivot
   fill var(--hands)
-  transition fill var(--transition)
+  transition fill TRANSITION
