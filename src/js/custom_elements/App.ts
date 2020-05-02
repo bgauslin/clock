@@ -1,6 +1,5 @@
 import fastclick from 'fastclick';
 
-const CLOCKS_CLASS: string = 'clocks';
 const TARGET_ATTR: string = 'target';
 
 /**
@@ -32,13 +31,15 @@ class App extends HTMLElement {
    * Renders analog clocks into an existing DOM element.
    */
   private setupDom_(): void {
+    // Change element's classname and fill it with analog clocks.
     const el = this.querySelector(this.getAttribute(TARGET_ATTR));
+    el.className = 'clocks';
     el.innerHTML = '';
     for (let i = 1; i <= 9; i++) {
       el.innerHTML += '<analog-clock class="clock"></analog-clock>';
     }
-    el.className = CLOCKS_CLASS;
 
+    // Clean up.
     this.removeAttribute(TARGET_ATTR);
     document.body.removeAttribute('no-js');
   }
