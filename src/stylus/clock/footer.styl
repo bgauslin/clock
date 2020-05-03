@@ -1,28 +1,26 @@
 .footer
-  color var(--text)
-  grid-row 3
-  opacity .7
-  padding 0 0 env(safe-area-inset-bottom)
-
-.copyright
   align-items center
+  color var(--text)
   display flex
   font-size var(--fineprint)
+  grid-row 3
   height var(--footer-height)
   justify-content center
-  margin 0
-  padding 0
-  text-align center
-
-.copyright__years
-.copyright__owner
+  opacity .7
+  padding 0 0 env(safe-area-inset-bottom)
   transition color TRANSITION
 
-.copyright__years
+.footer__years
   margin-right em(8)
 
-.copyright__owner
+.footer__link
   link(var(--link), var(--link), var(--link-active), var(--link-active))
 
-[no-touch] .copyright__owner:hover
+[no-touch] .footer__link:hover
   transition color TRANSITION
+
+.footer__blurb--repo::before
+  content '·'
+  display inline-block
+  text-align center
+  width 1rem
