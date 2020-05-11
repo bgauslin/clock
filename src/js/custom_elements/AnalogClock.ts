@@ -45,7 +45,7 @@ class AnalogClock extends HTMLElement {
     if (minutesAngle !== this.previousMinutesAngle_) {
       this.previousMinutesAngle_ = minutesAngle;
       const html = `\
-        <svg viewbox="0 0 ${SIZE} ${SIZE}">\
+        <svg viewbox="0 0 ${SIZE} ${SIZE}" aria-hidden="true">\
           <g>\
             <line \
               class="clock__hand" \
