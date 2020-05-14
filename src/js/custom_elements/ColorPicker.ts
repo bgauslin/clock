@@ -166,15 +166,17 @@ class ColorPicker extends HTMLElement {
       <button class="${this.className}__toggle" \
         id="menu-toggle" \
         title="${label}" \
+        aria-haspopup="true" \
         aria-label="${label}" \
-        aria-controls="menu" \
+        aria-controls="color-menu" \
         ${ARIA_EXPANDED_ATTR}="false">\
         <svg class="${this.className}__icon" viewbox="0 0 24 24" aria-hidden="true">\
           <path d="${ICON_PATH}"/>\
         </svg>\
       </button>\
       <ul class="${this.className}__menu" \
-        id="menu" \
+        id="color-menu" \
+        role="menu" \
         aria-labelledby="menu-toggle" \
         ${ARIA_HIDDEN_ATTR}="true">\
         ${listItems}\
