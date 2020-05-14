@@ -175,7 +175,7 @@ class ColorPicker extends HTMLElement {
       </button>\
       <ul class="${this.className}__menu" \
         id="menu" \
-        aria-controlledby="menu-toggle" \
+        aria-labelledby="menu-toggle" \
         ${ARIA_HIDDEN_ATTR}="true">\
         ${listItems}\
       </ul>\
