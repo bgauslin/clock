@@ -86,6 +86,7 @@
 
 .color-picker__swatch
   align-items center
+  background var(--face)
   border 2px solid white
   border-radius 50%
   color transparent
@@ -99,7 +100,14 @@
 .color-picker__swatch[option=white]
   border-color #eee
 
+// TODO: Refactor/update CSS/JS to apply color-blended borders without Stylus.
+// border-color mix(black, face_rgb, 30%)
+.color-picker__option:checked + .color-picker__swatch
+  border-color DARK_GREY
+
 .color-picker__option:checked + .color-picker__swatch::after
+  border-bottom 2px solid var(--hands)
+  border-left 2px solid var(--hands)
   content ''
   display inline-block
   height rem(7)
@@ -108,19 +116,6 @@
   top rem(7)
   transform rotate(-45deg)
   width rem(14)
-
-for name, value in ColorPalette
-  face_rgb = rgb(value.face)
-
-  .color-picker__swatch[option={name}]
-    background '%s' % value.face
-  
-  .color-picker__option:checked + .color-picker__swatch[option={name}]
-    border-color mix(black, face_rgb, 30%)
-  
-  .color-picker__option:checked + .color-picker__swatch[option={name}]::after
-    border-bottom '2px solid %s' % value.hands
-    border-left '2px solid %s' % value.hands
 
 [no-touch] .color-picker__swatch
   transition transform TRANSITION
