@@ -147,17 +147,28 @@ class ColorPicker extends HTMLElement {
    * Creates elements and attaches them to the DOM.
    */
   private setup_(): void {
-    this.setAttribute(COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || ColorPalette[0][0]);
+    this.setAttribute(
+        COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || ColorPalette[0][0]);
 
     let listItems = '';
     ColorPalette.forEach((color) => {
       const [colorName] = color;
-      const checked = (colorName === this.getAttribute(COLOR_ATTR)) ? 'checked' : '';
+      const checked =
+          (colorName === this.getAttribute(COLOR_ATTR)) ? 'checked' : '';
       listItems += `\
         <li class="${this.className}__item">\
-          <label class="${this.className}__label" for="${colorName}" tabindex="0">\
-            <input class="${this.className}__option" type="radio" name="color" value="${colorName}" ${checked}>\
-            <span class="${this.className}__swatch" option="${colorName}" color="${colorName}">${colorName}</span>
+          <label \
+            class="${this.className}__label" \
+            for="${colorName}" tabindex="0">\
+            <input \
+              class="${this.className}__option" \
+              type="radio" name="color" \
+              value="${colorName}" \
+              ${checked}>\
+            <span \
+              class="${this.className}__swatch" \
+              option="${colorName}" \
+              color="${colorName}">${colorName}</span>\
           </label>\
         </li>\
       `;
@@ -165,18 +176,23 @@ class ColorPicker extends HTMLElement {
 
     const label = 'Color options';
     const html = `\
-      <button class="${this.className}__toggle" \
+      <button \
+        class="${this.className}__toggle" \
         id="menu-toggle" \
         title="${label}" \
         aria-haspopup="true" \
         aria-label="${label}" \
         aria-controls="color-menu" \
         ${ARIA_EXPANDED_ATTR}="false">\
-        <svg class="${this.className}__icon" viewbox="0 0 24 24" aria-hidden="true">\
+        <svg \
+          class="${this.className}__icon" \
+          viewbox="0 0 24 24" \
+          aria-hidden="true">\
           <path d="${ICON_PATH}"/>\
         </svg>\
       </button>\
-      <ul class="${this.className}__menu" \
+      <ul \
+        class="${this.className}__menu" \
         id="color-menu" \
         role="menu" \
         aria-labelledby="menu-toggle" \
