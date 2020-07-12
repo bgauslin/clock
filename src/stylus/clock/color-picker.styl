@@ -25,8 +25,11 @@
   flex 0 0 rem(20)
 
 .color-picker__menu
-  elevation(2)
-  background white
+.color-picker__menu::before
+  background var(--menu-background)
+  box-shadow var(--menu-shadow)
+
+.color-picker__menu
   border-radius rem(4)
   display grid
   grid-gap rem(8)
@@ -53,8 +56,6 @@
 
 // Menu arrow via rotated square with a shadow.
 .color-picker__menu::before
-  elevation(2)
-  background white
   clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
   content ''
   display block
