@@ -169,7 +169,10 @@ class ColorPicker extends HTMLElement {
               class="${this.className}__swatch" \
               option="${colorName}" \
               color="${colorName}">${colorName}</span>\
-          </label>\
+            <div \
+              class="${this.className}__marker" \
+              color="${colorName}"></span>\
+          </div>\
         </li>\
       `;
     });
