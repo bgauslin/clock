@@ -4,7 +4,7 @@
   --header-height rem(48)
   --site-header rem(16)
 
-  @media Breakpoint.MEDIUM
+  @media breakpoint.medium
     --fineprint em(14)
     --footer-height rem(60)
     --header-height rem(60)
@@ -14,19 +14,19 @@
   --background #f7f7f7
   --border #ddd
   --header-background rgba(white, .97)
-  --link DARK_GREY
-  --link-active rgba(DARK_GREY, .7)
+  --link grey-dark
+  --link-active rgba(grey-dark, .7)
   --menu-background white
   --menu-shadow elevation(2)
-  --text DARK_GREY
+  --text grey-dark
 
   // Dark theme per user settings.
   @media (prefers-color-scheme dark)
     --background #262626
     --border #333
-    --header-background rgba(DARK_GREY, .95)
+    --header-background rgba(grey-dark, .95)
     --link white
     --link-active rgba(white, .7)
-    --menu-background DARK_GREY
+    --menu-background grey-dark
     --menu-shadow 0 0 0 1px #555
     --text white

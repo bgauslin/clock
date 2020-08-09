@@ -32,9 +32,9 @@ total = grid_count * grid_count
   grid-template-rows 'repeat(%s, 1fr)' % ((grid_count + 1) * interval)
   justify-self center
   margin 5vh 5vw
-  max-width MAX_WIDTH
+  max-width max-width
   overflow hidden
-  transition background TRANSITION, border TRANSITION
+  transition background transition, border transition
 
 .clock
   display block
@@ -58,8 +58,8 @@ for i in (1..total)
 .clock__hand
   stroke var(--hands)
   stroke-width 6px // Double the value of the SVG pivot's value.
-  transition stroke TRANSITION
+  transition stroke transition
 
 .clock__pivot
   fill var(--hands)
-  transition fill TRANSITION
+  transition fill transition

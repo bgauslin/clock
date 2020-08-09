@@ -8,14 +8,14 @@
   right 0
   top 0
   transform translate3d(0, var(--sticky-shift), 0) // Custom property is set via JS.
-  transition background TRANSITION, border TRANSITION, color TRANSITION
+  transition background transition, border transition, color transition
 
 .header__frame
   align-items center
   display flex
   height var(--header-height)
   margin 0 auto
-  max-width 'calc(%s + 10vw)' % MAX_WIDTH
+  max-width 'calc(%s + 10vw)' % max-width
   padding 0 5vw
 
 .site-name

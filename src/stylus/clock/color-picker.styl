@@ -10,8 +10,8 @@
   display flex
   height var(--header-height)
   justify-content center
-  transition color TRANSITION, transform TRANSITION
-  width BUTTON_WIDTH
+  transition color transition, transform transition
+  width button-width
 
 .color-picker__toggle:focus
 [no-touch] .color-picker__toggle:hover
@@ -41,11 +41,11 @@
   position absolute
   right rem(-2)
   transform 'translateY(-%s)' % rem(12)
-  transition opacity TRANSITION, transform TRANSITION, visibility TRANSITION
+  transition opacity transition, transform transition, visibility transition
   visibility hidden
   z-index -1
 
-  @media Breakpoint.MEDIUM
+  @media breakpoint.medium
     margin-top rem(-2)
 
 [open] > .color-picker__menu
@@ -59,12 +59,12 @@
   clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
   content ''
   display block
-  height MENU_ARROW
+  height menu-arrow
   position absolute
-  right MENU_ARROW
-  top (- MENU_ARROW / 2)
+  right menu-arrow
+  top (- menu-arrow / 2)
   transform rotate(45deg)
-  width MENU_ARROW
+  width menu-arrow
 
 .color-picker__label
   display block
@@ -89,11 +89,11 @@
   border-radius 50%
   color transparent
   display inline-flex
-  height MENU_ITEM_SIZE
+  height menu-item-size
   justify-content center
   margin 2px
   position relative
-  width MENU_ITEM_SIZE
+  width menu-item-size
   z-index -1
 
 .color-picker__marker
@@ -138,7 +138,7 @@
 
 [no-touch] .color-picker__swatch
 [no-touch] .color-picker__marker
-  transition transform TRANSITION
+  transition transform transition
 
 .color-picker__label:focus .color-picker__option:not(:checked) + .color-picker__swatch
 .color-picker__label:focus .color-picker__option:not(:checked) ~ .color-picker__marker
