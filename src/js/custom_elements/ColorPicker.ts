@@ -48,16 +48,16 @@ export class ColorPicker extends HTMLElement {
     return [COLOR_ATTR];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     this.updateColor(oldValue, newValue);
   }
 
-  connectedCallback(): void {
+  connectedCallback() {
     this.setup();
     this.createStyles();
   }
 
-  disconnectedCallback(): void {
+  disconnectedCallback() {
     this.removeEventListener('click', this.handleClick);
     this.removeEventListener('keyup', this.handleKey);
     document.removeEventListener('click', this.closeMenuListener);
@@ -68,7 +68,7 @@ export class ColorPicker extends HTMLElement {
    * color if a swatch was clicked. If the menu is open, the next click will
    * close it.
    */
-  private handleClick(e: Event): void {
+  private handleClick(e: Event) {
     const target = e.target as HTMLElement;
 
     if (target === this.toggleButton) {
@@ -105,7 +105,7 @@ export class ColorPicker extends HTMLElement {
    * Closes the menu and removes the click-to-close listener that's added when
    * the menu is opened by the toggle button.
    */
-  private closeMenu(): void {
+  private closeMenu() {
     this.removeAttribute(OPEN_ATTR);
     document.removeEventListener('click', this.closeMenuListener);
     this.toggleButton.setAttribute(ARIA_EXPANDED_ATTR, 'false');
@@ -115,7 +115,7 @@ export class ColorPicker extends HTMLElement {
   /**
    * Updates the 'color' attribute and closes the menu.
    */
-  private setColor(target: HTMLElement): void {
+  private setColor(target: HTMLElement) {
     const newColor = target.getAttribute('for');
     if (newColor) {
       this.setAttribute(COLOR_ATTR, newColor);
@@ -127,7 +127,7 @@ export class ColorPicker extends HTMLElement {
    * Updates the current color and saves it to localStorage when the 'color'
    * attribute changes.
    */
-  private updateColor(oldValue: string, newValue: string): void {
+  private updateColor(oldValue: string, newValue: string) {
     const oldEl = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
     const newEl = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
 
@@ -146,7 +146,7 @@ export class ColorPicker extends HTMLElement {
   /**
    * Creates elements and attaches them to the DOM.
    */
-  private setup(): void {
+  private setup() {
     this.setAttribute(
         COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || ColorPalette[0][0]);
 
@@ -213,7 +213,7 @@ export class ColorPicker extends HTMLElement {
    * Injects an inline <style> element with custom properties scoped to an
    * attribute selector for each color option.
    */
-  private createStyles(): void {
+  private createStyles() {
     const style = document.createElement('style');
     ColorPalette.forEach((color) => {
       const [colorName, constrastColor] = color;

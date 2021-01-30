@@ -13,17 +13,17 @@ export class DigitalClock extends HTMLElement {
     this.interval = setInterval(() => this.setTime(), INTERVAL_MS);
   }
 
-  connectedCallback(): void {
+  connectedCallback() {
     this.targetEl = this.querySelector(this.getAttribute(TARGET_ATTR));
     this.removeAttribute(TARGET_ATTR);
     this.setTime();
   }
 
-  disconnectedCallback(): void {
+  disconnectedCallback() {
     clearInterval(this.interval);
   }
 
-  private setTime(): void {
+  private setTime() {
     const now = new Date();
     this.targetEl.textContent = now.toLocaleString('en-US', {
       hour: 'numeric',

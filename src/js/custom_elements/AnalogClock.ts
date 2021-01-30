@@ -20,18 +20,18 @@ export class AnalogClock extends HTMLElement {
     this.interval = setInterval(() => this.setHands(), INTERVAL_MS);
   }
 
-  connectedCallback(): void {
+  connectedCallback() {
     this.setHands();
   }
 
-  disconnectedCallback(): void {
+  disconnectedCallback() {
     clearInterval(this.interval);
   }
 
   /**
    * Calculates rotations for hours and minutes hands and renders an SVG.
    */
-  private setHands(): void {
+  private setHands() {
     // Get the current time.
     const now = new Date();
     const hours = now.getHours();
