@@ -5,32 +5,32 @@ const TARGET_ATTR: string = 'target';
 /**
  * Custom element that sets up the DOM and initialize site-wide features.
  */
-class App extends HTMLElement {
-  private hasSetup_: boolean;
+export class App extends HTMLElement {
+  private hasSetup: boolean;
 
   constructor() {
     super();
-    window.addEventListener('resize', this.viewportHeight_);
+    window.addEventListener('resize', this.viewportHeight);
   }
 
   connectedCallback(): void {
-    if (!this.hasSetup_) {
-      this.setupDom_();
-      this.touchEnabled_();
-      this.viewportHeight_();
-      this.googleAnalytics_();
-      this.hasSetup_ = true;
+    if (!this.hasSetup) {
+      this.setupDom();
+      this.touchEnabled();
+      this.viewportHeight();
+      this.googleAnalytics();
+      this.hasSetup = true;
     }
   }
 
   disconnectedCallback(): void {
-    window.removeEventListener('resize', this.viewportHeight_);
+    window.removeEventListener('resize', this.viewportHeight);
   }
 
   /**
    * Renders analog clocks into an existing DOM element.
    */
-  private setupDom_(): void {
+  private setupDom(): void {
     // Change element's classname and fill it with analog clocks.
     const el = this.querySelector(this.getAttribute(TARGET_ATTR));
     el.className = 'clocks';
@@ -47,7 +47,7 @@ class App extends HTMLElement {
   /**
    * Removes 'no-touch' attribute and adds fastclick if device is touch-enabled.
    */
-  private touchEnabled_(): void {
+  private touchEnabled(): void {
     if ('ontouchstart' in window || (window as any).DocumentTouch) {
       document.body.removeAttribute('no-touch');
       fastclick['attach'](document.body);
@@ -58,14 +58,14 @@ class App extends HTMLElement {
    * Sets custom property for viewport height that updates 'vh' calculation due
    * to iOS Safari behavior where chrome appears and disappears when scrolling.
    */
-  private viewportHeight_(): void {
+  private viewportHeight(): void {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight / 100}px`);
   }
 
   /**
    * Initializes Google Analytics tracking.
    */
-  private googleAnalytics_(): void {
+  private googleAnalytics(): void {
     if (process.env.NODE_ENV === 'production') {
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*(new Date() as any);a=s.createElement(o),
@@ -76,5 +76,3 @@ class App extends HTMLElement {
     }
   }
 }
-
-export {App};

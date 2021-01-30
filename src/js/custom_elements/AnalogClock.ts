@@ -10,28 +10,28 @@ const INTERVAL_MS: number = 1000;
  * Custom element that renders the minute and hours hands of analog clock via
  * SVG based on system time.
  */
-class AnalogClock extends HTMLElement {
-  private interval_: any;
-  private previousMinutesAngle_: number;
+export class AnalogClock extends HTMLElement {
+  private interval: any;
+  private previousMinutesAngle: number;
 
   constructor() {
     super();
-    this.previousMinutesAngle_ = 0;
-    this.interval_ = setInterval(() => this.setHands_(), INTERVAL_MS);
+    this.previousMinutesAngle = 0;
+    this.interval = setInterval(() => this.setHands(), INTERVAL_MS);
   }
 
   connectedCallback(): void {
-    this.setHands_();
+    this.setHands();
   }
 
   disconnectedCallback(): void {
-    clearInterval(this.interval_);
+    clearInterval(this.interval);
   }
 
   /**
    * Calculates rotations for hours and minutes hands and renders an SVG.
    */
-  private setHands_(): void {
+  private setHands(): void {
     // Get the current time.
     const now = new Date();
     const hours = now.getHours();
@@ -42,8 +42,8 @@ class AnalogClock extends HTMLElement {
     const minutesAngle = minutes * 6;
 
     // Redraw clock only when the minutes angle has changed (i.e. every minute).
-    if (minutesAngle !== this.previousMinutesAngle_) {
-      this.previousMinutesAngle_ = minutesAngle;
+    if (minutesAngle !== this.previousMinutesAngle) {
+      this.previousMinutesAngle = minutesAngle;
       const html = `\
         <svg viewbox="0 0 ${SIZE} ${SIZE}" aria-hidden="true">\
           <g>\
@@ -69,5 +69,3 @@ class AnalogClock extends HTMLElement {
     }
   }
 }
-
-export {AnalogClock};
