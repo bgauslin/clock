@@ -36,16 +36,13 @@ total = grid_count * grid_count
   overflow hidden
   transition background transition, border transition
 
-.clock
-  display block
-
 row = 0
 column = 0
 for i in (1..total)
   grid_column = (column * interval) + start
   grid_row = (row * interval) + start
 
-  .clock:nth-child({i})
+  analog-clock:nth-child({i})
     grid-column '%s / span %s' % (grid_column clock_span)
     grid-row '%s / span %s' % (grid_row clock_span)
 
@@ -54,12 +51,3 @@ for i in (1..total)
     row += 1
   else
     column += 1
-
-.clock__hand
-  stroke var(--hands)
-  stroke-width 6px // Double the value of the SVG pivot's value.
-  transition stroke transition
-
-.clock__pivot
-  fill var(--hands)
-  transition fill transition

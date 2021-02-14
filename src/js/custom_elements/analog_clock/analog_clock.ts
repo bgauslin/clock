@@ -1,9 +1,3 @@
-const HOURS_HAND_LENGTH: number = 30;
-const STROKE_WIDTH: number = 3;
-const SIZE: number = 100;
-const CENTER: number = SIZE / 2;
-const HOURS_HAND_END: number = CENTER - HOURS_HAND_LENGTH;
-const MINUTES_HAND_END: number = 0;
 const INTERVAL_MS: number = 1000;
 
 /**
@@ -13,11 +7,13 @@ const INTERVAL_MS: number = 1000;
 export class AnalogClock extends HTMLElement {
   private interval: any;
   private previousMinutesAngle: number;
+  private template: any;
 
   constructor() {
     super();
-    this.previousMinutesAngle = 0;
     this.interval = setInterval(() => this.setHands(), INTERVAL_MS);
+    this.previousMinutesAngle = 0;
+    this.template = require('./analog_clock.pug');
   }
 
   connectedCallback() {
@@ -44,28 +40,10 @@ export class AnalogClock extends HTMLElement {
     // Redraw clock only when the minutes angle has changed (i.e. every minute).
     if (minutesAngle !== this.previousMinutesAngle) {
       this.previousMinutesAngle = minutesAngle;
-      const html = `\
-        <svg viewbox="0 0 ${SIZE} ${SIZE}" aria-hidden="true">\
-          <g>\
-            <line \
-              class="clock__hand" \
-              x1="${CENTER}" y1="${CENTER}" \
-              x2="${CENTER}" y2="${HOURS_HAND_END}" \
-              transform="rotate(${hoursAngle}, ${CENTER}, ${CENTER})"/>\
-            <line \
-              class="clock__hand" \
-              x1="${CENTER}" y1="${CENTER}" \
-              x2="${CENTER}" y2="${MINUTES_HAND_END}" \
-              transform="rotate(${minutesAngle}, ${CENTER}, ${CENTER})"/>\
-            <circle \
-              class="clock__pivot" \
-              cx="${CENTER}" \
-              cy="${CENTER}" \
-              r="${STROKE_WIDTH}"/>\
-          </g>\
-        </svg>\
-      `;
-      this.innerHTML = html.replace(/\s\s/g, '');
+      this.innerHTML = this.template({
+        hoursAngle,
+        minutesAngle,
+      });
     }
   }
 }
