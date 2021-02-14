@@ -66,82 +66,83 @@ color-picker[open] > ul
   visibility visible
   z-index 1
 
-.color-picker__label
-  display block
-  position relative
-
-.color-picker__label:focus
-  outline 0
-
-[no-touch] .color-picker__label:hover
+color-picker label
   cursor pointer
-
-// Hide each item's radio button and use its label as the hit area.
-.color-picker__option
-  height 0
-  position absolute
-  visibility hidden
-  width 0
-
-.color-picker__swatch
-  align-items center
-  background var(--face)
-  border-radius 50%
-  color transparent
-  display inline-flex
-  height menu-item-size
-  justify-content center
-  margin 2px
+  display block
+  outline 0
   position relative
-  width menu-item-size
-  z-index -1
 
-.color-picker__marker
-.color-picker__marker::after
-  border-radius 50%
-  height 100%
-  left 0
-  position absolute
-  top 0
-  width 100%
-  
-.color-picker__marker
-  background var(--face)
-  visibility hidden
-  z-index -3
+  // Hide each item's radio button and use its label as the hit area.
+  & > input
+    height 0
+    position absolute
+    visibility hidden
+    width 0
 
-.color-picker__marker::after
-  background black
-  content ''
-  opacity .2
-  z-index -2
+  // The <span> inside each color option provides the outer ring for each swatch.
+  & > span
+    align-items center
+    background var(--face)
+    border-radius 50%
+    color transparent
+    display inline-flex
+    height menu-item-size
+    justify-content center
+    margin 2px
+    position relative
+    width menu-item-size
+    z-index -1
 
-// Always show  marker for white. Otherwise, the swatch color matches the
-// menu background and is effectively invisible.
-.color-picker__marker[color=white]
-  visibility visible
+    [no-touch] &
+      transition transform transition
 
-.color-picker__option:checked ~ .color-picker__marker
-  visibility visible
+  // The <div> inside each color option is the swatch.
+  & > div
+    background var(--face)
+    visibility hidden
+    z-index -3
 
-.color-picker__option:checked + .color-picker__swatch::after
-  border-bottom 2px solid var(--hands)
-  border-left 2px solid var(--hands)
-  content ''
-  display inline-block
-  height rem(7)
-  left rem(8)
-  position absolute
-  top rem(8)
-  transform rotate(-45deg)
-  width rem(14)
+    &
+    &::after
+      border-radius 50%
+      height 100%
+      left 0
+      position absolute
+      top 0
+      width 100%
 
-[no-touch] .color-picker__swatch
-[no-touch] .color-picker__marker
-  transition transform transition
+    &::after
+      background black
+      content ''
+      opacity .2
+      z-index -2
 
-.color-picker__label:focus .color-picker__option:not(:checked) + .color-picker__swatch
-.color-picker__label:focus .color-picker__option:not(:checked) ~ .color-picker__marker
-[no-touch] .color-picker__label:hover .color-picker__option:not(:checked) + .color-picker__swatch
-[no-touch] .color-picker__label:hover .color-picker__option:not(:checked) ~ .color-picker__marker
-  transform scale(1.2)
+    [no-touch] &
+      transition transform transition
+
+    // Always show the swatch for white since you can't see it otherwise.
+    &[color=white]
+      visibility visible
+
+color-picker input:checked
+  & + span::after
+    border-bottom 2px solid var(--hands)
+    border-left 2px solid var(--hands)
+    content ''
+    display inline-block
+    height rem(7)
+    left rem(8)
+    position absolute
+    top rem(8)
+    transform rotate(-45deg)
+    width rem(14)
+
+  & ~ div
+    visibility visible
+
+color-picker
+  label:focus > input:not(:checked) + span
+  label:focus > input:not(:checked) ~ div
+  [no-touch] & label:hover > input:not(:checked) + span
+  [no-touch] & label:hover > input:not(:checked) ~ div
+    transform scale(1.2)

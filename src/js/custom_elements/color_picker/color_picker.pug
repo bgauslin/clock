@@ -25,23 +25,21 @@ ul(
     - const [colorName] = color
     li
       label(
-        class="color-picker__label"
         for=colorName
         tabindex="0"
       )
         input(
-          class="color-picker__option"
           type="radio"
           name="color"
+          id=colorName
           value=colorName
           checked=(colorName === colorSelected ? 'checked' : false)
         )
         span(
-          class="color-picker__swatch"
-          option=colorName
           color=colorName
+          aria-hidden="true"
         )= colorName
         div(
-          class="color-picker__marker"
           color=colorName
+          aria-hidden="true"
         )
