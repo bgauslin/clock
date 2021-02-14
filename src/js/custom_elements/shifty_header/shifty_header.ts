@@ -61,4 +61,4 @@ export class ShiftyHeader extends HTMLElement {
   }
 }
 
-customElements.define('app-header', ShiftyHeader);
+customElements.define('shifty-header', ShiftyHeader);
