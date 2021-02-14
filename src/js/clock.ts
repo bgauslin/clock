@@ -7,7 +7,7 @@ import {DigitalClock} from './custom_elements/DigitalClock';
 import {ShiftyHeader} from './custom_elements/ShiftyHeader';
 
 // Import styles for injecting into DOM.
-import '../stylus/clock.styl';
+import '../stylus/index.styl';
 
 // Define all custom elements.
 const map = new Map();
