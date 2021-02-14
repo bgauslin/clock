@@ -33,3 +33,5 @@ export class DigitalClock extends HTMLElement {
     });
   }
 }
+
+customElements.define('digital-clock', DigitalClock);

@@ -76,3 +76,5 @@ export class App extends HTMLElement {
     }
   }
 }
+
+customElements.define('clock-app', App);

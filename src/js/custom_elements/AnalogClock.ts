@@ -69,3 +69,5 @@ export class AnalogClock extends HTMLElement {
     }
   }
 }
+
+customElements.define('analog-clock', AnalogClock);

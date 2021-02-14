@@ -60,3 +60,5 @@ export class ShiftyHeader extends HTMLElement {
     this.yScrollLast = (this.yScroll <= 0) ? 0 : this.yScroll;
   }
 }
+
+customElements.define('app-header', ShiftyHeader);

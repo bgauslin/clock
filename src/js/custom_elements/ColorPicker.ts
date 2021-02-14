@@ -228,3 +228,5 @@ export class ColorPicker extends HTMLElement {
     document.body.appendChild(style);
   }
 }
+
+customElements.define('color-picker', ColorPicker);
