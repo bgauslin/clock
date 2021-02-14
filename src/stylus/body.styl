@@ -1,6 +1,9 @@
-.app
+body
+  webfont()
+  background var(--background)
   display grid
   grid-template-columns 1fr
   grid-template-rows var(--header-height) 1fr var(--footer-height)
   min-height 100vh // fallback
   min-height calc(var(--vh, 1vh) * 100)
+  transition background transition, color transition

@@ -1,15 +1,16 @@
 import fastclick from 'fastclick';
 
-const TARGET_ATTR: string = 'target';
+// const TARGET_ATTR: string = 'target';
 
 /**
  * Custom element that sets up the DOM and initialize site-wide features.
  */
-export class App extends HTMLElement {
+export class Tools extends HTMLElement {
   private hasSetup: boolean;
 
   constructor() {
     super();
+    this.hasSetup = false;
     window.addEventListener('resize', this.viewportHeight);
   }
 
@@ -28,20 +29,25 @@ export class App extends HTMLElement {
   }
 
   /**
-   * Renders analog clocks into an existing DOM element.
+   * Initializes Google Analytics tracking.
+   */
+  private googleAnalytics() {
+    if (process.env.NODE_ENV === 'production') {
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*(new Date() as any);a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      (window as any).ga('create', process.env.GA_ID, 'auto');
+      (window as any).ga('send', 'pageview');
+    }
+  }
+
+  /**
+   * Removes 'no JS' stuff from the DOM.
    */
   private setupDom() {
-    // Change element's classname and fill it with analog clocks.
-    const el = this.querySelector(this.getAttribute(TARGET_ATTR));
-    el.className = 'clocks';
-    el.innerHTML = '';
-    for (let i = 1; i <= 9; i++) {
-      el.innerHTML += '<analog-clock class="clock"></analog-clock>';
-    }
-
-    // Clean up.
-    this.removeAttribute(TARGET_ATTR);
     document.body.removeAttribute('no-js');
+    document.querySelector('noscript').remove();
   }
 
   /**
@@ -61,20 +67,6 @@ export class App extends HTMLElement {
   private viewportHeight() {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight / 100}px`);
   }
-
-  /**
-   * Initializes Google Analytics tracking.
-   */
-  private googleAnalytics() {
-    if (process.env.NODE_ENV === 'production') {
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*(new Date() as any);a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      (window as any).ga('create', process.env.GA_ID, 'auto');
-      (window as any).ga('send', 'pageview');
-    }
-  }
 }
 
-customElements.define('clock-app', App);
+customElements.define('x-tools', Tools);
