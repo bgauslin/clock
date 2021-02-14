@@ -1,0 +1,17 @@
+main
+  align-self center
+  grid-row 2
+  justify-self center
+  padding 0 env(safe-area-inset-right) 0 env(safe-area-inset-left)
+
+  [no-js] &
+    color var(--text)
+
+  [no-js] & a
+    color var(--text)
+    text-decoration underline
+    transition opacity transition
+
+    &:hover
+    &:focus
+      opacity .5

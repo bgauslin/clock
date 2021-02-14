@@ -16,13 +16,13 @@ html(lang="en")
     link(rel="manifest" href="/pwa/manifest.json")
     link(rel="preload" href="https://assets.gauslin.com/fonts/AvenirNext-Variable.woff2" as="font" type="font/woff2" crossorigin="crossorigin")
   body(no-touch no-js)
-    clock-app.app(target=".content")
+    clock-app.app(target="main")
       app-header.header
         div.header__frame
           digital-clock(target=".site-name")
             h1.site-name= title
           color-picker.color-picker
-      main.content
+      main
         noscript Please <a href="https://www.enable-javascript.com/" title="How to enable JavaScript in your browser">enable JavaScript</a> to view this app.
       footer.footer
         p.footer__blurb.footer__blurb--copyright
