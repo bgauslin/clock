@@ -155,8 +155,8 @@ export class ColorPicker extends HTMLElement {
       colorSelected,
     });
 
-    this.toggleButton = this.querySelector(`.color-picker__toggle`);
-    this.menu = this.querySelector(`.color-picker__menu`);
+    this.toggleButton = this.querySelector('button');
+    this.menu = this.querySelector('.color-picker__menu');
   }
 
   /**

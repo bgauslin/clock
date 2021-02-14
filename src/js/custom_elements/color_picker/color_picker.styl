@@ -1,25 +1,26 @@
-.color-picker
+color-picker
   margin 0 0 0 auto
   position relative
   z-index 1
 
-.color-picker__toggle
-  align-items center
-  color var(--link)
-  cursor pointer
-  display flex
-  height var(--header-height)
-  justify-content center
-  transition color transition, transform transition
-  width button-width
+  & > button
+    align-items center
+    color var(--link)
+    cursor pointer
+    display flex
+    height var(--header-height)
+    justify-content center
+    transition color transition, transform transition
+    width button-width
 
-.color-picker__toggle:focus
-[no-touch] .color-picker__toggle:hover
-  transform scale(1.2)
+    &:focus
+    [no-touch] &:hover
+      transform scale(1.2)
 
-.color-picker__toggle:active
-  color var(--link-active)
-  transform scale(.8)
+    &:active
+      color var(--link-active)
+      transform scale(.8)
+
 
 .color-picker__icon
   flex 0 0 rem(20)
