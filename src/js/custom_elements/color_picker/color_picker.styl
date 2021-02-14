@@ -3,34 +3,33 @@ color-picker
   position relative
   z-index 1
 
-  & > button
-    align-items center
-    color var(--link)
-    cursor pointer
-    display flex
-    height var(--header-height)
-    justify-content center
-    transition color transition, transform transition
-    width button-width
+color-picker > button
+  align-items center
+  color var(--link)
+  cursor pointer
+  display flex
+  height var(--header-height)
+  justify-content center
+  transition color transition, transform transition
+  width button-width
 
-    &:focus
-    [no-touch] &:hover
-      transform scale(1.2)
+  &:focus
+  [no-touch] &:hover
+    transform scale(1.2)
 
-    &:active
-      color var(--link-active)
-      transform scale(.8)
+  &:active
+    color var(--link-active)
+    transform scale(.8)
 
-
-.color-picker__icon
+color-picker > button svg
   flex 0 0 rem(20)
 
-.color-picker__menu
-.color-picker__menu::before
-  background var(--menu-background)
-  box-shadow var(--menu-shadow)
+color-picker > ul
+  &
+  &::before
+    background var(--menu-background)
+    box-shadow var(--menu-shadow)
 
-.color-picker__menu
   border-radius rem(4)
   display grid
   grid-gap rem(8)
@@ -49,23 +48,23 @@ color-picker
   @media breakpoint.medium
     margin-top rem(-2)
 
-[open] > .color-picker__menu
+  // Menu arrow via rotated square with a shadow.
+  &::before
+    clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
+    content ''
+    display block
+    height menu-arrow
+    position absolute
+    right menu-arrow
+    top (- menu-arrow / 2)
+    transform rotate(45deg)
+    width menu-arrow
+
+color-picker[open] > ul
   opacity 1
   transform translateY(0)
   visibility visible
   z-index 1
-
-// Menu arrow via rotated square with a shadow.
-.color-picker__menu::before
-  clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
-  content ''
-  display block
-  height menu-arrow
-  position absolute
-  right menu-arrow
-  top (- menu-arrow / 2)
-  transform rotate(45deg)
-  width menu-arrow
 
 .color-picker__label
   display block
