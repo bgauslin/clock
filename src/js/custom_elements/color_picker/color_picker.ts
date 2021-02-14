@@ -156,21 +156,21 @@ export class ColorPicker extends HTMLElement {
       const checked =
           (colorName === this.getAttribute(COLOR_ATTR)) ? 'checked' : '';
       listItems += `\
-        <li class="${this.className}__item">\
+        <li class="color-picker__item">\
           <label \
-            class="${this.className}__label" \
+            class="color-picker__label" \
             for="${colorName}" tabindex="0">\
             <input \
-              class="${this.className}__option" \
+              class="color-picker__option" \
               type="radio" name="color" \
               value="${colorName}" \
               ${checked}>\
             <span \
-              class="${this.className}__swatch" \
+              class="color-picker__swatch" \
               option="${colorName}" \
               color="${colorName}">${colorName}</span>\
             <div \
-              class="${this.className}__marker" \
+              class="color-picker__marker" \
               color="${colorName}"></span>\
           </div>\
         </li>\
@@ -180,33 +180,33 @@ export class ColorPicker extends HTMLElement {
     const label = 'Color options';
     const html = `\
       <button \
-        class="${this.className}__toggle" \
+        class="color-picker__toggle" \
         id="menu-toggle" \
         title="${label}" \
         aria-haspopup="true" \
         aria-label="${label}" \
         aria-controls="color-menu" \
-        ${ARIA_EXPANDED_ATTR}="false">\
+        aria-expanded="false">\
         <svg \
-          class="${this.className}__icon" \
+          class="color-picker__icon" \
           viewbox="0 0 24 24" \
           aria-hidden="true">\
           <path d="${ICON_PATH}"/>\
         </svg>\
       </button>\
       <ul \
-        class="${this.className}__menu" \
+        class="color-picker__menu" \
         id="color-menu" \
         role="menu" \
         aria-labelledby="menu-toggle" \
-        ${ARIA_HIDDEN_ATTR}="true">\
+        aria-hidden="true">\
         ${listItems}\
       </ul>\
     `;
     this.innerHTML = html.replace(/\s\s/g, '');
 
-    this.toggleButton = this.querySelector(`.${this.className}__toggle`);
-    this.menu = this.querySelector(`.${this.className}__menu`);
+    this.toggleButton = this.querySelector(`.color-picker__toggle`);
+    this.menu = this.querySelector(`.color-picker__menu`);
   }
 
   /**
