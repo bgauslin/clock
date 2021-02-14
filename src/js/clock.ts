@@ -1,10 +1,10 @@
 require('dotenv').config();
 
-import './custom_elements/AnalogClock';
-import './custom_elements/App';
-import './custom_elements/ColorPicker';
-import './custom_elements/DigitalClock';
-import './custom_elements/ShiftyHeader';
+import './custom_elements/analog_clock/analog_clock';
+import './custom_elements/app/app';
+import './custom_elements/color_picker/color_picker';
+import './custom_elements/digital_clock/digital_clock';
+import './custom_elements/shifty_header/shifty_header';
 
 // Import styles for injecting into DOM.
 import '../stylus/index.styl';
