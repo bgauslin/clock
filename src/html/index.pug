@@ -14,7 +14,13 @@ html(lang="en")
     link(rel="apple-touch-icon" href="/apple-touch-icon.png")
     link(rel="icon" type="image/svg+xml" href="/favicon.svg")
     link(rel="manifest" href="/pwa/manifest.json")
-    link(rel="preload" href="https://assets.gauslin.com/fonts/AvenirNext-Variable.woff2" as="font" type="font/woff2" crossorigin="crossorigin")
+    link(
+      rel="preload"
+      href="https://assets.gauslin.com/fonts/AvenirNext-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="crossorigin"
+    )
   body(no-js no-touch)
     header
       div
@@ -33,4 +39,4 @@ html(lang="en")
         href="https://github.com/bgauslin/clock"
         title="View source code on GitHub"
       ) GitHub
-    x-tools(target="main")
+    x-tools

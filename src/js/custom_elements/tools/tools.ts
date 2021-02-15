@@ -1,7 +1,5 @@
 import fastclick from 'fastclick';
 
-// const TARGET_ATTR: string = 'target';
-
 /**
  * Custom element that sets up the DOM and initialize site-wide features.
  */
@@ -16,7 +14,7 @@ export class Tools extends HTMLElement {
 
   connectedCallback() {
     if (!this.hasSetup) {
-      this.setupDom();
+      document.body.removeAttribute('no-js');
       this.touchEnabled();
       this.viewportHeight();
       this.googleAnalytics();
@@ -40,14 +38,6 @@ export class Tools extends HTMLElement {
       (window as any).ga('create', process.env.GA_ID, 'auto');
       (window as any).ga('send', 'pageview');
     }
-  }
-
-  /**
-   * Removes 'no JS' stuff from the DOM.
-   */
-  private setupDom() {
-    document.body.removeAttribute('no-js');
-    document.querySelector('noscript').remove();
   }
 
   /**
