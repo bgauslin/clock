@@ -1,10 +1,22 @@
 header
-  align-items center
-  display flex
-  height var(--header-height)
-  margin 0 auto
-  max-width 'calc(%s + 10vw)' % max-width
-  padding 0 5vw
+  background var(--header-background)
+  border-bottom 1px solid var(--border)
+  color var(--text)
+  left 0
+  padding 0 env(safe-area-inset-right) 0 env(safe-area-inset-left)
+  position fixed
+  right 0
+  top 0
+  transform translate3d(0, var(--sticky-shift), 0) // Custom property is set via JS.
+  transition background transition, border transition, color transition
+
+  & > div
+    align-items center
+    display flex
+    height var(--header-height)
+    margin 0 auto
+    max-width 'calc(%s + 10vw)' % max-width
+    padding 0 5vw
 
   h1
     font-size var(--site-header)

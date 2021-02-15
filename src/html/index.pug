@@ -16,10 +16,10 @@ html(lang="en")
     link(rel="manifest" href="/pwa/manifest.json")
     link(rel="preload" href="https://assets.gauslin.com/fonts/AvenirNext-Variable.woff2" as="font" type="font/woff2" crossorigin="crossorigin")
   body(no-js no-touch)
-    shifty-header
-      header
-        digital-clock(target="h1")
-          h1= title
+    header
+      div
+        h1
+          digital-clock= title
         color-picker
     main
       noscript Please <a href="https://www.enable-javascript.com/" title="How to enable JavaScript in your browser">enable JavaScript</a> to view this app.
