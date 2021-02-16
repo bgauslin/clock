@@ -67,8 +67,8 @@ export class ColorPicker extends HTMLElement {
    * color if a swatch was clicked. If the menu is open, the next click will
    * close it.
    */
-  private handleClick(e: Event) {
-    const target = e.target as HTMLElement;
+  private handleClick(event: Event) {
+    const target = event.target as HTMLElement;
 
     if (target === this.toggleButton) {
       if (this.hasAttribute(OPEN_ATTR)) {
@@ -89,10 +89,10 @@ export class ColorPicker extends HTMLElement {
   /**
    * Adds keyboard navigation to the menu.
    */
-  private handleKey(e: KeyboardEvent) {
-    switch (e.code) {
+  private handleKey(event: KeyboardEvent) {
+    switch (event.code) {
       case 'Enter':
-        this.setColor(e.target as HTMLElement);
+        this.setColor(event.target as HTMLElement);
         break;
       case 'Escape':
         this.closeMenu();
@@ -127,15 +127,15 @@ export class ColorPicker extends HTMLElement {
    * attribute changes.
    */
   private updateColor(oldValue: string, newValue: string) {
-    const oldEl = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
-    const newEl = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
+    const oldElement = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
+    const newElement = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
 
-    if (oldEl) {
-      oldEl.checked = false;
+    if (oldElement) {
+      oldElement.checked = false;
     }
 
-    if (newEl) {
-      newEl.checked = true;
+    if (newElement) {
+      newElement.checked = true;
     }
 
     document.body.setAttribute(COLOR_ATTR, newValue);
