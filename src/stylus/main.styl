@@ -2,10 +2,8 @@ main
   align-self center
   grid-row 2
   justify-self center
+  min-height calc((var(--vh) * 100) - var(--header-height))
   padding 0 env(safe-area-inset-right) 0 env(safe-area-inset-left)
-
-[no-js] main
-  color var(--text)
 
   a
     color var(--text)
@@ -15,3 +13,6 @@ main
     &:hover
     &:focus
       opacity .5
+
+[no-js] main
+  color var(--text)

@@ -10,17 +10,8 @@ footer
   padding 0 0 env(safe-area-inset-bottom)
   transition color transition
 
-  span
-    margin-right em(8)
-
   a
     link(var(--link), var(--link), var(--link-active), var(--link-active))
 
     [no-touch] &:hover
       transition color transition
-
-    &:not(:first-of-type)::before
-      content '·'
-      display inline-block
-      text-align center
-      width 1rem

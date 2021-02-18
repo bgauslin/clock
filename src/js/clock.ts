@@ -9,7 +9,9 @@ import '../stylus/index.styl';
 // Empty out <main>, add a classname for CSS, and render 9 analog clocks.
 (() => {
   const main = document.querySelector('main');
+  const clocks = document.createElement('div');
   main.classList.add('clocks');
+  clocks.id = 'clocks';
 
   while (main.firstChild) {
     main.firstChild.remove();
@@ -17,8 +19,10 @@ import '../stylus/index.styl';
 
   for (let i = 1; i <= 9; i++) {
     const clock = document.createElement('analog-clock');
-    main.appendChild(clock);
+    clocks.appendChild(clock);
   }
+
+  main.appendChild(clocks);
 })();
 
 // Register the Service Worker.

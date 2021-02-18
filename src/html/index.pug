@@ -1,6 +1,6 @@
 - const title = "Clock"
 - const description = "Analog clock whose nine sets of hands reveal patterns of time"
-- const currentYear = new Date().getFullYear().toString().substr(-2)
+- const currentYear = new Date().getFullYear()
 
 doctype html
 html(lang="en")
@@ -30,13 +30,8 @@ html(lang="en")
     main
       noscript Please <a href="https://www.enable-javascript.com/" title="How to enable JavaScript in your browser">enable JavaScript</a> to view this app.
     footer
-      span © 2018–#{currentYear}
       a(
         href="https://gauslin.com"
         title="Visit Ben Gauslin’s Website"
-      ) Ben Gauslin
-      a(
-        href="https://github.com/bgauslin/clock"
-        title="View source code on GitHub"
-      ) GitHub
+      ) © #{currentYear} Ben Gauslin
     x-tools
