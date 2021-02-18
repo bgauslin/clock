@@ -63,86 +63,6 @@ export class ColorPicker extends HTMLElement {
   }
 
   /**
-   * Toggles the menu open/closed if the button was clicked, and changes the
-   * color if a swatch was clicked. If the menu is open, the next click will
-   * close it.
-   */
-  private handleClick(event: Event) {
-    const target = event.target as HTMLElement;
-
-    if (target === this.toggleButton) {
-      if (this.hasAttribute(OPEN_ATTR)) {
-        this.closeMenu();
-      } else {
-        this.setAttribute(OPEN_ATTR, '');
-        this.toggleButton.setAttribute(ARIA_EXPANDED_ATTR, 'true');
-        this.menu.setAttribute(ARIA_HIDDEN_ATTR, 'false');
-        window.requestAnimationFrame(() => {
-          document.addEventListener('click', this.closeMenuListener);
-        });
-      }
-    } else {
-      this.setColor(target);
-    }
-  }
-
-  /**
-   * Adds keyboard navigation to the menu.
-   */
-  private handleKey(event: KeyboardEvent) {
-    switch (event.code) {
-      case 'Enter':
-        this.setColor(event.target as HTMLElement);
-        break;
-      case 'Escape':
-        this.closeMenu();
-        break;
-    }
-  }
-
-  /**
-   * Closes the menu and removes the click-to-close listener that's added when
-   * the menu is opened by the toggle button.
-   */
-  private closeMenu() {
-    this.removeAttribute(OPEN_ATTR);
-    document.removeEventListener('click', this.closeMenuListener);
-    this.toggleButton.setAttribute(ARIA_EXPANDED_ATTR, 'false');
-    this.menu.setAttribute(ARIA_HIDDEN_ATTR, 'true');
-  }
-
-  /**
-   * Updates the 'color' attribute and closes the menu.
-   */
-  private setColor(target: HTMLElement) {
-    const newColor = target.getAttribute('for');
-    if (newColor) {
-      this.setAttribute(COLOR_ATTR, newColor);
-      this.closeMenu();
-    }
-  }
-
-  /**
-   * Updates the current color and saves it to localStorage when the 'color'
-   * attribute changes.
-   */
-  private updateColor(oldValue: string, newValue: string) {
-    const oldElement = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
-    const newElement = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
-
-    if (oldElement) {
-      oldElement.checked = false;
-    }
-
-    if (newElement) {
-      newElement.checked = true;
-    }
-
-    document.body.setAttribute(COLOR_ATTR, newValue);
-    localStorage.setItem(COLOR_ATTR, newValue);
-  }  
-
-  /**
    * Creates elements and attaches them to the DOM.
    */
   private setup() {
@@ -176,6 +96,87 @@ export class ColorPicker extends HTMLElement {
       style.innerHTML += theme.replace(/\s\s/g, '');
     });
     document.body.appendChild(style);
+  }
+
+  /**
+   * Updates the 'color' attribute and closes the menu.
+   */
+  private setColor(target: HTMLElement) {
+    const newColor = target.getAttribute('for');
+    if (newColor) {
+      this.setAttribute(COLOR_ATTR, newColor);
+      this.closeMenu();
+    }
+  }
+
+  /**
+   * Updates the current color and saves it to localStorage when the 'color'
+   * attribute changes.
+   */
+  private updateColor(oldValue: string, newValue: string) {
+    const oldElement = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
+    const newElement = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
+
+    if (oldElement) {
+      oldElement.checked = false;
+    }
+
+    if (newElement) {
+      newElement.checked = true;
+    }
+
+    document.body.setAttribute(COLOR_ATTR, newValue);
+    localStorage.setItem(COLOR_ATTR, newValue);
+  }
+
+  /**
+   * Closes the menu and removes the click-to-close listener that's added when
+   * the menu is opened by the toggle button.
+   */
+  private closeMenu() {
+    this.removeAttribute(OPEN_ATTR);
+    document.removeEventListener('click', this.closeMenuListener);
+    this.toggleButton.setAttribute(ARIA_EXPANDED_ATTR, 'false');
+    this.menu.setAttribute(ARIA_HIDDEN_ATTR, 'true');
+  }
+
+  /**
+   * Toggles the menu open/closed if the button was clicked, and changes the
+   * color if a swatch was clicked. If the menu is open, the next click will
+   * close it.
+   */
+  private handleClick(event: Event) {
+    const target = event.target as HTMLElement;
+
+    if (target === this.toggleButton) {
+      if (this.hasAttribute(OPEN_ATTR)) {
+        this.closeMenu();
+      } else {
+        this.setAttribute(OPEN_ATTR, '');
+        this.toggleButton.setAttribute(ARIA_EXPANDED_ATTR, 'true');
+        this.menu.setAttribute(ARIA_HIDDEN_ATTR, 'false');
+        window.requestAnimationFrame(() => {
+          document.addEventListener('click', this.closeMenuListener);
+        });
+      }
+    } else {
+      this.setColor(target);
+    }
+  }
+
+
+  /**
+   * Adds keyboard navigation to the menu.
+   */
+  private handleKey(event: KeyboardEvent) {
+    switch (event.code) {
+      case 'Enter':
+        this.setColor(event.target as HTMLElement);
+        break;
+      case 'Escape':
+        this.closeMenu();
+        break;
+    }
   }
 }
 
