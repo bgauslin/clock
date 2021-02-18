@@ -101,8 +101,8 @@ export class ColorPicker extends HTMLElement {
   /**
    * Updates the 'color' attribute and closes the menu.
    */
-  private setColor(target: HTMLElement) {
-    const newColor = target.getAttribute('for');
+  private setColor(target: HTMLInputElement) {
+    const newColor = target.value;
     if (newColor) {
       this.setAttribute(COLOR_ATTR, newColor);
       this.closeMenu();
