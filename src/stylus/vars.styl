@@ -1,19 +1,20 @@
+background-dark = #262626
+background-light = #f9f9f9
+
 :root
   --fineprint em(12)
-  --footer-height rem(96)
   --header-height rem(48)
   --site-header rem(16)
 
   @media breakpoint.medium
     --fineprint em(14)
-    --footer-height rem(120)
     --header-height rem(60)
     --site-header rem(20)
 
   // Default light theme.
-  --background #f7f7f7
+  --background background-light
   --border #ddd
-  --header-background rgba(white, .97)
+  --header-background rgba(background-light, .33)
   --link grey-dark
   --link-active rgba(grey-dark, .7)
   --menu-background white
@@ -24,7 +25,8 @@
   @media (prefers-color-scheme dark)
     --background #262626
     --border #333
-    --header-background rgba(grey-dark, .95)
+    --header-background rgba(background-dark, .33)
+    // --header-background rgba(grey-dark, .95)
     --link white
     --link-active rgba(white, .7)
     --menu-background grey-dark

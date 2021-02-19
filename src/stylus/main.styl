@@ -1,9 +1,8 @@
 main
   align-self center
-  grid-row 2
+  grid-area main
   justify-self center
-  min-height calc((var(--vh) * 100) - var(--header-height))
-  padding 0 env(safe-area-inset-right) 0 env(safe-area-inset-left)
+  padding 0 env(safe-area-inset-right) var(--header-height) env(safe-area-inset-left)
 
   a
     color var(--text)
