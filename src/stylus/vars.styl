@@ -9,22 +9,18 @@
     --site-header rem(20)
 
   // Default light theme.
-  --background background-light
-  --border #ddd
-  --header-background rgba(background-light, .33)
-  --link grey-dark
-  --link-active rgba(grey-dark, .7)
-  --menu-background white
-  --menu-shadow elevation(2)
-  --text grey-dark
+  --background-0 background-0
+  --background-1 background-1
+  --border-color border-color
+  --header-background rgba(background-0, .33)
+  --menu-box-shadow elevation(2)
+  --text-1-color text-1-color
 
   // Dark theme per user settings.
   @media (prefers-color-scheme dark)
-    --background #262626
-    --border #333
-    --header-background rgba(background-dark, .33)
-    --link white
-    --link-active rgba(white, .7)
-    --menu-background grey-dark
-    --menu-shadow 0 0 0 1px #555
-    --text white
+    --background-0 background-0-dark
+    --background-1 background-1-dark
+    --border-color border-color-dark
+    --header-background rgba(background-0-dark, .33)
+    --menu-box-shadow 0 0 0 1px border-color-dark
+    --text-1-color text-1-color-dark

@@ -5,31 +5,35 @@ color-picker
 
 color-picker > button
   align-items center
-  color var(--link)
+  color inherit
   cursor pointer
   display flex
   height var(--header-height)
   justify-content center
   margin 0 rem(-12) 0 0
-  transition color transition, transform transition
+  opacity 1
+  transition opacity transition, transform transition
   width button-width
 
   &:focus
   [no-touch] &:hover
-    transform scale(1.2)
+    transform scale(1.25)
+
+  [no-touch] &:hover
+    opacity .75
 
   &:active
-    color var(--link-active)
-    transform scale(.8)
+    transform scale(.85)
 
-color-picker > button svg
-  flex 0 0 rem(20)
+  > svg
+    flex 0 0 rem(20)
+    pointer-events none
 
 color-picker > ul
   &
   &::before
-    background var(--menu-background)
-    box-shadow var(--menu-shadow)
+    background var(--background-1)
+    box-shadow var(--menu-box-shadow)
 
   border-radius rem(4)
   display grid
