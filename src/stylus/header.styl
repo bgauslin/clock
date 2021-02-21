@@ -3,21 +3,25 @@ header
   background var(--header-background)
   color var(--text-1-color)
   grid-area header
+  height var(--header-height)
+  left 0
   padding 0 env(safe-area-inset-right) 0 env(safe-area-inset-left)
-  position sticky
+  position fixed
+  right 0
   top 0
-  transition background transition, border transition, color transition
+  z-index 2
 
   & > div
     align-items center
     display flex
     height var(--header-height)
+    justify-content space-between
     margin 0 auto
     max-width 'calc(%s + 10vw)' % max-width
     padding 0 5vw
 
   h1
-    font-size var(--site-header)
+    font-size var(--header-font-size)
     line-height 1
     margin 0
     white-space nowrap
