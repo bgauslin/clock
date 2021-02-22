@@ -124,10 +124,6 @@ color-picker label
     [no-touch] &
       transition transform transition
 
-    // Always show the swatch for white since you can't see it otherwise.
-    &[color=white]
-      visibility visible
-
 color-picker input:checked
   & + span::after
     border-bottom 2px solid var(--hands)
@@ -150,3 +146,9 @@ color-picker
   [no-touch] & label:hover > input:not(:checked) + span
   [no-touch] & label:hover > input:not(:checked) ~ div
     transform scale(1.2)
+
+// Always show the white swatch's border in light mode since the swatch blends
+// in with the menu background otherwise.
+@media (prefers-color-scheme light)
+  color-picker label > div[color=white]
+    visibility visible
