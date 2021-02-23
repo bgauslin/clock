@@ -6,17 +6,15 @@
     --header-font-size rem(20)
     --header-height rem(60)
 
-  // Default light theme.
   --background-0 background-0
   --background-1 background-1
-  --header-background rgba(background-0, .33)
+  --header-background rgba(background-0, header-alpha)
   --menu-box-shadow elevation(2)
   --text-1-color text-1-color
 
-  // Dark theme per user settings.
   @media (prefers-color-scheme dark)
     --background-0 background-0-dark
     --background-1 background-1-dark
-    --header-background rgba(background-0-dark, .33)
+    --header-background rgba(background-0-dark, header-alpha)
     --menu-box-shadow 0 0 0 1px border-color-dark
     --text-1-color text-1-color-dark
