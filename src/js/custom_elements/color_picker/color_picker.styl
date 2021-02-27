@@ -3,14 +3,13 @@ color-picker
   z-index 1
 
 color-picker > button
-  align-items center
   color inherit
   cursor pointer
   display flex
   height var(--header-height)
-  justify-content center
   margin 0 rem(-12) 0 0
   opacity 1
+  place-items center
   transition opacity transition, transform transition
   width button-width
 
@@ -85,13 +84,11 @@ color-picker label
 
   // The <span> inside each color option provides the outer ring for each swatch.
   & > span
-    align-items center
     background var(--face)
     border-radius 50%
     color transparent
     display inline-flex
     height menu-item-size
-    justify-content center
     margin 2px
     position relative
     width menu-item-size

@@ -1,13 +1,14 @@
 body
   background var(--background-0)
+  color var(--text-1-color)
   display grid
   font-family 'Avenir Variable', sans-serif
   font-variation-settings 'wght' 500
   grid-template-areas:
     'header'\
-    'main'
+    'main'\
+    '.'
   grid-template-columns 1fr
-  grid-template-rows var(--header-height) 1fr
-  min-height 100vh // fallback
+  grid-template-rows var(--header-height) 1fr var(--header-height)
   min-height calc(var(--vh, 1vh) * 100)
   transition background transition, color transition
