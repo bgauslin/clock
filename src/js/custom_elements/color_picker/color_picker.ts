@@ -22,7 +22,7 @@ const ColorPalette: string[][] = [
   ['blueviolet', 'white'],
   ['violet', 'black'],
   ['hotpink', 'black'],
-  ['silver', 'black'],
+  ['silver', 'black', '#f2f2f7'],
   ['black', 'white'],
 ];
 
@@ -86,11 +86,12 @@ export class ColorPicker extends HTMLElement {
   private createStyles() {
     const style = document.createElement('style');
     ColorPalette.forEach((color) => {
-      const [colorName, constrastColor] = color;
+      const [name, constrast, hex] = color;
+      const face = hex ? hex : name;
       const theme = `\
-        [color=${colorName}] {\
-          --face: ${colorName};\
-          --hands: ${constrastColor};\
+        [color=${name}] {\
+          --face: ${face};\
+          --hands: ${constrast};\
         }\
       `;
       style.innerHTML += theme.replace(/\s\s/g, '');
