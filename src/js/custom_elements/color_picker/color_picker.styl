@@ -1,10 +1,9 @@
 color-picker  
-  grid-area color-picker
-  place-self center
   position relative
   z-index 1
 
 color-picker > button
+  background var(--background-1)
   border-radius 50%
   color var(--text-2-color)
   cursor pointer
@@ -44,7 +43,7 @@ color-picker > ul
   opacity 0
   padding rem(12)
   position absolute
-  transform translate3d(-50%, 0, 0)
+  transform 'translate3d(-50%, %s, 0)' % rem(8)
   transition opacity transition, transform transition, visibility transition
   visibility hidden
   z-index -1
@@ -63,7 +62,7 @@ color-picker > ul
 
 color-picker[open] > ul
   opacity 1
-  transform 'translate3d(-50%, -%s, 0)' % rem(12)
+  transform 'translate3d(-50%, %s, 0)' % rem(-4)
   visibility visible
   z-index 1
 
