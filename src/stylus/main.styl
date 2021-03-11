@@ -1,16 +1,13 @@
 main
   grid-area clocks
-  padding 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
   place-self center
 
+[no-js] main
+  color var(--text-1-color)
+
   a
-    color var(--text-1-color)
-    text-decoration underline
     transition opacity transition
 
     &:hover
     &:focus
       opacity .5
-
-[no-js] main
-  color var(--text-1-color)
