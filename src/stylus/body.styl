@@ -5,11 +5,11 @@ body
   font-family 'Avenir Variable', sans-serif
   font-variation-settings 'wght' 500
   grid-template-areas:
-    'header'\
-    'main'\
-    '.'
+    'digital-clock'\
+    'clocks'\
+    'color-picker'
   grid-template-columns 1fr
-  grid-template-rows var(--header-height) 1fr var(--header-height)
+  grid-template-rows 1fr auto 1fr
   min-height calc(var(--vh, 1vh) * 100)
   overflow hidden
   transition background transition, color transition

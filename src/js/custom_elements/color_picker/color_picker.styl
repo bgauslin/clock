@@ -1,11 +1,11 @@
 color-picker
+  grid-area color-picker
+  place-self center
   position relative
-  right rem(-10)
   z-index 1
 
 color-picker > button
   border-radius 50%
-  color inherit
   cursor pointer
   display flex
   height button-height
@@ -36,35 +36,35 @@ color-picker > ul
     box-shadow var(--menu-box-shadow)
 
   border-radius rem(4)
+  bottom button-height
   display grid
   grid-gap rem(8)
   grid-template-columns repeat(4, 1fr)
+  left 50%
   list-style none
-  margin rem(8) 0 0
   opacity 0
   padding rem(12)
   position absolute
-  right rem(-2)
-  transform 'translateY(-%s)' % rem(12)
+  transform translate3d(-50%, 0, 0)
   transition opacity transition, transform transition, visibility transition
   visibility hidden
   z-index -1
 
-  // Menu arrow via rotated square with a shadow.
+  // Menu arrow via rotated square with a drop shadow and clip-path.
   &::before
+    bottom (- menu-arrow / 2)
     clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
     content ''
     display block
     height menu-arrow
     position absolute
-    right menu-arrow
-    top (- menu-arrow / 2)
-    transform rotate(45deg)
+    left 'calc(50% - %s)' % (menu-arrow / 2)
+    transform rotate(-135deg)
     width menu-arrow
 
 color-picker[open] > ul
   opacity 1
-  transform translateY(0)
+  transform 'translate3d(-50%, -%s, 0)' % rem(12)
   visibility visible
   z-index 1
 
@@ -81,7 +81,7 @@ color-picker label
     visibility hidden
     width 0
 
-  // The <span> inside each color option provides the outer ring for each swatch.
+  // The <span> inside each color option provides the outer ring of each swatch.
   & > span
     background var(--face)
     border-radius 50%
@@ -96,7 +96,7 @@ color-picker label
     [no-touch] &
       transition transform transition
 
-  // The <div> inside each color option is the swatch.
+  // The <div> inside each color option is the inner circle of each swatch.
   & > div
     background var(--face)
     visibility hidden
