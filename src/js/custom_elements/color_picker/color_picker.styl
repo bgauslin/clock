@@ -6,21 +6,19 @@ color-picker
 
 color-picker > button
   border-radius 50%
-  color var(--text-1-color)
+  color var(--text-2-color)
   cursor pointer
   display flex
   height button-height
   opacity 1
   place-items center
-  transition opacity transition, transform transition
+  transition color transition, transform transition
   width button-width
 
   &:focus
   [no-touch] &:hover
+    color var(--text-1-color)
     transform scale(1.25)
-
-  [no-touch] &:hover
-    opacity .75
 
   &:active
     transform scale(.85)
