@@ -11,18 +11,18 @@ color-picker > button
   height button-height
   opacity 1
   place-items center
-  transition color transition, transform transition
+  transition background transition, transform transition
   width button-width
 
+  &:active
   &:focus
   [no-touch] &:hover
-    color var(--text-1-color)
-    transform scale(1.25)
+    background var(--background-2)
 
   &:active
-    transform scale(.85)
+    transform scale(.9)
 
-  > svg
+  svg
     fill currentColor
     flex 0 0 rem(20)
     margin auto
