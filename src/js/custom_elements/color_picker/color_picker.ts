@@ -85,7 +85,7 @@ export class ColorPicker extends HTMLElement {
    */
   private createStyles() {
     const style = document.createElement('style');
-    ColorPalette.forEach((color) => {
+    for (const color of ColorPalette) {
       const [name, constrast, hex] = color;
       const face = hex ? hex : name;
       const theme = `\
@@ -95,7 +95,7 @@ export class ColorPicker extends HTMLElement {
         }\
       `;
       style.innerHTML += theme.replace(/\s\s/g, '');
-    });
+    }
     document.body.appendChild(style);
   }
 
