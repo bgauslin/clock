@@ -2,11 +2,11 @@
  * Custom element that renders a digital clock based on system time.
  */
 export class DigitalClock extends HTMLElement {
-  private interval: any;
+  private interval: number;
 
   constructor() {
     super();
-    this.interval = setInterval(() => this.setTime(), 1000);
+    this.interval = window.setInterval(() => this.setTime(), 1000);
   }
 
   connectedCallback() {

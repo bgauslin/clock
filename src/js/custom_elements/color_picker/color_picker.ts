@@ -1,7 +1,7 @@
-const ARIA_EXPANDED_ATTR: string = 'aria-expanded';
-const ARIA_HIDDEN_ATTR: string = 'aria-hidden';
-const COLOR_ATTR: string  = 'color';
-const OPEN_ATTR: string = 'open';
+const ARIA_EXPANDED_ATTR = 'aria-expanded';
+const ARIA_HIDDEN_ATTR = 'aria-hidden';
+const COLOR_ATTR  = 'color';
+const OPEN_ATTR = 'open';
 
 const ColorPalette: string[][] = [
   ['white', 'black'],
@@ -32,7 +32,7 @@ const ColorPalette: string[][] = [
  * the clock's face and hands.
  */
 export class ColorPicker extends HTMLElement {
-  private closeMenuListener: any;
+  private closeMenuListener: EventListenerObject;
   private menu: HTMLElement;
   private toggleButton: HTMLButtonElement;
 
@@ -66,7 +66,8 @@ export class ColorPicker extends HTMLElement {
    * Creates elements and attaches them to the DOM.
    */
   private setup() {
-    this.setAttribute(COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || ColorPalette[0][0]);
+    this.setAttribute(
+        COLOR_ATTR, localStorage.getItem(COLOR_ATTR) || ColorPalette[0][0]);
     const colorSelected = this.getAttribute(COLOR_ATTR);
 
     const template = require('./color_picker.pug');
@@ -115,8 +116,10 @@ export class ColorPicker extends HTMLElement {
    * attribute changes.
    */
   private updateColor(oldValue: string, newValue: string) {
-    const oldElement = this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
-    const newElement = this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
+    const oldElement =
+        this.querySelector(`[value=${oldValue}]`) as HTMLInputElement;
+    const newElement =
+        this.querySelector(`[value=${newValue}]`) as HTMLInputElement;
 
     if (oldElement) {
       oldElement.checked = false;
@@ -147,7 +150,7 @@ export class ColorPicker extends HTMLElement {
    * close it.
    */
   private handleClick(event: Event) {
-    const target = event.target as HTMLElement;
+    const target = event.target as HTMLInputElement;
 
     if (target === this.toggleButton) {
       if (this.hasAttribute(OPEN_ATTR)) {

@@ -5,13 +5,13 @@ const INTERVAL_MS: number = 1000;
  * SVG based on system time.
  */
 export class AnalogClock extends HTMLElement {
-  private interval: any;
+  private interval: number;
   private previousMinutesAngle: number;
   private template: any;
 
   constructor() {
     super();
-    this.interval = setInterval(() => this.setHands(), INTERVAL_MS);
+    this.interval = window.setInterval(() => this.setHands(), INTERVAL_MS);
     this.previousMinutesAngle = 0;
     this.template = require('./analog_clock.pug');
   }
