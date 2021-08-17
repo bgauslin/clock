@@ -21,12 +21,12 @@ interval = 8
 grid_count = 3 // i.e. 3 x 3
 start = interval / 2
 total = grid_count * grid_count
+grid_template = (grid_count + 1) * interval
 
 [id=clocks]
   background var(--face)
   display grid
-  grid-template-columns 'repeat(%s, 1fr)' % ((grid_count + 1) * interval)
-  grid-template-rows 'repeat(%s, 1fr)' % ((grid_count + 1) * interval)
+  grid-template 'repeat(%s, 1fr) / repeat(%s, 1fr)' % (grid_template grid_template)
   margin 0 rem(16)
   max-width max-width
   overflow hidden
