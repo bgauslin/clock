@@ -26,7 +26,7 @@ grid_template = (grid_count + 1) * interval
 [id=clocks]
   background var(--face)
   display grid
-  grid-template 'repeat(%s, 1fr) / repeat(%s, 1fr)' % (grid_template grid_template)
+  grid 'repeat(%s, 1fr) / repeat(%s, 1fr)' % (grid_template grid_template)
   margin 0 rem(16)
   max-width max-width
   overflow hidden

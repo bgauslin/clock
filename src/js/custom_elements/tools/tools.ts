@@ -55,7 +55,7 @@ export class Tools extends HTMLElement {
    * to iOS Safari behavior where chrome appears and disappears when scrolling.
    */
   private viewportHeight() {
-    document.documentElement.style.setProperty('--vh', `${window.innerHeight / 100}px`);
+    document.body.style.setProperty('--vh', `${window.innerHeight}px`);
   }
 }
 
