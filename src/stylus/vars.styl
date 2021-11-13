@@ -1,5 +1,9 @@
-:root
+body
   --font-size rem(14)
+  --grid:
+    '.' 1fr \
+    'clocks' \
+    'header' 3fr / 1fr
 
   @media breakpoint.medium
     --font-size rem(16)
@@ -18,3 +22,6 @@
     --menu-box-shadow 0 0 0 1px border-color-dark
     --text-1-color text-1-color-dark
     --text-2-color text-2-color-dark
+
+[no-js] 
+  --grid 'no-js' 1fr / 1fr

@@ -6,10 +6,7 @@ body
   display grid
   font-family 'Avenir Variable', sans-serif
   font-variation-settings 'wght' 500
-  grid:
-    '.' 1fr \
-    'clocks' \
-    'header' 3fr / 1fr
+  grid var(--grid)
   margin 0
   min-height 'max(var(--vh, 100vh), 100vh)' % null // [1]
   padding 0 0 env(safe-area-inset-bottom)
