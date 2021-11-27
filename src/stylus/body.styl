@@ -1,5 +1,3 @@
-// [1] Formatting hack to render vanilla CSS function instead of calling
-// built-in Stylus function.
 body
   background var(--background-0)
   color var(--text-1-color)
@@ -8,6 +6,7 @@ body
   font-variation-settings 'wght' 500
   grid var(--grid)
   margin 0
-  min-height 'max(var(--vh, 100vh), 100vh)' % null // [1]
+  min-height 100vh
+  min-height -webkit-fill-available
   padding 0 0 env(safe-area-inset-bottom)
   transition background transition, color transition
