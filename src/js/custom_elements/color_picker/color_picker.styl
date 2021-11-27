@@ -23,11 +23,11 @@ color-picker > button
   &:active
     transform scale(.9)
 
-  svg
-    fill currentColor
-    flex 0 0 rem(20)
-    margin auto
-    pointer-events none
+color-picker > button svg
+  fill currentColor
+  flex 0 0 rem(20)
+  margin auto
+  pointer-events none
 
 // [1] Formatting hack to render vanilla CSS function instead of calling
 // built-in Stylus function.
@@ -47,22 +47,22 @@ color-picker > ul
   visibility hidden
   z-index -1
 
-  &
-  &::before
-    background var(--background-1)
-    box-shadow var(--menu-box-shadow)
+color-picker > ul
+color-picker > ul::before
+  background var(--background-1)
+  box-shadow var(--menu-box-shadow)
 
-  // Menu arrow via rotated square with a drop shadow and clip-path.
-  &::before
-    bottom (- menu-arrow / 2)
-    clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
-    content ''
-    display block
-    height menu-arrow
-    position absolute
-    left 'calc(50% - %s)' % (menu-arrow / 2)
-    transform rotate(-135deg)
-    width menu-arrow
+// Menu arrow via rotated square with a drop shadow and clip-path.
+color-picker > ul::before
+  bottom (- menu-arrow / 2)
+  clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
+  content ''
+  display block
+  height menu-arrow
+  position absolute
+  left 'calc(50% - %s)' % (menu-arrow / 2)
+  transform rotate(-135deg)
+  width menu-arrow
 
 color-picker[open] > ul
   opacity 1
@@ -76,74 +76,72 @@ color-picker label
   outline 0
   position relative
 
-  // Hide each item's radio button and use its label as the hit area.
-  & > input
-    height 0
-    position absolute
-    visibility hidden
-    width 0
+// Hide each item's radio button and use its label as the hit area.
+color-picker label > input
+  height 0
+  position absolute
+  visibility hidden
+  width 0
 
-  // The <span> inside each color option provides the outer ring of each swatch.
-  & > span
-    background var(--face)
-    border-radius 50%
-    color transparent
-    display inline-flex
-    height menu-item-size
-    margin 2px
-    position relative
-    width menu-item-size
-    z-index -1
+// The <span> inside each color option provides the outer ring of each swatch.
+color-picker label > span
+  background var(--face)
+  border-radius 50%
+  color transparent
+  display inline-flex
+  height menu-item-size
+  margin 2px
+  position relative
+  width menu-item-size
+  z-index -1
 
-    [no-touch] &
-      transition transform transition
+[no-touch] color-picker label > span
+  transition transform transition
 
-  // The <div> inside each color option is the inner circle of each swatch.
-  & > div
-    background var(--face)
-    visibility hidden
-    z-index -3
+// The <div> inside each color option is the inner circle of each swatch.
+color-picker label > div
+color-picker label > div::after
+  border-radius 50%
+  height 100%
+  left 0
+  position absolute
+  top 0
+  width 100%
 
-    &
-    &::after
-      border-radius 50%
-      height 100%
-      left 0
-      position absolute
-      top 0
-      width 100%
+color-picker label > div
+  background var(--face)
+  visibility hidden
+  z-index -3
 
-    &::after
-      background black
-      content ''
-      opacity .2
-      z-index -2
+color-picker label > div::after
+  background black
+  content ''
+  opacity .2
+  z-index -2
 
-    [no-touch] &
-      transition transform transition
+[no-touch] color-picker label > div
+  transition transform transition
 
-color-picker input:checked
-  & + span::after
-    border-bottom 2px solid var(--hands)
-    border-left 2px solid var(--hands)
-    content ''
-    display inline-block
-    height rem(7)
-    left rem(8)
-    position absolute
-    top rem(8)
-    transform rotate(-45deg)
-    width rem(14)
+color-picker input:checked + span::after
+  border-bottom 2px solid var(--hands)
+  border-left 2px solid var(--hands)
+  content ''
+  display inline-block
+  height rem(7)
+  left rem(8)
+  position absolute
+  top rem(8)
+  transform rotate(-45deg)
+  width rem(14)
 
-  & ~ div
-    visibility visible
+color-picker input:checked ~ div
+  visibility visible
 
-color-picker
-  label:focus > input:not(:checked) + span
-  label:focus > input:not(:checked) ~ div
-  [no-touch] & label:hover > input:not(:checked) + span
-  [no-touch] & label:hover > input:not(:checked) ~ div
-    transform scale(1.2)
+color-picker label:focus > input:not(:checked) + span
+color-picker label:focus > input:not(:checked) ~ div
+[no-touch] color-picker label:hover > input:not(:checked) + span
+[no-touch] color-picker label:hover > input:not(:checked) ~ div
+  transform scale(1.2)
 
 // Always show the white swatch's border in light mode since the swatch blends
 // in with the menu background otherwise.
