@@ -1,27 +1,28 @@
 body
+  --background-0 BACKGROUND_0
+  --background-1 BACKGROUND_1
+  --background-2 BACKGROUND_2
   --font-size rem(14)
   --grid:
     '.' 1fr \
     'clocks' \
     'header' 3fr / 1fr
-
-  @media breakpoint.medium
-    --font-size rem(16)
-
-  --background-0 background-0
-  --background-1 background-1
-  --background-2 background-2
   --menu-box-shadow elevation(2)
-  --text-1-color text-1-color
-  --text-2-color text-2-color
+  --text-1-color TEXT_1_COLOR
+  --text-2-color TEXT_2_COLOR
 
-  @media (prefers-color-scheme dark)
-    --background-0 background-0-dark
-    --background-1 background-1-dark
-    --background-2 background-2-dark
-    --menu-box-shadow 0 0 0 1px border-color-dark
-    --text-1-color text-1-color-dark
-    --text-2-color text-2-color-dark
+@media (prefers-color-scheme dark)
+  body
+    --background-0 BACKGROUND_0_DARK
+    --background-1 BACKGROUND_1_DARK
+    --background-2 BACKGROUND_2_DARK
+    --menu-box-shadow 0 0 0 1px BORDER_COLOR_DARK
+    --text-1-color TEXT_1_COLOR_DARK
+    --text-2-color TEXT_2_COLOR_DARK
+
+@media Breakpoint.MEDIUM
+  body
+    --font-size rem(16)
 
 [no-js] 
   --grid 'no-js' 1fr / 1fr

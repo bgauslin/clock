@@ -8,11 +8,11 @@ color-picker > button
   color var(--text-2-color)
   cursor pointer
   display flex
-  height button-height
+  height BUTTON_HEIGHT
   opacity 1
   place-items center
-  transition background transition, transform transition
-  width button-width
+  transition background TRANSITION, transform TRANSITION
+  width BUTTON_WIDTH
 
   &:active
   &:focus
@@ -33,7 +33,7 @@ color-picker > button svg
 // built-in Stylus function.
 color-picker > ul
   border-radius rem(4)
-  bottom button-height
+  bottom BUTTON_HEIGHT
   display grid
   gap rem(8)
   grid 'auto-flow / repeat(4, 1fr)' % null  // [1]
@@ -43,7 +43,7 @@ color-picker > ul
   padding rem(12)
   position absolute
   transform 'translate3d(-50%, %s, 0)' % rem(8)
-  transition opacity transition, transform transition, visibility transition
+  transition opacity TRANSITION, transform TRANSITION, visibility TRANSITION
   visibility hidden
   z-index -1
 
@@ -54,15 +54,15 @@ color-picker > ul::before
 
 // Menu arrow via rotated square with a drop shadow and clip-path.
 color-picker > ul::before
-  bottom (- menu-arrow / 2)
+  bottom (- MENU_ARROW / 2)
   clip-path polygon(rem(-8) rem(-8), rem(-8) rem(24), rem(24) rem(-8))
   content ''
   display block
-  height menu-arrow
+  height MENU_ARROW
   position absolute
-  left 'calc(50% - %s)' % (menu-arrow / 2)
+  left 'calc(50% - %s)' % (MENU_ARROW / 2)
   transform rotate(-135deg)
-  width menu-arrow
+  width MENU_ARROW
 
 color-picker[open] > ul
   opacity 1
@@ -89,14 +89,14 @@ color-picker label > span
   border-radius 50%
   color transparent
   display inline-flex
-  height menu-item-size
+  height MENU_ITEM_SIZE
   margin 2px
   position relative
-  width menu-item-size
+  width MENU_ITEM_SIZE
   z-index -1
 
 [no-touch] color-picker label > span
-  transition transform transition
+  transition transform TRANSITION
 
 // The <div> inside each color option is the inner circle of each swatch.
 color-picker label > div
@@ -120,7 +120,7 @@ color-picker label > div::after
   z-index -2
 
 [no-touch] color-picker label > div
-  transition transform transition
+  transition transform TRANSITION
 
 color-picker input:checked + span::after
   border-bottom 2px solid var(--hands)
@@ -146,5 +146,5 @@ color-picker label:focus > input:not(:checked) ~ div
 // Always show the white swatch's border in light mode since the swatch blends
 // in with the menu background otherwise.
 @media (prefers-color-scheme light)
-  color-picker label > div[color=white]
+  color-picker label > div[color='white']
     visibility visible

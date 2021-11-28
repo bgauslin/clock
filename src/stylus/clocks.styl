@@ -23,14 +23,14 @@ start = interval / 2
 total = grid_count * grid_count
 grid_template = (grid_count + 1) * interval
 
-[id=clocks]
+[id='clocks']
   background var(--face)
   display grid
   grid 'repeat(%s, 1fr) / repeat(%s, 1fr)' % (grid_template grid_template)
   margin 0 rem(16)
-  max-width max-width
+  max-width MAX_WIDTH
   overflow hidden
-  transition background transition, border transition
+  transition background TRANSITION, border TRANSITION
 
 row = 0
 column = 0
