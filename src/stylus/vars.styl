@@ -4,9 +4,13 @@ body
   --background-2 BACKGROUND_2
   --font-size rem(14)
   --grid:
+    'header' var(--header-height) \
     '.' 1fr \
-    'clocks' \
-    'header' 3fr / 1fr
+    'clocks' auto \
+    '.' 1fr \
+    'picker' auto \
+    '.' 1fr / 1fr
+  --header-height rem(48)
   --menu-box-shadow elevation(2)
   --text-1-color TEXT_1_COLOR
   --text-2-color TEXT_2_COLOR
@@ -23,6 +27,7 @@ body
 @media Breakpoint.MEDIUM
   body
     --font-size rem(16)
+    --header-height rem(60)
 
 [no-js] 
   --grid 'no-js' 1fr / 1fr
