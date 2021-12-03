@@ -175,7 +175,11 @@ export class ColorPicker extends HTMLElement {
   private handleKey(event: KeyboardEvent) {
     switch (event.code) {
       case 'Enter':
-        this.setColor(event.target as HTMLElement);
+        const label = event.target as HTMLElement;
+        const input = label.querySelector('input');
+        if (input) {
+          this.setColor(input as HTMLInputElement);
+        }
         break;
       case 'Escape':
         this.closeMenu();
