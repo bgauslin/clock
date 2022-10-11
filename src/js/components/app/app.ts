@@ -1,6 +1,8 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, property, query, state} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
+import {Settings} from '../../shared';
+
 import shadowStyles from './app.scss';
 
 /**
@@ -11,10 +13,11 @@ class App extends LitElement {
   @property() storageItem = 'clock';
   @property() settingsEvent = 'updateSettings';
   @query('clock-settings') settingsWidget: HTMLElement;
-  @state() settings = {
+  @state() settings: Settings = {
     seconds: true,
     theme: 'default',
     theming: true,
+    zen: false,
   };
   @state() settingsListener: EventListenerObject;
 
@@ -55,14 +58,14 @@ class App extends LitElement {
   }
 
   render() {
-    const {seconds, theme, theming} = this.settings;
-    const myTheme = theming ? theme : null;
+    const {seconds, theme, theming, zen} = this.settings;
+    const _theme = theming ? theme : null;
     return html`
       <clock-faces
         seconds="${seconds}"
-        theme="${ifDefined(myTheme)}">
+        theme="${ifDefined(_theme)}">
       </clock-faces>
-      <clock-settings></clock-settings>
+      <clock-settings ?zen-mode="${zen}"></clock-settings>
     `;
   }
 }

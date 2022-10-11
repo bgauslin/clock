@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use '../../../styles/const';
 @use '../../../styles/utils';
 
 $grid: 3;
@@ -55,10 +56,10 @@ $total-cells: ($grid * $clock-cells) + $clock-cells;
 // Start encapsulated styles.
 :host {
   aspect-ratio: 1;
-  max-block-size: calc(100vh - 10rem);
+  max-block-size: calc(100vh - #{const.$app-gap-max});
 
-  @supports (max-block-size: calc(100dvh - 10rem)) {
-    max-block-size: calc(100dvh - 10rem);
+  @supports (max-block-size: calc(100dvh - #{const.$app-gap-max})) {
+    max-block-size: calc(100dvh - #{const.$app-gap-max});
   }
 }
 

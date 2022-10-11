@@ -1,28 +1,27 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, property, query, state} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
+import {when} from 'lit/directives/when.js';
+import {Settings} from '../../shared';
+
 import shadowStyles from './settings.scss';
 
 /**
  * Web component that renders theme swatches for a user to choose from.
  */
 @customElement('clock-settings')
-class Settings extends LitElement {
+class SettingsWidget extends LitElement {
   @property() colors = [
     'Red', 'Orange', 'Yellow',
     'Teal', 'Default', 'Blue',
     'Indigo', 'Purple', 'Brown',
   ];
   @property() settingsEvent = 'updateSettings';
+  @query('button') button: HTMLButtonElement;
   @query('dialog') dialog: HTMLFormElement;
   @query('form') form: HTMLFormElement;
   @state() clickListener: EventListenerObject;
-  @state() closeListener: EventListenerObject;
-  @state() settings = {
-    seconds: true,
-    theme: '',
-    theming: true,
-  };
+  @state() settings: Settings;
   @state() settingsListener: EventListenerObject;
 
   static styles = css`${shadowStyles}`;
@@ -30,18 +29,32 @@ class Settings extends LitElement {
   constructor() {
     super();
     this.clickListener = this.handleClick.bind(this);
-    this.closeListener = this.removeListeners.bind(this);
     this.settingsListener = this.updateSettings.bind(this);
   }
   
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener(this.settingsEvent, this.updateSettings);
+    document.addEventListener('click', this.clickListener);
   }
 
   disconnectedCallback() { 
     super.disconnectedCallback();
-    this.removeListeners();
+    this.removeEventListener(this.settingsEvent, this.updateSettings);
+    document.removeEventListener('click', this.clickListener);
+  }
+
+  private handleClick(e: Event) {
+    const path = e.composedPath();
+    if (path.includes(this.form)) {
+      return;
+    }
+
+    if (this.dialog.open) {
+      this.dialog.close();
+    } else if (path.includes(this.button) || this.settings.zen) {
+      this.dialog.showModal();
+    }
   }
 
   private updateSettings(e: CustomEvent) {
@@ -55,6 +68,7 @@ class Settings extends LitElement {
       seconds: Boolean(formData.get('seconds')),
       theme: String(formData.get('theme')),
       theming: Boolean(formData.get('theming')),
+      zen: Boolean(formData.get('zen')),
     };
 
     this.dispatchEvent(new CustomEvent(this.settingsEvent, {
@@ -66,31 +80,17 @@ class Settings extends LitElement {
     }));
   }
 
-  private openDialog() {
-    this.dialog.showModal();
-    window.requestAnimationFrame(() => {
-      this.dialog.addEventListener('close', this.closeListener);
-      document.addEventListener('click', this.clickListener);
-    });
-  }
-
-  private handleClick(e: Event) {
-    const path = e.composedPath();
-    if (!path.includes(this.form)) {
-      this.dialog.close();
-      this.removeListeners();
-    }
-  }
-
-  private removeListeners() {
-    this.dialog.removeEventListener('close', this.closeListener);
-    document.removeEventListener('click', this.clickListener);
-  }
-
   render() {
     return html`
-      ${this.renderButton()}
-      ${this.renderDialog()}
+      ${when(this.settings, () => {
+        const {zen} = this.settings;
+        return html`
+          ${when(!zen, () => {
+            return html`${this.renderButton()}`
+          })}
+          ${this.renderDialog()}
+        `;
+      })}
     `;
   }
 
@@ -101,8 +101,7 @@ class Settings extends LitElement {
         aria-label="${label}"
         id="button"
         title="${label}"
-        type="button"
-        @click="${this.openDialog}">
+        type="button">
         ${this.renderIcon()}
       </button>
     `;
@@ -115,6 +114,7 @@ class Settings extends LitElement {
           ${this.renderThemingToggle()}
           ${this.renderSwatches()}
           ${this.renderSecondsToggle()}
+          ${this.renderZenModeToggle()}
         </form>
       </dialog>
     `;
@@ -124,7 +124,7 @@ class Settings extends LitElement {
     const {theming} = this.settings;
     return html`
       <label>
-        <span>Use theme</span>
+        <span>Theme</span>
         <input
           ?checked="${theming}"
           name="theming"
@@ -137,10 +137,23 @@ class Settings extends LitElement {
     const {seconds} = this.settings;
     return html`
       <label>
-        <span>Show seconds</span>
+        <span>Seconds</span>
         <input
           ?checked="${seconds}"
           name="seconds"
+          type="checkbox">
+      </label>
+    `;
+  }
+
+  private renderZenModeToggle() {
+    const {zen} = this.settings;
+    return html`
+      <label>
+        <span>Zen Mode</span>
+        <input
+          ?checked="${zen}"
+          name="zen"
           type="checkbox">
       </label>
     `;

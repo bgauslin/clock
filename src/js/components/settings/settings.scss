@@ -153,17 +153,25 @@ input {
   }
 }
 
-// Toggles for theming and second hands via checkboxes.
+// Toggle switches via checkboxes.
 label {
   align-items: center;
   color: var(--on-surface);
   display: grid;
   gap: 0 1rem;
   grid: 'text toggle' / 1fr auto;
+  padding-block: .75rem;
   padding-inline: 1rem .75rem;
 
-  &:last-child {
+  &:first-child {
+    padding-block: 0;
+  }
+
+  &:not(:first-child) {
     border-block-start: 1px solid var(--on-surface-variant);
+  }
+
+  &:last-child {
     padding-block: .75rem 0;
   }
 }
