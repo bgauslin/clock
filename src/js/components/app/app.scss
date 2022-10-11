@@ -1,0 +1,66 @@
+@use '../../../styles/const';
+@use '../../../styles/utils';
+
+:host {
+  block-size: 100vh;
+  display: grid;
+  font-family: 'Avenir Variable', sans-serif;
+  font-variation-settings: 'wght' 500;
+  grid: '.' minmax(3rem, 1fr) 'faces' 'theme' minmax(7rem, 1fr) / 1fr;
+  place-items: center;
+  
+  @supports (block-size: 100dvh) {
+    block-size: 100dvh;
+  }
+}
+
+clock-faces {
+  grid-area: faces;
+
+  &[seconds='false'] {
+    --seconds-opacity: 0;
+  }
+}
+
+clock-settings {
+  grid-area: theme;
+}
+
+// Hands colors don't change between light and dark mode, but second hands
+// color does change when there is no theme applied.
+:host,
+[theme] {
+  --hands: #{utils.map-deep-get(const.$grays, 5, dark)}; 
+}
+
+:host {
+  --seconds: #{utils.map-deep-get(const.$grays, 3, light)};
+}
+
+[theme] {
+  --seconds: #{utils.map-deep-get(const.$grays, 2, dark)};
+}
+
+[theme='default'] {
+  --seconds: #{utils.map-deep-get(const.$grays, 3, light)};
+}
+
+// Inverted hands and seconds for darker themes.
+:is([theme='indigo'], [theme='pink'], [theme='red']) {
+  --hands: #{utils.map-deep-get(const.$grays, 6, light)};
+  --seconds: #{utils.map-deep-get(const.$grays, 2, light)};
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --hands: #{utils.map-deep-get(const.$grays, 5, light)};
+    --seconds: #{utils.map-deep-get(const.$grays, 2, dark)};
+  }
+
+  [theme='default'] {
+    --hands: #{utils.map-deep-get(const.$grays, 5, light)};
+    --seconds: #{utils.map-deep-get(const.$grays, 1, light)};
+  }
+}
+
+@include utils.color-vars('theme', const.$colors);

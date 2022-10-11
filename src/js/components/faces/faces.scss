@@ -1,0 +1,111 @@
+@use 'sass:math';
+@use '../../../styles/utils';
+
+$grid: 3;
+$clock-cells: 8;
+$total-cells: ($grid * $clock-cells) + $clock-cells;
+
+/// Sets grid-area layouts for each SVG clock.
+/// 
+/// Each clock sits within a 10 x 10 grid, but we want the hour and minute 
+/// hands to touch at 6 PM and make 3 continuous vertical lines, so the 
+/// grid-count for each clock occupies 8 cells with a 2-cell overlap. The
+/// total number of grid cells is the 8 cells times 3 clocks, plus half the
+/// 8-cell width on each side. This ultimately creates a 4 x 4 grid where the
+/// nine clocks are centered within a half-width buffer space on all sides.
+///
+///    3  Hour hand length.
+/// +  5  Minute hand length.
+/// ----
+/// =  8  Cells occupied by each clock.
+/// x  4  Three clocks in each direction plus buffer space.
+/// ----
+/// = 32  Total number of grid cells in each direction.
+///
+/// @param {Number} $grid Number of clocks per axis (e.g., 3 x 3).
+/// @param {Number} $clock-cells Number of grid cells occupied by each face.
+@mixin clock-placement($grid, $clock-cells) {
+  $column: 0;
+  $row: 0;
+  $span: 10;
+  $start: math.div($clock-cells, 2);
+  $total: $grid * $grid;
+
+  // Set row and column tracks.
+  @for $i from 1 through $total {
+    $column-start: $start + ($column * $clock-cells);
+    $column-end: $column-start + $span;
+    $row-start: $start + ($row * $clock-cells);
+    $row-end: $row-start + $span;
+
+    // Render nth-child selector.
+    svg:nth-child(#{$i}) {
+      grid-area: #{$row-start} / #{$column-start} / #{$row-end} / #{$column-end};
+    }
+
+    @if ($i % $grid == 0) {
+      $column: 0;
+      $row: $row + 1;
+    } @else {
+      $column: $column + 1;
+    }
+  }
+}
+
+// Start encapsulated styles.
+:host {
+  aspect-ratio: 1;
+  max-block-size: calc(100vh - 10rem);
+
+  @supports (max-block-size: calc(100dvh - 10rem)) {
+    max-block-size: calc(100dvh - 10rem);
+  }
+}
+
+// Frame for all nine clocks.
+div {
+  background-color: var(--theme);
+  display: grid;
+  grid: repeat($total-cells, 1fr) / repeat($total-cells, 1fr);
+  transition: utils.transition(background-color);
+}
+
+// Individual placement of each clock via grid-area.
+@include clock-placement($grid, $clock-cells);
+
+// Each clock is an <svg> containing <line> and <circle> elements.
+svg {
+  display: block;
+  inline-size: 100%;
+  pointer-events: none;
+}
+
+:is(line, circle) {
+  transition: utils.transition(fill, stroke);
+}
+
+// Hour/minute hands and lower pivot.
+:is(.hours, .minutes) {
+  stroke: var(--hands);
+  stroke-width: 6px;
+}
+
+.lower-pivot {
+  fill: var(--hands);
+}
+
+// Second hand and upper pivot.
+:is(.seconds, .upper-pivot) {
+  opacity: var(--seconds-opacity, 1);
+  transition: utils.transition(opacity);
+}
+
+.seconds {
+  stroke: var(--seconds);
+  stroke-width: .5px;
+  z-index: 1;
+}
+
+.upper-pivot {
+  fill: var(--seconds);
+}

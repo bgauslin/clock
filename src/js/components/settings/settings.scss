@@ -1,0 +1,221 @@
+@use 'sass:math';
+@use '../../../styles/const';
+@use '../../../styles/utils';
+
+$button-size: 2.75rem;
+$swatch-size: 2.75rem;
+$toggle-size: 1.25rem;
+$toggle-padding: .125rem;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Button which opens a dialog containing settings.
+button {
+  appearance: none;
+  background-color: var(--surface1);
+  block-size: $button-size;
+  border: 0;
+  border-radius: math.div($button-size, 2);
+  color: var(--on-surface);
+  cursor: pointer;
+  display: grid;
+  inline-size: $button-size;
+  outline: 0;
+  padding: 0;
+  place-content: center;
+  transition: utils.transition(transform);
+
+  &:focus {
+    background-color: var(--surface2);
+  }
+
+  &:active {
+    transform: scale(.9);
+  }
+
+  @media (any-hover: hover) {
+    transition: utils.transition(background-color, transform);
+
+    &:hover {
+      background-color: var(--surface2);
+    }
+  }
+}
+
+// Icon for the button.
+svg {
+  fill: currentColor;
+  inline-size: 1.25rem;
+  pointer-events: none;
+}
+
+// The dialog.
+dialog {
+  background-color: var(--surface1);
+  border: 0;
+  border-radius: 1.5rem;
+  padding-block: .75rem;
+  padding-inline: 0;
+
+  &::backdrop {
+    backdrop-filter: blur(1px);
+  }
+}
+
+// Menu of theme swatches.
+ul {
+  display: grid;
+  gap: .375rem;
+  grid: auto-flow / repeat(3, 1fr);
+  list-style: none;
+  margin: 0;
+  padding-block: .75rem;
+  padding-inline: .75rem;
+  transition: utils.transition(opacity);
+
+  &[aria-disabled] {
+    opacity: .25;
+    pointer-events: none;
+  }
+}
+
+// Override defaults for radio buttons and checkboxes.
+input {
+  appearance: none;
+  cursor: pointer;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+// Each theme swatch is a radio button.
+[type='radio'] {
+  border-radius: math.div($swatch-size, 2);
+  display: grid;
+  grid: 'content';
+  block-size: $swatch-size;
+  border: 3px solid transparent;
+  inline-size: $swatch-size;
+  overflow: hidden;
+
+  &:focus {
+    border-color: var(--on-surface);
+  }
+
+  @media (any-hover: hover) {
+    transition: utils.transition(border-color);
+
+    &:hover {
+      border-color: var(--on-surface);
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    grid-area: content;
+  }
+
+  &::before {
+    background-color: var(--theme);
+  }
+
+  // Checkmark overlaid on selected swatch.
+  &:checked::after {
+    block-size: .75rem;
+    border-block-end: 3px solid var(--on-theme);
+    border-inline-start: 3px solid var(--on-theme);
+    inline-size: 1.25rem;
+    place-self: center;
+    transform: rotate(-45deg) translate3d(.125rem, -.125rem, 0);
+  }
+}
+
+// Theming for radio button swatches.
+[value] {
+  --on-theme: #{utils.map-deep-get(const.$grays, 6, dark)};
+}
+
+@include utils.color-vars('value', const.$colors);
+
+:is([value='indigo'], [value='pink'], [value='red']) {
+  --on-theme: #{utils.map-deep-get(const.$grays, 6, light)};
+}
+
+@media (prefers-color-scheme: dark) {
+  [value='default'] {
+    --on-theme: #{utils.map-deep-get(const.$grays, 6, light)};
+  }
+}
+
+// Toggles for theming and second hands via checkboxes.
+label {
+  align-items: center;
+  color: var(--on-surface);
+  display: grid;
+  gap: 0 1rem;
+  grid: 'text toggle' / 1fr auto;
+  padding-inline: 1rem .75rem;
+
+  &:last-child {
+    border-block-start: 1px solid var(--on-surface-variant);
+    padding-block: .75rem 0;
+  }
+}
+
+label > span {
+  font-size: .875rem;
+  font-variation-settings: 'wght' 600;
+  grid-area: text;
+}
+
+[type='checkbox'] {
+  align-items: center;
+  background-color: var(--surface2);
+  block-size: ($toggle-size + ($toggle-padding * 2));
+  border: 3px solid var(--surface1);
+  border-radius: ($toggle-size + ($toggle-padding * 2));
+  box-sizing: content-box;
+  display: grid;
+  grid-area: 'toggle';
+  inline-size: ($toggle-size * 2) + ($toggle-padding * 2);
+  transition: utils.transition(background-color, border-color);
+
+  &:checked {
+    border-color: var(--surface1);
+    background-color: utils.map-deep-get(const.$colors, 'green', light);
+  }
+
+  &:focus,
+  &:checked:focus {
+    border-color: var(--on-surface);
+  }
+
+  @supports (any-hover: hover) {
+    &:hover {
+      border-color: var(--on-surface);
+    }
+  }
+
+  &::after {
+    background-color: white;
+    content: '';
+    display: block;
+    block-size: $toggle-size;
+    border-radius: $toggle-size;
+    inline-size: $toggle-size;
+    margin-inline: $toggle-padding 0;
+    transition: utils.transition(margin-inline);
+  }
+
+  &:checked::after {
+    margin-inline: ($toggle-size + $toggle-padding) 0; //
+  }
+}
+
+

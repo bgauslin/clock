@@ -1,14 +1,12 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
-    clock: './src/js/clock.ts',
+    app: './src/js/index.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -16,65 +14,58 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyPlugin([
-      { from: 'src/root' },
-      { from: 'src/pwa', to: 'pwa' },
-    ]),
-    new Dotenv(),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/root' },
+      ],
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/html/index.pug',
-    }),
-    new WorkboxPlugin.InjectManifest({
-      swSrc: 'src/js/sw.js',
-      swDest: 'sw.js',
-      exclude: [/\.htaccess$/, /robots\.txt$/],
+      template: 'src/html/index.html',
     }),
   ],
-  node: {
-    fs: 'empty',
-  },
-  resolve: {
-    extensions: ['.js', '.ts']
-  },
   module: {
     rules: [
       {
-        test: /\.(ts|js)$/,
+        test: /\.ts?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/typescript',
-            ],
-            plugins: [
-              'babel-plugin-transform-es2015-modules-commonjs',
-            ],
-          }
-        }
+        use: 'ts-loader',
       },
       {
-        test: /\.styl$/,
+        // Encapsulated shadow DOM styles in web components.
+        test: /\.scss$/,
+        include: [
+          path.resolve(__dirname, 'src/js/components')
+        ],
         use: [
+          'lit-css-loader',
+          'postcss-loader',
           {
-            loader: MiniCssExtractPlugin.loader,
+            loader: 'sass-loader',
             options: {
-              hmr: process.env.NODE_ENV === 'development',
-              reloadAll: true,
+              sassOptions: {
+                outputStyle: 'compressed',
+              },
             },
           },
-          'css-loader',
-          'postcss-loader',
-          'stylus-loader',
         ],
       },
       {
-        test: /\.pug$/,
+        // App shell styles and custom properties.
+        test: /\.scss$/,
+        include: [
+          path.resolve(__dirname, 'src/styles')
+        ],
         use: [
-          'pug-loader',
-        ]
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
-    ]
-  }
+    ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js', '.scss'],
+  },
 }
