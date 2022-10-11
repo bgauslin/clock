@@ -3,6 +3,7 @@
 @use '../../../styles/utils';
 
 $button-size: 2.75rem;
+$menu-padding: .75rem;
 $swatch-size: 2.75rem;
 $toggle-size: 1.25rem;
 $toggle-padding: .125rem;
@@ -63,12 +64,16 @@ dialog {
 }
 
 // All settings in a standard <form> element.
-form > * {
-  padding-block: .75rem;
+form > :where(ul, label) {
+  padding-block: $menu-padding;
+}
 
-  &:not(:first-child) {
-    border-block-start: 1px solid var(--on-surface-variant);
-  }
+hr {
+  block-size: 0;
+  border: 0;
+  border-block-start: 1px solid var(--on-surface-variant);
+  inline-size: 100%;
+  margin: 0;
 }
 
 // Theme swatches.
@@ -78,18 +83,14 @@ ul {
   grid: auto-flow / repeat(3, 1fr);
   list-style: none;
   margin: 0;
-  padding-inline: .75rem;
+  padding-block: 0 $menu-padding;
+  padding-inline: $menu-padding;
   transition: utils.transition(opacity);
 
   &[aria-disabled] {
     opacity: .25;
     pointer-events: none;
   }
-}
-
-ul + label:not(:first-child) {
-  border: 0;
-  padding-block: 0 .75rem;
 }
 
 // Override defaults for radio buttons and checkboxes.
@@ -145,24 +146,7 @@ input {
   }
 }
 
-// Theming for radio button swatches.
-[value] {
-  --on-theme: #{utils.map-deep-get(const.$grays, 6, dark)};
-}
-
-@include utils.color-vars('value', const.$colors);
-
-:is([value='indigo'], [value='pink'], [value='red']) {
-  --on-theme: #{utils.map-deep-get(const.$grays, 6, light)};
-}
-
-@media (prefers-color-scheme: dark) {
-  [value='default'] {
-    --on-theme: #{utils.map-deep-get(const.$grays, 6, light)};
-  }
-}
-
-// Toggle switches via checkboxes.
+// Labels contain a <span> containing text and a checkbox.
 label {
   align-items: center;
   color: var(--on-surface);
@@ -178,6 +162,7 @@ label > span {
   grid-area: text;
 }
 
+// Toggle switches via checkboxes.
 [type='checkbox'] {
   align-items: center;
   background-color: var(--surface2);
@@ -222,4 +207,19 @@ label > span {
   }
 }
 
+// Theming for radio button swatches.
+[value] {
+  --on-theme: #{utils.map-deep-get(const.$grays, 6, dark)};
+}
 
+@include utils.color-vars('value', const.$colors);
+
+:is([value='indigo'], [value='pink'], [value='red']) {
+  --on-theme: #{utils.map-deep-get(const.$grays, 6, light)};
+}
+
+@media (prefers-color-scheme: dark) {
+  [value='default'] {
+    --on-theme: #{utils.map-deep-get(const.$grays, 6, light)};
+  }
+}

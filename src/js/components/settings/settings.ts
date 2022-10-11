@@ -111,8 +111,8 @@ class SettingsWidget extends LitElement {
     return html`
       <dialog aria-labelledby="button">
         <form @change="${this.getSettings}">
-          ${this.renderSwatches()}
           ${this.renderToggles()}
+          ${this.renderSwatches()}
         </form>
       </dialog>
     `;
@@ -122,12 +122,13 @@ class SettingsWidget extends LitElement {
     const {seconds, theming, zen} = this.settings;
     return html`
       <label>
-        <span>Theme</span>
+        <span>Zen Mode</span>
         <input
-          ?checked="${theming}"
-          name="theming"
+          ?checked="${zen}"
+          name="zen"
           type="checkbox">
       </label>
+      <hr>
       <label>
         <span>Seconds</span>
         <input
@@ -135,11 +136,12 @@ class SettingsWidget extends LitElement {
           name="seconds"
           type="checkbox">
       </label>
+      <hr>
       <label>
-        <span>Zen Mode</span>
+        <span>Theme</span>
         <input
-          ?checked="${zen}"
-          name="zen"
+          ?checked="${theming}"
+          name="theming"
           type="checkbox">
       </label>
     `;
