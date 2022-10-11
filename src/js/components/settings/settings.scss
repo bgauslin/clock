@@ -56,24 +56,28 @@ svg {
 // The dialog.
 dialog {
   background-color: var(--surface1);
-  border: 0;
+  border: 3px solid var(--on-surface-variant);
   border-radius: 1.5rem;
-  padding-block: .75rem;
-  padding-inline: 0;
+  filter: drop-shadow(0 0 8px rgba(black, 0.15));
+  padding: 0;
+}
 
-  &::backdrop {
-    backdrop-filter: blur(1px);
+// All settings in a standard <form> element.
+form > * {
+  padding-block: .75rem;
+
+  &:not(:first-child) {
+    border-block-start: 1px solid var(--on-surface-variant);
   }
 }
 
-// Menu of theme swatches.
+// Theme swatches.
 ul {
   display: grid;
   gap: .375rem;
   grid: auto-flow / repeat(3, 1fr);
   list-style: none;
   margin: 0;
-  padding-block: .75rem;
   padding-inline: .75rem;
   transition: utils.transition(opacity);
 
@@ -81,6 +85,11 @@ ul {
     opacity: .25;
     pointer-events: none;
   }
+}
+
+ul + label:not(:first-child) {
+  border: 0;
+  padding-block: 0 .75rem;
 }
 
 // Override defaults for radio buttons and checkboxes.
@@ -160,20 +169,7 @@ label {
   display: grid;
   gap: 0 1rem;
   grid: 'text toggle' / 1fr auto;
-  padding-block: .75rem;
   padding-inline: 1rem .75rem;
-
-  &:first-child {
-    padding-block: 0;
-  }
-
-  &:not(:first-child) {
-    border-block-start: 1px solid var(--on-surface-variant);
-  }
-
-  &:last-child {
-    padding-block: .75rem 0;
-  }
 }
 
 label > span {

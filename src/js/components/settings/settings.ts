@@ -12,8 +12,8 @@ import shadowStyles from './settings.scss';
 @customElement('clock-settings')
 class SettingsWidget extends LitElement {
   @property() colors = [
-    'Red', 'Orange', 'Yellow',
-    'Teal', 'Default', 'Blue',
+    'Default', 'Red', 'Orange',
+    'Yellow', 'Teal',  'Blue',
     'Indigo', 'Purple', 'Brown',
   ];
   @property() settingsEvent = 'updateSettings';
@@ -111,17 +111,15 @@ class SettingsWidget extends LitElement {
     return html`
       <dialog aria-labelledby="button">
         <form @change="${this.getSettings}">
-          ${this.renderThemingToggle()}
           ${this.renderSwatches()}
-          ${this.renderSecondsToggle()}
-          ${this.renderZenModeToggle()}
+          ${this.renderToggles()}
         </form>
       </dialog>
     `;
   }
 
-  private renderThemingToggle() {
-    const {theming} = this.settings;
+  private renderToggles() {
+    const {seconds, theming, zen} = this.settings;
     return html`
       <label>
         <span>Theme</span>
@@ -130,12 +128,6 @@ class SettingsWidget extends LitElement {
           name="theming"
           type="checkbox">
       </label>
-    `;
-  }
-
-  private renderSecondsToggle() {
-    const {seconds} = this.settings;
-    return html`
       <label>
         <span>Seconds</span>
         <input
@@ -143,12 +135,6 @@ class SettingsWidget extends LitElement {
           name="seconds"
           type="checkbox">
       </label>
-    `;
-  }
-
-  private renderZenModeToggle() {
-    const {zen} = this.settings;
-    return html`
       <label>
         <span>Zen Mode</span>
         <input
