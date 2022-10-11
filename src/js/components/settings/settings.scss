@@ -56,11 +56,15 @@ svg {
 
 // The dialog.
 dialog {
-  background-color: var(--surface1);
-  border: 3px solid var(--on-surface-variant);
+  backdrop-filter: blur(6px);
+  background-color: var(--dialog-surface);
+  border: 0;
   border-radius: 1.5rem;
-  filter: drop-shadow(0 0 8px rgba(black, 0.15));
   padding: 0;
+
+  &::backdrop {
+    background: 0;
+  }
 }
 
 // All settings in a standard <form> element.
@@ -150,6 +154,7 @@ input {
 label {
   align-items: center;
   color: var(--on-surface);
+  cursor: pointer;
   display: grid;
   gap: 0 1rem;
   grid: 'text toggle' / 1fr auto;
@@ -163,35 +168,38 @@ label > span {
 }
 
 // Toggle switches via checkboxes.
-[type='checkbox'] {
-  align-items: center;
-  background-color: var(--surface2);
-  block-size: ($toggle-size + ($toggle-padding * 2));
-  border: 3px solid var(--surface1);
+input[type='checkbox'] {
   border-radius: ($toggle-size + ($toggle-padding * 2));
-  box-sizing: content-box;
   display: grid;
+  grid: 'content';
   grid-area: 'toggle';
+  block-size: ($toggle-size + ($toggle-padding * 2));
+  border: 3px solid transparent;
+  box-sizing: content-box;
   inline-size: ($toggle-size * 2) + ($toggle-padding * 2);
-  transition: utils.transition(background-color, border-color);
+  overflow: hidden;
 
-  &:checked {
-    border-color: var(--surface1);
-    background-color: utils.map-deep-get(const.$colors, 'green', light);
-  }
-
-  &:focus,
-  &:checked:focus {
+  &:focus {
     border-color: var(--on-surface);
   }
 
-  @supports (any-hover: hover) {
-    &:hover {
-      border-color: var(--on-surface);
-    }
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    grid-area: content;
+  }
+
+  &::before {
+    background-color: var(--surface2);
+  }
+
+  &:checked::before {
+    background-color: utils.map-deep-get(const.$colors, 'green', light);
   }
 
   &::after {
+    align-self: center;
     background-color: white;
     content: '';
     display: block;
