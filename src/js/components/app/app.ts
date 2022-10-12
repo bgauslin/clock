@@ -58,14 +58,16 @@ class App extends LitElement {
   }
 
   render() {
-    const {seconds, theme, theming, zen} = this.settings;
+    const {seconds, theme, theming} = this.settings;
     const _theme = theming ? theme : null;
     return html`
       <clock-faces
+        aria-level="1"
+        role="heading"
         ?seconds="${seconds}"
         theme="${ifDefined(_theme)}">
       </clock-faces>
-      <clock-settings ?zen-mode="${zen}"></clock-settings>
+      <clock-settings></clock-settings>
     `;
   }
 }
