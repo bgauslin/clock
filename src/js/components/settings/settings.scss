@@ -5,8 +5,8 @@
 $button-size: 2.75rem;
 $menu-padding: .75rem;
 $swatch-size: 2.75rem;
-$toggle-size: 1.25rem;
 $toggle-padding: .125rem;
+$toggle-size: 1.25rem;
 
 *,
 *::before,
@@ -108,11 +108,11 @@ input {
 
 // Each theme swatch is a radio button.
 [type='radio'] {
+  block-size: $swatch-size;
+  border: 3px solid transparent;
   border-radius: math.div($swatch-size, 2);
   display: grid;
   grid: 'content';
-  block-size: $swatch-size;
-  border: 3px solid transparent;
   inline-size: $swatch-size;
   overflow: hidden;
 
@@ -169,13 +169,13 @@ label > span {
 
 // Toggle switches via checkboxes.
 input[type='checkbox'] {
+  block-size: ($toggle-size + ($toggle-padding * 2));
+  border: 3px solid transparent;
   border-radius: ($toggle-size + ($toggle-padding * 2));
+  box-sizing: content-box;
   display: grid;
   grid: 'content';
   grid-area: 'toggle';
-  block-size: ($toggle-size + ($toggle-padding * 2));
-  border: 3px solid transparent;
-  box-sizing: content-box;
   inline-size: ($toggle-size * 2) + ($toggle-padding * 2);
   overflow: hidden;
 
@@ -201,10 +201,10 @@ input[type='checkbox'] {
   &::after {
     align-self: center;
     background-color: white;
-    content: '';
-    display: block;
     block-size: $toggle-size;
     border-radius: $toggle-size;
+    content: '';
+    display: block;
     inline-size: $toggle-size;
     margin-inline: $toggle-padding 0;
     transition: utils.transition(margin-inline);

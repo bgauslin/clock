@@ -10,8 +10,8 @@ import shadowStyles from './app.scss';
  */
 @customElement('clock-app')
 class App extends LitElement {
-  @property() storageItem = 'clock';
   @property() settingsEvent = 'updateSettings';
+  @property() storageItem = 'clock';
   @query('clock-settings') settingsWidget: HTMLElement;
   @state() settings: Settings = {
     seconds: true,
