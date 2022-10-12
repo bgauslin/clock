@@ -62,7 +62,7 @@ class App extends LitElement {
     const _theme = theming ? theme : null;
     return html`
       <clock-faces
-        seconds="${seconds}"
+        ?seconds="${seconds}"
         theme="${ifDefined(_theme)}">
       </clock-faces>
       <clock-settings ?zen-mode="${zen}"></clock-settings>

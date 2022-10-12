@@ -20,8 +20,8 @@
 clock-faces {
   grid-area: faces;
 
-  &[seconds='false'] {
-    --seconds-opacity: 0;
+  &[seconds] {
+    --seconds-opacity: 1;
   }
 }
 

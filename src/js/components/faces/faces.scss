@@ -97,8 +97,8 @@ svg {
 
 // Second hand and upper pivot.
 :is(.seconds, .upper-pivot) {
-  opacity: var(--seconds-opacity, 1);
-  transition: utils.transition(opacity);
+  opacity: var(--seconds-opacity, 0);
+  transition: opacity 2s;
 }
 
 .seconds {
