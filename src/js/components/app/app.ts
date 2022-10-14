@@ -1,5 +1,5 @@
 import {LitElement, css, html} from 'lit';
-import {customElement, property, query, state} from 'lit/decorators.js';
+import {customElement, query, state} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {Settings} from '../../shared';
 
@@ -10,16 +10,17 @@ import shadowStyles from './app.scss';
  */
 @customElement('clock-app')
 class App extends LitElement {
-  @property() settingsEvent = 'updateSettings';
-  @property() storageItem = 'clock';
   @query('clock-settings') settingsWidget: HTMLElement;
+
   @state() settings: Settings = {
     seconds: true,
     theme: 'default',
     theming: true,
     zen: false,
   };
+  @state() settingsEvent = 'updateSettings';
   @state() settingsListener: EventListenerObject;
+  @state() storageItem = 'clock';
 
   static styles = css`${shadowStyles}`;
 

@@ -1,5 +1,5 @@
 import {LitElement, css, html} from 'lit';
-import {customElement, property, query, state} from 'lit/decorators.js';
+import {customElement, query, state} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {when} from 'lit/directives/when.js';
 import {Settings} from '../../shared';
@@ -11,17 +11,18 @@ import shadowStyles from './settings.scss';
  */
 @customElement('clock-settings')
 class SettingsWidget extends LitElement {
-  @property() colors = [
+  @query('button') button: HTMLButtonElement;
+  @query('dialog') dialog: HTMLDialogElement;
+  @query('form') form: HTMLFormElement;
+
+  @state() clickListener: EventListenerObject;
+  @state() colors = [
     'Default', 'Red', 'Orange',
     'Yellow', 'Teal',  'Blue',
     'Indigo', 'Purple', 'Brown',
   ];
-  @property() settingsEvent = 'updateSettings';
-  @query('button') button: HTMLButtonElement;
-  @query('dialog') dialog: HTMLFormElement;
-  @query('form') form: HTMLFormElement;
-  @state() clickListener: EventListenerObject;
   @state() settings: Settings;
+  @state() settingsEvent = 'updateSettings';
   @state() settingsListener: EventListenerObject;
 
   static styles = css`${shadowStyles}`;
