@@ -16,7 +16,6 @@ class App extends LitElement {
     seconds: true,
     theme: 'default',
     theming: true,
-    zen: false,
   };
   @state() settingsEvent = 'updateSettings';
   @state() settingsListener: EventListenerObject;

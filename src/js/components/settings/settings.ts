@@ -21,6 +21,7 @@ class SettingsWidget extends LitElement {
     'Yellow', 'Teal',  'Blue',
     'Indigo', 'Purple', 'Brown',
   ];
+  @state() open: boolean = false;
   @state() settings: Settings;
   @state() settingsEvent = 'updateSettings';
   @state() settingsListener: EventListenerObject;
@@ -51,10 +52,14 @@ class SettingsWidget extends LitElement {
       return;
     }
 
-    if (this.dialog.open) {
-      this.dialog.close();
-    } else if (path.includes(this.button) || this.settings.zen) {
+    if (this.open) {
+      this.open = false;
+      this.dialog.addEventListener('transitionend', () => {
+        this.dialog.close();
+      }, {once: true});
+    } else {
       this.dialog.showModal();
+      this.open = true;
     }
   }
 
@@ -69,7 +74,6 @@ class SettingsWidget extends LitElement {
       seconds: Boolean(formData.get('seconds')),
       theme: String(formData.get('theme')),
       theming: Boolean(formData.get('theming')),
-      zen: Boolean(formData.get('zen')),
     };
 
     this.dispatchEvent(new CustomEvent(this.settingsEvent, {
@@ -84,52 +88,28 @@ class SettingsWidget extends LitElement {
   render() {
     return html`
       ${when(this.settings, () => {
-        const {zen} = this.settings;
         return html`
-          ${when(!zen, () => {
-            return html`${this.renderButton()}`
-          })}
           ${this.renderDialog()}
         `;
       })}
     `;
   }
 
-  private renderButton() {
-    const label = 'Update clock settings';
-    return html`
-      <button
-        aria-label="${label}"
-        id="button"
-        title="${label}"
-        type="button">
-        ${this.renderIcon()}
-      </button>
-    `;
-  }
-
   private renderDialog() {
     return html`
-      <dialog aria-labelledby="button">
+      <dialog aria-disabled="${!this.open}">
         <form @change="${this.getSettings}">
-          ${this.renderToggles()}
-          ${this.renderSwatches()}
+          ${this.renderTheming()}
+          <hr>
+          ${this.renderSeconds()}
         </form>
       </dialog>
     `;
   }
 
-  private renderToggles() {
-    const {seconds, theming, zen} = this.settings;
+  private renderSeconds() {
+    const {seconds} = this.settings;
     return html`
-      <label>
-        <span>Zen Mode</span>
-        <input
-          ?checked="${zen}"
-          name="zen"
-          type="checkbox">
-      </label>
-      <hr>
       <label>
         <span>Seconds</span>
         <input
@@ -137,7 +117,13 @@ class SettingsWidget extends LitElement {
           name="seconds"
           type="checkbox">
       </label>
-      <hr>
+    `;
+  }
+
+  private renderTheming() {
+    const {theme, theming} = this.settings;
+    const tabindex = theming ? null : -1;
+    return html`
       <label>
         <span>Theme</span>
         <input
@@ -145,13 +131,6 @@ class SettingsWidget extends LitElement {
           name="theming"
           type="checkbox">
       </label>
-    `;
-  }
-
-  private renderSwatches() {
-    const {theme, theming} = this.settings;
-    const tabindex = theming ? null : -1;
-    return html`
       <ul ?aria-disabled="${!theming}">
       ${this.colors.map((color) => {
         const value = color.toLowerCase();
@@ -167,22 +146,6 @@ class SettingsWidget extends LitElement {
           </li>`
       })}
       </ul>
-    `;
-  }
-
-  private renderIcon() {
-    return html`
-      <svg aria-hidden="true" viewbox="0 0 24 24">
-        <circle cx="4" cy="4" r="2.5"/>
-        <circle cx="12" cy="4" r="2.5"/>
-        <circle cx="20" cy="4" r="2.5"/>
-        <circle cx="4" cy="12" r="2.5"/>
-        <circle cx="12" cy="12" r="2.5"/>
-        <circle cx="20" cy="12" r="2.5"/>
-        <circle cx="4" cy="20" r="2.5"/>
-        <circle cx="12" cy="20" r="2.5"/>
-        <circle cx="20" cy="20" r="2.5"/>
-      </svg>
     `;
   }
 }

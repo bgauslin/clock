@@ -14,46 +14,6 @@ $toggle-size: 1.25rem;
   box-sizing: border-box;
 }
 
-// Button which opens a dialog containing settings.
-button {
-  appearance: none;
-  background-color: var(--surface1);
-  block-size: $button-size;
-  border: 0;
-  border-radius: math.div($button-size, 2);
-  color: var(--on-surface);
-  cursor: pointer;
-  display: grid;
-  inline-size: $button-size;
-  outline: 0;
-  padding: 0;
-  place-content: center;
-  transition: utils.transition(transform);
-
-  &:focus {
-    background-color: var(--surface2);
-  }
-
-  &:active {
-    transform: scale(.9);
-  }
-
-  @media (any-hover: hover) {
-    transition: utils.transition(background-color, transform);
-
-    &:hover {
-      background-color: var(--surface2);
-    }
-  }
-}
-
-// Icon for the button.
-svg {
-  fill: currentColor;
-  inline-size: 1.25rem;
-  pointer-events: none;
-}
-
 // The dialog.
 dialog {
   backdrop-filter: blur(6px);
@@ -61,6 +21,12 @@ dialog {
   border: 0;
   border-radius: 1.5rem;
   padding: 0;
+  transition: utils.transition(transform);
+
+  &[aria-disabled='true'] {
+    opacity: 0;
+    transform: scale(.25);
+  }
 
   &::backdrop {
     background: 0;
@@ -72,6 +38,7 @@ form > :where(ul, label) {
   padding-block: $menu-padding;
 }
 
+// Dividers.
 hr {
   block-size: 0;
   border: 0;

@@ -53,22 +53,17 @@ $total-cells: ($grid * $clock-cells) + $clock-cells;
   }
 }
 
-// Start encapsulated styles.
 :host {
   aspect-ratio: 1;
-  max-block-size: calc(100vh - #{const.$app-gap-max});
-
-  @supports (max-block-size: calc(100dvh - #{const.$app-gap-max})) {
-    max-block-size: calc(100dvh - #{const.$app-gap-max});
-  }
-}
-
-// Frame for all nine clocks.
-div {
   background-color: var(--theme);
   display: grid;
   grid: repeat($total-cells, 1fr) / repeat($total-cells, 1fr);
+  max-block-size: 90vh;
   transition: utils.transition(background-color);
+
+  @supports (max-block-size: 90dvh) {
+    max-block-size: 90dvh;
+  }
 }
 
 // Individual placement of each clock via grid-area.
@@ -98,7 +93,7 @@ svg {
 // Second hand and upper pivot.
 :is(.seconds, .upper-pivot) {
   opacity: var(--seconds-opacity, 0);
-  transition: opacity 2s;
+  transition: opacity 1s;
 }
 
 .seconds {

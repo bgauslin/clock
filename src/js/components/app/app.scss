@@ -6,27 +6,15 @@
   display: grid;
   font-family: 'Avenir Variable', sans-serif;
   font-variation-settings: 'wght' 500;
-  grid:
-    '.' minmax(#{const.$app-gap-min}, #{const.$app-gap-max})
-    'faces'
-    'settings' minmax(#{const.$app-gap-min}, #{const.$app-gap-max}) / 1fr;
-  place-items: center;
+  place-content: center;
   
   @supports (block-size: 100dvh) {
     block-size: 100dvh;
   }
 }
 
-clock-faces {
-  grid-area: faces;
-
-  &[seconds] {
-    --seconds-opacity: 1;
-  }
-}
-
-clock-settings {
-  grid-area: settings;
+clock-faces[seconds] {
+  --seconds-opacity: 1;
 }
 
 // Hands colors don't change between light and dark mode, but second hands

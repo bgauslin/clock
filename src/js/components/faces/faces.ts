@@ -75,6 +75,6 @@ class Faces extends LitElement {
         </svg>`
       );
     }
-    return html`<div>${clocks}</div>`;
+    return html`${clocks}`;
   }
 }
