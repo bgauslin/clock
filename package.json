@@ -5,8 +5,7 @@
   "license": "UNLICENSED",
   "repository": "https://github.com/bgauslin/clock",
   "scripts": {
-    "test": "webpack-dev-server --open --config webpack.dev.js",
-    "start": "http-server dist",
+    "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
   "postcss": {
@@ -23,7 +22,6 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
-    "http-server": "^14.1.1",
     "lit-css-loader": "^2.0.0",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss": "^8.4.17",
