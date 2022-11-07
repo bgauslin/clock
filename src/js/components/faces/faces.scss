@@ -58,6 +58,7 @@ $total-cells: ($grid * $clock-cells) + $clock-cells;
   background-color: var(--theme);
   display: grid;
   grid: repeat($total-cells, 1fr) / repeat($total-cells, 1fr);
+  margin: 1rem;
   max-block-size: 90vh;
   transition: utils.transition(background-color);
 

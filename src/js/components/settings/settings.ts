@@ -21,6 +21,7 @@ class SettingsWidget extends LitElement {
     'Yellow', 'Teal',  'Blue',
     'Indigo', 'Purple', 'Brown',
   ];
+  @state() keyListener: EventListenerObject;
   @state() open: boolean = false;
   @state() settings: Settings;
   @state() settingsEvent = 'updateSettings';
@@ -31,6 +32,7 @@ class SettingsWidget extends LitElement {
   constructor() {
     super();
     this.clickListener = this.handleClick.bind(this);
+    this.keyListener = this.handleKey.bind(this);
     this.settingsListener = this.updateSettings.bind(this);
   }
   
@@ -38,21 +40,31 @@ class SettingsWidget extends LitElement {
     super.connectedCallback();
     this.addEventListener(this.settingsEvent, this.updateSettings);
     document.addEventListener('click', this.clickListener);
+    document.addEventListener('keydown', this.keyListener);
   }
 
   disconnectedCallback() { 
     super.disconnectedCallback();
     this.removeEventListener(this.settingsEvent, this.updateSettings);
     document.removeEventListener('click', this.clickListener);
+    document.removeEventListener('keydown', this.keyListener);
   }
 
   private handleClick(e: Event) {
-    const path = e.composedPath();
-    if (path.includes(this.form)) {
-      return;
+    if (!e.composedPath().includes(this.form)) {
+      this.toggleOpen();  
     }
+  }
 
-    if (this.open) {
+  private handleKey(e: KeyboardEvent) {
+    if (e.code === 'Escape') {
+      e.preventDefault();
+      this.toggleOpen();
+    }
+  }
+
+  private toggleOpen() {
+    if (this.dialog.open) {
       this.open = false;
       this.dialog.addEventListener('transitionend', () => {
         this.dialog.close();
@@ -97,7 +109,7 @@ class SettingsWidget extends LitElement {
 
   private renderDialog() {
     return html`
-      <dialog aria-disabled="${!this.open}">
+      <dialog ?inert="${!this.open}">
         <form @change="${this.getSettings}">
           ${this.renderTheming()}
           <hr>
@@ -124,13 +136,6 @@ class SettingsWidget extends LitElement {
     const {theme, theming} = this.settings;
     const tabindex = theming ? null : -1;
     return html`
-      <label>
-        <span>Theme</span>
-        <input
-          ?checked="${theming}"
-          name="theming"
-          type="checkbox">
-      </label>
       <ul ?aria-disabled="${!theming}">
       ${this.colors.map((color) => {
         const value = color.toLowerCase();
@@ -146,6 +151,13 @@ class SettingsWidget extends LitElement {
           </li>`
       })}
       </ul>
+      <label>
+        <span>Theme</span>
+        <input
+          ?checked="${theming}"
+          name="theming"
+          type="checkbox">
+      </label>
     `;
   }
 }
