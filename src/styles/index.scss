@@ -9,7 +9,6 @@
 }
 
 :root {
-  --dialog-surface: #{rgba(utils.map-deep-get(const.$grays, 6, light), .8)};
   --on-surface: #{utils.map-deep-get(const.$grays, 5, dark)};
   --on-surface-variant: #{utils.map-deep-get(const.$grays, 3, light)};
   --surface: #{utils.map-deep-get(const.$grays, 6, light)};
@@ -17,7 +16,6 @@
   --surface2: #{utils.map-deep-get(const.$grays, 4, light)};
 
   @media (prefers-color-scheme: dark) {
-    --dialog-surface: #{rgba(utils.map-deep-get(const.$grays, 5, dark), .8)};
     --on-surface: #{utils.map-deep-get(const.$grays, 5, light)};
     --on-surface-variant: #{utils.map-deep-get(const.$grays, 3, dark)};
     --surface: #{utils.map-deep-get(const.$grays, 6, dark)};

@@ -16,17 +16,17 @@ $toggle-size: 1.25rem;
 
 // The dialog.
 dialog {
-  backdrop-filter: blur(6px);
-  background-color: var(--dialog-surface);
+  background-color: var(--surface1);
   border: 1px solid var(--on-surface-variant);
   border-radius: 1.5rem;
+  inset-block: auto 5vw;
   padding: 0;
   transition: utils.transition(opacity, transform);
 
   &[inert] {
     opacity: 0;
     pointer-events: none;
-    transform: scale(.5);
+    transform: translateY(100%);
   }
 
   &::backdrop {
@@ -40,33 +40,32 @@ html:has(dialog[open]) {
 }
 
 // All settings in a standard <form> element.
-form > :where(ul, label) {
+form {
+  display: grid;
+  gap: $menu-padding;
+  grid: '. .' 'swatches swatches' / 1fr 1fr;
   padding-block: $menu-padding;
-}
-
-// Dividers.
-hr {
-  block-size: 0;
-  border: 0;
-  border-block-start: 1px solid var(--on-surface-variant);
-  inline-size: 100%;
-  margin: 0;
 }
 
 // Theme swatches.
 ul {
-  display: grid;
+  display: flex;
   gap: .375rem;
-  grid: auto-flow / repeat(3, 1fr);
+  grid-area: swatches;
   list-style: none;
   margin: 0;
-  padding-block: $menu-padding 0;
+  overflow: auto hidden;
   padding-inline: $menu-padding;
+  scrollbar-width: none;
   transition: utils.transition(opacity);
 
   &[aria-disabled] {
     opacity: .25;
     pointer-events: none;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -82,7 +81,7 @@ input {
 // Each theme swatch is a radio button.
 [type='radio'] {
   block-size: $swatch-size;
-  border: 3px solid transparent;
+  border: 3px solid var(--surface1);
   border-radius: math.div($swatch-size, 2);
   display: grid;
   grid: 'content';
@@ -165,6 +164,7 @@ input[type='checkbox'] {
 
   &::before {
     background-color: var(--surface2);
+    transition: utils.transition(background-color);
   }
 
   &:checked::before {
@@ -179,12 +179,12 @@ input[type='checkbox'] {
     content: '';
     display: block;
     inline-size: $toggle-size;
-    margin-inline: $toggle-padding 0;
-    transition: utils.transition(margin-inline);
+    margin-inline-start: $toggle-padding;
+    transition: utils.transition(margin-inline-start);
   }
 
   &:checked::after {
-    margin-inline: ($toggle-size + $toggle-padding) 0; //
+    margin-inline-start: ($toggle-size + $toggle-padding);
   }
 }
 

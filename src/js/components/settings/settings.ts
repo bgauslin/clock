@@ -101,28 +101,22 @@ class SettingsWidget extends LitElement {
     return html`
       ${when(this.settings, () => {
         return html`
-          ${this.renderDialog()}
+          <dialog ?inert="${!this.open}">
+            <form @change="${this.getSettings}">
+              ${this.renderTheming()}  
+              ${this.renderSeconds()}
+              ${this.renderSwatches()}
+            </form>
+          </dialog>
         `;
       })}
-    `;
-  }
-
-  private renderDialog() {
-    return html`
-      <dialog ?inert="${!this.open}">
-        <form @change="${this.getSettings}">
-          ${this.renderTheming()}
-          <hr>
-          ${this.renderSeconds()}
-        </form>
-      </dialog>
     `;
   }
 
   private renderSeconds() {
     const {seconds} = this.settings;
     return html`
-      <label>
+      <label id="seconds">
         <span>Seconds</span>
         <input
           ?checked="${seconds}"
@@ -133,8 +127,21 @@ class SettingsWidget extends LitElement {
   }
 
   private renderTheming() {
+    const {theming} = this.settings;
+    return html`
+      <label id="theme">
+        <span>Theme</span>
+        <input
+          ?checked="${theming}"
+          name="theming"
+          type="checkbox">
+      </label>
+    `;
+  }
+
+  private renderSwatches() {
     const {theme, theming} = this.settings;
-    const tabindex = theming ? null : -1;
+    const tabindex = theming ?? -1;
     return html`
       <ul ?aria-disabled="${!theming}">
       ${this.colors.map((color) => {
@@ -151,13 +158,6 @@ class SettingsWidget extends LitElement {
           </li>`
       })}
       </ul>
-      <label>
-        <span>Theme</span>
-        <input
-          ?checked="${theming}"
-          name="theming"
-          type="checkbox">
-      </label>
     `;
   }
 }
