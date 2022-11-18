@@ -57,6 +57,10 @@ class SettingsWidget extends LitElement {
   }
 
   private handleKey(e: KeyboardEvent) {
+    if (e.code === 'Space' && !this.open) {
+      this.toggleOpen();
+    }
+
     if (e.code === 'Escape') {
       e.preventDefault();
       this.toggleOpen();
