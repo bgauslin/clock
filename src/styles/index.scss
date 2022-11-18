@@ -11,6 +11,7 @@
 :root {
   --on-surface: #{utils.map-deep-get(const.$grays, 5, dark)};
   --on-surface-variant: #{utils.map-deep-get(const.$grays, 3, light)};
+  --outline: #{utils.map-deep-get(const.$colors, 'blue', light)};
   --surface: #{utils.map-deep-get(const.$grays, 6, light)};
   --surface1: #{utils.map-deep-get(const.$grays, 5, light)};
   --surface2: #{utils.map-deep-get(const.$grays, 4, light)};
@@ -18,6 +19,7 @@
   @media (prefers-color-scheme: dark) {
     --on-surface: #{utils.map-deep-get(const.$grays, 5, light)};
     --on-surface-variant: #{utils.map-deep-get(const.$grays, 3, dark)};
+    --outline: #{utils.map-deep-get(const.$colors, 'blue', dark)};
     --surface: #{utils.map-deep-get(const.$grays, 6, dark)};
     --surface1: #{utils.map-deep-get(const.$grays, 5, dark)};
     --surface2: #{utils.map-deep-get(const.$grays, 4, dark)};

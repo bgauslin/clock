@@ -154,7 +154,7 @@ input[type='checkbox'] {
   overflow: hidden;
 
   &:focus {
-    border-color: var(--on-surface);
+    border-color: var(--outline);
   }
 
   &::before,
