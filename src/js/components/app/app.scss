@@ -2,15 +2,11 @@
 @use '../../../styles/utils';
 
 :host {
-  block-size: 100vh;
+  block-size: 100dvh;
   display: grid;
   font-family: 'Avenir Variable', sans-serif;
   font-variation-settings: 'wght' 500;
   place-content: center;
-  
-  @supports (block-size: 100dvh) {
-    block-size: 100dvh;
-  }
 }
 
 clock-faces[seconds] {

@@ -36,13 +36,9 @@ html {
 
 body {
   background-color: var(--surface);
-  block-size: 100vh;
+  block-size: 100dvh;
   margin: 0;
   overflow: hidden;
   place-items: center;
   touch-action: manipulation;
-
-  @supports (block-size: 100dvh) {
-    block-size: 100dvh;
-  }
 }

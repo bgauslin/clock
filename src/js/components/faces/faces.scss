@@ -59,12 +59,8 @@ $total-cells: ($grid * $clock-cells) + $clock-cells;
   display: grid;
   grid: repeat($total-cells, 1fr) / repeat($total-cells, 1fr);
   margin: 1rem;
-  max-block-size: 90vh;
+  max-block-size: 90dvh;
   transition: utils.transition(background-color);
-
-  @supports (max-block-size: 90dvh) {
-    max-block-size: 90dvh;
-  }
 }
 
 // Individual placement of each clock via grid-area.
