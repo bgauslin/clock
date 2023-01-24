@@ -11,7 +11,6 @@ import shadowStyles from './app.scss';
 @customElement('clock-app')
 class App extends LitElement {
   @query('clock-settings') settingsWidget: HTMLElement;
-
   @state() settings: Settings = {
     seconds: true,
     theme: 'default',

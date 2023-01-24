@@ -7,8 +7,7 @@ import shadowStyles from './faces.scss';
  */
 @customElement('clock-faces')
 class Faces extends LitElement {
-  @property({attribute: 'aria-label', reflect: true}) ariaLabel ='';
-
+  @property({attribute: 'aria-label', reflect: true}) ariaLabel = '';
   @state() framerate: number = 1000 / 60;
   @state() hoursAngle: number = 0;
   @state() interval = 0;

@@ -14,7 +14,6 @@ class SettingsWidget extends LitElement {
   @query('button') button: HTMLButtonElement;
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
-
   @state() clickListener: EventListenerObject;
   @state() colors = [
     'Default', 'Red', 'Orange',
