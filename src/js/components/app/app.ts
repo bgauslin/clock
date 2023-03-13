@@ -16,7 +16,7 @@ class App extends LitElement {
     theme: 'default',
     theming: true,
   };
-  @state() settingsEvent = 'updateSettings';
+  @state() settingsEvent = 'settingsUpdated';
   @state() settingsListener: EventListenerObject;
   @state() storageItem = 'clock';
 

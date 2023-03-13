@@ -23,7 +23,7 @@ class SettingsWidget extends LitElement {
   @state() keyListener: EventListenerObject;
   @state() open: boolean = false;
   @state() settings: Settings;
-  @state() settingsEvent = 'updateSettings';
+  @state() settingsEvent = 'settingsUpdated';
   @state() settingsListener: EventListenerObject;
 
   static styles = css`${shadowStyles}`;
