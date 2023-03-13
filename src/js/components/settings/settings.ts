@@ -2,30 +2,31 @@ import {LitElement, css, html} from 'lit';
 import {customElement, query, state} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {when} from 'lit/directives/when.js';
-import {Settings} from '../../shared';
+import {AppEvent, Settings} from '../../shared';
 
 import shadowStyles from './settings.scss';
+
+const COLORS = [
+  'Default', 'Red', 'Orange',
+  'Yellow', 'Teal',  'Blue',
+  'Indigo', 'Purple', 'Brown',
+];
 
 /**
  * Web component that renders theme swatches for a user to choose from.
  */
 @customElement('clock-settings')
 class SettingsWidget extends LitElement {
-  @query('button') button: HTMLButtonElement;
+  private clickListener: EventListenerObject;
+  private keyListener: EventListenerObject;
+  private settingsListener: EventListenerObject;
+
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
-  @state() clickListener: EventListenerObject;
-  @state() colors = [
-    'Default', 'Red', 'Orange',
-    'Yellow', 'Teal',  'Blue',
-    'Indigo', 'Purple', 'Brown',
-  ];
-  @state() keyListener: EventListenerObject;
+
   @state() open: boolean = false;
   @state() settings: Settings;
-  @state() settingsEvent = 'settingsUpdated';
-  @state() settingsListener: EventListenerObject;
-
+  
   static styles = css`${shadowStyles}`;
 
   constructor() {
@@ -37,14 +38,14 @@ class SettingsWidget extends LitElement {
   
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener(this.settingsEvent, this.updateSettings);
+    this.addEventListener(AppEvent.SETTINGS, this.settingsListener);
     document.addEventListener('click', this.clickListener);
     document.addEventListener('keydown', this.keyListener);
   }
 
   disconnectedCallback() { 
     super.disconnectedCallback();
-    this.removeEventListener(this.settingsEvent, this.updateSettings);
+    this.removeEventListener(AppEvent.SETTINGS, this.settingsListener);
     document.removeEventListener('click', this.clickListener);
     document.removeEventListener('keydown', this.keyListener);
   }
@@ -91,7 +92,7 @@ class SettingsWidget extends LitElement {
       theming: Boolean(formData.get('theming')),
     };
 
-    this.dispatchEvent(new CustomEvent(this.settingsEvent, {
+    this.dispatchEvent(new CustomEvent(AppEvent.SETTINGS, {
       bubbles: true,
       composed: true,
       detail: {
@@ -147,7 +148,7 @@ class SettingsWidget extends LitElement {
     const tabindex = theming ?? -1;
     return html`
       <ul ?aria-disabled="${!theming}">
-      ${this.colors.map((color) => {
+      ${COLORS.map((color) => {
         const value = color.toLowerCase();
         return html`
           <li>

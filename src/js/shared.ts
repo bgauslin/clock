@@ -1,7 +1,9 @@
-interface Settings {
+export interface Settings {
   seconds: boolean,
   theme: string,
   theming: boolean,
 }
 
-export {Settings};
+export enum AppEvent {
+  SETTINGS = 'settingsUpdated',
+}
