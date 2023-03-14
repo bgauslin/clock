@@ -1,16 +1,18 @@
-import {LitElement, css, html} from 'lit';
+import {LitElement, PropertyValues, css, html} from 'lit';
 import {customElement, query, state} from 'lit/decorators.js';
-import {ifDefined} from 'lit/directives/if-defined.js';
-import {when} from 'lit/directives/when.js';
 import {AppEvent, Settings} from '../../shared';
 
 import shadowStyles from './settings.scss';
 
-const COLORS = [
+const THEMES: string[] = [
   'Default', 'Red', 'Orange',
   'Yellow', 'Teal',  'Blue',
   'Indigo', 'Purple', 'Brown',
 ];
+
+const DEFAULT_THEME = THEMES[0].toLowerCase();
+
+const STORAGE_ITEM = 'clock';
 
 /**
  * Web component that renders theme swatches for a user to choose from.
@@ -19,13 +21,14 @@ const COLORS = [
 class SettingsWidget extends LitElement {
   private clickListener: EventListenerObject;
   private keyListener: EventListenerObject;
-  private settingsListener: EventListenerObject;
 
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
 
   @state() open: boolean = false;
-  @state() settings: Settings;
+  @state() seconds: boolean = true;
+  @state() theme = DEFAULT_THEME;
+  @state() theming: boolean = true;
   
   static styles = css`${shadowStyles}`;
 
@@ -33,21 +36,29 @@ class SettingsWidget extends LitElement {
     super();
     this.clickListener = this.handleClick.bind(this);
     this.keyListener = this.handleKey.bind(this);
-    this.settingsListener = this.updateSettings.bind(this);
   }
   
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener(AppEvent.SETTINGS, this.settingsListener);
     document.addEventListener('click', this.clickListener);
     document.addEventListener('keydown', this.keyListener);
+    this.setup();
   }
 
   disconnectedCallback() { 
     super.disconnectedCallback();
-    this.removeEventListener(AppEvent.SETTINGS, this.settingsListener);
     document.removeEventListener('click', this.clickListener);
     document.removeEventListener('keydown', this.keyListener);
+  }
+
+  private setup() {
+    const settings = JSON.parse(localStorage.getItem(STORAGE_ITEM));
+    if (settings) {
+      const {seconds, theme, theming} = settings;
+      this.seconds = seconds;
+      this.theme = theme;
+      this.theming = theming;
+    }
   }
 
   private handleClick(e: Event) {
@@ -79,86 +90,79 @@ class SettingsWidget extends LitElement {
     }
   }
 
-  private updateSettings(e: CustomEvent) {
-    this.settings = e.detail.settings;
-  }
-
-  private getSettings() {
-    const formData = new FormData(this.form);
-
-    this.settings = {
-      seconds: Boolean(formData.get('seconds')),
-      theme: String(formData.get('theme')),
-      theming: Boolean(formData.get('theming')),
-    };
-
-    this.dispatchEvent(new CustomEvent(AppEvent.SETTINGS, {
-      bubbles: true,
-      composed: true,
-      detail: {
-        settings: this.settings,
-      },
-    }));
+  updated(changed: PropertyValues<this>) {
+    for (const key of changed.keys()) {
+      if (['seconds', 'theme', 'theming'].includes(key.toString())) {
+        const settings: Settings = {
+          seconds: this.seconds,
+          theme: this.theme,
+          theming: this.theming,
+        }
+    
+        this.dispatchEvent(new CustomEvent(AppEvent.SETTINGS, {
+          bubbles: true,
+          composed: true,
+          detail: {settings},
+        }));
+    
+        localStorage.setItem(STORAGE_ITEM, JSON.stringify(settings));
+      }
+    }
   }
 
   render() {
     return html`
-      ${when(this.settings, () => {
-        return html`
-          <dialog ?inert="${!this.open}">
-            <form @change="${this.getSettings}">
-              ${this.renderTheming()}  
-              ${this.renderSeconds()}
-              ${this.renderSwatches()}
-            </form>
-          </dialog>
-        `;
-      })}
+      <dialog ?inert=${!this.open}>
+        <form>
+          ${this.renderTheming()}  
+          ${this.renderSeconds()}
+          ${this.renderSwatches()}
+        </form>
+      </dialog>
     `;
   }
 
   private renderSeconds() {
-    const {seconds} = this.settings;
     return html`
       <label id="seconds">
         <span>Seconds</span>
         <input
-          ?checked="${seconds}"
           name="seconds"
-          type="checkbox">
+          type="checkbox"
+          ?checked=${this.seconds}
+          @change=${() => this.seconds = !this.seconds}>
       </label>
     `;
   }
 
   private renderTheming() {
-    const {theming} = this.settings;
     return html`
       <label id="theme">
         <span>Theme</span>
         <input
-          ?checked="${theming}"
           name="theming"
-          type="checkbox">
+          type="checkbox"
+          ?checked=${this.theming}
+          @change=${() => this.theming = !this.theming}>
       </label>
     `;
   }
 
   private renderSwatches() {
-    const {theme, theming} = this.settings;
-    const tabindex = theming ?? -1;
     return html`
-      <ul ?aria-disabled="${!theming}">
-      ${COLORS.map((color) => {
-        const value = color.toLowerCase();
+      <ul ?aria-disabled="${!this.theming}">
+      ${THEMES.map((theme) => {
+        const value = theme.toLowerCase();
         return html`
           <li>
             <input
-              aria-label="${color}"
-              ?checked="${value === theme}"
+              aria-label="${theme}"
               name="theme"
-              tabindex="${ifDefined(tabindex)}"
+              tabindex="${this.theming ? '0' : '-1'}"
               type="radio"
-              value="${value}">
+              value="${value}"
+              ?checked=${value === this.theme}
+              @change=${() => this.theme = value}>
           </li>`
       })}
       </ul>
