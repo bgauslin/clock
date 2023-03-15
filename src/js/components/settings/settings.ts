@@ -24,7 +24,6 @@ class SettingsWidget extends LitElement {
 
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
-
   @state() open: boolean = false;
   @state() seconds: boolean = true;
   @state() theme = DEFAULT_THEME;
@@ -90,7 +89,7 @@ class SettingsWidget extends LitElement {
     }
   }
 
-  updated(changed: PropertyValues<this>) {
+  protected updated(changed: PropertyValues<this>) {
     for (const key of changed.keys()) {
       if (['seconds', 'theme', 'theming'].includes(key.toString())) {
         const settings: Settings = {
@@ -110,7 +109,7 @@ class SettingsWidget extends LitElement {
     }
   }
 
-  render() {
+  protected render() {
     return html`
       <dialog ?inert=${!this.open}>
         <form>

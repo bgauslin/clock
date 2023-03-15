@@ -12,7 +12,6 @@ class Faces extends LitElement {
   private interval = 0;
 
   @property({attribute: 'aria-label', reflect: true}) ariaLabel = '';
-
   @state() hoursAngle: number = 0;
   @state() minutesAngle: number = 0;
   @state() secondsAngle: number = 0;
@@ -52,7 +51,7 @@ class Faces extends LitElement {
     })}.`;
   }
 
-  render() {
+  protected render() {
     const clocks = [];
     for (let i = 0; i < 9; i++) {
       clocks.push(html`
