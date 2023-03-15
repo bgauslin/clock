@@ -36,22 +36,20 @@ class App extends LitElement {
     this.settings = e.detail.settings;
   }
 
-  render() {
+  protected render() {
     return html`
-      ${when(this.settings, () => this.renderFaces())}
+      ${when(this.settings, () => {
+        const {seconds, theme, theming} = this.settings;
+        const facesTheme = theming ? theme : undefined;
+        return html`
+          <clock-faces
+            aria-level="1"
+            role="heading"
+            theme="${ifDefined(facesTheme)}"
+            ?seconds="${seconds}"></clock-faces>
+        `;
+      })}
       <clock-settings></clock-settings>
-    `;
-  }
-
-  renderFaces() {
-    const {seconds, theme, theming} = this.settings;
-    const facesTheme = theming ? theme : undefined;
-    return html`
-      <clock-faces
-        aria-level="1"
-        role="heading"
-        theme="${ifDefined(facesTheme)}"
-        ?seconds="${seconds}"></clock-faces>
     `;
   }
 }
