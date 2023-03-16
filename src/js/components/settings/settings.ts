@@ -24,7 +24,7 @@ class SettingsWidget extends LitElement {
 
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
-  @state() open: boolean = false;
+  @state() open: boolean = true;
   @state() seconds: boolean = true;
   @state() theme = DEFAULT_THEME;
   @state() theming: boolean = true;
@@ -111,7 +111,9 @@ class SettingsWidget extends LitElement {
 
   protected render() {
     return html`
-      <dialog ?inert=${!this.open}>
+      <dialog
+        ?open="${this.open}"
+        ?inert="${!this.open}">
         <form>
           ${this.renderTheming()}  
           ${this.renderSeconds()}
