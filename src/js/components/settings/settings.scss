@@ -17,11 +17,12 @@ $toggle-size: 1.25rem;
 // The dialog.
 // [1] Required by Safari for open/close transitions.
 dialog {
-  background-color: var(--surface1);
+  background-color: var(--surface);
   border: 1px solid var(--on-surface-variant);
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   display: block; // [1]
-  inset-block: auto 5vw;
+  inset-block: auto 5dvw;
+  max-inline-size: 90dvw;
   padding: 0;
   transition: utils.transition(opacity, transform);
 
@@ -83,7 +84,7 @@ input {
 // Each theme swatch is a radio button.
 [type='radio'] {
   block-size: $swatch-size;
-  border: 3px solid var(--surface1);
+  border: 3px solid var(--surface);
   border-radius: math.div($swatch-size, 2);
   display: grid;
   grid: 'content';
@@ -165,7 +166,7 @@ input[type='checkbox'] {
   }
 
   &::before {
-    background-color: var(--surface2);
+    background-color: var(--surface1);
     transition: utils.transition(background-color);
   }
 
