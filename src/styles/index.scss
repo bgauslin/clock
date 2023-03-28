@@ -9,18 +9,19 @@
 }
 
 :root {
-  --on-surface: #{utils.map-deep-get(const.$grays, 5, dark)};
-  --on-surface-variant: #{utils.map-deep-get(const.$grays, 3, light)};
+  --background-0: #{utils.map-deep-get(const.$grays, 6, light)};
+  --background-1: white;
+  --background-2: #{utils.map-deep-get(const.$grays, 4, light)};
+  --box-shadow-1: #{0 1px 2px 0 rgb(black, .3), 0 1px 3px 1px rgba(black, .15)};
   --outline: #{utils.map-deep-get(const.$colors, 'blue', light)};
-  --surface: #{utils.map-deep-get(const.$grays, 6, light)};
-  --surface1: #{utils.map-deep-get(const.$grays, 4, light)};
+  --text-color: #{utils.map-deep-get(const.$grays, 5, dark)};
 
   @media (prefers-color-scheme: dark) {
-    --on-surface: #{utils.map-deep-get(const.$grays, 5, light)};
-    --on-surface-variant: #{utils.map-deep-get(const.$grays, 3, dark)};
+    --background-0: #{utils.map-deep-get(const.$grays, 6, dark)};
+    --background-1: #{utils.map-deep-get(const.$grays, 4, dark)};
+    --background-2: #{utils.map-deep-get(const.$grays, 2, dark)};
     --outline: #{utils.map-deep-get(const.$colors, 'blue', dark)};
-    --surface: #{utils.map-deep-get(const.$grays, 6, dark)};
-    --surface1: #{utils.map-deep-get(const.$grays, 4, dark)};
+    --text-color: #{utils.map-deep-get(const.$grays, 5, light)};
   }
 }
 
@@ -33,7 +34,7 @@ html {
 }
 
 body {
-  background-color: var(--surface);
+  background-color: var(--background-0);
   block-size: 100dvh;
   margin: 0;
   overflow: hidden;

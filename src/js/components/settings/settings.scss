@@ -17,9 +17,10 @@ $toggle-size: 1.25rem;
 // The dialog.
 // [1] Required by Safari for open/close transitions.
 dialog {
-  background-color: var(--surface);
-  border: 1px solid var(--on-surface-variant);
+  background-color: var(--background-1);
+  border: 0;
   border-radius: 1rem;
+  box-shadow: var(--box-shadow-1);
   display: block; // [1]
   inset-block: auto 5dvw;
   max-inline-size: 90dvw;
@@ -81,10 +82,12 @@ input {
   padding: 0;
 }
 
-// Each theme swatch is a radio button.
+// [1] Default border color should match background color of the dialog since
+// the border also acts as a focus indicator since an outline in Safari doesn't
+// inherit the border-radius of the active element.
 [type='radio'] {
   block-size: $swatch-size;
-  border: 3px solid var(--surface);
+  border: 3px solid var(--background-1); // [1]
   border-radius: math.div($swatch-size, 2);
   display: grid;
   grid: 'content';
@@ -92,14 +95,14 @@ input {
   overflow: hidden;
 
   &:focus {
-    border-color: var(--on-surface);
+    border-color: var(--outline);
   }
 
   @media (any-hover: hover) {
     transition: utils.transition(border-color);
 
     &:hover {
-      border-color: var(--on-surface);
+      border-color: var(--text-color);
     }
   }
 
@@ -128,7 +131,7 @@ input {
 // Labels contain a <span> containing text and a checkbox.
 label {
   align-items: center;
-  color: var(--on-surface);
+  color: var(--text-color);
   cursor: pointer;
   display: grid;
   gap: 0 1rem;
@@ -166,7 +169,7 @@ input[type='checkbox'] {
   }
 
   &::before {
-    background-color: var(--surface1);
+    background-color: var(--background-2);
     transition: utils.transition(background-color);
   }
 
