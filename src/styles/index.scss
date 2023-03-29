@@ -12,16 +12,15 @@
   --background-0: #{utils.map-deep-get(const.$grays, 6, light)};
   --background-1: white;
   --background-2: #{utils.map-deep-get(const.$grays, 4, light)};
-  --box-shadow-1: #{0 1px 2px 0 rgb(black, .3), 0 1px 3px 1px rgba(black, .15)};
   --outline: #{utils.map-deep-get(const.$colors, 'blue', light)};
-  --text-color: #{utils.map-deep-get(const.$grays, 5, dark)};
+  --text: #{utils.map-deep-get(const.$grays, 5, dark)};
 
   @media (prefers-color-scheme: dark) {
     --background-0: #{utils.map-deep-get(const.$grays, 6, dark)};
     --background-1: #{utils.map-deep-get(const.$grays, 4, dark)};
     --background-2: #{utils.map-deep-get(const.$grays, 2, dark)};
     --outline: #{utils.map-deep-get(const.$colors, 'blue', dark)};
-    --text-color: #{utils.map-deep-get(const.$grays, 5, light)};
+    --text: #{utils.map-deep-get(const.$grays, 5, light)};
   }
 }
 
