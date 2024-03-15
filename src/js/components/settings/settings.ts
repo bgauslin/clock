@@ -24,7 +24,7 @@ class SettingsWidget extends LitElement {
 
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
-  @state() open: boolean = true;
+  @state() open: boolean = false;
   @state() seconds: boolean = true;
   @state() theme = DEFAULT_THEME;
   @state() theming: boolean = true;
