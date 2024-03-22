@@ -9,11 +9,15 @@
 }
 
 :root {
+  --box-shadow:
+      0 1px 2px 0 rgb(0, 0, 0, .3),
+      0 1px 3px 1px rgba(0, 0, 0, .15);
   --background-0: #{utils.map-deep-get(const.$grays, 6, light)};
   --background-1: white;
   --background-2: #{utils.map-deep-get(const.$grays, 4, light)};
   --outline: #{utils.map-deep-get(const.$colors, 'blue', light)};
   --text: #{utils.map-deep-get(const.$grays, 5, dark)};
+  --transition: .25s;
 
   @media (prefers-color-scheme: dark) {
     --background-0: #{utils.map-deep-get(const.$grays, 6, dark)};

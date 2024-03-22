@@ -20,12 +20,12 @@ dialog {
   background-color: var(--background-1);
   border: 0;
   border-radius: 1rem;
-  box-shadow: const.$box-shadow-1;
+  box-shadow: var(--box-shadow);
   display: block; // [1]
   inset-block: auto 5dvw;
   max-inline-size: 90dvw;
   padding: 0;
-  transition: utils.transition(opacity, transform);
+  transition: opacity var(--transition), transform var(--transition);
 
   &[inert] {
     opacity: 0;
@@ -61,7 +61,7 @@ ul {
   overflow: auto hidden;
   padding-inline: $menu-padding;
   scrollbar-width: none;
-  transition: utils.transition(opacity);
+  transition: opacity var(--transition);
 
   &[aria-disabled] {
     opacity: .25;
@@ -99,7 +99,7 @@ input {
   }
 
   @media (any-hover: hover) {
-    transition: utils.transition(border-color);
+    transition: border-color var(--transition);
 
     &:hover {
       border-color: var(--text);
@@ -170,7 +170,7 @@ input[type='checkbox'] {
 
   &::before {
     background-color: var(--background-2);
-    transition: utils.transition(background-color);
+    transition: background-color var(--transition);
   }
 
   &:checked::before {
@@ -186,7 +186,7 @@ input[type='checkbox'] {
     display: block;
     inline-size: $toggle-size;
     margin-inline-start: $toggle-padding;
-    transition: utils.transition(margin-inline-start);
+    transition: margin-inline-start var(--transition);
   }
 
   &:checked::after {

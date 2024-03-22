@@ -60,7 +60,7 @@ $total-cells: ($grid * $clock-cells) + $clock-cells;
   grid: repeat($total-cells, 1fr) / repeat($total-cells, 1fr);
   margin: 1rem;
   max-block-size: 90dvh;
-  transition: utils.transition(background-color);
+  transition: background-color var(--transition);
 }
 
 // Individual placement of each clock via grid-area.
@@ -74,7 +74,7 @@ svg {
 }
 
 :is(line, circle) {
-  transition: utils.transition(fill, stroke);
+  transition: fill var(--transition), stroke var(--transition);
 }
 
 // Hour/minute hands and lower pivot.
