@@ -35,18 +35,6 @@ clock-faces[seconds] {
   --seconds: rgb(174, 174, 178);  // Gray2 light.
 }
 
-@media (prefers-color-scheme: dark) {
-  :host {
-    --hands: rgb(229, 229, 234);  // Gray5 light.
-    --seconds: rgb(99, 99, 102);  // Gray2 dark.
-  }
-
-  [theme='default'] {
-    --hands: rgb(229, 229, 234);  // Gray5 light.
-    --seconds: rgb(142, 142, 147);  // Gray1 light.
-  }
-}
-
 [theme='red'] { --theme: var(--red); }
 [theme='orange'] { --theme: var(--orange); }
 [theme='yellow'] { --theme: var(--yellow); }
@@ -59,3 +47,15 @@ clock-faces[seconds] {
 [theme='purple'] { --theme: var(--purple); }
 [theme='brown'] { --theme: var(--brown); }
 [theme='default'] { --theme: var(--default); }
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --hands: rgb(229, 229, 234);  // Gray5 light.
+    --seconds: rgb(99, 99, 102);  // Gray2 dark.
+  }
+
+  [theme='default'] {
+    --hands: rgb(229, 229, 234);  // Gray5 light.
+    --seconds: rgb(142, 142, 147);  // Gray1 light.
+  }
+}
