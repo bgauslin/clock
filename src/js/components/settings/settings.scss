@@ -174,7 +174,7 @@ input[type='checkbox'] {
   }
 
   &:checked::before {
-    background-color: utils.map-deep-get(const.$colors, 'green', light);
+    background-color: var(--green);
   }
 
   &::after {
