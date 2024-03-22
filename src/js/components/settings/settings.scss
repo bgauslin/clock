@@ -196,17 +196,28 @@ input[type='checkbox'] {
 
 // Theming for radio button swatches.
 [value] {
-  --on-theme: #{utils.map-deep-get(const.$grays, 6, dark)};
+  --on-theme: rgb(28, 28, 30);  // Gray6 dark.
 }
 
-@include utils.color-vars('value', const.$colors);
+[value='red'] { --theme: var(--red); }
+[value='orange'] { --theme: var(--orange); }
+[value='yellow'] { --theme: var(--yellow); }
+[value='green'] { --theme: var(--green); }
+[value='mint'] { --theme: var(--mint); }
+[value='teal'] { --theme: var(--teal); }
+[value='cyan'] { --theme: var(--cyan); }
+[value='blue'] { --theme: var(--blue); }
+[value='indigo'] { --theme: var(--indigo); }
+[value='purple'] { --theme: var(--purple); }
+[value='brown'] { --theme: var(--brown); }
+[value='default'] { --theme: var(--default); }
 
 :is([value='indigo'], [value='pink'], [value='red']) {
-  --on-theme: #{utils.map-deep-get(const.$grays, 6, light)};
+  --on-theme: rgb(242, 242, 247);  // Gray6 light.
 }
 
 @media (prefers-color-scheme: dark) {
   [value='default'] {
-    --on-theme: #{utils.map-deep-get(const.$grays, 6, light)};
+    --on-theme: rgb(242, 242, 247);  // Gray6 light.
   }
 }
