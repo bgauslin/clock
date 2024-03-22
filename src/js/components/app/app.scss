@@ -1,6 +1,3 @@
-@use '../../../styles/const';
-@use '../../../styles/utils';
-
 :host {
   block-size: 100dvh;
   display: grid;
@@ -17,37 +14,48 @@ clock-faces[seconds] {
 // color does change when there is no theme applied.
 :host,
 [theme] {
-  --hands: #{utils.map-deep-get(const.$grays, 5, dark)}; 
+  --hands: rgb(44, 44, 46);  // Gray5 dark.
 }
 
 :host {
-  --seconds: #{utils.map-deep-get(const.$grays, 3, light)};
+  --seconds: rgb(199, 199, 204);  // Gray3 light.
 }
 
 [theme] {
-  --seconds: #{utils.map-deep-get(const.$grays, 2, dark)};
+  --seconds: rgb(99, 99, 102);  // Gray2 dark.
 }
 
 [theme='default'] {
-  --seconds: #{utils.map-deep-get(const.$grays, 3, light)};
+  --seconds: rgb(199, 199, 204);  // Gray3 light.
 }
 
 // Inverted hands and seconds for darker themes.
 :is([theme='indigo'], [theme='pink'], [theme='red']) {
-  --hands: #{utils.map-deep-get(const.$grays, 6, light)};
-  --seconds: #{utils.map-deep-get(const.$grays, 2, light)};
+  --hands: rgb(242, 242, 247);  // Gray6 light.
+  --seconds: rgb(174, 174, 178);  // Gray2 light.
 }
 
 @media (prefers-color-scheme: dark) {
   :host {
-    --hands: #{utils.map-deep-get(const.$grays, 5, light)};
-    --seconds: #{utils.map-deep-get(const.$grays, 2, dark)};
+    --hands: rgb(229, 229, 234);  // Gray5 light.
+    --seconds: rgb(99, 99, 102);  // Gray2 dark.
   }
 
   [theme='default'] {
-    --hands: #{utils.map-deep-get(const.$grays, 5, light)};
-    --seconds: #{utils.map-deep-get(const.$grays, 1, light)};
+    --hands: rgb(229, 229, 234);  // Gray5 light.
+    --seconds: rgb(142, 142, 147);  // Gray1 light.
   }
 }
 
-@include utils.color-vars('theme', const.$colors);
+[theme='red'] { --theme: var(--red); }
+[theme='orange'] { --theme: var(--orange); }
+[theme='yellow'] { --theme: var(--yellow); }
+[theme='green'] { --theme: var(--green); }
+[theme='mint'] { --theme: var(--mint); }
+[theme='teal'] { --theme: var(--teal); }
+[theme='cyan'] { --theme: var(--cyan); }
+[theme='blue'] { --theme: var(--blue); }
+[theme='indigo'] { --theme: var(--indigo); }
+[theme='purple'] { --theme: var(--purple); }
+[theme='brown'] { --theme: var(--brown); }
+[theme='default'] { --theme: var(--default); }
