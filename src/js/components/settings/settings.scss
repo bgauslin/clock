@@ -16,7 +16,7 @@ $toggle-size: 1.25rem;
 // [1] Required by Safari for open/close transitions.
 dialog {
   background-color: var(--fill-1);
-  border: 1px solid var(--gray4);
+  border: var(--border);
   border-radius: 1rem;
   display: block; // [1]
   inset-block: auto 5dvw;
