@@ -15,10 +15,9 @@ $toggle-size: 1.25rem;
 // The dialog.
 // [1] Required by Safari for open/close transitions.
 dialog {
-  background-color: var(--background-1);
-  border: 0;
+  background-color: var(--fill-1);
+  border: 1px solid var(--gray4);
   border-radius: 1rem;
-  box-shadow: var(--box-shadow);
   display: block; // [1]
   inset-block: auto 5dvw;
   max-inline-size: 90dvw;
@@ -85,14 +84,14 @@ input {
 // inherit the border-radius of the active element.
 [type='radio'] {
   block-size: $swatch-size;
-  border: 3px solid var(--background-1); // [1]
+  border: 3px solid var(--fill-1); // [1]
   border-radius: math.div($swatch-size, 2);
   display: grid;
   grid: 'content';
   inline-size: $swatch-size;
   overflow: hidden;
 
-  &:focus {
+  &:focus-visible {
     border-color: var(--outline);
   }
 
@@ -155,7 +154,7 @@ input[type='checkbox'] {
   inline-size: ($toggle-size * 2) + ($toggle-padding * 2);
   overflow: hidden;
 
-  &:focus {
+  &:focus-visible {
     border-color: var(--outline);
   }
 
@@ -167,7 +166,7 @@ input[type='checkbox'] {
   }
 
   &::before {
-    background-color: var(--background-2);
+    background-color: var(--fill-2);
     transition: background-color var(--transition);
   }
 
@@ -208,7 +207,7 @@ input[type='checkbox'] {
 [value='indigo'] { --theme: var(--indigo); }
 [value='purple'] { --theme: var(--purple); }
 [value='brown'] { --theme: var(--brown); }
-[value='default'] { --theme: var(--default); }
+[value='default'] { --theme: var(--gray6); }
 
 :is([value='indigo'], [value='pink'], [value='red']) {
   --on-theme: rgb(242, 242, 247);  // Gray6 light.
@@ -217,5 +216,6 @@ input[type='checkbox'] {
 @media (prefers-color-scheme: dark) {
   [value='default'] {
     --on-theme: rgb(242, 242, 247);  // Gray6 light.
+    --theme: var(--default);
   }
 }

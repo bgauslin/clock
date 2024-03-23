@@ -1,8 +1,8 @@
 :root {
   // Theming.
-  --background-0: var(--gray6);
-  --background-1: white;
-  --background-2: var(--gray4);
+  --fill-0: var(--gray6);
+  --fill-1: white;
+  --fill-2: var(--gray5);
   --outline: var(--text);
   --text: rgb(44, 44, 46); // Gray5 dark.
 
@@ -28,16 +28,13 @@
   --default: white;
 
   // Global properties.
-  --box-shadow:
-      0 1px 2px 0 rgb(0, 0, 0, .3),
-      0 1px 3px 1px rgba(0, 0, 0, .15);
   --transition: .25s;
 
   @media (prefers-color-scheme: dark) {
     // Dark mode theming.
-    --background-0: var(--gray6);
-    --background-1: var(--gray4);
-    --background-2: var(--gray2);
+    --fill-0: var(--gray6);
+    --fill-1: var(--gray5);
+    --fill-2: var(--gray4);
     --text: rgb(229, 229, 234); // Gray5 light.
 
     // Apple HGI dark mode colors.
