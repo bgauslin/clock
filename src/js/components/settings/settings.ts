@@ -24,6 +24,7 @@ class SettingsWidget extends LitElement {
 
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
+
   @state() open: boolean = false;
   @state() seconds: boolean = true;
   @state() theme = DEFAULT_THEME;
@@ -60,19 +61,19 @@ class SettingsWidget extends LitElement {
     }
   }
 
-  private handleClick(e: Event) {
-    if (!e.composedPath().includes(this.form)) {
+  private handleClick(event: Event) {
+    if (!event.composedPath().includes(this.form)) {
       this.toggleOpen();  
     }
   }
 
-  private handleKey(e: KeyboardEvent) {
-    if (e.code === 'Space' && !this.open) {
+  private handleKey(event: KeyboardEvent) {
+    if (event.code === 'Space' && !this.open) {
       this.toggleOpen();
     }
 
-    if (e.code === 'Escape') {
-      e.preventDefault();
+    if (event.code === 'Escape') {
+      event.preventDefault();
       this.toggleOpen();
     }
   }

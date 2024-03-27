@@ -32,8 +32,8 @@ class App extends LitElement {
     this.removeEventListener(AppEvent.SETTINGS, this.settingsListener);
   }
 
-  private updateSettings(e: CustomEvent) {
-    this.settings = e.detail.settings;
+  private updateSettings(event: CustomEvent) {
+    this.settings = event.detail.settings;
   }
 
   protected render() {
