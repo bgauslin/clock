@@ -11,13 +11,51 @@
 
 html {
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 body {
   background-color: var(--fill-0);
   block-size: 100dvh;
+  color: var(--text-color);
+  display: grid;
+  font-family: 'Avenir Variable', sans-serif;
+  font-variation-settings: 'wght' 500;
   margin: 0;
   overflow: hidden;
-  place-items: center;
-  touch-action: manipulation;
+  place-content: center; 
+}
+
+noscript {
+  padding: 1.5em;
+  text-align: center;
+}
+
+// Generic/default link styles.
+a {
+  color: var(--link-color);
+  outline: none;
+  text-decoration: none;
+
+  &:visited {
+    color: var(--link-visited-color);
+  }
+  
+  &:focus-visible {
+    color: var(--link-focus-color);
+  }
+  
+  &:active {
+    color: var(--link-active-color, var(--link-focus-color));
+  }
+  
+  @media (any-hover: hover) {
+    & {
+      transition: color var(--transition);
+    }
+  
+    &:hover {
+      color: var(--link-focus-color);
+    }
+  }
 }

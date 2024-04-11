@@ -1,15 +1,3 @@
-:host {
-  block-size: 100dvh;
-  display: grid;
-  font-family: 'Avenir Variable', sans-serif;
-  font-variation-settings: 'wght' 500;
-  place-content: center;
-}
-
-clock-faces[seconds] {
-  --seconds-opacity: 1;
-}
-
 // Hands colors don't change between light and dark mode, but second hands
 // color does change when there is no theme applied.
 :host,

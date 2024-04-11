@@ -61,6 +61,10 @@ $total-cells: ($grid * $clock-cells) + $clock-cells;
   transition: background-color var(--transition);
 }
 
+:host([seconds]) {
+  --seconds-opacity: 1;
+}
+
 // Individual placement of each clock via grid-area.
 @include clock-placement($grid, $clock-cells);
 
