@@ -4,16 +4,6 @@ import {AppEvent, Settings} from '../../shared';
 
 import shadowStyles from './settings.scss';
 
-const THEMES: string[] = [
-  'Default', 'Red', 'Orange',
-  'Yellow', 'Teal',  'Blue',
-  'Indigo', 'Purple', 'Brown',
-];
-
-const DEFAULT_THEME = THEMES[0].toLowerCase();
-
-const STORAGE_ITEM = 'clock';
-
 /**
  * Web component that renders theme swatches for a user to choose from.
  */
@@ -21,13 +11,19 @@ const STORAGE_ITEM = 'clock';
 class SettingsWidget extends LitElement {
   private clickListener: EventListenerObject;
   private keyListener: EventListenerObject;
+  private storageItem: string = 'clock';
+  private themes: string[] = [
+    'Default', 'Red', 'Orange',
+    'Yellow', 'Teal',  'Blue',
+    'Indigo', 'Purple', 'Brown',
+  ];
 
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
 
   @state() open: boolean = false;
   @state() seconds: boolean = true;
-  @state() theme = DEFAULT_THEME;
+  @state() theme: string = this.themes[0].toLowerCase();
   @state() theming: boolean = true;
   
   static styles = css`${shadowStyles}`;
@@ -52,7 +48,7 @@ class SettingsWidget extends LitElement {
   }
 
   private setup() {
-    const settings = JSON.parse(localStorage.getItem(STORAGE_ITEM));
+    const settings = JSON.parse(localStorage.getItem(this.storageItem));
     if (settings) {
       const {seconds, theme, theming} = settings;
       this.seconds = seconds;
@@ -105,7 +101,7 @@ class SettingsWidget extends LitElement {
           detail: {settings},
         }));
     
-        localStorage.setItem(STORAGE_ITEM, JSON.stringify(settings));
+        localStorage.setItem(this.storageItem, JSON.stringify(settings));
       }
     }
   }
@@ -153,7 +149,7 @@ class SettingsWidget extends LitElement {
   private renderSwatches() {
     return html`
       <ul ?aria-disabled="${!this.theming}">
-      ${THEMES.map((theme) => {
+      ${this.themes.map((theme) => {
         const value = theme.toLowerCase();
         return html`
           <li>

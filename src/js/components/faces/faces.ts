@@ -2,14 +2,13 @@ import {LitElement, css, html} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 import shadowStyles from './faces.scss';
 
-const FRAMERATE = 1000 / 60;
-
 /**
  * Web component that renders nine analog clocks via SVG based on system time.
  */
 @customElement('clock-faces')
 class Faces extends LitElement {
-  private interval = 0;
+  private framerate: number = 1000 / 60;
+  private interval: number = 0;
 
   @property({attribute: 'aria-label', reflect: true}) ariaLabel = '';
   
@@ -22,7 +21,7 @@ class Faces extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.setTime();
-    this.interval = window.setInterval(() => this.setTime(), FRAMERATE);
+    this.interval = window.setInterval(() => this.setTime(), this.framerate);
   }
 
   disconnectedCallback() {
