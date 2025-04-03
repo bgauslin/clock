@@ -23,18 +23,18 @@
   --seconds: rgb(174, 174, 178);  // Gray2 light.
 }
 
-[theme='red'] { --theme: var(--red); }
-[theme='orange'] { --theme: var(--orange); }
-[theme='yellow'] { --theme: var(--yellow); }
-[theme='green'] { --theme: var(--green); }
-[theme='mint'] { --theme: var(--mint); }
-[theme='teal'] { --theme: var(--teal); }
-[theme='cyan'] { --theme: var(--cyan); }
 [theme='blue'] { --theme: var(--blue); }
-[theme='indigo'] { --theme: var(--indigo); }
-[theme='purple'] { --theme: var(--purple); }
 [theme='brown'] { --theme: var(--brown); }
+[theme='cyan'] { --theme: var(--cyan); }
 [theme='default'] { --theme: var(--default); }
+[theme='green'] { --theme: var(--green); }
+[theme='indigo'] { --theme: var(--indigo); }
+[theme='mint'] { --theme: var(--mint); }
+[theme='orange'] { --theme: var(--orange); }
+[theme='purple'] { --theme: var(--purple); }
+[theme='red'] { --theme: var(--red); }
+[theme='teal'] { --theme: var(--teal); }
+[theme='yellow'] { --theme: var(--yellow); }
 
 @media (prefers-color-scheme: dark) {
   :host {

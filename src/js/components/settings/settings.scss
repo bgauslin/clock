@@ -196,18 +196,18 @@ input[type='checkbox'] {
   --on-theme: rgb(28, 28, 30);  // Gray6 dark.
 }
 
-[value='red'] { --theme: var(--red); }
-[value='orange'] { --theme: var(--orange); }
-[value='yellow'] { --theme: var(--yellow); }
-[value='green'] { --theme: var(--green); }
-[value='mint'] { --theme: var(--mint); }
-[value='teal'] { --theme: var(--teal); }
-[value='cyan'] { --theme: var(--cyan); }
 [value='blue'] { --theme: var(--blue); }
-[value='indigo'] { --theme: var(--indigo); }
-[value='purple'] { --theme: var(--purple); }
 [value='brown'] { --theme: var(--brown); }
+[value='cyan'] { --theme: var(--cyan); }
 [value='default'] { --theme: var(--gray6); }
+[value='green'] { --theme: var(--green); }
+[value='indigo'] { --theme: var(--indigo); }
+[value='mint'] { --theme: var(--mint); }
+[value='orange'] { --theme: var(--orange); }
+[value='purple'] { --theme: var(--purple); }
+[value='red'] { --theme: var(--red); }
+[value='teal'] { --theme: var(--teal); }
+[value='yellow'] { --theme: var(--yellow); }
 
 :is([value='indigo'], [value='pink'], [value='red']) {
   --on-theme: rgb(242, 242, 247);  // Gray6 light.
