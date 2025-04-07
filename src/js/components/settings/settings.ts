@@ -109,8 +109,8 @@ class SettingsWidget extends LitElement {
   protected render() {
     return html`
       <dialog
-        ?open="${this.open}"
-        ?inert="${!this.open}">
+        ?inert="${!this.open}"  
+        ?open="${this.open}">
         <form>
           ${this.renderTheming()}  
           ${this.renderSeconds()}
@@ -140,8 +140,8 @@ class SettingsWidget extends LitElement {
         <input
           name="theming"
           type="checkbox"
-          ?checked=${this.theming}
-          @change=${() => this.theming = !this.theming}>
+          ?checked="${this.theming}"
+          @change="${() => this.theming = !this.theming}">
       </label>
     `;
   }
@@ -159,8 +159,8 @@ class SettingsWidget extends LitElement {
               tabindex="${this.theming ? '0' : '-1'}"
               type="radio"
               value="${value}"
-              ?checked=${value === this.theme}
-              @change=${() => this.theme = value}>
+              ?checked="${value === this.theme}"
+              @change="${() => this.theme = value}">
           </li>`
       })}
       </ul>
