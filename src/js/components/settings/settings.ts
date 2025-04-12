@@ -20,10 +20,9 @@ class SettingsWidget extends LitElement {
 
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
-
   @state() open: boolean = false;
   @state() seconds: boolean = true;
-  @state() theme: string = this.themes[0].toLowerCase();
+  @state() theme: string;
   @state() theming: boolean = true;
   
   static styles = css`${shadowStyles}`;
@@ -54,7 +53,11 @@ class SettingsWidget extends LitElement {
       this.seconds = seconds;
       this.theme = theme;
       this.theming = theming;
-    }
+    } else {
+      const index = Math.floor(Math.random() * this.themes.length);
+      const theme = this.themes[index].toLowerCase();
+      this.theme = theme;
+    }    
   }
 
   private handleClick(event: Event) {
