@@ -22,7 +22,7 @@ class SettingsWidget extends LitElement {
   @query('form') form: HTMLFormElement;
   @state() open: boolean = false;
   @state() seconds: boolean = true;
-  @state() theme: string;
+  @state() theme: string = 'brown'; // Default to match thumbnail.
   @state() theming: boolean = true;
   
   static styles = css`${shadowStyles}`;
@@ -53,11 +53,7 @@ class SettingsWidget extends LitElement {
       this.seconds = seconds;
       this.theme = theme;
       this.theming = theming;
-    } else {
-      const index = Math.floor(Math.random() * this.themes.length);
-      const theme = this.themes[index].toLowerCase();
-      this.theme = theme;
-    }    
+    }   
   }
 
   private handleClick(event: Event) {
