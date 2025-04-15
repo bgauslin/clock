@@ -11,7 +11,6 @@ class Faces extends LitElement {
   private interval: number = 0;
 
   @property({attribute: 'aria-label', reflect: true}) ariaLabel = '';
-  
   @state() hoursAngle: number = 0;
   @state() minutesAngle: number = 0;
   @state() secondsAngle: number = 0;

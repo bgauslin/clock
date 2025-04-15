@@ -21,9 +21,9 @@ class SettingsWidget extends LitElement {
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
   @state() open: boolean = false;
-  @state() seconds: boolean = true;
-  @state() theme: string = 'brown'; // Default to match thumbnail.
-  @state() theming: boolean = true;
+  @state() seconds: boolean;
+  @state() theme: string;
+  @state() theming: boolean;
   
   static styles = css`${shadowStyles}`;
 
@@ -46,14 +46,23 @@ class SettingsWidget extends LitElement {
     document.removeEventListener('keydown', this.keyListener);
   }
 
+  /**
+   * Gets settings from localStorage; sets default values otherwise, which
+   * triggers a Lit update that lets the app know this element is ready.
+   */
   private setup() {
     const settings = JSON.parse(localStorage.getItem(this.storageItem));
+
     if (settings) {
       const {seconds, theme, theming} = settings;
       this.seconds = seconds;
       this.theme = theme;
       this.theming = theming;
-    }   
+    } else {
+      this.seconds = true;
+      this.theme = 'brown'; // Arbitrary default.
+      this.theming = true;
+    }
   }
 
   private handleClick(event: Event) {
@@ -137,9 +146,9 @@ class SettingsWidget extends LitElement {
       <label id="theme">
         <span>Theme</span>
         <input
+          ?checked="${this.theming}"  
           name="theming"
           type="checkbox"
-          ?checked="${this.theming}"
           @change="${() => this.theming = !this.theming}">
       </label>
     `;
@@ -154,11 +163,11 @@ class SettingsWidget extends LitElement {
           <li>
             <input
               aria-label="${theme}"
+              ?checked="${value === this.theme}"
               name="theme"
               tabindex="${this.theming ? '0' : '-1'}"
               type="radio"
               value="${value}"
-              ?checked="${value === this.theme}"
               @change="${() => this.theme = value}">
           </li>`
       })}
