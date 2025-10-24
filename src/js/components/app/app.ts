@@ -2,8 +2,8 @@ import {LitElement, css, html} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {AppEvent, Settings} from '../../shared';
-
 import shadowStyles from './app.scss';
+
 
 /**
  * Web component for a clock with nine sets of hands.

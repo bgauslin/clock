@@ -1,8 +1,8 @@
 import {LitElement, PropertyValues, css, html} from 'lit';
 import {customElement, query, state} from 'lit/decorators.js';
 import {AppEvent, Settings} from '../../shared';
-
 import shadowStyles from './settings.scss';
+
 
 /**
  * Web component that renders theme swatches for a user to choose from.
