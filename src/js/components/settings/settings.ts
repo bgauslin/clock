@@ -9,8 +9,8 @@ import shadowStyles from './settings.scss';
  */
 @customElement('clock-settings')
 class SettingsWidget extends LitElement {
-  private clickListener: EventListenerObject;
-  private keyListener: EventListenerObject;
+  private clickHandler: EventListenerObject;
+  private keyHandler: EventListenerObject;
   private storageItem: string = 'clock';
   private themes: string[] = [
     'Default', 'Red', 'Orange',
@@ -29,21 +29,21 @@ class SettingsWidget extends LitElement {
 
   constructor() {
     super();
-    this.clickListener = this.handleClick.bind(this);
-    this.keyListener = this.handleKey.bind(this);
+    this.clickHandler = this.handleClick.bind(this);
+    this.keyHandler = this.handleKey.bind(this);
   }
   
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('click', this.clickListener);
-    document.addEventListener('keydown', this.keyListener);
+    document.addEventListener('click', this.clickHandler);
+    document.addEventListener('keydown', this.keyHandler);
     this.setup();
   }
 
   disconnectedCallback() { 
     super.disconnectedCallback();
-    document.removeEventListener('click', this.clickListener);
-    document.removeEventListener('keydown', this.keyListener);
+    document.removeEventListener('click', this.clickHandler);
+    document.removeEventListener('keydown', this.keyHandler);
   }
 
   /**

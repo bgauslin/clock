@@ -10,7 +10,7 @@ import shadowStyles from './app.scss';
  */
 @customElement('clock-app')
 class App extends LitElement {
-  private settingsListener: EventListenerObject;
+  private settingsHandler: EventListenerObject;
 
   @state() settings: Settings;
   
@@ -18,17 +18,17 @@ class App extends LitElement {
 
   constructor() {
     super();
-    this.settingsListener = this.updateSettings.bind(this);
+    this.settingsHandler = this.updateSettings.bind(this);
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener(AppEvent.SETTINGS, this.settingsListener);
+    this.addEventListener(AppEvent.SETTINGS, this.settingsHandler);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeEventListener(AppEvent.SETTINGS, this.settingsListener);
+    this.removeEventListener(AppEvent.SETTINGS, this.settingsHandler);
   }
 
   private updateSettings(event: CustomEvent) {
