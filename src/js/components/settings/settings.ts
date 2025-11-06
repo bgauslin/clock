@@ -1,6 +1,6 @@
 import {LitElement, PropertyValues, css, html} from 'lit';
 import {customElement, query, state} from 'lit/decorators.js';
-import {AppEvent, Settings} from '../../shared';
+import {Events, Settings} from '../../shared';
 import shadowStyles from './settings.scss';
 
 
@@ -103,7 +103,7 @@ class SettingsWidget extends LitElement {
           theming: this.theming,
         }
     
-        this.dispatchEvent(new CustomEvent(AppEvent.SETTINGS, {
+        this.dispatchEvent(new CustomEvent(Events.Settings, {
           bubbles: true,
           composed: true,
           detail: {settings},
@@ -163,11 +163,12 @@ class SettingsWidget extends LitElement {
           <li>
             <input
               aria-label="${theme}"
-              ?checked="${value === this.theme}"
+              class="theme"
               name="theme"
               tabindex="${this.theming ? '0' : '-1'}"
               type="radio"
               value="${value}"
+              ?checked="${value === this.theme}"
               @change="${() => this.theme = value}">
           </li>`
       })}

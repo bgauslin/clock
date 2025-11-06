@@ -1,7 +1,7 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {AppEvent, Settings} from '../../shared';
+import {Events, Settings} from '../../shared';
 import shadowStyles from './app.scss';
 
 
@@ -11,6 +11,7 @@ import shadowStyles from './app.scss';
 @customElement('clock-app')
 class App extends LitElement {
   private settingsHandler: EventListenerObject;
+  private touchTarget: HTMLElement;
 
   @state() settings: Settings;
   
@@ -23,17 +24,34 @@ class App extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener(AppEvent.SETTINGS, this.settingsHandler);
+    this.addEventListener(Events.Settings, this.settingsHandler);
+    this.addEventListener(Events.Touchstart, this.handleTouchstart, {passive: true});
+    this.addEventListener(Events.Touchend, this.handleTouchend, {passive: true});
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeEventListener(AppEvent.SETTINGS, this.settingsHandler);
+    this.removeEventListener(Events.Settings, this.settingsHandler);
+    this.removeEventListener(Events.Touchstart, this.handleTouchstart);
+    this.removeEventListener(Events.Touchend, this.handleTouchend);
   }
 
   private updateSettings(event: CustomEvent) {
     this.settings = event.detail.settings;
   }
+
+  private handleTouchstart(event: TouchEvent) {
+    this.touchTarget = <HTMLElement>event.composedPath()[0];
+
+    if (['theme'].includes(this.touchTarget.className)) {
+      this.touchTarget.classList.add('touch');
+    }
+  }
+
+  private handleTouchend() {
+    this.touchTarget.classList.remove('touch');
+  }
+
 
   protected render() {
     return html`

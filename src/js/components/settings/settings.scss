@@ -90,16 +90,23 @@ input {
   grid: 'content';
   inline-size: $swatch-size;
   overflow: hidden;
+  transition: transform var(--transition);
 
   &:focus-visible {
     border-color: var(--outline);
   }
 
-  @media (any-hover: hover) {
-    transition: border-color var(--transition);
+  &.touch {
+    transform: scale(.8);
+  }
 
+  @media (any-hover: hover) {
     &:hover {
       border-color: var(--text-color);
+    }
+
+    &:active {
+      transform: scale(.8);
     }
   }
 
