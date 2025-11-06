@@ -203,10 +203,10 @@ input[type='checkbox'] {
   --on-theme: rgb(28, 28, 30);  // Gray6 dark.
 }
 
+[value='default'] { --theme: var(--gray6); }
 [value='blue'] { --theme: var(--blue); }
 [value='brown'] { --theme: var(--brown); }
 [value='cyan'] { --theme: var(--cyan); }
-[value='default'] { --theme: var(--gray6); }
 [value='green'] { --theme: var(--green); }
 [value='indigo'] { --theme: var(--indigo); }
 [value='mint'] { --theme: var(--mint); }
@@ -216,13 +216,21 @@ input[type='checkbox'] {
 [value='teal'] { --theme: var(--teal); }
 [value='yellow'] { --theme: var(--yellow); }
 
-:is([value='indigo'], [value='pink'], [value='red']) {
-  --on-theme: rgb(242, 242, 247);  // Gray6 light.
-}
-
 @media (prefers-color-scheme: dark) {
   [value='default'] {
     --on-theme: rgb(242, 242, 247);  // Gray6 light.
     --theme: var(--default);
   }
+
+  [value='blue'] { --theme: var(--blue-dark-contrast); }
+  [value='brown'] { --theme: var(--brown-dark-contrast); }
+  [value='cyan'] { --theme: var(--cyan-dark-contrast); }
+  [value='green'] { --theme: var(--green-dark-contrast); }
+  [value='indigo'] { --theme: var(--indigo-dark-contrast); }
+  [value='mint'] { --theme: var(--mint-dark-contrast); }
+  [value='orange'] { --theme: var(--orange-dark-contrast); }
+  [value='purple'] { --theme: var(--purple-dark-contrast); }
+  [value='red'] { --theme: var(--red-dark-contrast); }
+  [value='teal'] { --theme: var(--teal-dark-contrast); }
+  [value='yellow'] { --theme: var(--yellow-dark-contrast); }
 }

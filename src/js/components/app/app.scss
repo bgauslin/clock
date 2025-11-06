@@ -17,12 +17,6 @@
   --seconds: rgb(199, 199, 204);  // Gray3 light.
 }
 
-// Inverted hands and seconds for darker themes.
-:is([theme='indigo'], [theme='pink'], [theme='red']) {
-  --hands: rgb(242, 242, 247);  // Gray6 light.
-  --seconds: rgb(174, 174, 178);  // Gray2 light.
-}
-
 [theme='blue'] { --theme: var(--blue); }
 [theme='brown'] { --theme: var(--brown); }
 [theme='cyan'] { --theme: var(--cyan); }
@@ -46,4 +40,16 @@
     --hands: rgb(229, 229, 234);  // Gray5 light.
     --seconds: rgb(142, 142, 147);  // Gray1 light.
   }
+
+  [theme='blue'] { --theme: var(--blue-dark-contrast); }
+  [theme='brown'] { --theme: var(--brown-dark-contrast); }
+  [theme='cyan'] { --theme: var(--cyan-dark-contrast); }
+  [theme='green'] { --theme: var(--green-dark-contrast); }
+  [theme='indigo'] { --theme: var(--indigo-dark-contrast); }
+  [theme='mint'] { --theme: var(--mint-dark-contrast); }
+  [theme='orange'] { --theme: var(--orange-dark-contrast); }
+  [theme='purple'] { --theme: var(--purple-dark-contrast); }
+  [theme='red'] { --theme: var(--red-dark-contrast); }
+  [theme='teal'] { --theme: var(--teal-dark-contrast); }
+  [theme='yellow'] { --theme: var(--yellow-dark-contrast); }
 }

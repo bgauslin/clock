@@ -54,6 +54,7 @@ $total-cells: ($grid * $clock-cells) + $clock-cells;
 :host {
   aspect-ratio: 1;
   background-color: var(--theme);
+  border-radius: .25rem;
   display: grid;
   grid: repeat($total-cells, 1fr) / repeat($total-cells, 1fr);
   margin: 1rem;
