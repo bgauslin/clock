@@ -4,11 +4,11 @@
 // color does change when there is no theme applied.
 :host {
   --hands: var(--gray5-dark);
-  --seconds: var(--gray2-dark);
+  --seconds: var(--gray3);  
 }
 
-:not([theme]) {
-  --seconds: var(--gray3);
+[theme] {
+  --seconds: var(--gray2-dark);
 }
 
 [theme='default'] {
@@ -23,13 +23,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :not([theme]) {
-    --hands: var(--gray5);
+  :host {
     --seconds: var(--gray2-dark);
   }
 
+  :not([theme]),
   [theme='default'] {
     --hands: var(--gray5);
+  }
+
+  [theme='default'] {
     --seconds: var(--gray1);
   }
 
