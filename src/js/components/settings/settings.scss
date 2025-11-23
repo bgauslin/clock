@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use '../../../styles/themes' as themes;
 
 $button-size: 2.75rem;
 $menu-padding: .75rem;
@@ -200,37 +201,28 @@ input[type='checkbox'] {
 
 // Theming for radio button swatches.
 [value] {
-  --on-theme: rgb(28, 28, 30);  // Gray6 dark.
+  --on-theme: var(--gray6-dark);
 }
 
-[value='default'] { --theme: var(--gray6); }
-[value='blue'] { --theme: var(--blue); }
-[value='brown'] { --theme: var(--brown); }
-[value='cyan'] { --theme: var(--cyan); }
-[value='green'] { --theme: var(--green); }
-[value='indigo'] { --theme: var(--indigo); }
-[value='mint'] { --theme: var(--mint); }
-[value='orange'] { --theme: var(--orange); }
-[value='purple'] { --theme: var(--purple); }
-[value='red'] { --theme: var(--red); }
-[value='teal'] { --theme: var(--teal); }
-[value='yellow'] { --theme: var(--yellow); }
+[value='default'] {
+  --theme: var(--gray6);
+}
+
+@each $theme in themes.$themes {
+  [value='#{$theme}'] {
+    --theme: var(--#{$theme});
+  }
+}
 
 @media (prefers-color-scheme: dark) {
   [value='default'] {
-    --on-theme: rgb(242, 242, 247);  // Gray6 light.
+    --on-theme: var(--gray6);
     --theme: var(--default);
   }
 
-  [value='blue'] { --theme: var(--blue-dark-contrast); }
-  [value='brown'] { --theme: var(--brown-dark-contrast); }
-  [value='cyan'] { --theme: var(--cyan-dark-contrast); }
-  [value='green'] { --theme: var(--green-dark-contrast); }
-  [value='indigo'] { --theme: var(--indigo-dark-contrast); }
-  [value='mint'] { --theme: var(--mint-dark-contrast); }
-  [value='orange'] { --theme: var(--orange-dark-contrast); }
-  [value='purple'] { --theme: var(--purple-dark-contrast); }
-  [value='red'] { --theme: var(--red-dark-contrast); }
-  [value='teal'] { --theme: var(--teal-dark-contrast); }
-  [value='yellow'] { --theme: var(--yellow-dark-contrast); }
+  @each $theme in themes.$themes {
+    [value='#{$theme}'] {
+      --theme: var(--#{$theme}-dark-contrast);
+    }
+  }
 }

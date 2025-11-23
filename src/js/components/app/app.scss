@@ -1,55 +1,41 @@
+@use '../../../styles/themes' as themes;
+
 // Hands colors don't change between light and dark mode, but second hands
 // color does change when there is no theme applied.
-:host,
-[theme] {
-  --hands: rgb(44, 44, 46);  // Gray5 dark.
-}
-
 :host {
-  --seconds: rgb(199, 199, 204);  // Gray3 light.
+  --hands: var(--gray5-dark);
+  --seconds: var(--gray2-dark);
 }
 
-[theme] {
-  --seconds: rgb(99, 99, 102);  // Gray2 dark.
+:not([theme]) {
+  --seconds: var(--gray3);
 }
 
 [theme='default'] {
-  --seconds: rgb(199, 199, 204);  // Gray3 light.
+  --seconds: var(--gray3);
+  --theme: var(--default);
 }
 
-[theme='blue'] { --theme: var(--blue); }
-[theme='brown'] { --theme: var(--brown); }
-[theme='cyan'] { --theme: var(--cyan); }
-[theme='default'] { --theme: var(--default); }
-[theme='green'] { --theme: var(--green); }
-[theme='indigo'] { --theme: var(--indigo); }
-[theme='mint'] { --theme: var(--mint); }
-[theme='orange'] { --theme: var(--orange); }
-[theme='purple'] { --theme: var(--purple); }
-[theme='red'] { --theme: var(--red); }
-[theme='teal'] { --theme: var(--teal); }
-[theme='yellow'] { --theme: var(--yellow); }
+@each $theme in themes.$themes {
+  [theme='#{$theme}'] {
+    --theme: var(--#{$theme});
+  }
+}
 
 @media (prefers-color-scheme: dark) {
-  :host {
-    --hands: rgb(229, 229, 234);  // Gray5 light.
-    --seconds: rgb(99, 99, 102);  // Gray2 dark.
+  :not([theme]) {
+    --hands: var(--gray5);
+    --seconds: var(--gray2-dark);
   }
 
   [theme='default'] {
-    --hands: rgb(229, 229, 234);  // Gray5 light.
-    --seconds: rgb(142, 142, 147);  // Gray1 light.
+    --hands: var(--gray5);
+    --seconds: var(--gray1);
   }
 
-  [theme='blue'] { --theme: var(--blue-dark-contrast); }
-  [theme='brown'] { --theme: var(--brown-dark-contrast); }
-  [theme='cyan'] { --theme: var(--cyan-dark-contrast); }
-  [theme='green'] { --theme: var(--green-dark-contrast); }
-  [theme='indigo'] { --theme: var(--indigo-dark-contrast); }
-  [theme='mint'] { --theme: var(--mint-dark-contrast); }
-  [theme='orange'] { --theme: var(--orange-dark-contrast); }
-  [theme='purple'] { --theme: var(--purple-dark-contrast); }
-  [theme='red'] { --theme: var(--red-dark-contrast); }
-  [theme='teal'] { --theme: var(--teal-dark-contrast); }
-  [theme='yellow'] { --theme: var(--yellow-dark-contrast); }
+  @each $theme in themes.$themes {
+    [theme='#{$theme}'] {
+      --theme: var(--#{$theme}-dark-contrast);
+    }
+  }
 }
