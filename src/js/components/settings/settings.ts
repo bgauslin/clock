@@ -1,6 +1,6 @@
 import {LitElement, PropertyValues, css, html} from 'lit';
 import {customElement, query, state} from 'lit/decorators.js';
-import {Events, Settings} from '../../shared';
+import {STORAGE_ITEM, Events, Settings} from '../../shared';
 import shadowStyles from './settings.scss';
 
 
@@ -11,7 +11,6 @@ import shadowStyles from './settings.scss';
 class SettingsWidget extends LitElement {
   private clickHandler: EventListenerObject;
   private keyHandler: EventListenerObject;
-  private storageItem: string = 'clock';
   private themes: string[] = [
     'Default', 'Red', 'Orange',
     'Yellow', 'Teal',  'Blue',
@@ -51,7 +50,7 @@ class SettingsWidget extends LitElement {
    * triggers a Lit update that lets the app know this element is ready.
    */
   private setup() {
-    const settings = JSON.parse(localStorage.getItem(this.storageItem));
+    const settings = JSON.parse(localStorage.getItem(STORAGE_ITEM));
 
     if (settings) {
       const {seconds, theme, theming} = settings;
@@ -109,7 +108,7 @@ class SettingsWidget extends LitElement {
           detail: {settings},
         }));
     
-        localStorage.setItem(this.storageItem, JSON.stringify(settings));
+        localStorage.setItem(STORAGE_ITEM, JSON.stringify(settings));
       }
     }
   }
