@@ -1,30 +1,30 @@
-import {LitElement, PropertyValues, css, html} from 'lit';
-import {customElement, query, state} from 'lit/decorators.js';
-import {STORAGE_ITEM, Events, Settings} from '../../shared';
+import {LitElement, css, html} from 'lit';
+import {customElement, property, query, state} from 'lit/decorators.js';
+import {Events} from '../../shared';
 import shadowStyles from './settings.scss';
 
 
 /**
  * Web component that renders theme swatches for a user to choose from.
  */
-@customElement('clock-settings')
-class SettingsWidget extends LitElement {
+@customElement('clock-settings') class SettingsWidget extends LitElement {
   private clickHandler: EventListenerObject;
   private keyHandler: EventListenerObject;
-  private themes: string[] = [
+  private touchTarget: HTMLElement;
+  
+  @property() seconds: boolean;
+  @property() theme: string;
+  @property() theming: boolean;
+
+  @query('dialog') dialog: HTMLDialogElement;
+  @query('form') form: HTMLFormElement;
+
+  @state() open: boolean = false;
+  @state() themes: string[] = [
     'Default', 'Red', 'Orange',
     'Yellow', 'Teal',  'Blue',
     'Indigo', 'Purple', 'Brown',
   ];
-
-  @query('dialog') dialog: HTMLDialogElement;
-  @query('form') form: HTMLFormElement;
-  @state() open: boolean = false;
-  @state() seconds: boolean;
-  @state() theme: string;
-  @state() theming: boolean;
-  
-  static styles = css`${shadowStyles}`;
 
   constructor() {
     super();
@@ -34,34 +34,40 @@ class SettingsWidget extends LitElement {
   
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('click', this.clickHandler);
-    document.addEventListener('keydown', this.keyHandler);
-    this.setup();
+    document.addEventListener(Events.Click, this.clickHandler);
+    document.addEventListener(Events.KeyDown, this.keyHandler);
+    document.addEventListener(Events.TouchStart, this.handleTouchStart, {passive: true});
+    document.addEventListener(Events.TouchEnd, this.handleTouchEnd, {passive: true});
   }
 
   disconnectedCallback() { 
     super.disconnectedCallback();
-    document.removeEventListener('click', this.clickHandler);
-    document.removeEventListener('keydown', this.keyHandler);
+    document.removeEventListener(Events.Click, this.clickHandler);
+    document.removeEventListener(Events.KeyDown, this.keyHandler);
+    document.removeEventListener(Events.TouchStart, this.handleTouchStart);
+    document.removeEventListener(Events.TouchEnd, this.handleTouchEnd);
   }
 
-  /**
-   * Gets settings from localStorage; sets default values otherwise, which
-   * triggers a Lit update that lets the app know this element is ready.
-   */
-  private setup() {
-    const settings = JSON.parse(localStorage.getItem(STORAGE_ITEM));
-
-    if (settings) {
-      const {seconds, theme, theming} = settings;
-      this.seconds = seconds;
-      this.theme = theme;
-      this.theming = theming;
+  private toggleOpen() {
+    if (this.dialog.open) {
+      this.open = false;
+      this.dialog.addEventListener(Events.TransitionEnd, () => {
+        this.dialog.close();
+      }, {once: true});
     } else {
-      this.seconds = true;
-      this.theme = 'brown'; // Arbitrary default.
-      this.theming = true;
+      this.dialog.showModal();
+      this.open = true;
     }
+  }
+
+  private updateSettings() {
+    this.dispatchEvent(new CustomEvent(Events.Settings, {
+      detail: {
+        seconds: this.seconds,
+        theme: this.theme,
+        theming: this.theming,
+      }
+    }));
   }
 
   private handleClick(event: Event) {
@@ -81,36 +87,16 @@ class SettingsWidget extends LitElement {
     }
   }
 
-  private toggleOpen() {
-    if (this.dialog.open) {
-      this.open = false;
-      this.dialog.addEventListener('transitionend', () => {
-        this.dialog.close();
-      }, {once: true});
-    } else {
-      this.dialog.showModal();
-      this.open = true;
+  private handleTouchStart(event: TouchEvent) {
+    this.touchTarget = <HTMLElement>event.composedPath()[0];
+
+    if (['theme'].includes(this.touchTarget.className)) {
+      this.touchTarget.classList.add('touch');
     }
   }
 
-  protected updated(changed: PropertyValues<this>) {
-    for (const key of changed.keys()) {
-      if (['seconds', 'theme', 'theming'].includes(key.toString())) {
-        const settings: Settings = {
-          seconds: this.seconds,
-          theme: this.theme,
-          theming: this.theming,
-        }
-    
-        this.dispatchEvent(new CustomEvent(Events.Settings, {
-          bubbles: true,
-          composed: true,
-          detail: {settings},
-        }));
-    
-        localStorage.setItem(STORAGE_ITEM, JSON.stringify(settings));
-      }
-    }
+  private handleTouchEnd() {
+    this.touchTarget.classList.remove('touch');
   }
 
   protected render() {
@@ -118,60 +104,46 @@ class SettingsWidget extends LitElement {
       <dialog
         ?inert="${!this.open}"  
         ?open="${this.open}">
-        <form>
-          ${this.renderTheming()}  
-          ${this.renderSeconds()}
-          ${this.renderSwatches()}
+        <form @change=${this.updateSettings}>
+          <label id="theme">
+            <span>Theme</span>
+            <input
+              ?checked="${this.theming}"  
+              name="theming"
+              type="checkbox"
+              @click="${() => this.theming = !this.theming}">
+          </label>
+
+          <label id="seconds">
+            <span>Seconds</span>
+            <input
+              name="seconds"
+              type="checkbox"
+              ?checked=${this.seconds}
+              @click=${() => this.seconds = !this.seconds}>
+          </label>
+
+          <ul ?aria-disabled="${!this.theming}">
+          ${this.themes.map((theme) => {
+            const value = theme.toLowerCase();
+            return html`
+              <li>
+                <input
+                  aria-label="${theme}"
+                  class="theme"
+                  name="theme"
+                  tabindex="${this.theming ? '0' : '-1'}"
+                  type="radio"
+                  value="${value}"
+                  ?checked="${value === this.theme}"
+                  @click="${() => this.theme = value}">
+              </li>`
+          })}
+          </ul>
         </form>
       </dialog>
     `;
   }
 
-  private renderSeconds() {
-    return html`
-      <label id="seconds">
-        <span>Seconds</span>
-        <input
-          name="seconds"
-          type="checkbox"
-          ?checked=${this.seconds}
-          @change=${() => this.seconds = !this.seconds}>
-      </label>
-    `;
-  }
-
-  private renderTheming() {
-    return html`
-      <label id="theme">
-        <span>Theme</span>
-        <input
-          ?checked="${this.theming}"  
-          name="theming"
-          type="checkbox"
-          @change="${() => this.theming = !this.theming}">
-      </label>
-    `;
-  }
-
-  private renderSwatches() {
-    return html`
-      <ul ?aria-disabled="${!this.theming}">
-      ${this.themes.map((theme) => {
-        const value = theme.toLowerCase();
-        return html`
-          <li>
-            <input
-              aria-label="${theme}"
-              class="theme"
-              name="theme"
-              tabindex="${this.theming ? '0' : '-1'}"
-              type="radio"
-              value="${value}"
-              ?checked="${value === this.theme}"
-              @change="${() => this.theme = value}">
-          </li>`
-      })}
-      </ul>
-    `;
-  }
+  static styles = css`${shadowStyles}`;
 }

@@ -1,9 +1,12 @@
 export const STORAGE_ITEM = 'clock';
 
 export enum Events {
-  Settings = 'settingsUpdated',
-  Touchend = 'touchend',
-  Touchstart = 'touchstart',
+  Click = 'click',
+  KeyDown = 'keydown',
+  Settings = 'settingsChanged',
+  TouchEnd = 'touchend',
+  TouchStart = 'touchstart',
+  TransitionEnd = 'transitionend',
 }
 
 export interface Settings {

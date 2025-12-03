@@ -6,17 +6,15 @@ import shadowStyles from './faces.scss';
 /**
  * Web component that renders nine analog clocks via SVG based on system time.
  */
-@customElement('clock-faces')
-class Faces extends LitElement {
+@customElement('clock-faces') class Faces extends LitElement {
   private framerate: number = 1000 / 60;
   private interval: number = 0;
 
   @property({attribute: 'aria-label', reflect: true}) ariaLabel = '';
+  
   @state() hoursAngle: number = 0;
   @state() minutesAngle: number = 0;
   @state() secondsAngle: number = 0;
-
-  static styles = css`${shadowStyles}`;
 
   connectedCallback() {
     super.connectedCallback();
@@ -78,4 +76,6 @@ class Faces extends LitElement {
     }
     return html`${clocks}`;
   }
+
+  static styles = css`${shadowStyles}`;
 }
