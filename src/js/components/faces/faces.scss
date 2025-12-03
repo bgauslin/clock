@@ -105,3 +105,14 @@ svg {
 .upper-pivot {
   fill: var(--seconds);
 }
+
+time {
+  color: var(--hands);
+  grid-area: 2 / 12 / 2 / 22;
+  place-self: center;
+  transition: opacity var(--transition);
+
+  &[aria-hidden='true'] {
+    opacity: 0;
+  }
+}

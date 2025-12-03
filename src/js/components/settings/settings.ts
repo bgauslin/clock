@@ -12,6 +12,7 @@ import shadowStyles from './settings.scss';
   private keyHandler: EventListenerObject;
   private touchTarget: HTMLElement;
   
+  @property() digital: boolean;
   @property() seconds: boolean;
   @property() theme: string;
   @property() theming: boolean;
@@ -63,6 +64,7 @@ import shadowStyles from './settings.scss';
   private updateSettings() {
     this.dispatchEvent(new CustomEvent(Events.Settings, {
       detail: {
+        digital: this.digital,
         seconds: this.seconds,
         theme: this.theme,
         theming: this.theming,
@@ -121,6 +123,15 @@ import shadowStyles from './settings.scss';
               type="checkbox"
               ?checked=${this.seconds}
               @click=${() => this.seconds = !this.seconds}>
+          </label>
+
+          <label id="digital">
+            <span>Digital</span>
+            <input
+              name="digital"
+              type="checkbox"
+              ?checked=${this.digital}
+              @click=${() => this.digital = !this.digital}>
           </label>
 
           <ul ?aria-disabled="${!this.theming}">

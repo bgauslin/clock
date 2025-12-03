@@ -10,11 +10,13 @@ import shadowStyles from './faces.scss';
   private framerate: number = 1000 / 60;
   private interval: number = 0;
 
-  @property({attribute: 'aria-label', reflect: true}) ariaLabel = '';
-  
+  @property() digital: boolean;
+
   @state() hoursAngle: number = 0;
   @state() minutesAngle: number = 0;
   @state() secondsAngle: number = 0;
+  @state() time: string;
+  @state() timeAria: string;
 
   connectedCallback() {
     super.connectedCallback();
@@ -42,11 +44,18 @@ import shadowStyles from './faces.scss';
     this.minutesAngle = minutes * 6;
     this.secondsAngle = (seconds + (milliseconds / 1000)) * 6;
 
-    this.ariaLabel = `Current time is ${now.toLocaleString('en-US', {
+    this.time = now.toLocaleString('en-US', {
       hour: 'numeric',
       minute: 'numeric',
+      second: 'numeric',
+      hour12: false,
+    });
+
+    this.timeAria = now.toLocaleString('en-US', {
+      hour: '2-digit',
+      minute: 'numeric',
       dayPeriod: 'short',
-    })}.`;
+    });
   }
 
   protected render() {
@@ -74,7 +83,13 @@ import shadowStyles from './faces.scss';
         </svg>`
       );
     }
-    return html`${clocks}`;
+    return html`
+      ${clocks}
+      <time
+        aria-hidden="${!this.digital}"
+        aria-label="Current time is ${this.timeAria}"
+        datetime="${this.time}">${this.time}</time>
+    `;
   }
 
   static styles = css`${shadowStyles}`;

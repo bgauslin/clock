@@ -45,7 +45,7 @@ html:has(dialog[open]) {
 form {
   display: grid;
   gap: $menu-padding;
-  grid: '. .' 'swatches swatches' / 1fr 1fr;
+  grid: '. . .' 'swatches swatches swatches' / 1fr 1fr 1fr;
   padding-block: $menu-padding;
 }
 
