@@ -62,7 +62,7 @@ import shadowStyles from './faces.scss';
     const clocks = [];
     for (let i = 0; i < 9; i++) {
       clocks.push(html`
-        <svg viewbox="0 0 100 100">
+        <svg aria-hidden="true" viewbox="0 0 100 100">
           <line
             class="hours"
             x1="50" y1="50"
