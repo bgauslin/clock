@@ -15,17 +15,13 @@ import shadowStyles from './settings.scss';
   @property() digital: boolean;
   @property() seconds: boolean;
   @property() theme: string;
-  @property() theming: boolean;
 
   @query('dialog') dialog: HTMLDialogElement;
   @query('form') form: HTMLFormElement;
 
   @state() open: boolean = false;
-  @state() themes: string[] = [
-    'Default', 'Red', 'Orange',
-    'Yellow', 'Teal',  'Blue',
-    'Indigo', 'Purple', 'Brown',
-  ];
+  @state() themes: string[] = ['Default', 'Red', 'Orange', 'Yellow', 'Teal',
+      'Blue', 'Indigo', 'Purple', 'Brown', 'None'];
 
   constructor() {
     super();
@@ -67,7 +63,6 @@ import shadowStyles from './settings.scss';
         digital: this.digital,
         seconds: this.seconds,
         theme: this.theme,
-        theming: this.theming,
       }
     }));
   }
@@ -107,15 +102,6 @@ import shadowStyles from './settings.scss';
         ?inert="${!this.open}"  
         ?open="${this.open}">
         <form @change=${this.updateSettings}>
-          <label id="theme">
-            <span>Theme</span>
-            <input
-              ?checked="${this.theming}"  
-              name="theming"
-              type="checkbox"
-              @click="${() => this.theming = !this.theming}">
-          </label>
-
           <label id="seconds">
             <span>Seconds</span>
             <input
@@ -134,7 +120,7 @@ import shadowStyles from './settings.scss';
               @click=${() => this.digital = !this.digital}>
           </label>
 
-          <ul ?aria-disabled="${!this.theming}">
+          <ul>
           ${this.themes.map((theme) => {
             const value = theme.toLowerCase();
             return html`
@@ -143,11 +129,10 @@ import shadowStyles from './settings.scss';
                   aria-label="${theme}"
                   class="theme"
                   name="theme"
-                  tabindex="${this.theming ? '0' : '-1'}"
                   type="radio"
                   value="${value}"
-                  ?checked="${value === this.theme}"
-                  @click="${() => this.theme = value}">
+                  ?checked=${value === this.theme}
+                  @click=${() => this.theme = value}>
               </li>`
           })}
           </ul>

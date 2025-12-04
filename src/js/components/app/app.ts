@@ -12,7 +12,6 @@ import shadowStyles from './app.scss';
   @state() digital: boolean = false;
   @state() seconds: boolean = true;
   @state() theme: string = 'brown';
-  @state() theming: boolean = true;
 
   constructor() {
     super();
@@ -41,29 +40,23 @@ import shadowStyles from './app.scss';
   }
 
   private getSettings(settings: Settings) {
-    const {digital, seconds, theme, theming} = settings;
+    const {digital, seconds, theme} = settings;
     this.digital = digital;
     this.seconds = seconds;
     this.theme = theme;
-    this.theming = theming; 
   }
 
   protected render() {
-    const facesTheme = this.theming ? this.theme : undefined;
-
     return html`
       <clock-settings
         .digital="${this.digital}"
         .seconds=${this.seconds}
         .theme=${this.theme}
-        .theming=${this.theming}
         @settingsChanged=${this.updateSettings}></clock-settings>
       <clock-faces
-        aria-level="1"
-        role="heading"
-        .digital="${this.digital}"
-        ?seconds="${this.seconds}"
-        theme=${ifDefined(facesTheme)}></clock-faces>
+        theme="${this.theme}"
+        ?seconds=${this.seconds}
+        .digital=${this.digital}></clock-faces>
     `;
   }
 

@@ -108,7 +108,9 @@ svg {
 
 time {
   color: var(--hands);
-  grid-area: 2 / 12 / 2 / 22;
+  font-size: clamp(.375rem, .25rem + 2vw, .875rem);
+  font-variation-settings: 'wght' 600;
+  grid-area: 1 / 10 / 4 / -10;
   place-self: center;
   transition: opacity var(--transition);
 

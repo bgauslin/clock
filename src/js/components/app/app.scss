@@ -16,6 +16,7 @@
   --theme: var(--default);
 }
 
+// Light mode generated theme colors.
 @each $theme in themes.$themes {
   [theme='#{$theme}'] {
     --theme: var(--#{$theme});
@@ -27,7 +28,7 @@
     --seconds: var(--gray2-dark);
   }
 
-  :not([theme]),
+  [theme='none'],
   [theme='default'] {
     --hands: var(--gray5);
   }
@@ -36,6 +37,7 @@
     --seconds: var(--gray1);
   }
 
+  // Dark mode generated theme colors.
   @each $theme in themes.$themes {
     [theme='#{$theme}'] {
       --theme: var(--#{$theme}-dark-contrast);

@@ -1,12 +1,12 @@
 :root {
   // Theming.
+  --body-background: var(--gray6);
   --border: 1px solid var(--gray5);
   --default: white;
-  --fill-0: var(--gray6);
-  --fill-1: white;
-  --fill-2: var(--gray5);
+  --dialog-background: white;
   --outline: var(--text-color);
   --text-color: var(--gray5-dark);
+  --toggle-background: var(--gray5);
 
   // Apple HGI light and dark mode colors.
   --gray1: rgb(142, 142, 147);
@@ -92,11 +92,11 @@
 
   // Dark mode theming.
   @media (prefers-color-scheme: dark) {
+    --body-background: var(--gray6-dark);
     --border: 1px solid var(--gray5-dark);
     --default: black;
-    --fill-0: var(--gray6-dark);
-    --fill-1: var(--gray5-dark);
-    --fill-2: var(--gray4-dark);
+    --dialog-background: var(--gray5-dark);
     --text-color: var(--gray5);
+    --toggle-background: var(--gray4-dark);
   }
 }

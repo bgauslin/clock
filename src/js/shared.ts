@@ -13,5 +13,4 @@ export interface Settings {
   digital: boolean,
   seconds: boolean,
   theme: string,
-  theming: boolean,
 }
