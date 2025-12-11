@@ -11,7 +11,7 @@ import shadowStyles from './app.scss';
 @customElement('clock-app') class App extends LitElement {
   @state() digital: boolean = false;
   @state() seconds: boolean = true;
-  @state() theme: string = 'brown';
+  @state() theme: string = 'blue';
 
   constructor() {
     super();
