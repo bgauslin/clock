@@ -63,6 +63,7 @@ import shadowStyles from './app.scss';
         theme="${this.theme}"
         ?seconds=${this.seconds}
         .digital=${this.digital}></clock-faces>
+      <clock-touch></clock-touch>
     `;
   }
 

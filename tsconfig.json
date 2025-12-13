@@ -15,6 +15,7 @@
     "src/js/index.ts",
     "src/js/components/app/app.ts",
     "src/js/components/faces/faces.ts",
-    "src/js/components/settings/settings.ts"
+    "src/js/components/settings/settings.ts",
+    "src/js/components/touch.ts"
   ]
 }

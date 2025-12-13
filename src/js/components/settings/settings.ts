@@ -10,7 +10,6 @@ import shadowStyles from './settings.scss';
 @customElement('clock-settings') class SettingsWidget extends LitElement {
   private clickHandler: EventListenerObject;
   private keyHandler: EventListenerObject;
-  private touchTarget: HTMLElement;
   
   @property() digital: boolean;
   @property() seconds: boolean;
@@ -33,16 +32,12 @@ import shadowStyles from './settings.scss';
     super.connectedCallback();
     document.addEventListener(Events.Click, this.clickHandler);
     document.addEventListener(Events.KeyDown, this.keyHandler);
-    document.addEventListener(Events.TouchStart, this.handleTouchStart, {passive: true});
-    document.addEventListener(Events.TouchEnd, this.handleTouchEnd, {passive: true});
   }
 
   disconnectedCallback() { 
     super.disconnectedCallback();
     document.removeEventListener(Events.Click, this.clickHandler);
     document.removeEventListener(Events.KeyDown, this.keyHandler);
-    document.removeEventListener(Events.TouchStart, this.handleTouchStart);
-    document.removeEventListener(Events.TouchEnd, this.handleTouchEnd);
   }
 
   private toggleOpen() {
@@ -82,18 +77,6 @@ import shadowStyles from './settings.scss';
       event.preventDefault();
       this.toggleOpen();
     }
-  }
-
-  private handleTouchStart(event: TouchEvent) {
-    this.touchTarget = <HTMLElement>event.composedPath()[0];
-
-    if (['theme'].includes(this.touchTarget.className)) {
-      this.touchTarget.classList.add('touch');
-    }
-  }
-
-  private handleTouchEnd() {
-    this.touchTarget.classList.remove('touch');
   }
 
   protected render() {
