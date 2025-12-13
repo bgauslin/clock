@@ -66,5 +66,6 @@ import shadowStyles from './app.scss';
     `;
   }
 
+  // Shadow DOM stylesheet.
   static styles = css`${shadowStyles}`;
 }

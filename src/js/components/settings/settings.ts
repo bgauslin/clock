@@ -141,5 +141,6 @@ import shadowStyles from './settings.scss';
     `;
   }
 
+  // Shadow DOM stylesheet.
   static styles = css`${shadowStyles}`;
 }

@@ -94,5 +94,6 @@ import shadowStyles from './faces.scss';
     `;
   }
 
+  // Shadow DOM stylesheet.
   static styles = css`${shadowStyles}`;
 }
