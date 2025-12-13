@@ -88,7 +88,9 @@ import shadowStyles from './faces.scss';
       <time
         aria-hidden="${!this.digital}"
         aria-label="Current time is ${this.timeAria}"
-        datetime="${this.time}">${this.time}</time>
+        datetime="${this.time}">
+        ${this.time}
+      </time>
     `;
   }
 
