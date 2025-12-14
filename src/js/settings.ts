@@ -1,11 +1,11 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, property, query, state} from 'lit/decorators.js';
-import {Events} from '../../shared';
-import shadowStyles from './settings.scss';
+import {Events} from './shared';
+import shadowStyles from './shadow-styles/settings.scss';
 
 
 /**
- * Web component that renders theme swatches for a user to choose from.
+ * Lit web component that renders theme swatches for a user to choose from.
  */
 @customElement('clock-settings') class SettingsWidget extends LitElement {
   private clickHandler: EventListenerObject;

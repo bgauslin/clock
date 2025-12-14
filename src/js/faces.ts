@@ -1,10 +1,10 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
-import shadowStyles from './faces.scss';
+import shadowStyles from './shadow-styles/faces.scss';
 
 
 /**
- * Web component that renders nine analog clocks via SVG based on system time.
+ * Lit web component that renders nine analog clocks based on system time.
  */
 @customElement('clock-faces') class Faces extends LitElement {
   private framerate: number = 1000 / 60;

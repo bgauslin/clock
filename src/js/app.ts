@@ -1,11 +1,11 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
-import {Settings, STORAGE_ITEM} from '../../shared';
-import shadowStyles from './app.scss';
+import {Settings, STORAGE_ITEM} from './shared';
+import shadowStyles from './shadow-styles/app.scss';
 
 
 /**
- * Web component for a clock with nine sets of hands.
+ * Lit web component for a clock with nine sets of hands.
  */
 @customElement('clock-app') class App extends LitElement {
   @state() digital: boolean = false;
