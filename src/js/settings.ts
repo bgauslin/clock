@@ -82,8 +82,8 @@ import shadowStyles from './shadow-styles/settings.scss';
   protected render() {
     return html`
       <dialog
-        ?inert="${!this.open}"  
-        ?open="${this.open}">
+        ?inert=${!this.open}
+        ?open=${this.open}>
         <form @change=${this.updateSettings}>
           <label id="seconds">
             <span>Seconds</span>
